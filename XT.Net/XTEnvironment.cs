@@ -9,9 +9,17 @@ namespace XT.Net
     public class XTEnvironment : TradeEnvironment
     {
         /// <summary>
-        /// Rest API address
+        /// Spot rest API address
         /// </summary>
-        public string RestClientAddress { get; }
+        public string SpotRestClientAddress { get; }
+        /// <summary>
+        /// USDT-M futures rest API address
+        /// </summary>
+        public string UsdtFuturesRestClientAddress { get; }
+        /// <summary>
+        /// Coin-M futures rest API address
+        /// </summary>
+        public string CoinFuturesRestClientAddress { get; }
 
         /// <summary>
         /// Socket API address
@@ -20,11 +28,15 @@ namespace XT.Net
 
         internal XTEnvironment(
             string name,
-            string restAddress,
+            string spotRestAddress,
+            string usdtFuturesRestAddress,
+            string coinFuturesRestAddress,
             string streamAddress) :
             base(name)
         {
-            RestClientAddress = restAddress;
+            SpotRestClientAddress = spotRestAddress;
+            UsdtFuturesRestClientAddress = usdtFuturesRestAddress;
+            CoinFuturesRestClientAddress = coinFuturesRestAddress;
             SocketClientAddress = streamAddress;
         }
 
@@ -54,19 +66,19 @@ namespace XT.Net
         public static XTEnvironment Live { get; }
             = new XTEnvironment(TradeEnvironmentNames.Live,
                                      XTApiAddresses.Default.SpotRestClientAddress,
+                                     XTApiAddresses.Default.UsdtFuturesRestClientAddress,
+                                     XTApiAddresses.Default.CoinFuturesRestClientAddress,
                                      XTApiAddresses.Default.SocketClientAddress);
 
         /// <summary>
         /// Create a custom environment
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="spotRestAddress"></param>
-        /// <param name="spotSocketStreamsAddress"></param>
-        /// <returns></returns>
         public static XTEnvironment CreateCustom(
                         string name,
                         string spotRestAddress,
+                        string usdtFuturesRestAddress,
+                        string coinFuturesRestAddress,
                         string spotSocketStreamsAddress)
-            => new XTEnvironment(name, spotRestAddress, spotSocketStreamsAddress);
+            => new XTEnvironment(name, spotRestAddress, usdtFuturesRestAddress, coinFuturesRestAddress, spotSocketStreamsAddress);
     }
 }

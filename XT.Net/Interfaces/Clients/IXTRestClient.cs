@@ -11,9 +11,13 @@ namespace XT.Net.Interfaces.Clients
     public interface IXTRestClient : IRestClient
     {   
         /// <summary>
-        /// Futures API endpoints
+        /// USDT-M Futures API endpoints
         /// </summary>
-        public IXTRestClientFuturesApi FuturesApi { get; }
+        public IXTRestClientFuturesApi UsdtFuturesApi { get; }
+        /// <summary>
+        /// Coin-M Futures API endpoints
+        /// </summary>
+        public IXTRestClientFuturesApi CoinFuturesApi { get; }
 
         /// <summary>
         /// Spot API endpoints

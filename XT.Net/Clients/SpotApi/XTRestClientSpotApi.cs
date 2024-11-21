@@ -40,7 +40,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region constructor/destructor
         internal XTRestClientSpotApi(ILogger logger, HttpClient? httpClient, XTRestOptions options)
-            : base(logger, httpClient, options.Environment.RestClientAddress, options, options.SpotOptions)
+            : base(logger, httpClient, options.Environment.SpotRestClientAddress, options, options.SpotOptions)
         {
             Account = new XTRestClientSpotApiAccount(this);
             ExchangeData = new XTRestClientSpotApiExchangeData(logger, this);

@@ -4,6 +4,12 @@
         <name>XT.Net</name>
     </assembly>
     <members>
+        <member name="T:XT.Net.Clients.FuturesApi.XTRestClientUsdtFuturesApi">
+            <inheritdoc cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi" />
+        </member>
+        <member name="T:XT.Net.Clients.FuturesApi.XTRestClientCoinFuturesApi">
+            <inheritdoc cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi" />
+        </member>
         <member name="T:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi">
             <inheritdoc cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi" />
         </member>
@@ -50,6 +56,9 @@
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetClientIpAsync(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiTrading">
@@ -306,7 +315,10 @@
         <member name="T:XT.Net.Clients.XTRestClient">
             <inheritdoc cref="T:XT.Net.Interfaces.Clients.IXTRestClient" />
         </member>
-        <member name="P:XT.Net.Clients.XTRestClient.FuturesApi">
+        <member name="P:XT.Net.Clients.XTRestClient.UsdtFuturesApi">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.XTRestClient.CoinFuturesApi">
             <inheritdoc />
         </member>
         <member name="P:XT.Net.Clients.XTRestClient.SpotApi">
@@ -787,6 +799,14 @@
             <param name="ct">Cancellation token</param>
             <returns></returns>
         </member>
+        <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData.GetClientIpAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get client IP
+            <para><a href="https://doc.xt.com/#futures_quotesclientInfo" /></para>
+            </summary>
+            <param name="ct"></param>
+            <returns></returns>
+        </member>
         <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiShared">
             <summary>
             Shared interface for Futures rest API usage
@@ -826,9 +846,14 @@
             Client for accessing the XT Rest API. 
             </summary>
         </member>
-        <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.FuturesApi">
+        <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.UsdtFuturesApi">
             <summary>
-            Futures API endpoints
+            USDT-M Futures API endpoints
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.CoinFuturesApi">
+            <summary>
+            Coin-M Futures API endpoints
             </summary>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.SpotApi">
@@ -3098,7 +3123,17 @@
         </member>
         <member name="P:XT.Net.Objects.XTApiAddresses.SpotRestClientAddress">
             <summary>
-            The address used by the XTRestClient for the API
+            The address used by the XTRestClient for the Spot API
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.XTApiAddresses.CoinFuturesRestClientAddress">
+            <summary>
+            The address used by the XTRestClient for the Coin futures API
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.XTApiAddresses.UsdtFuturesRestClientAddress">
+            <summary>
+            The address used by the XTRestClient for the USDT futures API
             </summary>
         </member>
         <member name="P:XT.Net.Objects.XTApiAddresses.SocketClientAddress">
@@ -3212,9 +3247,19 @@
             XT environments
             </summary>
         </member>
-        <member name="P:XT.Net.XTEnvironment.RestClientAddress">
+        <member name="P:XT.Net.XTEnvironment.SpotRestClientAddress">
             <summary>
-            Rest API address
+            Spot rest API address
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTEnvironment.UsdtFuturesRestClientAddress">
+            <summary>
+            USDT-M futures rest API address
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTEnvironment.CoinFuturesRestClientAddress">
+            <summary>
+            Coin-M futures rest API address
             </summary>
         </member>
         <member name="P:XT.Net.XTEnvironment.SocketClientAddress">
@@ -3224,7 +3269,7 @@
         </member>
         <member name="M:XT.Net.XTEnvironment.#ctor">
             <summary>
-            ctor for DI, use <see cref="M:XT.Net.XTEnvironment.CreateCustom(System.String,System.String,System.String)"/> for creating a custom environment
+            ctor for DI, use <see cref="M:XT.Net.XTEnvironment.CreateCustom(System.String,System.String,System.String,System.String,System.String)"/> for creating a custom environment
             </summary>
         </member>
         <member name="M:XT.Net.XTEnvironment.GetEnvironmentByName(System.String)">
@@ -3237,14 +3282,10 @@
             Live environment
             </summary>
         </member>
-        <member name="M:XT.Net.XTEnvironment.CreateCustom(System.String,System.String,System.String)">
+        <member name="M:XT.Net.XTEnvironment.CreateCustom(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Create a custom environment
             </summary>
-            <param name="name"></param>
-            <param name="spotRestAddress"></param>
-            <param name="spotSocketStreamsAddress"></param>
-            <returns></returns>
         </member>
         <member name="T:XT.Net.XTExchange">
             <summary>

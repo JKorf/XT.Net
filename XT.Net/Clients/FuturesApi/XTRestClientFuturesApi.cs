@@ -15,11 +15,36 @@ using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.SharedApis;
+using CryptoExchange.Net.Objects.Options;
+using XT.Net.Objects.Internal;
 
 namespace XT.Net.Clients.FuturesApi
 {
+
     /// <inheritdoc cref="IXTRestClientFuturesApi" />
-    internal partial class XTRestClientFuturesApi : RestApiClient, IXTRestClientFuturesApi
+    internal class XTRestClientUsdtFuturesApi : XTRestClientFuturesApi
+    {
+        #region constructor/destructor
+        internal XTRestClientUsdtFuturesApi(ILogger logger, HttpClient? httpClient, XTRestOptions options)
+            : base(logger, httpClient, options.Environment.UsdtFuturesRestClientAddress, options, options.FuturesOptions)
+        {
+        }
+        #endregion
+    }
+
+    /// <inheritdoc cref="IXTRestClientFuturesApi" />
+    internal class XTRestClientCoinFuturesApi : XTRestClientFuturesApi
+    {
+        #region constructor/destructor
+        internal XTRestClientCoinFuturesApi(ILogger logger, HttpClient? httpClient, XTRestOptions options)
+            : base(logger, httpClient, options.Environment.CoinFuturesRestClientAddress, options, options.FuturesOptions)
+        {
+        }
+        #endregion
+    }
+
+    /// <inheritdoc cref="IXTRestClientFuturesApi" />
+    internal abstract partial class XTRestClientFuturesApi : RestApiClient, IXTRestClientFuturesApi
     {
         #region fields 
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Futures Api");
@@ -37,8 +62,8 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         #region constructor/destructor
-        internal XTRestClientFuturesApi(ILogger logger, HttpClient? httpClient, XTRestOptions options)
-            : base(logger, httpClient, options.Environment.RestClientAddress, options, options.FuturesOptions)
+        internal XTRestClientFuturesApi(ILogger logger, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions apiOptions)
+            : base(logger, httpClient, baseAddress, options, apiOptions)
         {
             Account = new XTRestClientFuturesApiAccount(this);
             ExchangeData = new XTRestClientFuturesApiExchangeData(logger, this);
@@ -60,11 +85,14 @@ namespace XT.Net.Clients.FuturesApi
 
         internal async Task<WebCallResult> SendToAddressAsync(string baseAddress, RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)
         {
-            var result = await base.SendAsync(baseAddress, definition, parameters, cancellationToken, null, weight).ConfigureAwait(false);
+            var result = await base.SendAsync<XTFuturesRestResponse>(baseAddress, definition, parameters, cancellationToken, null, weight).ConfigureAwait(false);
+            if (!result)
+                return result.AsDataless();
 
-            // Optional response checking
+            if (result.Data.ReturnCode != 0)
+                return result.AsDatalessError(new ServerError(result.Data.Error!.Code + ": " + result.Data.Error.Message));
 
-            return result;
+            return result.AsDataless();
         }
 
         internal Task<WebCallResult<T>> SendAsync<T>(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
@@ -72,11 +100,14 @@ namespace XT.Net.Clients.FuturesApi
 
         internal async Task<WebCallResult<T>> SendToAddressAsync<T>(string baseAddress, RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
         {
-            var result = await base.SendAsync<T>(baseAddress, definition, parameters, cancellationToken, null, weight).ConfigureAwait(false);
+            var result = await base.SendAsync<XTFuturesRestResponse<T>>(baseAddress, definition, parameters, cancellationToken, null, weight).ConfigureAwait(false);
+            if (!result)
+                return result.As<T>(default);
 
-            // Optional response checking
+            if (result.Data.ReturnCode != 0)
+                return result.AsError<T>(new ServerError(result.Data.Error!.Code + ": " + result.Data.Error.Message));
 
-            return result;
+            return result.As(result.Data.Result!);
         }
 
         /// <inheritdoc />

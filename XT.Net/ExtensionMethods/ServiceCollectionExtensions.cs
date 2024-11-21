@@ -122,8 +122,10 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().SpotApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().SpotApi.SharedClient);
-            services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().FuturesApi.SharedClient);
-            services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().FuturesApi.SharedClient);
+            services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().UsdtFuturesApi.SharedClient);
+            //services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().UsdtFuturesApi.SharedClient);
+            services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().CoinFuturesApi.SharedClient);
+            //services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().CoinFuturesApi.SharedClient);
 
             return services;
         }

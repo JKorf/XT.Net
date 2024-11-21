@@ -19,9 +19,11 @@ namespace XT.Net.Clients
         #region Api clients
                 
          /// <inheritdoc />
-        public IXTRestClientFuturesApi FuturesApi { get; }
+        public IXTRestClientFuturesApi UsdtFuturesApi { get; }
+        /// <inheritdoc />
+        public IXTRestClientFuturesApi CoinFuturesApi { get; }
 
-         /// <inheritdoc />
+        /// <inheritdoc />
         public IXTRestClientSpotApi SpotApi { get; }
 
         #endregion
@@ -47,7 +49,8 @@ namespace XT.Net.Clients
         {
             Initialize(options.Value);
                         
-            FuturesApi = AddApiClient(new XTRestClientFuturesApi(_logger, httpClient, options.Value));
+            UsdtFuturesApi = AddApiClient(new XTRestClientUsdtFuturesApi(_logger, httpClient, options.Value));
+            CoinFuturesApi = AddApiClient(new XTRestClientCoinFuturesApi(_logger, httpClient, options.Value));
             SpotApi = AddApiClient(new XTRestClientSpotApi(_logger, httpClient, options.Value));
         }
 
@@ -65,7 +68,8 @@ namespace XT.Net.Clients
         /// <inheritdoc />
         public void SetApiCredentials(ApiCredentials credentials)
         {
-            FuturesApi.SetApiCredentials(credentials);
+            UsdtFuturesApi.SetApiCredentials(credentials);
+            CoinFuturesApi.SetApiCredentials(credentials);
             SpotApi.SetApiCredentials(credentials);
         }
     }

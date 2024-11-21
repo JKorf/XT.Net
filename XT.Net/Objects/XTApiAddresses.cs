@@ -6,9 +6,17 @@ namespace XT.Net.Objects
     public class XTApiAddresses
     {
         /// <summary>
-        /// The address used by the XTRestClient for the API
+        /// The address used by the XTRestClient for the Spot API
         /// </summary>
         public string SpotRestClientAddress { get; set; } = "";
+        /// <summary>
+        /// The address used by the XTRestClient for the Coin futures API
+        /// </summary>
+        public string CoinFuturesRestClientAddress { get; set; } = "";
+        /// <summary>
+        /// The address used by the XTRestClient for the USDT futures API
+        /// </summary>
+        public string UsdtFuturesRestClientAddress { get; set; } = "";
         /// <summary>
         /// The address used by the XTSocketClient for the websocket API
         /// </summary>
@@ -20,6 +28,8 @@ namespace XT.Net.Objects
         public static XTApiAddresses Default = new XTApiAddresses
         {
             SpotRestClientAddress = "https://sapi.xt.com",
+            CoinFuturesRestClientAddress = "https://dapi.xt.com",
+            UsdtFuturesRestClientAddress = "https://fapi.xt.com",
             SocketClientAddress = "wss://stream.xt.com"
         };
     }
