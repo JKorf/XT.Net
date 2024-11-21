@@ -1,0 +1,18 @@
+GET
+/v4/public/ticker/book
+false
+{
+  "rc": 0,
+  "mc": "SUCCESS",
+  "ma": [],
+  "result": [
+    {
+      "s": "btc_usdt",    
+      "t": 1661856036925,  
+      "ap": null,          
+      "aq": null,          
+      "bp": null,         
+      "bq": null          
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+GET
+/v4/public/currencies
+false
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": {"time":1732105733311,"version":"616d8d7c73a9333d125d212120ccac5c","currencies":[
+    {
+       "id": 11,              
+      "currency": "usdt",      
+      "fullName": "usdt",     
+      "logo": null,           
+      "cmcLink": null,        
+      "weight": 100,    
+      "maxPrecision": 6,  
+      "depositStatus": 1,     
+      "withdrawStatus": 1,    
+      "convertEnabled": 1,    
+      "transferEnabled": 1     
+    }
+  ]
+  }
+}

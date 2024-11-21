@@ -1,0 +1,9 @@
+POST
+/v4/balance/transfer
+true
+{
+  "rc": 0,
+  "mc": "SUCCESS",
+  "ma": [],
+  "result": 1523
+}

@@ -1,0 +1,3365 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XT.Net</name>
+    </assembly>
+    <members>
+        <member name="T:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi">
+            <inheritdoc cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi" />
+        </member>
+        <member name="P:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.Account">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.ExchangeData">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.Trading">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.ExchangeName">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.CreateAccessor">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.CreateSerializer">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.GetServerTimestampAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.GetTimeSyncInfo">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.GetTimeOffset">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.SharedClient">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiAccount">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiTrading">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi">
+            <summary>
+            Client providing access to the XT Futures websocket Api
+            </summary>
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.#ctor(Microsoft.Extensions.Logging.ILogger,XT.Net.Objects.Options.XTSocketOptions)">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateAccessor">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateSerializer">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.SubscribeToXXXUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTModel}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.GetAuthenticationRequestAsync(CryptoExchange.Net.Sockets.SocketConnection)">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.SharedClient">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.SpotApi.XTRestClientSpotApi">
+            <inheritdoc cref="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi" />
+        </member>
+        <member name="P:XT.Net.Clients.SpotApi.XTRestClientSpotApi.Account">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.SpotApi.XTRestClientSpotApi.ExchangeData">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.SpotApi.XTRestClientSpotApi.Trading">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.SpotApi.XTRestClientSpotApi.ExchangeName">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.CreateAccessor">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.CreateSerializer">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.GetServerTimestampAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.GetTimeSyncInfo">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.GetTimeOffset">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.SpotApi.XTRestClientSpotApi.SharedClient">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.GetBalanceAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.GetBalancesAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.GetDepositAddressAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.GetDepositHistoryAsync(System.String,System.String,System.Nullable{XT.Net.Enums.DepositStatus},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.WithdrawAsync(System.String,System.String,System.String,System.Decimal,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.GetWithdrawalHistoryAsync(System.String,System.String,System.Nullable{XT.Net.Enums.WithdrawalStatus},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.TransferAsync(System.String,XT.Net.Enums.BusinessType,XT.Net.Enums.BusinessType,System.Decimal,System.String,System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.SubAccountTransferAsync(System.String,XT.Net.Enums.BusinessType,XT.Net.Enums.BusinessType,System.Decimal,System.String,System.Int64,System.Nullable{System.Int64},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiAccount.GetWebsocketTokenAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetClientIpAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetSymbolsAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetOrderBookAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetKlinesAsync(System.String,XT.Net.Enums.KlineInterval,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetRecentTradesAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetTradeHistoryAsync(System.String,System.Nullable{System.Int32},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.Int64},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetPriceTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetBookTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.Get24HTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetAssetsAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiExchangeData.GetAssetNetworksAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.PlaceOrderAsync(System.String,XT.Net.Enums.OrderSide,XT.Net.Enums.OrderType,XT.Net.Enums.TimeInForce,XT.Net.Enums.BusinessType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.GetOrderAsync(System.Int64,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.GetOrderByClientOrderIdAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.CancelOrderAsync(System.Int64,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.GetOpenOrdersAsync(System.String,System.Nullable{XT.Net.Enums.BusinessType},System.Nullable{XT.Net.Enums.OrderSide},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.GetClosedOrdersAsync(System.String,System.Nullable{XT.Net.Enums.BusinessType},System.Nullable{XT.Net.Enums.OrderSide},System.Nullable{XT.Net.Enums.OrderType},System.Nullable{XT.Net.Enums.OrderStatus},System.Nullable{System.Boolean},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.CancelAllOrdersAsync(XT.Net.Enums.BusinessType,System.String,System.Nullable{XT.Net.Enums.OrderSide},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.CancelOrdersAsync(System.Collections.Generic.IEnumerable{System.Int64},System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.EditOrderAsync(System.Int64,System.Decimal,System.Decimal,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.GetOrdersAsync(System.Collections.Generic.IEnumerable{System.Int64},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApiTrading.GetUserTradesAsync(System.String,System.Nullable{XT.Net.Enums.BusinessType},System.Nullable{XT.Net.Enums.OrderSide},System.Nullable{XT.Net.Enums.OrderType},System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.SpotApi.XTSocketClientSpotApi">
+            <summary>
+            Client providing access to the XT Spot websocket Api
+            </summary>
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.#ctor(Microsoft.Extensions.Logging.ILogger,XT.Net.Objects.Options.XTSocketOptions)">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateAccessor">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateSerializer">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateAuthenticationProvider(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTTradeUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToKlineUpdatesAsync(System.String,XT.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTKlineUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},XT.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTKlineUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTOrderBookUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTOrderBookUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToIncrementalOrderBookUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTIncrementalOrderBookUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToIncrementalOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTIncrementalOrderBookUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToTickerUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XT24HTicker}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToTickerUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XT24HTicker}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToBalanceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTBalanceUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTOrderUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTUserTradeUpdate}},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.GetAuthenticationRequestAsync(CryptoExchange.Net.Sockets.SocketConnection)">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SharedClient">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.XTRestClient">
+            <inheritdoc cref="T:XT.Net.Interfaces.Clients.IXTRestClient" />
+        </member>
+        <member name="P:XT.Net.Clients.XTRestClient.FuturesApi">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.XTRestClient.SpotApi">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.XTRestClient.#ctor(System.Action{XT.Net.Objects.Options.XTRestOptions})">
+            <summary>
+            Create a new instance of the XTRestClient using provided options
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:XT.Net.Clients.XTRestClient.#ctor(System.Net.Http.HttpClient,Microsoft.Extensions.Logging.ILoggerFactory,Microsoft.Extensions.Options.IOptions{XT.Net.Objects.Options.XTRestOptions})">
+            <summary>
+            Create a new instance of the XTRestClient using provided options
+            </summary>
+            <param name="options">Option configuration</param>
+            <param name="loggerFactory">The logger factory</param>
+            <param name="httpClient">Http client for this client</param>
+        </member>
+        <member name="M:XT.Net.Clients.XTRestClient.SetDefaultOptions(System.Action{XT.Net.Objects.Options.XTRestOptions})">
+            <summary>
+            Set the default options to be used when creating new clients
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:XT.Net.Clients.XTRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Clients.XTSocketClient">
+            <inheritdoc cref="T:XT.Net.Interfaces.Clients.IXTSocketClient" />
+        </member>
+        <member name="P:XT.Net.Clients.XTSocketClient.FuturesApi">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Clients.XTSocketClient.SpotApi">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Clients.XTSocketClient.#ctor(System.Action{XT.Net.Objects.Options.XTSocketOptions})">
+            <summary>
+            Create a new instance of XTSocketClient
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:XT.Net.Clients.XTSocketClient.#ctor(Microsoft.Extensions.Options.IOptions{XT.Net.Objects.Options.XTSocketOptions},Microsoft.Extensions.Logging.ILoggerFactory)">
+            <summary>
+            Create a new instance of XTSocketClient
+            </summary>
+            <param name="loggerFactory">The logger factory</param>
+            <param name="options">Option configuration</param>
+        </member>
+        <member name="M:XT.Net.Clients.XTSocketClient.SetDefaultOptions(System.Action{XT.Net.Objects.Options.XTSocketOptions})">
+            <summary>
+            Set the default options to be used when creating new clients
+            </summary>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:XT.Net.Clients.XTSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Converters.SymbolFilterConverter.CreateConverter(System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Enums.BusinessType">
+            <summary>
+            Business type
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.BusinessType.Spot">
+            <summary>
+            Normal spot
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.BusinessType.Leverage">
+            <summary>
+            Margin
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.BusinessType.Finance">
+            <summary>
+            Finanace account
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.BusinessType.UsdtFutures">
+            <summary>
+            USDT-M futures
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.BusinessType.CoinFutures">
+            <summary>
+            Coin-M futures
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.DepositStatus">
+            <summary>
+            Deposit status
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.DepositStatus.Submited">
+            <summary>
+            Submited
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.DepositStatus.Review">
+            <summary>
+            In review
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.DepositStatus.Audited">
+            <summary>
+            Audited
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.DepositStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.DepositStatus.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.DepositStatus.Fail">
+            <summary>
+            Fail
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.DepositStatus.Canceled">
+            <summary>
+            Canceled
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.KlineInterval">
+            <summary>
+            Kline interval
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.OneMinute">
+            <summary>
+            One minute
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.ThreeMinutes">
+            <summary>
+            Three minutes
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.FiveMinutes">
+            <summary>
+            Five minutes
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.FifteenMinutes">
+            <summary>
+            Fifteen minutes
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.ThirtyMinutes">
+            <summary>
+            Thirty minutes
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.OneHour">
+            <summary>
+            One hour
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.TwoHours">
+            <summary>
+            Two hours
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.FourHours">
+            <summary>
+            Four hours
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.SixHours">
+            <summary>
+            Six hours
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.EightHours">
+            <summary>
+            Eight hours
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.TwelveHours">
+            <summary>
+            Twelve hours
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.OneDay">
+            <summary>
+            One day
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.ThreeDay">
+            <summary>
+            Three days
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.OneWeek">
+            <summary>
+            One week
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.KlineInterval.OneMonth">
+            <summary>
+            One month
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.OrderSide">
+            <summary>
+            Order side
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderSide.Buy">
+            <summary>
+            Buy
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderSide.Sell">
+            <summary>
+            Sell
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.OrderStatus">
+            <summary>
+            Order status
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderStatus.New">
+            <summary>
+            New
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderStatus.PartiallyFilled">
+            <summary>
+            Partially filled
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderStatus.Filled">
+            <summary>
+            Filled
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderStatus.Canceled">
+            <summary>
+            Canceled
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderStatus.Rejected">
+            <summary>
+            Rejected
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderStatus.Expired">
+            <summary>
+            Expired
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderType.Limit">
+            <summary>
+            Limit order
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.OrderType.Market">
+            <summary>
+            Market order
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.PageDirection">
+            <summary>
+            Page direction
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.PageDirection.Previous">
+            <summary>
+            Previous
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.PageDirection.Next">
+            <summary>
+            Next
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.SymbolFilterType">
+            <summary>
+            Symbol filter type
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolFilterType.Price">
+            <summary>
+            Price filter
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolFilterType.Quantity">
+            <summary>
+            Quantity filter
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolFilterType.QuoteQuantity">
+            <summary>
+            Quote quantity filter
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolFilterType.ProtectionLimit">
+            <summary>
+            Limit order protection
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolFilterType.ProtectionMarket">
+            <summary>
+            Market order protection
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolFilterType.ProtectionOnline">
+            <summary>
+            Filter for when symbol comes online
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.SymbolStatus">
+            <summary>
+            Symbol status
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolStatus.Online">
+            <summary>
+            Online
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolStatus.Offline">
+            <summary>
+            Offline
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SymbolStatus.Delisted">
+            <summary>
+            Delisted
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.TimeInForce">
+            <summary>
+            Time in force
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.TimeInForce.GoodTillCanceled">
+            <summary>
+            Good until canceled
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.TimeInForce.ImmediateOrCancel">
+            <summary>
+            Immediate or cancel, cancel any part that can not be executed immediately
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.TimeInForce.FillOrKill">
+            <summary>
+            Fill or kill, immediately fill the entire order or cancel it
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.TimeInForce.PostOnly">
+            <summary>
+            Post only
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.TradeRole">
+            <summary>
+            Trade role
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.TradeRole.Maker">
+            <summary>
+            Maker
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.TradeRole.Taker">
+            <summary>
+            Taker
+            </summary>
+        </member>
+        <member name="T:XT.Net.Enums.WithdrawalStatus">
+            <summary>
+            Withdrawal status
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.Submited">
+            <summary>
+            Submited
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.InReview">
+            <summary>
+            In review
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.Audited">
+            <summary>
+            Audited
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.AuditedAgain">
+            <summary>
+            Audited again
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.Pending">
+            <summary>
+            Pending
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.Success">
+            <summary>
+            Success
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.Fail">
+            <summary>
+            Fail
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.WithdrawalStatus.Canceled">
+            <summary>
+            Canceled
+            </summary>
+        </member>
+        <member name="T:XT.Net.ExtensionMethods.XTExtensionMethods">
+            <summary>
+            Extension methods specific to using the XT API
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi">
+            <summary>
+            XT Futures API endpoints
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi.Account">
+            <summary>
+            Endpoints related to account settings, info or actions
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi.ExchangeData">
+            <summary>
+            Endpoints related to retrieving market and system data
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi.Trading">
+            <summary>
+            Endpoints related to orders and trades
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi.SharedClient">
+            <summary>
+            Get the shared rest requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiAccount">
+            <summary>
+            XT Futures account endpoints. Account endpoints include balance info, withdraw/deposit info and requesting and account settings
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData">
+            <summary>
+            XT Futures exchange data endpoints. Exchange data includes market data (tickers, order books, etc) and system status.
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            <para><a href="XXX" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiShared">
+            <summary>
+            Shared interface for Futures rest API usage
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiTrading">
+            <summary>
+            XT Futures trading endpoints, placing and managing orders.
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTSocketClientFuturesApi">
+            <summary>
+            XT Futures streams
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTSocketClientFuturesApi.SubscribeToXXXUpdatesAsync(System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTModel}},System.Threading.CancellationToken)">
+            <summary>
+            
+            <para><a href="XXX" /></para>
+            </summary>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTSocketClientFuturesApi.SharedClient">
+            <summary>
+            Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTSocketClientFuturesApiShared">
+            <summary>
+            Shared interface for Futures socket API usage
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.IXTRestClient">
+            <summary>
+            Client for accessing the XT Rest API. 
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.FuturesApi">
+            <summary>
+            Futures API endpoints
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.SpotApi">
+            <summary>
+            Spot API endpoints
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.IXTRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <summary>
+            Set the API credentials for this client. All Api clients in this client will use the new credentials, regardless of earlier set options.
+            </summary>
+            <param name="credentials">The credentials to set</param>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.IXTSocketClient">
+            <summary>
+            Client for accessing the XT websocket API
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.IXTSocketClient.FuturesApi">
+            <summary>
+            Futures API endpoints
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.IXTSocketClient.SpotApi">
+            <summary>
+            Spot API endpoints
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.IXTSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
+            <summary>
+            Set the API credentials for this client. All Api clients in this client will use the new credentials, regardless of earlier set options.
+            </summary>
+            <param name="credentials">The credentials to set</param>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi">
+            <summary>
+            XT Spot API endpoints
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi.Account">
+            <summary>
+            Endpoints related to account settings, info or actions
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi.ExchangeData">
+            <summary>
+            Endpoints related to retrieving market and system data
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi.Trading">
+            <summary>
+            Endpoints related to orders and trades
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi.SharedClient">
+            <summary>
+            Get the shared rest requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount">
+            <summary>
+            XT Spot account endpoints. Account endpoints include balance info, withdraw/deposit info and requesting and account settings
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetBalanceAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get balance for an asset
+            <para><a href="https://doc.xt.com/#balancebalanceGet" /></para>
+            </summary>
+            <param name="asset">Asset name</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetBalancesAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get balances
+            <para><a href="https://doc.xt.com/#balancecurrenciesGet" /></para>
+            </summary>
+            <param name="assets">Filter by assets</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetDepositAddressAsync(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get deposit address for an asset
+            <para><a href="https://doc.xt.com/#deposit_withdrawaldepositAddressGet" /></para>
+            </summary>
+            <param name="asset">Asset name</param>
+            <param name="network">Network</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetDepositHistoryAsync(System.String,System.String,System.Nullable{XT.Net.Enums.DepositStatus},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get deposit history
+            <para><a href="https://doc.xt.com/#deposit_withdrawalhistoryDepositGet" /></para>
+            </summary>
+            <param name="asset">Asset name</param>
+            <param name="network">Network</param>
+            <param name="status">Filter by status</param>
+            <param name="fromId">From id</param>
+            <param name="direction">Page direction</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.WithdrawAsync(System.String,System.String,System.String,System.Decimal,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Withdraw an asset
+            <para><a href="https://doc.xt.com/#deposit_withdrawalwithdraw" /></para>
+            </summary>
+            <param name="asset">The asset, for example `eth`</param>
+            <param name="network">The network to withdraw on</param>
+            <param name="quantity">Quantity to withdraw</param>
+            <param name="address">Address to withdraw to</param>
+            <param name="memo">Address memo</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetWithdrawalHistoryAsync(System.String,System.String,System.Nullable{XT.Net.Enums.WithdrawalStatus},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get withdrawal history
+            <para><a href="https://doc.xt.com/#deposit_withdrawalwithdrawHistory" /></para>
+            </summary>
+            <param name="asset">Asset name</param>
+            <param name="network">Network</param>
+            <param name="status">Filter by status</param>
+            <param name="fromId">From id</param>
+            <param name="direction">Page direction</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.TransferAsync(System.String,XT.Net.Enums.BusinessType,XT.Net.Enums.BusinessType,System.Decimal,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Transfer assets
+            <para><a href="https://doc.xt.com/#transfertransferPost" /></para>
+            </summary>
+            <param name="asset">Asset name</param>
+            <param name="from">From account</param>
+            <param name="to">To account</param>
+            <param name="quantity">Quantity to transfer</param>
+            <param name="clientId">Unique id</param>
+            <param name="symbol">Isolated margin symbol, required when one of the accounts is Leverage</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.SubAccountTransferAsync(System.String,XT.Net.Enums.BusinessType,XT.Net.Enums.BusinessType,System.Decimal,System.String,System.Int64,System.Nullable{System.Int64},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Transfer assets for sub accounts
+            <para><a href="https://doc.xt.com/#transfersubTransferPost" /></para>
+            </summary>
+            <param name="asset">Asset name</param>
+            <param name="from">From account</param>
+            <param name="to">To account</param>
+            <param name="quantity">Quantity to transfer</param>
+            <param name="clientId">Unique id</param>
+            <param name="symbol">Isolated margin symbol, required when one of the accounts is Leverage</param>
+            <param name="toAccountId">To sub account id</param>
+            <param name="fromAccountId">From sub account id</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetWebsocketTokenAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get a websocket token, required for listening to private websocket streams
+            </summary>
+            <param name="ct"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData">
+            <summary>
+            XT Spot exchange data endpoints. Exchange data includes market data (tickers, order books, etc) and system status.
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
+            <summary>
+            
+            <para><a href="XXX" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetClientIpAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get your client IP
+            <para><a href="https://doc.xt.com/#market1clientInfo" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetSymbolsAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get symbol information
+            <para><a href="https://doc.xt.com/#market2symbol" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="symbols">Filter by symbols</param>
+            <param name="version">Version number from a previous request. When the result has not been changed since this version number there will be no response</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetOrderBookAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get the order book
+            <para><a href="https://doc.xt.com/#market3depth" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `eth_usdt`</param>
+            <param name="limit">Number of rows of the book to return</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetKlinesAsync(System.String,XT.Net.Enums.KlineInterval,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get klines
+            <para><a href="https://doc.xt.com/#market4kline" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="interval">Interval of the klines</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetRecentTradesAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get recent trades
+            <para><a href="https://doc.xt.com/#market5tradeRecent" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `eth_usdt`</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetTradeHistoryAsync(System.String,System.Nullable{System.Int32},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.Int64},System.Threading.CancellationToken)">
+            <summary>
+            Get trade history
+            <para><a href="https://doc.xt.com/#market6tradeHistory" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="limit">Max number of results</param>
+            <param name="direction">Page direction</param>
+            <param name="fromId">From id</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Get tickers
+            <para><a href="https://doc.xt.com/#market7allTicker" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="symbols">Filter by symbols</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetPriceTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Get price tickers
+            <para><a href="https://doc.xt.com/#market8tickerPrice" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="symbols">Filter by symbols</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetBookTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Get best orderbook offers
+            <para><a href="https://doc.xt.com/#market9tickerBook" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="symbols">Filter by symbols</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.Get24HTickersAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+            <summary>
+            Get 24h price stats
+            <para><a href="https://doc.xt.com/#market10ticker24h" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="symbols">Filter by symbols</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetAssetsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get assets
+            <para><a href="https://doc.xt.com/#balancecurrenciesGet" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetAssetNetworksAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get assets network info
+            <para><a href="https://doc.xt.com/#deposit_withdrawalsupportedCurrenciesGet" /></para>
+            </summary>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiShared">
+            <summary>
+            Shared interface for Spot rest API usage
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading">
+            <summary>
+            XT Spot trading endpoints, placing and managing orders.
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.PlaceOrderAsync(System.String,XT.Net.Enums.OrderSide,XT.Net.Enums.OrderType,XT.Net.Enums.TimeInForce,XT.Net.Enums.BusinessType,System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Place a new order
+            <para><a href="https://doc.xt.com/#orderorderPost" /></para>
+            </summary>
+            <param name="symbol">The symbol, for example `eth_usdt`</param>
+            <param name="orderSide">Order side</param>
+            <param name="orderType">Order type</param>
+            <param name="timeInForce">Time in force</param>
+            <param name="businessType">Business type</param>
+            <param name="quantity">Quantity, not supported for market buy orders</param>
+            <param name="quoteQuantity">Quantity in quote asset, required for market buy orders</param>
+            <param name="price">Price</param>
+            <param name="clientOrderId">Client order id</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.GetOrderAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Get order info
+            <para><a href="https://doc.xt.com/#orderorderGet" /></para>
+            </summary>
+            <param name="orderId">Id of the order</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.GetOrderByClientOrderIdAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get order info by client order id
+            <para><a href="https://doc.xt.com/#orderorderGetQueryParam" /></para>
+            </summary>
+            <param name="clientOrderId">Client order id</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.CancelOrderAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Cancel an order
+            <para><a href="https://doc.xt.com/#orderorderDel" /></para>
+            </summary>
+            <param name="orderId">Id of the order</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.GetOpenOrdersAsync(System.String,System.Nullable{XT.Net.Enums.BusinessType},System.Nullable{XT.Net.Enums.OrderSide},System.Threading.CancellationToken)">
+            <summary>
+            Get open orders
+            <para><a href="https://doc.xt.com/#orderopenOrderGet" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol</param>
+            <param name="businessType">Filter by business type</param>
+            <param name="orderSide">Filter by order side</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.GetClosedOrdersAsync(System.String,System.Nullable{XT.Net.Enums.BusinessType},System.Nullable{XT.Net.Enums.OrderSide},System.Nullable{XT.Net.Enums.OrderType},System.Nullable{XT.Net.Enums.OrderStatus},System.Nullable{System.Boolean},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get closed orders
+            <para><a href="https://doc.xt.com/#orderhistoryOrderGet" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="businessType">Filter by business type</param>
+            <param name="orderSide">Filter by order side</param>
+            <param name="orderType">Filter by order type</param>
+            <param name="orderStatus">Filter by order status</param>
+            <param name="hideCanceled">Whether hide (true) or return(false) canceled orders</param>
+            <param name="fromId">From id</param>
+            <param name="direction">Page direction</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.CancelAllOrdersAsync(XT.Net.Enums.BusinessType,System.String,System.Nullable{XT.Net.Enums.OrderSide},System.Threading.CancellationToken)">
+            <summary>
+            Cancel all orders matching the parameters
+            <para><a href="https://doc.xt.com/#orderopenOrderDel" /></para>
+            </summary>
+            <param name="businessType">Filter by business type</param>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="orderSide">Filter by order side</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.EditOrderAsync(System.Int64,System.Decimal,System.Decimal,System.Threading.CancellationToken)">
+            <summary>
+            Edit an active order
+            <para><a href="https://doc.xt.com/#orderorderUpdate" /></para>
+            </summary>
+            <param name="orderId">Id of order to edit</param>
+            <param name="price">New price</param>
+            <param name="quantity">New quantity</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.GetOrdersAsync(System.Collections.Generic.IEnumerable{System.Int64},System.Threading.CancellationToken)">
+            <summary>
+            Get multiple orders
+            <para><a href="https://doc.xt.com/#orderbatchOrderGet" /></para>
+            </summary>
+            <param name="orderIds">Ids of the orders</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.CancelOrdersAsync(System.Collections.Generic.IEnumerable{System.Int64},System.String,System.Threading.CancellationToken)">
+            <summary>
+            Cancel multiple orders
+            </summary>
+            <param name="orderIds">Ids of orders to cancel</param>
+            <param name="clientBatchId">Client batch id</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading.GetUserTradesAsync(System.String,System.Nullable{XT.Net.Enums.BusinessType},System.Nullable{XT.Net.Enums.OrderSide},System.Nullable{XT.Net.Enums.OrderType},System.Nullable{System.Int64},System.Nullable{System.Int64},System.Nullable{XT.Net.Enums.PageDirection},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            Get user trades
+            <para><a href="https://doc.xt.com/#tradetradeGet" /></para>
+            </summary>
+            <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
+            <param name="businessType">Filter by business type</param>
+            <param name="orderSide">Filter by order side</param>
+            <param name="orderType">Filter by order type</param>
+            <param name="orderId">Filter by order id</param>
+            <param name="fromId">From id</param>
+            <param name="direction">Page direction</param>
+            <param name="startTime">Filter by start time</param>
+            <param name="endTime">Filter by end time</param>
+            <param name="limit">Max number of results</param>
+            <param name="ct">Cancellation token</param>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi">
+            <summary>
+            XT Spot streams
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTTradeUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to trade updates
+            <para><a href="https://doc.xt.com/#websocket_publicdealRecord" /></para>
+            </summary>
+            <param name="symbol">Symbol name</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToTradeUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTTradeUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to trade updates
+            <para><a href="https://doc.xt.com/#websocket_publicdealRecord" /></para>
+            </summary>
+            <param name="symbols">Symbol names</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToKlineUpdatesAsync(System.String,XT.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTKlineUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to kline/candlestick updates
+            <para><a href="https://doc.xt.com/#websocket_publicsymbolKline" /></para>
+            </summary>
+            <param name="symbol">Symbol name</param>
+            <param name="interval">Interval of the kline</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToKlineUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},XT.Net.Enums.KlineInterval,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTKlineUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to kline/candlestick updates
+            <para><a href="https://doc.xt.com/#websocket_publicsymbolKline" /></para>
+            </summary>
+            <param name="symbols">Symbol names</param>
+            <param name="interval">Interval of the kline</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToOrderBookUpdatesAsync(System.String,System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTOrderBookUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to order book updates, pushes the selected depth at each update
+            <para><a href="https://doc.xt.com/#websocket_publiclimitDepth" /></para>
+            </summary>
+            <param name="symbol">Symbol name</param>
+            <param name="depth">Book depth, 5, 10, 20 or 50</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Int32,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTOrderBookUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to order book updates, pushes the selected depth at each update
+            <para><a href="https://doc.xt.com/#websocket_publiclimitDepth" /></para>
+            </summary>
+            <param name="symbols">Symbol names</param>
+            <param name="depth">Book depth, 5, 10, 20 or 50</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToIncrementalOrderBookUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTIncrementalOrderBookUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to incremental order book updates, only pushes changed entries
+            <para><a href="https://doc.xt.com/#websocket_publicincreDepth" /></para>
+            </summary>
+            <param name="symbol">Symbol name</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToIncrementalOrderBookUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTIncrementalOrderBookUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to incremental order book updates, only pushes changed entries
+            <para><a href="https://doc.xt.com/#websocket_publicincreDepth" /></para>
+            </summary>
+            <param name="symbols">Symbol names</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToTickerUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XT24HTicker}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to ticker updates
+            <para><a href="https://doc.xt.com/#websocket_publictickerRealTime" /></para>
+            </summary>
+            <param name="symbol">Symbol name</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToTickerUpdatesAsync(System.Collections.Generic.IEnumerable{System.String},System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XT24HTicker}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to ticker updates
+            <para><a href="https://doc.xt.com/#websocket_publictickerRealTime" /></para>
+            </summary>
+            <param name="symbols">Symbol names</param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToBalanceUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTBalanceUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user balance updates
+            <para><a href="https://doc.xt.com/#websocket_privatebalanceChange" /></para>
+            </summary>
+            <param name="token">Websocket token, can be retrieved using <see cref="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetWebsocketTokenAsync(System.Threading.CancellationToken)" /></param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToOrderUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTOrderUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user order updates
+            <para><a href="https://doc.xt.com/#websocket_privateorderChange" /></para>
+            </summary>
+            <param name="token">Websocket token, can be retrieved using <see cref="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetWebsocketTokenAsync(System.Threading.CancellationToken)" /></param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTUserTradeUpdate}},System.Threading.CancellationToken)">
+            <summary>
+            Subscribe to user trade update
+            <para><a href="https://doc.xt.com/#websocket_privateorderDeal" /></para>
+            </summary>
+            <param name="token">Websocket token, can be retrieved using <see cref="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount.GetWebsocketTokenAsync(System.Threading.CancellationToken)" /></param>
+            <param name="onMessage">The event handler for the received data</param>
+            <param name="ct">Cancellation token for closing this subscription</param>
+            <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        </member>
+        <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SharedClient">
+            <summary>
+            Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApiShared">
+            <summary>
+            Shared interface for Spot socket API usage
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.IXTOrderBookFactory">
+            <summary>
+            XT local order book factory
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.IXTOrderBookFactory.Futures">
+            <summary>
+            Futures order book factory methods
+            </summary>
+        </member>
+        <member name="P:XT.Net.Interfaces.IXTOrderBookFactory.Spot">
+            <summary>
+            Spot order book factory methods
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTOrderBookFactory.Create(CryptoExchange.Net.SharedApis.SharedSymbol,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <summary>
+            Create a SymbolOrderBook for the symbol
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="options">Book options</param>
+            <returns></returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTOrderBookFactory.CreateFutures(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <summary>
+            Create a new Futures local order book instance
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTOrderBookFactory.CreateSpot(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <summary>
+            Create a new Spot local order book instance
+            </summary>
+        </member>
+        <member name="T:XT.Net.Interfaces.IXTTrackerFactory">
+            <summary>
+            Tracker factory
+            </summary>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateKlineTracker(CryptoExchange.Net.SharedApis.SharedSymbol,CryptoExchange.Net.SharedApis.SharedKlineInterval,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <summary>
+            Create a new kline tracker
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="interval">Kline interval</param>
+            <param name="limit">The max amount of klines to retain</param>
+            <param name="period">The max period the data should be retained</param>
+            <returns></returns>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateTradeTracker(CryptoExchange.Net.SharedApis.SharedSymbol,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <summary>
+            Create a new trade tracker for a symbol
+            </summary>
+            <param name="symbol">The symbol</param>
+            <param name="limit">The max amount of klines to retain</param>
+            <param name="period">The max period the data should be retained</param>
+            <returns></returns>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XT24HTicker">
+            <summary>
+            24 hour price stats ticker
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.Change">
+            <summary>
+            24 hour change
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.ChangePercentage">
+            <summary>
+            24 hour change percentage
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.OpenPrice">
+            <summary>
+            Open price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.LowPrice">
+            <summary>
+            Low price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.HighPrice">
+            <summary>
+            High price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.LastPrice">
+            <summary>
+            Last price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.Volume">
+            <summary>
+            Volume in base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XT24HTicker.QuoteVolume">
+            <summary>
+            Volume in quote asset
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTAssets">
+            <summary>
+            Assets
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssets.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssets.Version">
+            <summary>
+            Version of the data
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssets.Assets">
+            <summary>
+            Assets
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTAsset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.FullName">
+            <summary>
+            Full name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.Logo">
+            <summary>
+            Logo
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.CmcLink">
+            <summary>
+            Cmc link
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.Weight">
+            <summary>
+            Weight
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.MaxPrecision">
+            <summary>
+            Max precision
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.DepositStatus">
+            <summary>
+            Deposit available
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.WithdrawStatus">
+            <summary>
+            Withdraw available
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.ConvertEnabled">
+            <summary>
+            Convert enabled
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAsset.TransferEnabled">
+            <summary>
+            Transfer enabled
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTAssetNetworks">
+            <summary>
+            Networks
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetworks.Asset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetworks.Networks">
+            <summary>
+            Supported networks
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTAssetNetwork">
+            <summary>
+            Network info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.Network">
+            <summary>
+            Network name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.DepositEnabled">
+            <summary>
+            Deposit enabled
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.WithdrawEnabled">
+            <summary>
+            Withdraw enabled
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.WithdrawFeeQuantity">
+            <summary>
+            Withdraw fee
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.WithdrawFeeAsset">
+            <summary>
+            Withdraw fee asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.WithdrawFeeAssetId">
+            <summary>
+            Withdraw fee asset id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.WithdrawMinQuantity">
+            <summary>
+            Withdraw min quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.DepositFeeRate">
+            <summary>
+            Deposit fee rate
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.Contract">
+            <summary>
+            Contract
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTBalances">
+            <summary>
+            Balance info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalances.TotalBtcQuantity">
+            <summary>
+            Total btc quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalances.Assets">
+            <summary>
+            Assets
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTBalance">
+            <summary>
+            Balance
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.Asset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.AssetId">
+            <summary>
+            Asset id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.QuantityFrozen">
+            <summary>
+            Frozen quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.Withdrawable">
+            <summary>
+            Withdrawable balance
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.Trade">
+            <summary>
+            Trade balance
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.CopyTrade">
+            <summary>
+            Copy trade balance
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.Locked">
+            <summary>
+            Locked balance
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.Freeze">
+            <summary>
+            Freeze
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.QuantityAvailable">
+            <summary>
+            Available quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.QuantityTotal">
+            <summary>
+            Total quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.ConvertBtcQuantity">
+            <summary>
+            Value in BTC
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalance.ConvertUsdtQuantity">
+            <summary>
+            Value in USDT
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTBalanceUpdate">
+            <summary>
+            Balance
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalanceUpdate.AccountId">
+            <summary>
+            Account id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalanceUpdate.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalanceUpdate.Asset">
+            <summary>
+            Asset name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalanceUpdate.Frozen">
+            <summary>
+            Frozen quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalanceUpdate.Total">
+            <summary>
+            Total quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalanceUpdate.BusinessType">
+            <summary>
+            Business type
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBalanceUpdate.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTBookTicker">
+            <summary>
+            Book ticker
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBookTicker.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBookTicker.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBookTicker.BestAskPrice">
+            <summary>
+            Best ask price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBookTicker.BestAskQuantity">
+            <summary>
+            Best ask quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBookTicker.BestBidPrice">
+            <summary>
+            Best bid price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBookTicker.BestBidQuantity">
+            <summary>
+            Best bid quantity
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTCancelId">
+            <summary>
+            Cancel id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTCancelId.CancelId">
+            <summary>
+            Cancel id
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTClientIp">
+            <summary>
+            Client IP
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTClientIp.Ip">
+            <summary>
+            Ip
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTDeposit">
+            <summary>
+            Deposit info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Memo">
+            <summary>
+            Memo
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Status">
+            <summary>
+            Status
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Confirmations">
+            <summary>
+            Confirmations
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.TransactionId">
+            <summary>
+            Transaction id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.FromAddress">
+            <summary>
+            From address
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDeposit.CreateTime">
+            <summary>
+            Created time
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTDepositAddress">
+            <summary>
+            Deposit address
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDepositAddress.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTDepositAddress.Memo">
+            <summary>
+            Memo
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTEditId">
+            <summary>
+            Edit id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTEditId.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTEditId.ModifyId">
+            <summary>
+            Modify id
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTId">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTId.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTKline">
+            <summary>
+            Kline info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKline.OpenTime">
+            <summary>
+            Open timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKline.OpenPrice">
+            <summary>
+            Open price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKline.ClosePrice">
+            <summary>
+            Close price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKline.HighPrice">
+            <summary>
+            High price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKline.LowPrice">
+            <summary>
+            Low price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKline.Volume">
+            <summary>
+            Volume in base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKline.QuoteVolume">
+            <summary>
+            Volume in quote asset
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTKlineUpdate">
+            <summary>
+            Kline update
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTKlineUpdate.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTOrder">
+            <summary>
+            Order info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.BaseAsset">
+            <summary>
+            Base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.QuoteAsset">
+            <summary>
+            Quote asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.OrderSide">
+            <summary>
+            Order side
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.TimeInForce">
+            <summary>
+            Time in force
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Quantity">
+            <summary>
+            Original quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.QuoteQuantity">
+            <summary>
+            Original quote quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.QuantityFilledPlacement">
+            <summary>
+            Quantity filled, in the placement asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.QuantityRemaining">
+            <summary>
+            Quantity remaining to be filled, in the placement asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.QuantityFilled">
+            <summary>
+            Quantity filled
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.QuoteQuantityFilled">
+            <summary>
+            Value filled
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.AveragePrice">
+            <summary>
+            Average price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Fee">
+            <summary>
+            Fee paid
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.FeeAsset">
+            <summary>
+            Fee asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.OrderStatus">
+            <summary>
+            Status of the order
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Fees">
+            <summary>
+            Fee deduction list (if set XT deduction fee and the deduction occurs, use this field to represent the trade fee. Otherwise, use the original fee and feeCurrency fields to represent the trade fee). 
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Ip">
+            <summary>
+            Ip
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.UpdateTime">
+            <summary>
+            Updated time
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrder.Closed">
+            <summary>
+            Closed
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTOrderFee">
+            <summary>
+            Fee info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderFee.Fee">
+            <summary>
+            Fee
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderFee.FeeAsset">
+            <summary>
+            Fee asset
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTOrderBook">
+            <summary>
+            Order book info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderBook.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderBook.LastUpdateId">
+            <summary>
+            Last update id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderBook.Bids">
+            <summary>
+            Bids
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderBook.Asks">
+            <summary>
+            Asks
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTOrderBookEntry">
+            <summary>
+            Order book entry
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderBookEntry.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderBookEntry.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTBaseOrderBookUpdate">
+            <summary>
+            Order book info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBaseOrderBookUpdate.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBaseOrderBookUpdate.Bids">
+            <summary>
+            Bids
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTBaseOrderBookUpdate.Asks">
+            <summary>
+            Asks
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTOrderBookUpdate">
+            <summary>
+            Order book update
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderBookUpdate.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTIncrementalOrderBookUpdate">
+            <summary>
+            Order book info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTIncrementalOrderBookUpdate.FirstUpdateId">
+            <summary>
+            First update id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTIncrementalOrderBookUpdate.LastUpdateId">
+            <summary>
+            Last update id
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTOrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderId.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderId.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTOrderUpdate">
+            <summary>
+            Order update
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.BaseAsset">
+            <summary>
+            Base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.QuoteAsset">
+            <summary>
+            Quote asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.CreateTime">
+            <summary>
+            Creation time
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.ClientOrderId">
+            <summary>
+            Client order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.OrderStatus">
+            <summary>
+            Order status
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.OrderSide">
+            <summary>
+            Order side
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.Quantity">
+            <summary>
+            Original quantity in base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.QuoteQuantity">
+            <summary>
+            Original quantity in quote asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.QuantityFilled">
+            <summary>
+            Quantity executed
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.QuantityRemaining">
+            <summary>
+            Quantity remaining
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.Price">
+            <summary>
+            Order price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.AveragePrice">
+            <summary>
+            Average fill price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTOrderUpdate.Fee">
+            <summary>
+            Fee paid
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTPage`1">
+            <summary>
+            Data page
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPage`1.HasNext">
+            <summary>
+            Whether there is a next page
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPage`1.HasPrevious">
+            <summary>
+            Whether there is a previous page
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPage`1.Data">
+            <summary>
+            Data
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTPriceTicker">
+            <summary>
+            Price ticker
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPriceTicker.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPriceTicker.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPriceTicker.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTSymbolFilter">
+            <summary>
+            A filter for order placed on a symbol.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbolFilter.FilterType">
+            <summary>
+            The type of this filter
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTPriceFilter">
+            <summary>
+            Price filter
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPriceFilter.MinPrice">
+            <summary>
+            The minimal price the order can be for
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPriceFilter.MaxPrice">
+            <summary>
+            The max price the order can be for
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTPriceFilter.TickSize">
+            <summary>
+            The tick size of the price. The price can not have more precision as this and can only be incremented in steps of this.
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTQuantityFilter">
+            <summary>
+            Quantity filter
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTQuantityFilter.MinQuantity">
+            <summary>
+            The minimal quantity of an order
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTQuantityFilter.MaxQuantity">
+            <summary>
+            The max quantity of an order
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTQuantityFilter.TickSize">
+            <summary>
+            The tick size of the quantity. The quantity can not have more precision as this and can only be incremented in steps of this.
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTQuoteQuantityFilter">
+            <summary>
+            Quote quantity filter
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTQuoteQuantityFilter.MinValue">
+            <summary>
+            The minimal value of an order in quote quantity
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTProtectionLimitFilter">
+            <summary>
+            Limit protection filter
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTProtectionLimitFilter.BuyMaxDeviation">
+            <summary>
+            The maximum deviation of the buy order, determine the minimum buy order price based on this value and the latest transaction price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTProtectionLimitFilter.BuyPriceLimitCoefficient">
+            <summary>
+            The buy limit coefficient, determine the maximum buy order price based on this value and the latest transaction price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTProtectionLimitFilter.SellMaxDeviation">
+            <summary>
+            The maximum deviation of the sell order, determine the maximum sell order price based on this value and the latest transaction price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTProtectionLimitFilter.SellPriceLimitCoefficient">
+            <summary>
+            The sell limit coefficient, determine the minimum sell order price based on this value and the latest transaction price
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTProtectionMarketFilter">
+            <summary>
+            Market protection filter
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTProtectionMarketFilter.MaxDeviation">
+            <summary>
+            The maximum deviation of the order
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTProtectionOnlineFilter">
+            <summary>
+            Online protection filter
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTProtectionOnlineFilter.MaxPriceMultiple">
+            <summary>
+            The maximum price multiple
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTProtectionOnlineFilter.DurationSeconds">
+            <summary>
+            The duration in seconds the protection is active after symbol comes online
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTSymbols">
+            <summary>
+            Symbols data
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbols.Time">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbols.Version">
+            <summary>
+            Data version
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbols.Symbols">
+            <summary>
+            Symbols
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTSymbol">
+            <summary>
+            Symbol info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.SymbolStatus">
+            <summary>
+            Symbol status
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.TradingEnabled">
+            <summary>
+            Is trading enabled
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.OpenapiEnabled">
+            <summary>
+            Is OpenApi enabled
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.NextStateTime">
+            <summary>
+            Next state time
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.NextState">
+            <summary>
+            Next state
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.DepthMergePrecision">
+            <summary>
+            Depth merge precision
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.BaseAsset">
+            <summary>
+            Base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.BaseAssetPrecision">
+            <summary>
+            Base asset precision
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.BaseAssetId">
+            <summary>
+            Base asset id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.QuoteAsset">
+            <summary>
+            Quote asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.QuoteAssetPrecision">
+            <summary>
+            Quote asset precision
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.QuoteAssetId">
+            <summary>
+            Quote asset id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.PricePrecision">
+            <summary>
+            Price precision
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.QuantityPrecision">
+            <summary>
+            Quantity precision
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.TakerFeeRate">
+            <summary>
+            Taker fee rate
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.MakerFeeRate">
+            <summary>
+            Maker fee rate
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.OrderTypes">
+            <summary>
+            Supported order types
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.TimeInForces">
+            <summary>
+            Supported time in forces
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.DisplayWeight">
+            <summary>
+            Display weight
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.DisplayLevel">
+            <summary>
+            Display level
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.Plates">
+            <summary>
+            Plates
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.Filters">
+            <summary>
+            Filters for order on this symbol
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.PriceFilter">
+            <summary>
+            Price filter for this symbol
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.QuantityFilter">
+            <summary>
+            Quantity filter for this symbol
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbol.QuoteQuantityFilter">
+            <summary>
+            Quote quantity filter for this symbol
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTSymbolSUBSUB">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbolSUBSUB.Filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbolSUBSUB.BuyMaxDeviation">
+            <summary>
+            Buy max deviation
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTSymbolSUBSUB.SellMaxDeviation">
+            <summary>
+            Sell max deviation
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTTicker">
+            <summary>
+            Ticker info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.Change">
+            <summary>
+            24 hour change
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.ChangePercentage">
+            <summary>
+            24 hour change percentage
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.OpenPrice">
+            <summary>
+            Open price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.LowPrice">
+            <summary>
+            Low price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.HighPrice">
+            <summary>
+            High price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.LastPrice">
+            <summary>
+            Last price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.Volume">
+            <summary>
+            Volume in base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.QuoteVolume">
+            <summary>
+            Volume in quote asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.BestAskPrice">
+            <summary>
+            Best ask price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.BestAskQuantity">
+            <summary>
+            Best ask quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.BestBidPrice">
+            <summary>
+            Best bid price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTicker.BestBidQuantity">
+            <summary>
+            Best bid quantity
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTTrade">
+            <summary>
+            Trade info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTrade.Id">
+            <summary>
+            Trade id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTrade.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTrade.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTrade.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTrade.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTrade.BuyerIsMaker">
+            <summary>
+            Whether the buyer is the maker
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTTradeUpdate">
+            <summary>
+            Trade update
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTradeUpdate.Id">
+            <summary>
+            Trade id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTradeUpdate.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTradeUpdate.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTradeUpdate.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTradeUpdate.BuyerIsMaker">
+            <summary>
+            Whether the buyer is the maker
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTradeUpdate.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTUserTrade">
+            <summary>
+            User trade info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.Symbol">
+            <summary>
+            Symbol
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.TradeId">
+            <summary>
+            Trade id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.OrderId">
+            <summary>
+            Order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.OrderSide">
+            <summary>
+            Order side
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.OrderType">
+            <summary>
+            Order type
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.BusinessType">
+            <summary>
+            Business type
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.QuoteQuantity">
+            <summary>
+            Quote quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.BaseAsset">
+            <summary>
+            Base asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.QuoteAsset">
+            <summary>
+            Quote asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.Fee">
+            <summary>
+            Fee
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.FeeAsset">
+            <summary>
+            Fee asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTrade.TradeRole">
+            <summary>
+            Role
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTUserTradeUpdate">
+            <summary>
+            User trade update
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.Symbol">
+            <summary>
+            Symbol name
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.Id">
+            <summary>
+            Trade id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.OrderId">
+            <summary>
+            Trade order id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.Price">
+            <summary>
+            Price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.QuoteQuantity">
+            <summary>
+            Quote quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTUserTradeUpdate.BuyerIsMaker">
+            <summary>
+            Whether the buyer is the maker
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Models.XTWithdrawal">
+            <summary>
+            Withdrawal info
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Asset">
+            <summary>
+            Asset
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Network">
+            <summary>
+            Network
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Address">
+            <summary>
+            Address
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Memo">
+            <summary>
+            Memo
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Status">
+            <summary>
+            Withdraw status
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Quantity">
+            <summary>
+            Quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Fee">
+            <summary>
+            Fee
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.Confirmations">
+            <summary>
+            Confirmations
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.TransactionId">
+            <summary>
+            Transaction id
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTWithdrawal.CreateTime">
+            <summary>
+            Created time
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Options.XTOptions">
+            <summary>
+            XT options
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOptions.Rest">
+            <summary>
+            Rest client options
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOptions.Socket">
+            <summary>
+            Socket client options
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOptions.Environment">
+            <summary>
+            Trade environment. Contains info about URL's to use to connect to the API. Use `XTEnvironment` to swap environment, for example `Environment = XTEnvironment.Live`
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOptions.ApiCredentials">
+            <summary>
+            The api credentials used for signing requests.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOptions.SocketClientLifeTime">
+            <summary>
+            The DI service lifetime for the IXTSocketClient
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Options.XTOrderBookOptions">
+            <summary>
+            Options for the XT SymbolOrderBook
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOrderBookOptions.Default">
+            <summary>
+            Default options for new clients
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOrderBookOptions.Limit">
+            <summary>
+            The top amount of results to keep in sync. If for example limit=10 is used, the order book will contain the 10 best bids and 10 best asks. Leaving this null will sync the full order book
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTOrderBookOptions.InitialDataTimeout">
+            <summary>
+            After how much time we should consider the connection dropped if no data is received for this time after the initial subscriptions
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Options.XTRestOptions">
+            <summary>
+            Options for the XTRestClient
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTRestOptions.Default">
+            <summary>
+            Default options for new clients
+            </summary>
+        </member>
+        <member name="M:XT.Net.Objects.Options.XTRestOptions.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTRestOptions.FuturesOptions">
+            <summary>
+            Futures API options
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTRestOptions.SpotOptions">
+            <summary>
+            Spot API options
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Options.XTSocketOptions">
+            <summary>
+            Options for the XTSocketClient
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTSocketOptions.Default">
+            <summary>
+            Default options for new clients
+            </summary>
+        </member>
+        <member name="M:XT.Net.Objects.Options.XTSocketOptions.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTSocketOptions.FuturesOptions">
+            <summary>
+            Futures API options
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Options.XTSocketOptions.SpotOptions">
+            <summary>
+            Spot API options
+            </summary>
+        </member>
+        <member name="T:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.ListenerIdentifiers">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}},System.Boolean,System.String)">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.GetSubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.GetUnsubQuery">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.Objects.XTApiAddresses">
+            <summary>
+            Api addresses
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.XTApiAddresses.SpotRestClientAddress">
+            <summary>
+            The address used by the XTRestClient for the API
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.XTApiAddresses.SocketClientAddress">
+            <summary>
+            The address used by the XTSocketClient for the websocket API
+            </summary>
+        </member>
+        <member name="F:XT.Net.Objects.XTApiAddresses.Default">
+            <summary>
+            The default addresses to connect to the XT API
+            </summary>
+        </member>
+        <member name="T:XT.Net.SymbolOrderBooks.XTFuturesSymbolOrderBook">
+            <summary>
+            Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
+            Make sure to check the State property to see if the order book is synced.
+            </summary>
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTFuturesSymbolOrderBook.#ctor(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTFuturesSymbolOrderBook.#ctor(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions},Microsoft.Extensions.Logging.ILoggerFactory,XT.Net.Interfaces.Clients.IXTRestClient,XT.Net.Interfaces.Clients.IXTSocketClient)">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="logger">Logger</param>
+            <param name="restClient">Rest client instance</param>
+            <param name="socketClient">Socket client instance</param>
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTFuturesSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTFuturesSymbolOrderBook.DoReset">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTFuturesSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTFuturesSymbolOrderBook.Dispose(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.SymbolOrderBooks.XTOrderBookFactory">
+            <summary>
+            XT order book factory
+            </summary>
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTOrderBookFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            ctor
+            </summary>
+            <param name="serviceProvider">Service provider for resolving logging and clients</param>
+        </member>
+        <member name="P:XT.Net.SymbolOrderBooks.XTOrderBookFactory.Futures">
+            <inheritdoc />
+        </member>
+        <member name="P:XT.Net.SymbolOrderBooks.XTOrderBookFactory.Spot">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTOrderBookFactory.Create(CryptoExchange.Net.SharedApis.SharedSymbol,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTOrderBookFactory.CreateFutures(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTOrderBookFactory.CreateSpot(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.SymbolOrderBooks.XTSpotSymbolOrderBook">
+            <summary>
+            Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
+            Make sure to check the State property to see if the order book is synced.
+            </summary>
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTSpotSymbolOrderBook.#ctor(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions})">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTSpotSymbolOrderBook.#ctor(System.String,System.Action{XT.Net.Objects.Options.XTOrderBookOptions},Microsoft.Extensions.Logging.ILoggerFactory,XT.Net.Interfaces.Clients.IXTRestClient,XT.Net.Interfaces.Clients.IXTSocketClient)">
+            <summary>
+            Create a new order book instance
+            </summary>
+            <param name="symbol">The symbol the order book is for</param>
+            <param name="optionsDelegate">Option configuration delegate</param>
+            <param name="logger">Logger</param>
+            <param name="restClient">Rest client instance</param>
+            <param name="socketClient">Socket client instance</param>
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTSpotSymbolOrderBook.DoStartAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTSpotSymbolOrderBook.DoReset">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTSpotSymbolOrderBook.DoResyncAsync(System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.SymbolOrderBooks.XTSpotSymbolOrderBook.Dispose(System.Boolean)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.XTEnvironment">
+            <summary>
+            XT environments
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTEnvironment.RestClientAddress">
+            <summary>
+            Rest API address
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTEnvironment.SocketClientAddress">
+            <summary>
+            Socket API address
+            </summary>
+        </member>
+        <member name="M:XT.Net.XTEnvironment.#ctor">
+            <summary>
+            ctor for DI, use <see cref="M:XT.Net.XTEnvironment.CreateCustom(System.String,System.String,System.String)"/> for creating a custom environment
+            </summary>
+        </member>
+        <member name="M:XT.Net.XTEnvironment.GetEnvironmentByName(System.String)">
+            <summary>
+            Get the XT environment by name
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTEnvironment.Live">
+            <summary>
+            Live environment
+            </summary>
+        </member>
+        <member name="M:XT.Net.XTEnvironment.CreateCustom(System.String,System.String,System.String)">
+            <summary>
+            Create a custom environment
+            </summary>
+            <param name="name"></param>
+            <param name="spotRestAddress"></param>
+            <param name="spotSocketStreamsAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="T:XT.Net.XTExchange">
+            <summary>
+            XT exchange information and configuration
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTExchange.ExchangeName">
+            <summary>
+            Exchange name
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTExchange.DisplayName">
+            <summary>
+            Exchange display name
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTExchange.ImageUrl">
+            <summary>
+            Url to exchange image
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTExchange.Url">
+            <summary>
+            Url to the main website
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTExchange.ApiDocsUrl">
+            <summary>
+            Urls to the API documentation
+            </summary>
+        </member>
+        <member name="M:XT.Net.XTExchange.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
+            <summary>
+            Format a base and quote asset to an XT recognized symbol 
+            </summary>
+            <param name="baseAsset">Base asset</param>
+            <param name="quoteAsset">Quote asset</param>
+            <param name="tradingMode">Trading mode</param>
+            <param name="deliverTime">Delivery time for delivery futures</param>
+            <returns></returns>
+        </member>
+        <member name="P:XT.Net.XTExchange.RateLimiter">
+            <summary>
+            Rate limiter configuration for the XT API
+            </summary>
+        </member>
+        <member name="T:XT.Net.XTRateLimiters">
+            <summary>
+            Rate limiter configuration for the XT API
+            </summary>
+        </member>
+        <member name="E:XT.Net.XTRateLimiters.RateLimitTriggered">
+            <summary>
+            Event for when a rate limit is triggered
+            </summary>
+        </member>
+        <member name="T:XT.Net.XTTrackerFactory">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.#ctor">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.#ctor(System.IServiceProvider)">
+            <summary>
+            ctor
+            </summary>
+            <param name="serviceProvider">Service provider for resolving logging and clients</param>
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CreateKlineTracker(CryptoExchange.Net.SharedApis.SharedSymbol,CryptoExchange.Net.SharedApis.SharedKlineInterval,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CreateTradeTracker(CryptoExchange.Net.SharedApis.SharedSymbol,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
+            <inheritdoc />
+        </member>
+        <member name="T:CryptoExchange.Net.Interfaces.CryptoClientExtensions">
+            <summary>
+            Extensions for the ICryptoRestClient and ICryptoSocketClient interfaces
+            </summary>
+        </member>
+        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.XT(CryptoExchange.Net.Interfaces.ICryptoRestClient)">
+            <summary>
+            Get the XT REST Api client
+            </summary>
+            <param name="baseClient"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CryptoExchange.Net.Interfaces.CryptoClientExtensions.XT(CryptoExchange.Net.Interfaces.ICryptoSocketClient)">
+            <summary>
+            Get the XT Websocket Api client
+            </summary>
+            <param name="baseClient"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions">
+            <summary>
+            Extensions for DI
+            </summary>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddXT(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Add services such as the IXTRestClient and IXTSocketClient. Configures the services based on the provided configuration.
+            </summary>
+            <param name="services">The service collection</param>
+            <param name="configuration">The configuration(section) containing the options</param>
+            <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.DependencyInjection.ServiceCollectionExtensions.AddXT(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Action{XT.Net.Objects.Options.XTOptions})">
+            <summary>
+            Add services such as the IXTRestClient and IXTSocketClient. Services will be configured based on the provided options.
+            </summary>
+            <param name="services">The service collection</param>
+            <param name="optionsDelegate">Set options for the XT services</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

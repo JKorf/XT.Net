@@ -1,0 +1,23 @@
+GET
+/v4/balances
+true
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": {
+    "totalBtcAmount": 0,
+    "assets": [    
+      {        
+        "currency": "string",
+        "currencyId": 0,
+        "frozenAmount": 0,
+        "availableAmount": 0,
+        "totalAmount": 0,
+        "convertBtcAmount": 0
+      }
+    ]
+  }
+}

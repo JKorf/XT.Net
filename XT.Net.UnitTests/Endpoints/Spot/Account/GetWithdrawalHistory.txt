@@ -1,0 +1,42 @@
+GET
+/v4/withdraw/history
+true
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": {
+        "hasPrev": true,                                             
+        "hasNext": true,                                           
+        "items": [
+            {
+                "id": 763111,                
+                "currency": "usdt",         
+                "chain": "Ethereum",       
+                "address": "0xfa3abf",    
+                "memo": "",
+                "status": "REVIEW",          
+                "amount": "30",              
+                "fee": "0",                  
+                "confirmations": 0,          
+                "transactionId": "",         
+                "createdTime": 1667763470000  
+            },
+            {
+                "id": 763107,
+                "currency": "usdt",
+                "chain": "Tron",
+                "address": "TYnJJw",
+                "memo": "",
+                "status": "REVIEW",
+                "amount": "50",
+                "fee": "1",
+                "confirmations": 0,
+                "transactionId": "",
+                "createdTime": 1667428286000
+            }
+        ]
+  }
+}

@@ -1,0 +1,13 @@
+DELETE
+/v4/order/123
+true
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": {
+    "cancelId": "6216559590087220004"
+  }
+}

@@ -1,0 +1,15 @@
+GET
+/v4/public/ticker/price
+false
+{
+  "rc": 0,
+  "mc": "SUCCESS",
+  "ma": [],
+  "result": [
+    {
+      "s": "btc_usdt",    
+      "t": 1661856036925,    
+      "p": "9000.0000"
+      }
+  ]
+}

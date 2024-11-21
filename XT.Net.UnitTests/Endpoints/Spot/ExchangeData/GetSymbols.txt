@@ -1,0 +1,79 @@
+GET
+/v4/public/symbol
+false
+{
+  "rc": 0,
+  "mc": "SUCCESS",
+  "ma": [],
+  "result": {
+    "time": 1662444177871,
+    "version": "7cd2cfab0dc979339f1de904bd90c9cb",  
+    "symbols": [                   
+      {
+        "id": 614,            
+        "symbol": "btc_usdt",         
+        "state": "ONLINE",           
+        "tradingEnabled": true,
+        "openapiEnabled": true,      
+        "nextStateTime": null,              
+        "nextState": null,  
+        "depthMergePrecision": 5,    
+        "baseCurrency": "btc",                  
+        "baseCurrencyPrecision": 5,              
+        "baseCurrencyId": 2,                 
+        "quoteCurrency": "usdt",             
+        "quoteCurrencyPrecision": 6,        
+        "quoteCurrencyId": 11,             
+        "pricePrecision": 4,        
+        "quantityPrecision": 6,
+        "takerFeeRate": 0.001,       
+        "makerFeeRate": 0.002,      
+        "orderTypes": [              
+          "LIMIT",
+          "MARKET"
+        ],
+        "timeInForces": [            
+          "GTC",
+          "FOK",
+          "IOC",
+          "GTX"
+        ],
+        "displayWeight": 1,          
+        "displayLevel": "FULL",     
+        "plates": [22, 23],            
+        "filters": [                       
+          {
+            "filter": "PROTECTION_LIMIT",
+            "buyMaxDeviation": "0.8",
+            "sellMaxDeviation": "0.8"
+          },
+          {
+            "filter": "PROTECTION_MARKET",
+            "maxDeviation": "0.1"
+          },
+          {
+            "filter": "PROTECTION_ONLINE",
+            "durationSeconds": "300",
+            "maxPriceMultiple": "5"
+          },
+          {
+            "filter": "PRICE",
+            "min": null,
+            "max": null,
+            "tickSize": null
+          },
+          {
+            "filter": "QUANTITY",
+            "min": null,
+            "max": null,
+            "tickSize": null
+          },
+          {
+            "filter": "QUOTE_QTY",
+            "min": null
+          }
+       ]
+      }
+    ]
+  }
+}

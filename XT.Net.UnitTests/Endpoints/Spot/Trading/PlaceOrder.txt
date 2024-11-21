@@ -1,0 +1,14 @@
+POST
+/v4/order
+true
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": {
+    "orderId": "6216559590087220004",
+    "clientOrderId": ""
+  }
+}

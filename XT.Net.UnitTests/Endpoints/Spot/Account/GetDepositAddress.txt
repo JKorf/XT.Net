@@ -1,0 +1,14 @@
+GET
+/v4/deposit/address
+true
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": {
+    "address": "0xfa3abfa50eb2006f5be7831658b17aca240d8526",   
+    "memo": ""
+  }
+}

@@ -1,0 +1,40 @@
+GET
+/v4/public/wallet/support/currency
+false
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": [
+    {
+        "currency": "BTC",                
+        "supportChains": [
+            {
+                "chain": "Bitcon",          
+                "depositEnabled": true,   
+                "withdrawEnabled": true,    
+                "withdrawFeeAmount": 0.2,   
+                "withdrawMinAmount": 10,    
+                "depositFeeRate": 0.2,      
+                "contract": "contractaddress" 
+            }
+        ]           
+    },
+    {
+        "currency": "ETH",                 
+        "supportChains": [
+            {
+                "chain": "Ethereum",      
+                "depositEnabled": true,    
+                "withdrawEnabled": true,   
+                "withdrawFeeAmount": 0.2,  
+                "withdrawMinAmount": 10,    
+                "depositFeeRate": 0.2,      
+                "contract": "contractaddress" 
+            }
+        ]
+    }
+  ]
+}

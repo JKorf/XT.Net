@@ -1,0 +1,33 @@
+GET
+/v4/trade
+true
+{
+  "rc": 0,
+  "mc": "string",
+  "ma": [
+    {}
+  ],
+  "result": {
+    "hasPrev": true,
+    "hasNext": true,
+    "items": [
+      {
+        "symbol": "BTC_USDT",  
+        "tradeId": "6316559590087222001",  
+        "orderId": "6216559590087220004",  
+        "orderSide": "BUY",    
+        "orderType": "LIMIT",  
+        "bizType": "SPOT",    
+        "time": 1655958915583,  
+        "price": "40000",     
+        "quantity": "1.2",    
+        "quoteQty": "48000",  
+        "baseCurrency": "BTC",  
+        "quoteCurrency": "USDT",  
+        "fee": "0.5",   
+        "feeCurrency": "USDT", 
+        "takerMaker": "taker"  
+      }
+    ]
+  }
+}
