@@ -6,19 +6,19 @@ using System.Text;
 namespace XT.Net.Enums
 {
     /// <summary>
-    /// Order side
+    /// Underlying type
     /// </summary>
-    public enum OrderSide
+    public enum UnderlyingType
     {
         /// <summary>
-        /// Buy
+        /// Usdt based
         /// </summary>
-        [Map("BUY", "ASK")]
-        Buy,
+        [Map("U_BASED")]
+        UsdtBased,
         /// <summary>
-        /// Sell
+        /// Coin based
         /// </summary>
-        [Map("SELL", "BID")]
-        Sell
+        [Map("C_BASED", "COIN_BASED")]
+        CoinBased
     }
 }

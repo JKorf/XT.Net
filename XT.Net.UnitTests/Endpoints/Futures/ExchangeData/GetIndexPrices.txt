@@ -1,0 +1,18 @@
+GET
+/future/market/v1/public/q/symbol-index-price
+false
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "p": 0, //Price
+      "s": "", //Trading pair
+      "t": 0 //Time
+    }
+  ],
+  "returnCode": 0
+}

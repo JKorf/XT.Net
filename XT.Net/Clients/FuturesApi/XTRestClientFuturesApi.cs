@@ -110,6 +110,14 @@ namespace XT.Net.Clients.FuturesApi
             return result.As(result.Data.Result!);
         }
 
+        internal Task<WebCallResult<T>> SendRawAsync<T>(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
+            => SendToAddressRawAsync<T>(BaseAddress, definition, parameters, cancellationToken, weight);
+
+        internal async Task<WebCallResult<T>> SendToAddressRawAsync<T>(string baseAddress, RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
+        {
+            return await base.SendAsync<T>(baseAddress, definition, parameters, cancellationToken, null, weight).ConfigureAwait(false);
+        }
+
         /// <inheritdoc />
         protected override Task<WebCallResult<DateTime>> GetServerTimestampAsync()
             => ExchangeData.GetServerTimeAsync();

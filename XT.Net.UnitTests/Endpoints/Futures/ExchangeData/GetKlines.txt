@@ -1,0 +1,23 @@
+GET
+/future/market/v1/public/q/kline
+false
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "a": 0,
+      "c": 0,
+      "h": 0, 
+      "l": 0, 
+      "o": 0,
+      "s": "", 
+      "t": 0, 
+      "v": 0 
+    }
+  ],
+  "returnCode": 0
+}

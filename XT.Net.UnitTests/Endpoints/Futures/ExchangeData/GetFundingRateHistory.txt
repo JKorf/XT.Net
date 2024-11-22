@@ -1,0 +1,24 @@
+GET
+/future/market/v1/public/q/funding-rate-record
+false
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "hasNext": false, //Is there a next page
+    "hasPrev": false, //Is there a previous page
+    "items": [ //Datasheets
+      {
+        "collectionInternal": 0, //Billing Cycle (second)
+        "createdTime": 0, //Time
+        "fundingRate": 0, //Latest funding rate
+        "id": 0, //id
+        "symbol": "" //Trading pair
+      }
+    ]
+  },
+  "returnCode": 0
+}

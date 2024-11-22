@@ -1,0 +1,26 @@
+GET
+/future/market/v1/public/leverage/bracket/detail
+false
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "leverageBrackets": [
+      {
+        "bracket": 0,
+        "maintMarginRate": 0, 
+        "maxLeverage": 0,
+        "maxNominalValue": 0, 
+        "maxStartMarginRate": 0, 
+        "minLeverage": 0,
+        "startMarginRate": 0, 
+        "symbol": ""
+      }
+    ],
+    "symbol": ""
+  },
+  "returnCode": 0
+}

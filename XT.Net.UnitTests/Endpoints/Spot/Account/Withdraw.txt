@@ -1,4 +1,6 @@
 POST
 /v4/withdraw
 true
-{"rc":0,"mc":"SUCCESS","ma":[],"result":true}
+{"rc":0,"mc":"SUCCESS","ma":[],"result":{      
+        "id": 100  
+    }}

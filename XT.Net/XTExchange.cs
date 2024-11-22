@@ -52,9 +52,10 @@ namespace XT.Net
         /// <returns></returns>
         public static string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverTime = null)
         {
+            if (deliverTime == null)
+                return baseAsset.ToLower() + "_" + quoteAsset.ToLower();
 
-#warning spot
-            return baseAsset.ToLower() + "_" + quoteAsset.ToLower();
+            return baseAsset.ToLower() + "_" + quoteAsset.ToLower() + "_" + deliverTime.Value.ToString("yyMMdd");
         }
 
         /// <summary>
@@ -83,11 +84,16 @@ namespace XT.Net
         private void Initialize()
         {
             XT = new RateLimitGate("XT");
+            RestFutures = new RateLimitGate("Rest Futures")
+                .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, [], 10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding))
+                .AddGuard(new RateLimitGuard(RateLimitGuard.PerEndpoint, [], 1000, TimeSpan.FromMinutes(1), RateLimitWindowType.Sliding));
             XT.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            RestFutures.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
         }
 
 
         internal IRateLimitGate XT { get; private set; }
+        internal IRateLimitGate RestFutures { get; private set; }
 
     }
 }

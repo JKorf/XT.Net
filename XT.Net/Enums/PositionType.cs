@@ -6,19 +6,19 @@ using System.Text;
 namespace XT.Net.Enums
 {
     /// <summary>
-    /// Order side
+    /// Position type
     /// </summary>
-    public enum OrderSide
+    public enum PositionType
     {
         /// <summary>
-        /// Buy
+        /// Cross
         /// </summary>
-        [Map("BUY", "ASK")]
-        Buy,
+        [Map("CROSSED")]
+        Cross,
         /// <summary>
-        /// Sell
+        /// Isolated
         /// </summary>
-        [Map("SELL", "BID")]
-        Sell
+        [Map("ISOLATED")]
+        Isolated
     }
 }

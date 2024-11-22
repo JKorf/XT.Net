@@ -1,0 +1,20 @@
+GET
+/future/market/v1/public/q/deal
+false
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "a": 0, //Volume
+      "m": "", //Order side
+      "p": 0, //Price
+      "s": "", //Trading pair
+      "t": 0 //Time
+    }
+  ],
+  "returnCode": 0
+}

@@ -1,0 +1,19 @@
+GET
+/future/market/v1/public/q/ticker/book
+false
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "ap": "", //ask price
+    "aq": "", //ask amount
+    "bp": "", //bid price
+    "bq": "", //bid amount
+    "s": "", //Trading pair
+    "t": 0 //Time
+  },
+  "returnCode": 0
+}

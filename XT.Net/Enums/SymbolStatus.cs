@@ -10,12 +10,12 @@ namespace XT.Net.Enums
         /// <summary>
         /// Online
         /// </summary>
-        [Map("ONLINE")]
+        [Map("ONLINE", "0")]
         Online,
         /// <summary>
         /// Offline
         /// </summary>
-        [Map("OFFLINE")]
+        [Map("OFFLINE", "1")]
         Offline,
         /// <summary>
         /// Delisted

@@ -396,7 +396,7 @@ namespace XT.Net.Clients.SpotApi
             if (!withdrawal)
                 return withdrawal.AsExchangeResult<SharedId>(Exchange, null, default);
 
-            return withdrawal.AsExchangeResult(Exchange, TradingMode.Spot, new SharedId(withdrawal.Data.Id));
+            return withdrawal.AsExchangeResult(Exchange, TradingMode.Spot, new SharedId(withdrawal.Data.Id.ToString()));
         }
 
         #endregion

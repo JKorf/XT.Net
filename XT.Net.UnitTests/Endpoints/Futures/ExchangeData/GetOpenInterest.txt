@@ -1,0 +1,17 @@
+GET
+/future/market/v1/public/contract/open-interest
+false
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "symbol": "", //Trading pair
+    "openInterest": "", //open position
+    "openInterestUsd": 0, //open value
+    "time": "", //time
+  },
+  "returnCode": 0
+}

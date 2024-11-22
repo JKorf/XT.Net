@@ -1,0 +1,4 @@
+GET
+/future/market/v1/public/q/funding-rate
+false
+{"returnCode":0,"msgInfo":"success","error":null,"result":{"symbol":"eth_usd","fundingRate":0.000992,"nextCollectionTime":1732291200000,"collectionInternal":8}}
