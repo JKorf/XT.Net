@@ -18,7 +18,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         public override HashSet<string> ListenerIdentifiers { get; set; }
 
         private readonly string? _token;
+        private readonly string[]? _queryIdentifiers;
         private readonly Action<DataEvent<T>> _handler;
+        private readonly string[] _topics;
 
         /// <inheritdoc />
         public override Type? GetMessageType(IMessageAccessor message)
@@ -29,11 +31,13 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public XTSubscription(ILogger logger, string[] topics, Action<DataEvent<T>> handler, bool auth, string? token = null) : base(logger, auth)
+        public XTSubscription(ILogger logger, string[] topics, Action<DataEvent<T>> handler, bool auth, string? token = null, string[]? listenerIdentifiers = null, string[]? queryIdentifiers = null) : base(logger, auth)
         {
             _handler = handler;
             _token = token;
-            ListenerIdentifiers = new HashSet<string>(topics);
+            _topics = topics;
+            _queryIdentifiers = queryIdentifiers;
+            ListenerIdentifiers = new HashSet<string>(listenerIdentifiers ?? topics);
         }
 
         /// <inheritdoc />
@@ -43,9 +47,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
-                Parameters = ListenerIdentifiers,
+                Parameters = _topics,
                 ListenKey = _token,
-            }, Authenticated);
+            }, _queryIdentifiers ?? []);
         }
 
         /// <inheritdoc />
@@ -55,9 +59,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",
-                Parameters = ListenerIdentifiers,
+                Parameters = _topics,
                 ListenKey = _token,
-            }, Authenticated);
+            }, _queryIdentifiers ?? []);
         }
 
         /// <inheritdoc />

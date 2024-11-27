@@ -2,7 +2,7 @@
 
 [![.NET](https://img.shields.io/github/actions/workflow/status/JKorf/XT.Net/dotnet.yml?style=for-the-badge)](https://github.com/JKorf/XT.Net/actions/workflows/dotnet.yml) ![License](https://img.shields.io/github/license/JKorf/XT.Net?style=for-the-badge)
 
-XT.Net is a client library for accessing the [XT REST and Websocket API](XT). 
+XT.Net is a client library for accessing the [XT REST and Websocket API](https://doc.xt.com/). 
 
 ## Features
 * Response data is mapped to descriptive models
@@ -47,14 +47,14 @@ The NuGet package files are added along side the source with the latest GitHub r
 	```csharp
 	// Get the ETH/USDT ticker via rest request
 	var restClient = new XTRestClient();
-	var tickerResult = await restClient.SpotApi.ExchangeData.GetTickerAsync("ETHUSDT");
-	var lastPrice = tickerResult.Data.LastPrice;
+	var tickerResult = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
+	var lastPrice = tickerResult.Data.Single().LastPrice;
 	```
 * Websocket streams
 	```csharp
 	// Subscribe to ETH/USDT ticker updates via the websocket API
 	var socketClient = new XTSocketClient();
-	var tickerSubscriptionResult = socketClient.SpotApi.SubscribeToTickerUpdatesAsync("ETHUSDT", (update) => 
+	var tickerSubscriptionResult = socketClient.SpotApi.SubscribeToTickerUpdatesAsync("eth_usdt", (update) => 
 	{
 	  var lastPrice = update.Data.LastPrice;
 	});
@@ -88,7 +88,7 @@ CryptoExchange.Net also allows for [easy access to different exchange API's](htt
 |OKX|[JKorf/OKX.Net](https://github.com/JKorf/OKX.Net)|[![Nuget version](https://img.shields.io/nuget/v/JK.OKX.net.svg?style=flat-square)](https://www.nuget.org/packages/JK.OKX.Net)|
 |WhiteBit|[JKorf/WhiteBit.Net](https://github.com/JKorf/WhiteBit.Net)|[![Nuget version](https://img.shields.io/nuget/v/WhiteBit.net.svg?style=flat-square)](https://www.nuget.org/packages/WhiteBit.Net)|
 
-When using multiple of these API's the [CryptoClients.Net](https://github.com/JKorf/CryptoClients.Net) package can be used which combines this and the other packages and allows easy access to all exchange API's.
+When using multiple of these API's the [CryptoClients.Net](https://github.com/JKorf/CryptoClients.Net) package can be used instead which combines this and the other packages and allows easy access to all exchange API's.
 
 ## Discord
 [![Nuget version](https://img.shields.io/discord/847020490588422145?style=for-the-badge)](https://discord.gg/MSpeEtSY8t)  
@@ -96,17 +96,62 @@ A Discord server is available [here](https://discord.gg/MSpeEtSY8t). For discuss
 
 ## Supported functionality
 
-### Spot
+### Spot REST
 |API|Supported|Location|
 |--|--:|--|
-|TODO|✓|`restClient.SpotApi.Account`|
-### Futures
+|Market|✓|`restClient.SpotApi.ExchangeData`|
+|Order|✓|`restClient.SpotApi.Trading`|
+|Trade|✓|`restClient.SpotApi.Trading`|
+|Balance|✓|`restClient.SpotApi.Account`|
+|Deposit/Withdrawal|✓|`restClient.SpotApi.Account`|
+|Transfer|✓|`restClient.SpotApi.Account`|
+
+### Spot Websocket
 |API|Supported|Location|
 |--|--:|--|
-|TODO|✓|`restClient.FuturesApi.ExchangeData`|
+|Public|✓|`socketClient.SpotApi`|
+|Private|✓|`socketClient.SpotApi`|
+
+### USDT-M Futures REST
+|API|Supported|Location|
+|--|--:|--|
+|Market data|✓|`restClient.UsdtFuturesApi.ExchangeData`|
+|Quote collection|✓|`restClient.UsdtFuturesApi.ExchangeData`|
+|Order|✓|`restClient.UsdtFuturesApi.Trading`|
+|Entrust|✓|`restClient.UsdtFuturesApi.Trading`|
+|User|✓|`restClient.UsdtFuturesApi.Account` / `restClient.UsdtFuturesApi.Trading`|
+
+### COIN-M Futures REST
+|API|Supported|Location|
+|--|--:|--|
+|Market data|✓|`restClient.CoinFuturesApi.ExchangeData`|
+|Quote collection|✓|`restClient.CoinFuturesApi.ExchangeData`|
+|Order|✓|`restClient.CoinFuturesApi.Trading`|
+|Entrust|✓|`restClient.CoinFuturesApi.Trading`|
+|User|✓|`restClient.CoinFuturesApi.Account` / `restClient.CoinFuturesApi.Trading`|
+
+### Futures Websocket
+|API|Supported|Location|
+|--|--:|--|
+|Public|✓|`socketClient.FuturesApi`|
+|Private|✓|`socketClient.FuturesApi`|
+
+### Margin
+|API|Supported|Location|
+|--|--:|--|
+|*|X||
+
+### Copy Trading
+|API|Supported|Location|
+|--|--:|--|
+|*|X||
 
 ## Support the project
 Any support is greatly appreciated.
+
+### Referal
+If you do not yet have an account please consider using this referal link to sign up:  
+[Link](https://www.xt.com/en/accounts/register?ref=1HRM5J)
 
 ### Donate
 Make a one time donation in a crypto currency of your choice. If you prefer to donate a currency not listed here please contact me.

@@ -12,9 +12,14 @@ namespace XT.Net.Interfaces
     {
         
         /// <summary>
-        /// Futures order book factory methods
+        /// USDT futures order book factory methods
         /// </summary>
-        IOrderBookFactory<XTOrderBookOptions> Futures { get; }
+        IOrderBookFactory<XTOrderBookOptions> UsdtFutures { get; }
+
+        /// <summary>
+        /// Coin futures order book factory methods
+        /// </summary>
+        IOrderBookFactory<XTOrderBookOptions> CoinFutures { get; }
 
         /// <summary>
         /// Spot order book factory methods
@@ -30,11 +35,15 @@ namespace XT.Net.Interfaces
         /// <returns></returns>
         ISymbolOrderBook Create(SharedSymbol symbol, Action<XTOrderBookOptions>? options = null);
 
-        
         /// <summary>
-        /// Create a new Futures local order book instance
+        /// Create a new USDT futures local order book instance
         /// </summary>
-        ISymbolOrderBook CreateFutures(string symbol, Action<XTOrderBookOptions>? options = null);
+        ISymbolOrderBook CreateUsdtFutures(string symbol, Action<XTOrderBookOptions>? options = null);
+
+        /// <summary>
+        /// Create a new Coin futures local order book instance
+        /// </summary>
+        ISymbolOrderBook CreateCoinFutures(string symbol, Action<XTOrderBookOptions>? options = null);
 
         /// <summary>
         /// Create a new Spot local order book instance

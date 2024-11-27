@@ -8,12 +8,12 @@ false
   },
   "msgInfo": "",
   "result": {
-    "ap": "", //ask price
-    "aq": "", //ask amount
-    "bp": "", //bid price
-    "bq": "", //bid amount
-    "s": "", //Trading pair
-    "t": 0 //Time
+    "ap": "",
+    "aq": "", 
+    "bp": "",
+    "bq": "",
+    "s": "", 
+    "t": 0 
   },
   "returnCode": 0
 }

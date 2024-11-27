@@ -1,0 +1,27 @@
+GET
+/future/user/v1/position/list
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "autoMargin": false, 
+      "availableCloseSize": 0,
+      "closeOrderSize": 0, 
+      "entryPrice": 0, 
+      "isolatedMargin": 0, 
+      "leverage": 0, 
+      "openOrderMarginFrozen": 0, 
+      "positionSide": "LONG", 
+      "positionSize": 0, 
+      "positionType": "CROSSED",
+      "realizedProfit": 0,
+      "symbol": ""
+    }
+  ],
+  "returnCode": 0
+}

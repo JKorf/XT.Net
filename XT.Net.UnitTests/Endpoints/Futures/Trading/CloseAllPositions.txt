@@ -1,0 +1,12 @@
+POST
+/future/user/v1/position/close-all
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": true,
+  "returnCode": 0
+}

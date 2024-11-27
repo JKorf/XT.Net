@@ -40,7 +40,7 @@ namespace XT.Net.Clients.SpotApi
         /// ctor
         /// </summary>
         internal XTSocketClientSpotApi(ILogger logger, XTSocketOptions options) :
-            base(logger, options.Environment.SocketClientAddress!, options, options.SpotOptions)
+            base(logger, options.Environment.SpotSocketClientAddress!, options, options.SpotOptions)
         {
             RegisterPeriodicQuery("Ping", TimeSpan.FromSeconds(20), x => new XTPingQuery(), null);
         }
@@ -53,7 +53,7 @@ namespace XT.Net.Clients.SpotApi
 
         /// <inheritdoc />
         protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
-            => new XTAuthenticationProvider(credentials);
+            => new XTSpotAuthenticationProvider(credentials);
 
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(string symbol, Action<DataEvent<XTTradeUpdate>> onMessage, CancellationToken ct = default)
@@ -62,7 +62,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTTradeUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTTradeUpdate>(_logger,
-                symbols.Select(x => "trade@" + x).ToArray(),
+                symbols.Select(x => "trade@" + x.ToLower()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
@@ -77,7 +77,7 @@ namespace XT.Net.Clients.SpotApi
         {
             var intervalStr = EnumConverter.GetString(interval);
             var subscription = new XTSubscription<XTKlineUpdate>(_logger,
-                symbols.Select(x => "kline@" + x + "," + intervalStr).ToArray(),
+                symbols.Select(x => "kline@" + x.ToLower() + "," + intervalStr).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
@@ -91,7 +91,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<XTOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTOrderBookUpdate>(_logger,
-                symbols.Select(x => "depth@" + x + "," + depth).ToArray(),
+                symbols.Select(x => "depth@" + x.ToLower() + "," + depth).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
@@ -105,7 +105,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIncrementalOrderBookUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTIncrementalOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTIncrementalOrderBookUpdate>(_logger,
-                symbols.Select(x => "depth_update@" + x).ToArray(),
+                symbols.Select(x => "depth_update@" + x.ToLower()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
@@ -119,7 +119,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XT24HTicker>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XT24HTicker>(_logger,
-                symbols.Select(x => "ticker@" + x).ToArray(),
+                symbols.Select(x => "ticker@" + x.ToLower()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);

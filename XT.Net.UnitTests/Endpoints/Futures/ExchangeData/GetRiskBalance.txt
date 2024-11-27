@@ -8,14 +8,14 @@ false
   },
   "msgInfo": "",
   "result": {
-    "hasNext": false, //Is there a next page
-    "hasPrev": false, //Is there a previous page
-    "items": [ //Datasheets
+    "hasNext": false,
+    "hasPrev": false,
+    "items": [ 
       {
-        "amount": 0, //Balance
-        "coin": "", //Currency
-        "createdTime": 0, //Time
-        "id": 0 //id
+        "amount": 0, 
+        "coin": "", 
+        "createdTime": 0, 
+        "id": 0 
       }
     ]
   },

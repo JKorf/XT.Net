@@ -12,7 +12,6 @@ namespace XT.Net.Objects.Internal
         [JsonPropertyName("mc")]
         public string MessageCode { get; set; } = string.Empty;
 
-#warning ?
         [JsonPropertyName("ma")]
         public object[] MessageArgs { get; set; } = [];
     }

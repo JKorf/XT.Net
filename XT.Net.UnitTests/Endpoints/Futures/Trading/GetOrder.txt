@@ -1,0 +1,32 @@
+GET
+/future/trade/v1/order/detail
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "avgPrice": 0, 
+    "closePosition": false,
+    "closeProfit": 0, 
+    "createdTime": 0, 
+    "executedQty": 0, 
+    "forceClose": false,
+    "marginFrozen": 0, 
+    "orderId": 0, 
+        "orderSide": "BUY", 
+        "orderType": "LIMIT", 
+        "origQty": 0,
+        "positionSide": "LONG",
+        "price": 0, 
+        "sourceId": 0, 
+        "state": "NEW", 
+        "symbol": "", 
+        "timeInForce": "GTC", 
+    "triggerProfitPrice": 0, 
+    "triggerStopPrice": 0 
+  },
+  "returnCode": 0
+}

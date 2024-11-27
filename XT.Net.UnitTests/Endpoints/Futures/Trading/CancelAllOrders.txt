@@ -1,0 +1,12 @@
+POST
+/future/trade/v1/order/cancel-all
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": true,
+  "returnCode": 0
+}

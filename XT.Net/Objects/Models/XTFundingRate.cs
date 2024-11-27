@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace XT.Net.Objects.Models
 {
     /// <summary>
-    /// Funding rate
+    /// Funding fee
     /// </summary>
     public record XTFundingRate
     {

@@ -1,0 +1,25 @@
+GET
+/future/user/v1/position/break-list
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "breakPrice": 0, 
+      "calMarkPrice": 0, 
+      "contractType": "PERPETUAL", 
+      "entryPrice": 0,    
+      "isolatedMargin": 0,
+      "leverage": 0,     
+      "positionSide": "LONG", 
+      "positionSize": 0, 
+      "positionType": "CROSSED", 
+      "symbol": ""       
+    }
+  ],
+  "returnCode": 0
+}

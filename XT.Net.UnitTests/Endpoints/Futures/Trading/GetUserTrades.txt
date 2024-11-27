@@ -1,0 +1,29 @@
+GET
+/future/trade/v1/order/trade-list
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "items": [
+      {
+        "fee": 0,           
+        "feeCoin": "",          
+        "orderId": 0,          
+        "execId": 0,             
+        "price": 0,             
+        "quantity": 0,         
+        "symbol": "",        
+        "timestamp": 0,         
+        "takerMaker": "TAKER"   
+      }
+    ],
+    "page": 0,
+    "ps": 0,
+    "total": 0
+  },
+  "returnCode": 0
+}

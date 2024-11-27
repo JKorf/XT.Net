@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.Json.Serialization;
+
+namespace XT.Net.Objects.Models
+{
+    /// <summary>
+    /// Auto deleverage info
+    /// </summary>
+    public record XTAdlInfo
+    {
+        /// <summary>
+        /// Long quantile
+        /// </summary>
+        [JsonPropertyName("longQuantile")]
+        public decimal LongQuantile { get; set; }
+        /// <summary>
+        /// Short quantile
+        /// </summary>
+        [JsonPropertyName("shortQuantile")]
+        public decimal ShortQuantile { get; set; }
+        /// <summary>
+        /// Symbol
+        /// </summary>
+        [JsonPropertyName("symbol")]
+        public string Symbol { get; set; } = string.Empty;
+    }
+
+
+}

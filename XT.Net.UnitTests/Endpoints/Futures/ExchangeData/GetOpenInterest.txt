@@ -8,10 +8,10 @@ false
   },
   "msgInfo": "",
   "result": {
-    "symbol": "", //Trading pair
-    "openInterest": "", //open position
-    "openInterestUsd": 0, //open value
-    "time": "", //time
+    "symbol": "", 
+    "openInterest": "1", 
+    "openInterestUsd": 0,
+    "time": ""
   },
   "returnCode": 0
 }

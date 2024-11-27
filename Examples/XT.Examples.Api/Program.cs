@@ -7,19 +7,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add the XT services
-builder.Services.AddXT();
+//builder.Services.AddXT();
 
 // OR to provide API credentials for accessing private endpoints, or setting other options:
-/*
-builder.Services.AddXT(restOptions =>
-{
-    restOptions.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
-    restOptions.RequestTimeout = TimeSpan.FromSeconds(5);
-}, socketOptions =>
-{
-    socketOptions.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
-});
-*/
+
+//builder.Services.AddXT(options =>
+//{
+//    options.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
+//    options.Rest.RequestTimeout = TimeSpan.FromSeconds(5);
+//});
+
 
 var app = builder.Build();
 app.UseSwagger();
@@ -29,8 +26,8 @@ app.UseHttpsRedirection();
 // Map the endpoint and inject the rest client
 app.MapGet("/{Symbol}", async ([FromServices] IXTRestClient client, string symbol) =>
 {
-    var result = await client.SpotApi.ExchangeData.GetTickerAsync(symbol);
-    return result.Data.LastPrice;
+    var result = await client.SpotApi.ExchangeData.GetTickersAsync(symbol);
+    return result.Data.Single().LastPrice;
 })
 .WithOpenApi();
 

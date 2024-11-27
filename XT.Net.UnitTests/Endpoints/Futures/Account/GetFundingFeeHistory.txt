@@ -1,0 +1,25 @@
+GET
+/future/user/v1/balance/funding-rate-list
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "hasNext": false,
+    "hasPrev": false, 
+    "items": [
+      {
+        "cast": 0,
+        "coin": "",
+        "createdTime": 0, 
+        "id": 0, 
+        "positionSide": "LONG", 
+        "symbol": "" 
+      }
+    ]
+  },
+  "returnCode": 0
+}

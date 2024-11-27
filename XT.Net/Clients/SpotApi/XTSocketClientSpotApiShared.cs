@@ -187,8 +187,6 @@ namespace XT.Net.Clients.SpotApi
                         update.Data.CreateTime)
                     {
                         ClientOrderId = update.Data.ClientOrderId?.ToString(),
-                        //Quantity = update.Data.OrderType == OrderType.Market && update.Data.OrderSide == OrderSide.Buy ? null : update.Data.OrderQuantity, // For a market buy order the OrderQuantity is the quote quantity
-#warning check quantities for quote market orders/limti orders
                         Quantity = update.Data.Quantity,
                         QuantityFilled = update.Data.OrderType == OrderType.Market && update.Data.OrderSide == OrderSide.Buy ? null : update.Data.QuantityFilled,
                         QuoteQuantity = update.Data.QuoteQuantity,

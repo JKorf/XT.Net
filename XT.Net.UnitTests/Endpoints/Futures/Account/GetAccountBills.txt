@@ -1,0 +1,27 @@
+GET
+/future/user/v1/balance/bills
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "hasNext": false, 
+    "hasPrev": false,
+    "items": [ 
+      {
+        "afterAmount": 0,
+        "amount": 0, 
+        "coin": "", 
+        "createdTime": 0, 
+        "id": 0, 
+        "side": "SUB", 
+        "symbol": "", 
+        "type": "FEE" 
+      }
+    ]
+  },
+  "returnCode": 0
+}

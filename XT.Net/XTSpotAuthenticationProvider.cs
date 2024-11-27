@@ -8,14 +8,15 @@ using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
+using XT.Net.Clients.SpotApi;
 
 namespace XT.Net
 {
-    internal class XTAuthenticationProvider : AuthenticationProvider
+    internal class XTSpotAuthenticationProvider : AuthenticationProvider
     {
         private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer();
 
-        public XTAuthenticationProvider(ApiCredentials credentials) : base(credentials)
+        public XTSpotAuthenticationProvider(ApiCredentials credentials) : base(credentials)
         {
         }
 
@@ -39,8 +40,7 @@ namespace XT.Net
             headers.Add("validate-algorithms", "HmacSHA256");
             headers.Add("validate-appkey", ApiKey);
             var timestamp = GetMillisecondTimestamp(apiClient);
-#warning setting
-            headers.Add("validate-recvwindow", "5000");
+            headers.Add("validate-recvwindow", ((int)((XTRestClientSpotApi)apiClient).ApiOptions.ReceiveWindow.TotalMilliseconds).ToString());
             headers.Add("validate-timestamp", timestamp);
 
             var body = bodyParameters == null ? string.Empty : GetSerializedBody(_serializer, bodyParameters);

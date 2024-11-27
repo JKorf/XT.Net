@@ -8,19 +8,19 @@ false
   },
   "msgInfo": "",
   "result": {
-    "a": "", //24h volume
-    "ap": "", //ask price
-    "bp": "", //bid price
-    "c": "", //Latest price
-    "h": "", //Highest price in 24 hours
-    "i": "", //index price
-    "l": "", //Lowest price in 24 hours
-    "m": "", //mark price
-    "o": "", //The first transaction price 24 hours ago
-    "r": "", //24h price fluctuation limit
-    "s": "", //Trading pair
-    "t": 0, //Time
-    "v": "" //24h Turnover
+    "a": "1", 
+    "ap": "2", 
+    "bp": "3", 
+    "c": "4", 
+    "h": "5", 
+    "i": "6",
+    "l": "7", 
+    "m": "8", 
+    "o": "9", 
+    "r": "10", 
+    "s": "", 
+    "t": 0,
+    "v": "11" 
   },
   "returnCode": 0
 }

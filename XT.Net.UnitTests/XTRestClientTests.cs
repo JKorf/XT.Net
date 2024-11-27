@@ -14,7 +14,7 @@ namespace XT.Net.UnitTests
         [Test]
         public void CheckSignatureExample1()
         {
-            var authProvider = new XTAuthenticationProvider(new ApiCredentials("XXX", "XXX"));
+            var authProvider = new XTSpotAuthenticationProvider(new ApiCredentials("XXX", "XXX"));
             var client = (RestApiClient)new XTRestClient().SpotApi;
 
             CryptoExchange.Net.Testing.TestHelpers.CheckSignature(

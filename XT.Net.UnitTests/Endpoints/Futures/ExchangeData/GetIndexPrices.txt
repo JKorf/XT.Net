@@ -1,5 +1,5 @@
 GET
-/future/market/v1/public/q/symbol-index-price
+/future/market/v1/public/q/index-price
 false
 {
   "error": {
@@ -9,9 +9,9 @@ false
   "msgInfo": "",
   "result": [
     {
-      "p": 0, //Price
-      "s": "", //Trading pair
-      "t": 0 //Time
+      "p": 0,
+      "s": "", 
+      "t": 0 
     }
   ],
   "returnCode": 0

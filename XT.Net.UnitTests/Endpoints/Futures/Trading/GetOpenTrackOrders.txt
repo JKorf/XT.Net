@@ -1,0 +1,38 @@
+GET
+/future/trade/v1/entrust/track-list
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "items":[{
+      "activationPrice": 0,     
+      "avgPrice": 0,             
+      "callback": "FIXED",           
+      "callbackVal": 0,      
+      "configActivation": false,
+      "createdTime": 0,          
+      "currentPrice": 0,        
+      "desc": "",               
+      "executedQty": 0,         
+      "orderSide": "BUY",         
+      "ordinary": true,        
+      "origQty": 0,             
+      "positionSide": "LONG",        
+      "price": 0,                
+      "state": "TRIGGERED",            
+      "stopPrice": 0,          
+      "symbol": "",           
+      "trackId": 0,           
+      "triggerPriceType": "1",   
+      "updatedTime": 0       
+    }],
+    "page": 1,                   
+    "ps": 10,                   
+    "total": 20                   
+  },
+  "returnCode": 0
+}

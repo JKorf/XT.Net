@@ -12,6 +12,6 @@ namespace XT.Net.Objects.Internal
         [JsonPropertyName("event")]
         public string Event { get; set; } = string.Empty;
         [JsonPropertyName("data")]
-        public T Data { get; set; } = default;
+        public T Data { get; set; } = default!;
     }
 }

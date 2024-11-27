@@ -1,0 +1,35 @@
+GET
+/future/trade/v1/entrust/plan-list-history
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "hasNext": false, 
+    "hasPrev": false, 
+    "items": [ 
+      {
+        "clientOrderId": "", 
+        "closePosition": false, 
+        "createdTime": 0, 
+        "entrustId": 0,
+        "entrustType": "STOP", 
+        "marketOrderLevel": 0, 
+        "orderSide": "BUY",
+        "ordinary": true,
+        "origQty": 0,
+        "positionSide": "LONG", 
+        "price": 0,
+        "state": "TRIGGERED", 
+        "stopPrice": 0,
+        "symbol": "", 
+        "timeInForce": "GTX", 
+        "triggerPriceType": "1" 
+      }
+    ]
+  },
+  "returnCode": 0
+}

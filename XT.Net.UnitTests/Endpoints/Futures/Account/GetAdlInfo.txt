@@ -1,0 +1,18 @@
+GET
+/future/user/v1/position/adl
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "longQuantile": 0, 
+      "shortQuantile": 0, 
+      "symbol": "" 
+    }
+  ],
+  "returnCode": 0
+}

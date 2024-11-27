@@ -49,8 +49,8 @@ namespace XT.Net.Clients
         {
             Initialize(options.Value);
                         
-            UsdtFuturesApi = AddApiClient(new XTRestClientUsdtFuturesApi(_logger, httpClient, options.Value));
-            CoinFuturesApi = AddApiClient(new XTRestClientCoinFuturesApi(_logger, httpClient, options.Value));
+            UsdtFuturesApi = AddApiClient(new XTRestClientUsdtFuturesApi(_logger, this, httpClient, options.Value));
+            CoinFuturesApi = AddApiClient(new XTRestClientCoinFuturesApi(_logger, this, httpClient, options.Value));
             SpotApi = AddApiClient(new XTRestClientSpotApi(_logger, httpClient, options.Value));
         }
 

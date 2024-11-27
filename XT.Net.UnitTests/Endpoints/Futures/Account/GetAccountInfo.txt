@@ -1,0 +1,20 @@
+GET
+/future/user/v1/account/info
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "accountId": 0, 
+    "allowOpenPosition": false,
+    "allowTrade": false, 
+    "allowTransfer": false,
+    "openTime": "", 
+    "state": 0, 
+    "userId": 0 
+  },
+  "returnCode": 0
+}

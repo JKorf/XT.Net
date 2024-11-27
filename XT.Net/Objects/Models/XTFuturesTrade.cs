@@ -15,7 +15,7 @@ namespace XT.Net.Objects.Models
         /// Volume
         /// </summary>
         [JsonPropertyName("a")]
-        public decimal Volume { get; set; }
+        public decimal Quantity { get; set; }
         /// <summary>
         /// Side
         /// </summary>

@@ -1,0 +1,12 @@
+GET
+/future/trade/v1/entrust/cancel-all-plan
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": true,
+  "returnCode": 0
+}

@@ -13,12 +13,12 @@ namespace XT.Net.Enums
         /// <summary>
         /// Perpetual
         /// </summary>
-        [Map("perpetual")]
+        [Map("perpetual", "PERPETUAL")]
         Perpetual,
         /// <summary>
         /// Futures
         /// </summary>
-        [Map("futures")]
+        [Map("futures", "PREDICT")]
         Futures
     }
 }

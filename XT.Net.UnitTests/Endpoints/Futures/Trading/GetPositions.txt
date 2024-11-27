@@ -1,0 +1,38 @@
+GET
+/future/user/v1/position
+true
+{
+  "error": {
+    "args": [],
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "autoMargin": false,
+      "availableCloseSize": 0,
+      "breakPrice": 0, 
+      "calMarkPrice": 0, 
+      "closeOrderSize": 0, 
+      "contractType": "PERPETUAL",
+      "entryPrice": 0,
+      "floatingPL": 0, 
+      "isolatedMargin": 0,
+      "leverage": 0, 
+      "openOrderMarginFrozen": 0, 
+      "openOrderSize": 0, 
+      "positionSide": "LONG", 
+      "positionSize": 0, 
+      "positionType": "CROSSED", 
+      "profitId": 0,
+      "realizedProfit": 0, 
+      "symbol": "", 
+      "triggerPriceType": "1", 
+      "triggerProfitPrice": 0, 
+      "triggerStopPrice": 0,
+      "welfareAccount": true
+    }
+  ],
+  "returnCode": 0
+}

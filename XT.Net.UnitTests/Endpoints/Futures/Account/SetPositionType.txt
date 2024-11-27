@@ -1,0 +1,11 @@
+POST
+/future/user/v1/position/change-type
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "returnCode": 0
+}

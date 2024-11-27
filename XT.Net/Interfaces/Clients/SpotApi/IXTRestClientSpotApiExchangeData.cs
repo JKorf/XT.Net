@@ -43,7 +43,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <para><a href="https://doc.xt.com/#market3depth" /></para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
-        /// <param name="limit">Number of rows of the book to return</param>
+        /// <param name="limit">Number of rows of the book to return, max 1000</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTOrderBook>> GetOrderBookAsync(string symbol, int? limit = null, CancellationToken ct = default);
 

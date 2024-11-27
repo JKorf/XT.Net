@@ -22,12 +22,12 @@ namespace XT.Net.Objects.Models
         /// <summary>
         /// Bids
         /// </summary>
-        [JsonPropertyName("a")]
+        [JsonPropertyName("b")]
         public IEnumerable<XTOrderBookEntry> Bids { get; set; } = Array.Empty<XTOrderBookEntry>();
         /// <summary>
         /// Asks
         /// </summary>
-        [JsonPropertyName("b")]
+        [JsonPropertyName("a")]
         public IEnumerable<XTOrderBookEntry> Asks { get; set; } = Array.Empty<XTOrderBookEntry>();
     }
 

@@ -23,7 +23,6 @@ namespace XT.Net.Objects.Options
         {
             Default?.Set(this);
         }
-
         
          /// <summary>
         /// Futures API options
@@ -33,17 +32,13 @@ namespace XT.Net.Objects.Options
          /// <summary>
         /// Spot API options
         /// </summary>
-        public RestApiOptions SpotOptions { get; private set; } = new RestApiOptions();
-
+        public XTSpotRestApiOptions SpotOptions { get; private set; } = new XTSpotRestApiOptions();
 
         internal XTRestOptions Set(XTRestOptions targetOptions)
         {
-            targetOptions = base.Set<XTRestOptions>(targetOptions);
-            
+            targetOptions = base.Set<XTRestOptions>(targetOptions);            
             targetOptions.FuturesOptions = FuturesOptions.Set(targetOptions.FuturesOptions);
-
             targetOptions.SpotOptions = SpotOptions.Set(targetOptions.SpotOptions);
-
             return targetOptions;
         }
     }

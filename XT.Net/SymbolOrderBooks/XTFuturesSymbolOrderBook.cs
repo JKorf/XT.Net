@@ -7,6 +7,7 @@ using CryptoExchange.Net.OrderBook;
 using Microsoft.Extensions.Logging;
 using XT.Net.Clients;
 using XT.Net.Interfaces.Clients;
+using XT.Net.Objects.Models;
 using XT.Net.Objects.Options;
 
 namespace XT.Net.SymbolOrderBooks
@@ -15,10 +16,13 @@ namespace XT.Net.SymbolOrderBooks
     /// Implementation for a synchronized order book. After calling Start the order book will sync itself and keep up to date with new data. It will automatically try to reconnect and resync in case of a lost/interrupted connection.
     /// Make sure to check the State property to see if the order book is synced.
     /// </summary>
-    public class XTFuturesSymbolOrderBook : SymbolOrderBook
+    public abstract class XTFuturesSymbolOrderBook : SymbolOrderBook
     {
         private readonly bool _clientOwner;
-        private readonly IXTRestClient _restClient;
+        /// <summary>
+        /// Rest client
+        /// </summary>
+        protected readonly IXTRestClient _restClient;
         private readonly IXTSocketClient _socketClient;
         private readonly TimeSpan _initialDataTimeout;
 
@@ -66,8 +70,60 @@ namespace XT.Net.SymbolOrderBooks
         /// <inheritdoc />
         protected override async Task<CallResult<UpdateSubscription>> DoStartAsync(CancellationToken ct)
         {
-            // XXX
-            throw new NotImplementedException();
+            CallResult<UpdateSubscription> subResult;
+            if (Levels == null)
+                subResult = await _socketClient.FuturesApi.SubscribeToIncrementalOrderBookUpdatesAsync(Symbol, 100, HandleUpdate).ConfigureAwait(false);
+            else
+                subResult = await _socketClient.FuturesApi.SubscribeToOrderBookUpdatesAsync(Symbol, Levels.Value, 100, HandleUpdate).ConfigureAwait(false);
+
+            if (!subResult)
+                return new CallResult<UpdateSubscription>(subResult.Error!);
+
+            if (ct.IsCancellationRequested)
+            {
+                await subResult.Data.CloseAsync().ConfigureAwait(false);
+                return subResult.AsError<UpdateSubscription>(new CancellationRequestedError());
+            }
+
+            Status = OrderBookStatus.Syncing;
+            if (Levels == null)
+            {
+                // Small delay to make sure the snapshot is from after our first stream update
+                await Task.Delay(200).ConfigureAwait(false);
+                var bookResult = await GetOrderBookAsync().ConfigureAwait(false);
+                if (!bookResult)
+                {
+                    _logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, $"{Api} order book {Symbol} failed to retrieve initial order book");
+                    await _socketClient.UnsubscribeAsync(subResult.Data).ConfigureAwait(false);
+                    return new CallResult<UpdateSubscription>(bookResult.Error!);
+                }
+
+                SetInitialOrderBook(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
+            }
+            else
+            {
+                var setResult = await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
+                return setResult ? subResult : new CallResult<UpdateSubscription>(setResult.Error!);
+            }
+
+            return new CallResult<UpdateSubscription>(subResult.Data);
+        }
+
+        /// <summary>
+        /// Get the order book snapshot
+        /// </summary>
+        /// <returns></returns>
+        protected abstract Task<WebCallResult<XTFuturesOrderBook>> GetOrderBookAsync();
+
+        private void HandleUpdate(DataEvent<XTFuturesIncrementalOrderBookUpdate> data)
+        {
+            UpdateOrderBook(data.Data.FirstUpdateId, data.Data.LastUpdateId, data.Data.Bids, data.Data.Asks);
+        }
+
+
+        private void HandleUpdate(DataEvent<XTFuturesOrderBookUpdate> data)
+        {
+            SetInitialOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks);
         }
 
         /// <inheritdoc />
@@ -78,8 +134,15 @@ namespace XT.Net.SymbolOrderBooks
         /// <inheritdoc />
         protected override async Task<CallResult<bool>> DoResyncAsync(CancellationToken ct)
         {
-            // XXX
-            throw new NotImplementedException();
+            if (Levels != null)
+                return await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
+
+            var bookResult = await GetOrderBookAsync().ConfigureAwait(false);
+            if (!bookResult)
+                return new CallResult<bool>(bookResult.Error!);
+
+            SetInitialOrderBook(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
+            return new CallResult<bool>(true);
         }
 
         /// <inheritdoc />
@@ -92,6 +155,46 @@ namespace XT.Net.SymbolOrderBooks
             }
 
             base.Dispose(disposing);
+        }
+    }
+
+    /// <inheritdoc />
+    public class XTUsdtFuturesSymbolOrderBook : XTFuturesSymbolOrderBook
+    {
+        /// <inheritdoc />
+        public XTUsdtFuturesSymbolOrderBook(string symbol, Action<XTOrderBookOptions>? optionsDelegate = null) : base(symbol, optionsDelegate)
+        {
+        }
+
+        /// <inheritdoc />
+        public XTUsdtFuturesSymbolOrderBook(string symbol, Action<XTOrderBookOptions>? optionsDelegate, ILoggerFactory? logger, IXTRestClient? restClient, IXTSocketClient? socketClient) : base(symbol, optionsDelegate, logger, restClient, socketClient)
+        {
+        }
+
+        /// <inheritdoc />
+        protected override Task<WebCallResult<XTFuturesOrderBook>> GetOrderBookAsync()
+        {
+            return _restClient.UsdtFuturesApi.ExchangeData.GetOrderBookAsync(Symbol, 1000);
+        }
+    }
+
+    /// <inheritdoc />
+    public class XTCoinFuturesSymbolOrderBook : XTFuturesSymbolOrderBook
+    {
+        /// <inheritdoc />
+        public XTCoinFuturesSymbolOrderBook(string symbol, Action<XTOrderBookOptions>? optionsDelegate = null) : base(symbol, optionsDelegate)
+        {
+        }
+
+        /// <inheritdoc />
+        public XTCoinFuturesSymbolOrderBook(string symbol, Action<XTOrderBookOptions>? optionsDelegate, ILoggerFactory? logger, IXTRestClient? restClient, IXTSocketClient? socketClient) : base(symbol, optionsDelegate, logger, restClient, socketClient)
+        {
+        }
+
+        /// <inheritdoc />
+        protected override Task<WebCallResult<XTFuturesOrderBook>> GetOrderBookAsync()
+        {
+            return _restClient.CoinFuturesApi.ExchangeData.GetOrderBookAsync(Symbol, 1000);
         }
     }
 }

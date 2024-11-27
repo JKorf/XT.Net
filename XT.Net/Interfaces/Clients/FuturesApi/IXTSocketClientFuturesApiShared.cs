@@ -9,7 +9,14 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     /// Shared interface for Futures socket API usage
     /// </summary>
     public interface IXTSocketClientFuturesApiShared :
-        ISharedClient
+        IBalanceSocketClient,
+        IKlineSocketClient,
+        IOrderBookSocketClient,
+        ITickerSocketClient,
+        ITradeSocketClient,
+        IUserTradeSocketClient,
+        IFuturesOrderSocketClient,
+        IPositionSocketClient
     {
     }
 }

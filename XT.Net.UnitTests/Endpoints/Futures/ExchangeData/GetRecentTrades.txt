@@ -9,11 +9,11 @@ false
   "msgInfo": "",
   "result": [
     {
-      "a": 0, //Volume
-      "m": "", //Order side
-      "p": 0, //Price
-      "s": "", //Trading pair
-      "t": 0 //Time
+      "a": 0,
+      "m": "BUY",
+      "p": 0, 
+      "s": "", 
+      "t": 0
     }
   ],
   "returnCode": 0

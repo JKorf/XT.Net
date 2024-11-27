@@ -7,6 +7,7 @@ using CryptoExchange.Net.OrderBook;
 using Microsoft.Extensions.Logging;
 using XT.Net.Clients;
 using XT.Net.Interfaces.Clients;
+using XT.Net.Objects.Models;
 using XT.Net.Objects.Options;
 
 namespace XT.Net.SymbolOrderBooks
@@ -66,8 +67,54 @@ namespace XT.Net.SymbolOrderBooks
         /// <inheritdoc />
         protected override async Task<CallResult<UpdateSubscription>> DoStartAsync(CancellationToken ct)
         {
-            // XXX
-            throw new NotImplementedException();
+            CallResult<UpdateSubscription> subResult;
+            if (Levels == null)
+                subResult = await _socketClient.SpotApi.SubscribeToIncrementalOrderBookUpdatesAsync(Symbol, HandleUpdate).ConfigureAwait(false);
+            else
+                subResult = await _socketClient.SpotApi.SubscribeToOrderBookUpdatesAsync(Symbol, Levels.Value, HandleUpdate).ConfigureAwait(false);
+
+            if (!subResult)
+                return new CallResult<UpdateSubscription>(subResult.Error!);
+
+            if (ct.IsCancellationRequested)
+            {
+                await subResult.Data.CloseAsync().ConfigureAwait(false);
+                return subResult.AsError<UpdateSubscription>(new CancellationRequestedError());
+            }
+
+            Status = OrderBookStatus.Syncing;
+            if (Levels == null)
+            {
+                // Small delay to make sure the snapshot is from after our first stream update
+                await Task.Delay(200).ConfigureAwait(false);
+                var bookResult = await _restClient.SpotApi.ExchangeData.GetOrderBookAsync(Symbol, 1000).ConfigureAwait(false);
+                if (!bookResult)
+                {
+                    _logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, $"{Api} order book {Symbol} failed to retrieve initial order book");
+                    await _socketClient.UnsubscribeAsync(subResult.Data).ConfigureAwait(false);
+                    return new CallResult<UpdateSubscription>(bookResult.Error!);
+                }
+
+                SetInitialOrderBook(bookResult.Data.LastUpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
+            }
+            else
+            {
+                var setResult = await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
+                return setResult ? subResult : new CallResult<UpdateSubscription>(setResult.Error!);
+            }
+
+            return new CallResult<UpdateSubscription>(subResult.Data);
+        }
+
+        private void HandleUpdate(DataEvent<XTIncrementalOrderBookUpdate> data)
+        {
+            UpdateOrderBook(data.Data.FirstUpdateId, data.Data.LastUpdateId, data.Data.Bids, data.Data.Asks);
+        }
+
+
+        private void HandleUpdate(DataEvent<XTOrderBookUpdate> data)
+        {
+            SetInitialOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks);
         }
 
         /// <inheritdoc />
@@ -78,8 +125,15 @@ namespace XT.Net.SymbolOrderBooks
         /// <inheritdoc />
         protected override async Task<CallResult<bool>> DoResyncAsync(CancellationToken ct)
         {
-            // XXX
-            throw new NotImplementedException();
+            if (Levels != null)
+                return await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
+
+            var bookResult = await _restClient.SpotApi.ExchangeData.GetOrderBookAsync(Symbol, Levels ?? 1000).ConfigureAwait(false);
+            if (!bookResult)
+                return new CallResult<bool>(bookResult.Error!);
+
+            SetInitialOrderBook(bookResult.Data.LastUpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
+            return new CallResult<bool>(true);
         }
 
         /// <inheritdoc />

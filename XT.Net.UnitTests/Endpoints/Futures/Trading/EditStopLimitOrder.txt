@@ -1,0 +1,12 @@
+POST
+/future/trade/v1/entrust/update-profit-stop
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {},
+  "returnCode": 0
+}

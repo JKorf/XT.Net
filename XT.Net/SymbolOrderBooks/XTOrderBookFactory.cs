@@ -1,3 +1,4 @@
+using CryptoExchange.Net;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.OrderBook;
 using CryptoExchange.Net.SharedApis;
@@ -25,14 +26,17 @@ namespace XT.Net.SymbolOrderBooks
         {
             _serviceProvider = serviceProvider;            
             
-            Futures = new OrderBookFactory<XTOrderBookOptions>(CreateFutures, Create);
+            UsdtFutures = new OrderBookFactory<XTOrderBookOptions>(CreateUsdtFutures, Create);
+            CoinFutures = new OrderBookFactory<XTOrderBookOptions>(CreateCoinFutures, Create);
             Spot = new OrderBookFactory<XTOrderBookOptions>(CreateSpot, Create);
         }
                 
          /// <inheritdoc />
-        public IOrderBookFactory<XTOrderBookOptions> Futures { get; }
+        public IOrderBookFactory<XTOrderBookOptions> UsdtFutures { get; }
+        /// <inheritdoc />
+        public IOrderBookFactory<XTOrderBookOptions> CoinFutures { get; }
 
-         /// <inheritdoc />
+        /// <inheritdoc />
         public IOrderBookFactory<XTOrderBookOptions> Spot { get; }
 
         /// <inheritdoc />
@@ -43,18 +47,27 @@ namespace XT.Net.SymbolOrderBooks
             if (symbol.TradingMode == TradingMode.Spot)
                 return CreateSpot(symbolName, options);
 
-            return CreateFutures(symbolName, options);
+            if (symbol.TradingMode.IsLinear())
+                return CreateUsdtFutures(symbolName, options);
+
+            return CreateCoinFutures(symbolName, options);
         }
 
         
          /// <inheritdoc />
-        public ISymbolOrderBook CreateFutures(string symbol, Action<XTOrderBookOptions>? options = null)
-            => new XTFuturesSymbolOrderBook(symbol, options, 
+        public ISymbolOrderBook CreateUsdtFutures(string symbol, Action<XTOrderBookOptions>? options = null)
+            => new XTUsdtFuturesSymbolOrderBook(symbol, options, 
                                                           _serviceProvider.GetRequiredService<ILoggerFactory>(),
                                                           _serviceProvider.GetRequiredService<IXTRestClient>(),
                                                           _serviceProvider.GetRequiredService<IXTSocketClient>());
 
-         /// <inheritdoc />
+        /// <inheritdoc />
+        public ISymbolOrderBook CreateCoinFutures(string symbol, Action<XTOrderBookOptions>? options = null)
+            => new XTCoinFuturesSymbolOrderBook(symbol, options,
+                                                          _serviceProvider.GetRequiredService<ILoggerFactory>(),
+                                                          _serviceProvider.GetRequiredService<IXTRestClient>(),
+                                                          _serviceProvider.GetRequiredService<IXTSocketClient>());
+        /// <inheritdoc />
         public ISymbolOrderBook CreateSpot(string symbol, Action<XTOrderBookOptions>? options = null)
             => new XTSpotSymbolOrderBook(symbol, options, 
                                                           _serviceProvider.GetRequiredService<ILoggerFactory>(),

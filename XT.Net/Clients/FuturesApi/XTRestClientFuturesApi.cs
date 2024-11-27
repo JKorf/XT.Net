@@ -25,8 +25,8 @@ namespace XT.Net.Clients.FuturesApi
     internal class XTRestClientUsdtFuturesApi : XTRestClientFuturesApi
     {
         #region constructor/destructor
-        internal XTRestClientUsdtFuturesApi(ILogger logger, HttpClient? httpClient, XTRestOptions options)
-            : base(logger, httpClient, options.Environment.UsdtFuturesRestClientAddress, options, options.FuturesOptions)
+        internal XTRestClientUsdtFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, XTRestOptions options)
+            : base(logger, baseClient, httpClient, options.Environment.UsdtFuturesRestClientAddress, options, options.FuturesOptions)
         {
         }
         #endregion
@@ -36,8 +36,8 @@ namespace XT.Net.Clients.FuturesApi
     internal class XTRestClientCoinFuturesApi : XTRestClientFuturesApi
     {
         #region constructor/destructor
-        internal XTRestClientCoinFuturesApi(ILogger logger, HttpClient? httpClient, XTRestOptions options)
-            : base(logger, httpClient, options.Environment.CoinFuturesRestClientAddress, options, options.FuturesOptions)
+        internal XTRestClientCoinFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, XTRestOptions options)
+            : base(logger, baseClient, httpClient, options.Environment.CoinFuturesRestClientAddress, options, options.FuturesOptions)
         {
         }
         #endregion
@@ -48,6 +48,7 @@ namespace XT.Net.Clients.FuturesApi
     {
         #region fields 
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Futures Api");
+        internal XTRestClient _baseClient;
         #endregion
 
         #region Api clients
@@ -62,12 +63,16 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         #region constructor/destructor
-        internal XTRestClientFuturesApi(ILogger logger, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions apiOptions)
+        internal XTRestClientFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions apiOptions)
             : base(logger, httpClient, baseAddress, options, apiOptions)
         {
+            _baseClient = baseClient;
+
             Account = new XTRestClientFuturesApiAccount(this);
             ExchangeData = new XTRestClientFuturesApiExchangeData(logger, this);
             Trading = new XTRestClientFuturesApiTrading(logger, this);
+
+            RequestBodyEmptyContent = "";
         }
         #endregion
 
@@ -78,7 +83,7 @@ namespace XT.Net.Clients.FuturesApi
 
         /// <inheritdoc />
         protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
-            => new XTAuthenticationProvider(credentials);
+            => new XTFuturesAuthenticationProvider(credentials);
 
         internal Task<WebCallResult> SendAsync(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)
             => SendToAddressAsync(BaseAddress, definition, parameters, cancellationToken, weight);
@@ -95,10 +100,10 @@ namespace XT.Net.Clients.FuturesApi
             return result.AsDataless();
         }
 
-        internal Task<WebCallResult<T>> SendAsync<T>(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
+        internal Task<WebCallResult<T>> SendAsync<T>(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)
             => SendToAddressAsync<T>(BaseAddress, definition, parameters, cancellationToken, weight);
 
-        internal async Task<WebCallResult<T>> SendToAddressAsync<T>(string baseAddress, RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
+        internal async Task<WebCallResult<T>> SendToAddressAsync<T>(string baseAddress, RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)
         {
             var result = await base.SendAsync<XTFuturesRestResponse<T>>(baseAddress, definition, parameters, cancellationToken, null, weight).ConfigureAwait(false);
             if (!result)

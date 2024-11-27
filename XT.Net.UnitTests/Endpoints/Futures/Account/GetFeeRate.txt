@@ -1,0 +1,15 @@
+GET
+/future/user/v1/user/step-rate
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "success",
+  "result": {
+    "makerFee":"0.00004",
+    "takerFee": "0.00001"
+  },
+  "returnCode": 0
+}

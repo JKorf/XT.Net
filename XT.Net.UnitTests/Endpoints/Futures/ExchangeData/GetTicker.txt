@@ -8,15 +8,15 @@ false
   },
   "msgInfo": "",
   "result": {
-    "a": "8", //24h volume
-    "c": "7", //Latest price
-    "h": "6", //Highest price in 24 hours
-    "l": "5", //Lowest price in 24 hours
-    "o": "4", //The first transaction price 24 hours ago
-    "r": "3", //24h Price Fluctuation Limit
-    "s": "2", //Trading pair
-    "t": 0, //Time
-    "v": "1" //24h turnover
+    "a": "8",
+    "c": "7", 
+    "h": "6", 
+    "l": "5", 
+    "o": "4", 
+    "r": "3", 
+    "s": "2", 
+    "t": 0, 
+    "v": "1" 
   },
   "returnCode": 0
 }

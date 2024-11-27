@@ -32,7 +32,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default)
         {
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/time", XTExchange.RateLimiter.XT, 1, false);
-            var result = await _baseClient.SendRawAsync<XTRestResponse<XTServerTime>>(_baseClient.ApiOptions.Ad request, null, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendToAddressRawAsync<XTRestResponse<XTServerTime>>(_baseClient._baseClient.SpotApi.BaseAddress, request, null, ct).ConfigureAwait(false);
             return result.As(result.Data.Result?.ServerTime ?? default);
         }
 

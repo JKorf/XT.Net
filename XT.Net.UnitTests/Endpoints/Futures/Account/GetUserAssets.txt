@@ -1,0 +1,23 @@
+GET
+/future/user/v1/balance/list
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": [
+    {
+      "availableBalance": 0,    
+      "coin": "",                
+      "isolatedMargin": 0,      
+      "openOrderMarginFrozen": 0, 
+      "crossedMargin": 0,      
+      "bonus": 0,                 
+      "coupon": 0,                
+      "walletBalance": 0       
+    }
+  ],
+  "returnCode": 0
+}

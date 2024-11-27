@@ -97,7 +97,7 @@
         <section id="idocs_intro">
 			<h1>XT.Net</h1>
 			
-		<p>XT.Net is a client library for accessing the <a href="XT" target="_blank">XT REST and Websocket API</a>. </p>
+		<p>XT.Net is a client library for accessing the <a href="https://doc.xt.com/" target="_blank">XT REST and Websocket API</a>. </p>
 		<h4>Features</h4>
 		<ul>
 			<li>Response data is mapped to descriptive models</li>
@@ -134,6 +134,10 @@
 		<p>A Discord server is available <a href="https://discord.gg/MSpeEtSY8t">here</a>. Feel free to join for discussion and/or questions around the CryptoExchange.Net and implementation libraries.</p>
 
 		<h4>Support the project</h4>
+		
+		<b>Referral</b>
+		<p>If you do not yet have an account please consider using this referal link to sign up:<br />
+		<a href="https://www.xt.com/en/accounts/register?ref=1HRM5J">Link</a></p>
 		
 		<b>Donate</b><br />
 		<p>Make a one time donation in a crypto currency of your choice. If you prefer to donate a currency not listed here please contact me.<p>
@@ -189,8 +193,14 @@
           
 		  <p>XT.Net can be configured using Dotnet dependency injection, after which the clients can be injected into your services. It also correctly configures logging and HttpClient usage.</p>
 		  
-		  <pre><code>builder.Services.AddXT(options => {
-  // Options can be configured here, for example:
+		  <pre><code>// Configure options from config file
+// see https://github.com/JKorf/CryptoExchange.Net/tree/master/Examples/example-config.json for an example
+builder.Services.AddXT(builder.Configuration.GetSection("XT"));
+		  
+// OR
+		  
+ builder.Services.AddXT(options => {
+  // Configure options in code
   options.ApiCredentials = new ApiCredentials("APIKEY", "APISECRET");
 });</code></pre>
 		  
@@ -211,8 +221,74 @@ var socketClient = new XTSocketClient();</code></pre>
           
 		  <b id="idocs_example_symbols">Get Symbols</b><br />
 		  <p>Get a list of supported symbols on XT</p>
-		  <pre><code>await XTClient.SpotApi.ExchangeData.GetSymbolsAsync();</code></pre>
+		  <pre><code>var xtRestClient = new XTRestClient();
+await xtRestClient.SpotApi.ExchangeData.GetSymbolsAsync();</code></pre>
 		  
+		  <b id="idocs_example_symbols">Get Symbol Ticker</b><br />
+		  <p>Get the 24h price ticker of multiple symbols</p>
+		  <pre><code>var xtRestClient = new XTRestClient();
+var result = await xtRestClient.SpotApi.ExchangeData.GetTickersAsync();</code></pre>
+		  
+		  
+		  <b id="idocs_example_symbols">Get Recent Trades</b><br />
+		  <p>Get the most recent trades for a symbol</p>
+		  <pre><code>var xtRestClient = new XTRestClient();
+var result = await xtRestClient.SpotApi.ExchangeData.GetRecentTradesAsync("eth_usdt");</code></pre>
+
+		  <b id="idocs_example_symbols">Get Balances</b><br />
+		  <p>Get spot trading balances</p>
+		  <pre><code>var xtRestClient = new XTRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await xtRestClient.SpotApi.Account.GetBalancesAsync();</code></pre>
+
+		  <b id="idocs_example_symbols">Place Limit Order</b><br />
+		  <p>Place a new limit order for buying 0.1 ETH at a price of 2000 USDT</p>
+		  <pre><code>var xtRestClient = new XTRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await xtRestClient.SpotApi.Trading.PlaceOrderAsync(
+    "ETH_USDT",
+    OrderSide.Buy,
+    OrderType.Limit,
+    TimeInForce.GoodTillCanceled,
+    BusinessType.Spot,
+    0.1m,
+    price: 2000);</code></pre>
+	
+		  <b id="idocs_example_symbols">Place Market Order</b><br />
+		  <p>Place a new market order for buying 50 USDT worth of ETH at the best available price</p>
+		  <pre><code>var xtRestClient = new XTRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await xtRestClient.SpotApi.Trading.PlaceOrderAsync(
+    "ETH_USDT",
+    OrderSide.Buy,
+    OrderType.Market,
+    TimeInForce.ImmediateOrCancel,
+    BusinessType.Spot,
+    quoteQuantity: 50);</code></pre>
+	
+		  <b id="idocs_example_symbols">Get Order Info</b><br />
+		  <p>Retrieve order information for a specific order</p>
+		  <pre><code>var xtRestClient = new XTRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await xtRestClient.SpotApi.Trading.GetOrderAsync(orderId: 123);</code></pre>
+
+		  <b id="idocs_example_symbols">Cancel an order</b><br />
+		  <p>Cancel a currently active order</p>
+		  <pre><code>var xtRestClient = new XTRestClient(options => {
+    options.ApiCredentials = new ApiCredentials("KEY", "SECRET");
+});
+
+var result = await xtRestClient.SpotApi.Trading.CancelOrderAsync(123);</code></pre>
+	
+	
         </section>
         		
       </div>

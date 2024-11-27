@@ -51,6 +51,4 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("v")]
         public decimal Turnover { get; set; }
     }
-
-
 }

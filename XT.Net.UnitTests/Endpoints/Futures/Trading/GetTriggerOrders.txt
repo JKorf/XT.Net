@@ -1,0 +1,36 @@
+GET
+/future/trade/v1/entrust/plan-list
+true
+{
+  "error": {
+    "code": "",
+    "msg": ""
+  },
+  "msgInfo": "",
+  "result": {
+    "items": [
+      {
+        "clientOrderId": "",
+        "closePosition": false,
+        "createdTime": 0,
+        "entrustId": 0,
+        "entrustType": "STOP",
+        "marketOrderLevel": 0, 
+        "orderSide": "BUY", 
+        "ordinary": true,
+        "origQty": 0, 
+        "positionSide": "LONG",
+        "price": 0, 
+        "state": "TRIGGERED", 
+        "stopPrice": 0, 
+        "symbol": "", 
+        "timeInForce": "GTC",
+        "triggerPriceType": "1" 
+      }
+    ],
+    "page": 0,
+    "ps": 0,
+    "total": 0
+  },
+  "returnCode": 0
+}

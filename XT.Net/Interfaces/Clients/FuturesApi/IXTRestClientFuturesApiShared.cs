@@ -9,7 +9,17 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     /// Shared interface for Futures rest API usage
     /// </summary>
     public interface IXTRestClientFuturesApiShared :
-        ISharedClient
+        IBalanceRestClient,
+        IKlineRestClient,
+        IListenKeyRestClient,
+        IOrderBookRestClient,
+        IRecentTradeRestClient,
+        IFundingRateRestClient,
+        IFuturesSymbolRestClient,
+        IFuturesTickerRestClient,
+        ILeverageRestClient,
+        IOpenInterestRestClient,
+        IFuturesOrderRestClient
     {
     }
 }

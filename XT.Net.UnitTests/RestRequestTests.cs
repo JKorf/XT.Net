@@ -75,6 +75,25 @@ namespace XT.Net.UnitTests
         }
 
         [Test]
+        public async Task ValidateFuturesAccountCalls()
+        {
+            var client = new XTRestClient(opts =>
+            {
+                opts.AutoTimestamp = false;
+                opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
+            });
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Account", "https://fapi.xt.com", IsAuthenticated, stjCompare: true);
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetAccountInfoAsync(), "GetAccountInfo", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetUserAssetsAsync(), "GetUserAssets", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetAccountBillsAsync(), "GetAccountBills", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetFundingFeeHistoryAsync(), "GetFundingFeeHistory", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetFeeRateAsync(), "GetFeeRate", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.SetPositionTypeAsync("123", PositionSide.Short, PositionType.Isolated), "SetPositionType");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetAdlInfoAsync(), "GetAdlInfo", nestedJsonProperty: "result");
+        }
+
+        [Test]
         public async Task ValidateFuturesExchangeDataCalls()
         {
             var client = new XTRestClient(opts =>
@@ -90,24 +109,42 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetIndexPricesAsync(), "GetIndexPrices", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetKlinesAsync("123", FuturesKlineInterval.OneHour), "GetKlines", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetMarketInfoAsync("123"), "GetMarketInfo", nestedJsonProperty: "result");
-            await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetFundingRateAsync("123"), "GetFundingRate", nestedJsonProperty: "result.items");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetFundingRateAsync("123"), "GetFundingRate", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetBookTickerAsync("123"), "GetBookTicker", nestedJsonProperty: "result");
-            await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetFundingRateHistoryAsync("123"), "GetFundingRateHistory", nestedJsonProperty: "result.items");
-            await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("123"), "GetRiskBalance", nestedJsonProperty: "result.items");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetFundingRateHistoryAsync("123"), "GetFundingRateHistory", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("123"), "GetRiskBalance", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetOpenInterestAsync("123"), "GetOpenInterest", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetSymbolInfoAsync(), "GetSymbolInfo");
         }
 
         [Test]
-        public async Task ValidateFuturesAccountCalls()
+        public async Task ValidateFuturesTradingCalls()
         {
             var client = new XTRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Account", "https://fapi.xt.com", IsAuthenticated, stjCompare: true);
-            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result");
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Trading", "https://fapi.xt.com", IsAuthenticated, stjCompare: true);
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetPositionsAsync(), "GetPositions", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetPositionsInfoAsync(), "GetPositionsInfo", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CloseAllPositionsAsync(), "CloseAllPositions");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetMarginCallInfoAsync(), "GetMarginCallInfo", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetClosedOrdersAsync(), "GetClosedOrders", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetUserTradesAsync(), "GetUserTrades", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetOrderAsync(123), "GetOrder", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetOrdersAsync(), "GetOrders", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelOrderAsync(123), "CancelOrder");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelAllOrdersAsync(), "CancelAllOrders");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.EditOrderAsync(123, 0.1m, 0.1m), "EditOrder");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelTriggerOrderAsync(123), "CancelTriggerOrder");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelAllTriggerOrdersAsync("123"), "CancelAllTriggerOrders");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetTriggerOrdersAsync(), "GetTriggerOrders", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetClosedTriggerOrdersAsync(), "GetClosedTriggerOrders", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.PlaceStopLimitOrderAsync("123", 0.1m, 0.1m, 0.1m, DateTime.UtcNow, PositionSide.Long), "PlaceStopLimitOrder");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelStopLimitOrderAsync(123), "CancelStopLimitOrder");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.EditStopLimitOrderAsync(123), "EditStopLimitOrder");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(), "GetOpenTrackOrders", nestedJsonProperty: "result");
         }
 
         private bool IsAuthenticated(WebCallResult result)

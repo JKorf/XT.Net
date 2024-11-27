@@ -18,9 +18,13 @@ namespace XT.Net.Objects
         /// </summary>
         public string UsdtFuturesRestClientAddress { get; set; } = "";
         /// <summary>
-        /// The address used by the XTSocketClient for the websocket API
+        /// The address used by the XTSocketClient for the websocket spot API
         /// </summary>
-        public string SocketClientAddress { get; set; } = "";
+        public string SpotSocketClientAddress { get; set; } = "";
+        /// <summary>
+        /// The address used by the XTSocketClient for the websocket futures API
+        /// </summary>
+        public string FuturesSocketClientAddress { get; set; } = "";
 
         /// <summary>
         /// The default addresses to connect to the XT API
@@ -30,7 +34,8 @@ namespace XT.Net.Objects
             SpotRestClientAddress = "https://sapi.xt.com",
             CoinFuturesRestClientAddress = "https://dapi.xt.com",
             UsdtFuturesRestClientAddress = "https://fapi.xt.com",
-            SocketClientAddress = "wss://stream.xt.com"
+            SpotSocketClientAddress = "wss://stream.xt.com",
+            FuturesSocketClientAddress = "wss://fstream.xt.com"
         };
     }
 }
