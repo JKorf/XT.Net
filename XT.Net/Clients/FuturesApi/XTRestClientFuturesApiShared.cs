@@ -47,6 +47,8 @@ namespace XT.Net.Clients.FuturesApi
 
         GetKlinesOptions IKlineRestClient.GetKlinesOptions { get; } = new GetKlinesOptions(
             SharedPaginationSupport.Descending,
+            true,
+            1000,
             false,
             SharedKlineInterval.FiveMinutes,
             SharedKlineInterval.FifteenMinutes,
@@ -54,7 +56,6 @@ namespace XT.Net.Clients.FuturesApi
             SharedKlineInterval.OneDay,
             SharedKlineInterval.OneWeek)
         {
-            MaxRequestDataPoints = 1000
         };
 
         async Task<ExchangeWebResult<IEnumerable<SharedKline>>> IKlineRestClient.GetKlinesAsync(GetKlinesRequest request, INextPageToken? pageToken, CancellationToken ct)
@@ -193,8 +194,7 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         #region Funding Rate client
-        GetFundingRateHistoryOptions IFundingRateRestClient.GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(SharedPaginationSupport.Descending, false);
-#warning no datetime filter
+        GetFundingRateHistoryOptions IFundingRateRestClient.GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(SharedPaginationSupport.Descending, false, 100, false);
         async Task<ExchangeWebResult<IEnumerable<SharedFundingRate>>> IFundingRateRestClient.GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
             var validationError = ((IFundingRateRestClient)this).GetFundingRateHistoryOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
@@ -208,15 +208,15 @@ namespace XT.Net.Clients.FuturesApi
             // Get data
             var result = await ExchangeData.GetFundingRateHistoryAsync(
                 request.Symbol.GetSymbol(FormatSymbol),
-                limit: request.Limit ?? 1000,
-                direction: Enums.PageDirection.Previous,
+                limit: request.Limit ?? 100,
+                direction: Enums.PageDirection.Next,
                 fromId: fromId,
                 ct: ct).ConfigureAwait(false);
             if (!result)
                 return result.AsExchangeResult<IEnumerable<SharedFundingRate>>(Exchange, null, default);
 
             FromIdToken? nextToken = null;
-            if (result.Data.HasPrevious)
+            if (result.Data.HasNext)
                 nextToken = new FromIdToken(result.Data.Data.Min(x => x.Id).ToString());
 
             // Return
@@ -494,7 +494,7 @@ namespace XT.Net.Clients.FuturesApi
             }).ToArray());
         }
 
-        PaginatedEndpointOptions<GetClosedOrdersRequest> IFuturesOrderRestClient.GetClosedFuturesOrdersOptions { get; } = new PaginatedEndpointOptions<GetClosedOrdersRequest>(SharedPaginationSupport.Descending, true);
+        PaginatedEndpointOptions<GetClosedOrdersRequest> IFuturesOrderRestClient.GetClosedFuturesOrdersOptions { get; } = new PaginatedEndpointOptions<GetClosedOrdersRequest>(SharedPaginationSupport.Descending, true, 100, true);
         async Task<ExchangeWebResult<IEnumerable<SharedFuturesOrder>>> IFuturesOrderRestClient.GetClosedFuturesOrdersAsync(GetClosedOrdersRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
             var validationError = ((IFuturesOrderRestClient)this).GetClosedFuturesOrdersOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
@@ -510,8 +510,8 @@ namespace XT.Net.Clients.FuturesApi
             var orders = await Trading.GetClosedOrdersAsync(request.Symbol.GetSymbol(FormatSymbol),
                 startTime: request.StartTime,
                 endTime: request.EndTime,
-                limit: request.Limit ?? 1000,
-                direction: PageDirection.Previous,
+                limit: request.Limit ?? 100,
+                direction: PageDirection.Next,
                 fromId: fromId,
                 ct: ct).ConfigureAwait(false);
             if (!orders)
@@ -519,7 +519,7 @@ namespace XT.Net.Clients.FuturesApi
 
             // Get next token
             FromIdToken? nextToken = null;
-            if (orders.Data.HasPrevious)
+            if (orders.Data.HasNext)
                 nextToken = new FromIdToken(orders.Data.Data.Min(o => o.OrderId).ToString());
 
             return orders.AsExchangeResult<IEnumerable<SharedFuturesOrder>>(Exchange, request.Symbol.TradingMode, orders.Data.Data.Select(x => new SharedFuturesOrder(
@@ -571,7 +571,7 @@ namespace XT.Net.Clients.FuturesApi
             }).ToArray());
         }
 
-        PaginatedEndpointOptions<GetUserTradesRequest> IFuturesOrderRestClient.GetFuturesUserTradesOptions { get; } = new PaginatedEndpointOptions<GetUserTradesRequest>(SharedPaginationSupport.Descending, true);
+        PaginatedEndpointOptions<GetUserTradesRequest> IFuturesOrderRestClient.GetFuturesUserTradesOptions { get; } = new PaginatedEndpointOptions<GetUserTradesRequest>(SharedPaginationSupport.Descending, true, 100, true);
         async Task<ExchangeWebResult<IEnumerable<SharedUserTrade>>> IFuturesOrderRestClient.GetFuturesUserTradesAsync(GetUserTradesRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
             var validationError = ((IFuturesOrderRestClient)this).GetFuturesUserTradesOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
@@ -724,6 +724,25 @@ namespace XT.Net.Clients.FuturesApi
             return null;
         }
 
+        #endregion
+
+        #region Fee Client
+        EndpointOptions<GetFeeRequest> IFeeRestClient.GetFeeOptions { get; } = new EndpointOptions<GetFeeRequest>(true);
+
+        async Task<ExchangeWebResult<SharedFee>> IFeeRestClient.GetFeesAsync(GetFeeRequest request, CancellationToken ct)
+        {
+            var validationError = ((IFeeRestClient)this).GetFeeOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedFee>(Exchange, validationError);
+
+            // Get data
+            var result = await Account.GetFeeRateAsync(ct: ct).ConfigureAwait(false);
+            if (!result)
+                return result.AsExchangeResult<SharedFee>(Exchange, null, default);
+
+            // Return
+            return result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedFee(result.Data.MakerFee * 100, result.Data.TakerFee * 100));
+        }
         #endregion
     }
 }

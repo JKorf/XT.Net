@@ -1,0 +1,17 @@
+> { "method": "subscribe", "params": [ "kline@eth_usdt,5m" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "kline", 
+    "event": "kline@eth_usdt,5m", 
+    "data": {
+        "s": "eth_usdt",      
+        "t": 1656043200000,           
+        "o": "44000",         
+        "c": "50000",          
+        "h": "52000",           
+        "l": "36000",          
+        "q": "34.2",            
+        "v": "230000"          
+    }
+}

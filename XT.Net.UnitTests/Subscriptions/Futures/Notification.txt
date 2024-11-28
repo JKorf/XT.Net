@@ -1,0 +1,14 @@
+> { "method": "subscribe", "params": [ "notify@key" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "notify", 
+    "event": "notify", 
+    "data": {
+           "symbol":"btc_usdt",
+           "positionType": "ISOLATED",  
+           "positionSide": "LONG",
+           "positionSize":"123",
+           "notifyType": "WARN" 
+    }
+}

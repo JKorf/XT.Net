@@ -111,6 +111,21 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("triggerStopPrice")]
         public decimal? TriggerStopPrice { get; set; }
+        /// <summary>
+        /// Source type
+        /// </summary>
+        [JsonPropertyName("sourceType")]
+        public SourceType? SourceType { get; set; }
+        /// <summary>
+        /// Leverage
+        /// </summary>
+        [JsonPropertyName("leverage")]
+        public decimal? Leverage { get; set; }
+        /// <summary>
+        /// Position type
+        /// </summary>
+        [JsonPropertyName("positionType")]
+        public PositionType? PositionType { get; set; }
     }
 
 

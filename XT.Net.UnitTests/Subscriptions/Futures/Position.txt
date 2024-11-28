@@ -1,0 +1,22 @@
+> { "method": "subscribe", "params": [ "position@key" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "position", 
+    "event": "position", 
+    "data": {
+           "symbol":"btc_usdt",
+           "contractType": "PERPETUAL",
+           "positionType": "ISOLATED",  
+           "positionSide": "LONG",
+           "positionSize":"123",  
+           "closeOrderSize": "100",
+           "availableCloseSize": "23", 
+           "realizedProfit": "123",
+           "entryPrice":"213",   
+           "isolatedMargin":"213", 
+           "openOrderMarginFrozen": "123",
+           "underlyingType": "1",
+           "leverage":20  
+       }
+}

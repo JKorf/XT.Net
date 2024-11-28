@@ -1,0 +1,26 @@
+> { "method": "subscribe", "params": [ "order@key" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "order", 
+    "event": "order", 
+    "data": {
+         "symbol":"btc_usdt",       
+         "orderId": "1234",          
+         "origQty": "34244",         
+         "avgPrice": "123",         
+         "price": "1111",           
+         "executedQty":"34244",     
+         "orderSide": "BUY",        
+         "timeInForce": "IOC",   
+         "positionSide": "LONG",   
+         "marginFrozen":"123",      
+         "sourceType":"default",    
+         "type" : "ORDER",          
+         "state": "FILLED",         
+         "createdTime": 1731231231,  
+         "leverage":20,              
+         "positionType": "ISOLATED", 
+         "orderType": "MARKET"   
+       }
+}

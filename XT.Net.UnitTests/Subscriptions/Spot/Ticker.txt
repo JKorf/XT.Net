@@ -1,0 +1,19 @@
+> { "method": "subscribe", "params": [ "ticker@eth_usdt" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "ticker", 
+    "event": "ticker@eth_usdt", 
+    "data": {
+        "s": "btc_usdt",      
+        "t": 1657586700119,   
+        "cv": "-200",        
+        "cr": "-0.02",        
+        "o": "30000",       
+        "c": "39000",         
+        "h": "38000",        
+        "l": "40000",    
+        "q": "4",          
+        "v": "150000"       
+   }
+}

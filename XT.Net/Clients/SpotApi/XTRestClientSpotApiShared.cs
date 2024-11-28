@@ -118,7 +118,7 @@ namespace XT.Net.Clients.SpotApi
             });
         }
 
-        GetDepositsOptions IDepositRestClient.GetDepositsOptions { get; } = new GetDepositsOptions(SharedPaginationSupport.Descending, true)
+        GetDepositsOptions IDepositRestClient.GetDepositsOptions { get; } = new GetDepositsOptions(SharedPaginationSupport.Descending, true, 100)
         {
             RequiredOptionalParameters = new List<ParameterDescription>
             {
@@ -173,10 +173,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region Klines Client
 
-        GetKlinesOptions IKlineRestClient.GetKlinesOptions { get; } = new GetKlinesOptions(SharedPaginationSupport.Descending, false)
-        {
-            MaxRequestDataPoints = 1000
-        };
+        GetKlinesOptions IKlineRestClient.GetKlinesOptions { get; } = new GetKlinesOptions(SharedPaginationSupport.Descending, true, 1000, false);
 
         async Task<ExchangeWebResult<IEnumerable<SharedKline>>> IKlineRestClient.GetKlinesAsync(GetKlinesRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
@@ -317,7 +314,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region Withdrawal client
 
-        GetWithdrawalsOptions IWithdrawalRestClient.GetWithdrawalsOptions { get; } = new GetWithdrawalsOptions(SharedPaginationSupport.Descending, true)
+        GetWithdrawalsOptions IWithdrawalRestClient.GetWithdrawalsOptions { get; } = new GetWithdrawalsOptions(SharedPaginationSupport.Descending, true, 200)
         {
             RequiredOptionalParameters = new List<ParameterDescription>
             {
@@ -347,14 +344,14 @@ namespace XT.Net.Clients.SpotApi
                 endTime: request.EndTime,
                 limit: request.Limit ?? 100,
                 fromId: fromId,
-                direction: PageDirection.Previous,
+                direction: PageDirection.Next,
                 ct: ct).ConfigureAwait(false);
             if (!withdrawals)
                 return withdrawals.AsExchangeResult<IEnumerable<SharedWithdrawal>>(Exchange, null, default);
 
             // Determine next token
             FromIdToken? nextToken = null;
-            if (withdrawals.Data.HasPrevious)
+            if (withdrawals.Data.HasNext)
                 nextToken = new FromIdToken(withdrawals.Data.Data.Min(x => x.Id - 1).ToString());
 
             return withdrawals.AsExchangeResult<IEnumerable<SharedWithdrawal>>(Exchange, TradingMode.Spot, withdrawals.Data.Data.Select(x => new SharedWithdrawal(x.Asset, x.Address, x.Quantity, x.Status == WithdrawalStatus.Success, x.CreateTime)
@@ -576,7 +573,7 @@ namespace XT.Net.Clients.SpotApi
             }).ToArray());
         }
 
-        PaginatedEndpointOptions<GetClosedOrdersRequest> ISpotOrderRestClient.GetClosedSpotOrdersOptions { get; } = new PaginatedEndpointOptions<GetClosedOrdersRequest>(SharedPaginationSupport.Ascending, true);
+        PaginatedEndpointOptions<GetClosedOrdersRequest> ISpotOrderRestClient.GetClosedSpotOrdersOptions { get; } = new PaginatedEndpointOptions<GetClosedOrdersRequest>(SharedPaginationSupport.Descending, true, 100, true);
         async Task<ExchangeWebResult<IEnumerable<SharedSpotOrder>>> ISpotOrderRestClient.GetClosedSpotOrdersAsync(GetClosedOrdersRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
             var validationError = ((ISpotOrderRestClient)this).GetClosedSpotOrdersOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
@@ -595,13 +592,14 @@ namespace XT.Net.Clients.SpotApi
                 endTime: request.EndTime,
                 limit: request.Limit ?? 100,
                 fromId: fromId,
+                direction: PageDirection.Next,
                 ct: ct).ConfigureAwait(false);
             if (!orders)
                 return orders.AsExchangeResult<IEnumerable<SharedSpotOrder>>(Exchange, null, default);
 
             // Get next token
             FromIdToken? nextToken = null;
-            if (orders.Data.HasPrevious)
+            if (orders.Data.HasNext)
                 nextToken = new FromIdToken(orders.Data.Data.Min(x => x.OrderId - 1).ToString());
 
             return orders.AsExchangeResult<IEnumerable<SharedSpotOrder>>(Exchange, TradingMode.Spot, orders.Data.Data.Select(x => new SharedSpotOrder(
@@ -656,7 +654,7 @@ namespace XT.Net.Clients.SpotApi
             }).ToArray());
         }
 
-        PaginatedEndpointOptions<GetUserTradesRequest> ISpotOrderRestClient.GetSpotUserTradesOptions { get; } = new PaginatedEndpointOptions<GetUserTradesRequest>(SharedPaginationSupport.Descending, true);
+        PaginatedEndpointOptions<GetUserTradesRequest> ISpotOrderRestClient.GetSpotUserTradesOptions { get; } = new PaginatedEndpointOptions<GetUserTradesRequest>(SharedPaginationSupport.Descending, true, 100, true);
         async Task<ExchangeWebResult<IEnumerable<SharedUserTrade>>> ISpotOrderRestClient.GetSpotUserTradesAsync(GetUserTradesRequest request, INextPageToken? pageToken, CancellationToken ct)
         {
             var validationError = ((ISpotOrderRestClient)this).GetSpotUserTradesOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
@@ -675,7 +673,7 @@ namespace XT.Net.Clients.SpotApi
                 limit: request.Limit ?? 100,
                 businessType: BusinessType.Spot,
                 fromId: fromId,
-                direction: PageDirection.Previous,
+                direction: PageDirection.Next,
                 ct: ct
                 ).ConfigureAwait(false);
             if (!orders)
@@ -683,7 +681,7 @@ namespace XT.Net.Clients.SpotApi
 
             // Determine next token
             FromIdToken? nextToken = null;
-            if (orders.Data.HasPrevious)
+            if (orders.Data.HasNext)
                 nextToken = new FromIdToken(orders.Data.Data.Min(x => x.OrderId - 1).ToString());
 
             return orders.AsExchangeResult<IEnumerable<SharedUserTrade>>(Exchange, TradingMode.Spot, orders.Data.Data.Select(x => new SharedUserTrade(
@@ -753,6 +751,29 @@ namespace XT.Net.Clients.SpotApi
             return null;
         }
 
+        #endregion
+
+        #region Fee Client
+        EndpointOptions<GetFeeRequest> IFeeRestClient.GetFeeOptions { get; } = new EndpointOptions<GetFeeRequest>(false);
+
+        async Task<ExchangeWebResult<SharedFee>> IFeeRestClient.GetFeesAsync(GetFeeRequest request, CancellationToken ct)
+        {
+            var validationError = ((IFeeRestClient)this).GetFeeOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedFee>(Exchange, validationError);
+
+            // Get data
+            var result = await ExchangeData.GetSymbolsAsync(ct: ct).ConfigureAwait(false);
+            if (!result)
+                return result.AsExchangeResult<SharedFee>(Exchange, null, default);
+
+            var symbol = result.Data.Symbols.SingleOrDefault(x => x.Symbol == request.Symbol.GetSymbol(FormatSymbol));
+            if (symbol == null)
+                return result.AsExchangeError<SharedFee>(Exchange, new ServerError("Not found"));
+
+            // Return
+            return result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedFee(symbol.MakerFeeRate * 100, symbol.TakerFeeRate * 100));
+        }
         #endregion
     }
 }

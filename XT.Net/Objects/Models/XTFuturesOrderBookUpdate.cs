@@ -29,6 +29,12 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("a")]
         public IEnumerable<XTOrderBookEntry> Asks { get; set; } = Array.Empty<XTOrderBookEntry>();
+
+        /// <summary>
+        /// Timestamp
+        /// </summary>
+        [JsonPropertyName("t")]
+        public DateTime Timestamp { get; set; }
     }
 
     /// <summary>
@@ -36,11 +42,6 @@ namespace XT.Net.Objects.Models
     /// </summary>
     public record XTFuturesOrderBookUpdate : XTBaseFuturesOrderBookUpdate
     {
-        /// <summary>
-        /// Timestamp
-        /// </summary>
-        [JsonPropertyName("t")]
-        public DateTime Timestamp { get; set; }
     }
 
     /// <summary>

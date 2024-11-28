@@ -115,7 +115,7 @@
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetTickerAsync(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetTickerAsync(System.Threading.CancellationToken)">
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetTickersAsync(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetRecentTradesAsync(System.String,System.Nullable{System.Int32},System.Threading.CancellationToken)">
@@ -142,7 +142,7 @@
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetMarketInfoAsync(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetMarketInfoAsync(System.Threading.CancellationToken)">
+        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetMarketInfosAsync(System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApiExchangeData.GetFundingRateAsync(System.String,System.Threading.CancellationToken)">
@@ -1142,6 +1142,26 @@
             Futures
             </summary>
         </member>
+        <member name="T:XT.Net.Enums.SourceType">
+            <summary>
+            Source type
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SourceType.Normal">
+            <summary>
+            Normal order
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SourceType.TriggerOrder">
+            <summary>
+            Trigger order
+            </summary>
+        </member>
+        <member name="F:XT.Net.Enums.SourceType.TpSlOrder">
+            <summary>
+            TP/SL order
+            </summary>
+        </member>
         <member name="T:XT.Net.Enums.SymbolFilterType">
             <summary>
             Symbol filter type
@@ -1578,8 +1598,8 @@
         </member>
         <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
             <summary>
-            
-            <para><a href="XXX" /></para>
+            Get server time
+            <para><a href="https://doc.xt.com/#market1serverInfo" /></para>
             </summary>
             <param name="ct">Cancellation token</param>
             <returns></returns>
@@ -1638,7 +1658,7 @@
             <param name="symbol">The symbol, for example `eth_usdt`</param>
             <param name="ct">Cancellation token</param>
         </member>
-        <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData.GetTickerAsync(System.Threading.CancellationToken)">
+        <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData.GetTickersAsync(System.Threading.CancellationToken)">
             <summary>
             Get tickers for all symbols
             <para><a href="https://doc.xt.com/#futures_quotesgetTicker" /></para>
@@ -1713,7 +1733,7 @@
             <param name="symbol">The symbol, for example `eth_usdt`</param>
             <param name="ct">Cancellation token</param>
         </member>
-        <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData.GetMarketInfoAsync(System.Threading.CancellationToken)">
+        <member name="M:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData.GetMarketInfosAsync(System.Threading.CancellationToken)">
             <summary>
             Get market info
             <para><a href="https://doc.xt.com/#futures_quotesgetAggTickers" /></para>
@@ -2566,8 +2586,8 @@
         </member>
         <member name="M:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData.GetServerTimeAsync(System.Threading.CancellationToken)">
             <summary>
-            
-            <para><a href="XXX" /></para>
+            Get server time
+            <para><a href="https://doc.xt.com/#market1serverInfo" /></para>
             </summary>
             <param name="ct">Cancellation token</param>
             <returns></returns>
@@ -4067,6 +4087,21 @@
             Trigger stop price
             </summary>
         </member>
+        <member name="P:XT.Net.Objects.Models.XTFuturesOrder.SourceType">
+            <summary>
+            Source type
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTFuturesOrder.Leverage">
+            <summary>
+            Leverage
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTFuturesOrder.PositionType">
+            <summary>
+            Position type
+            </summary>
+        </member>
         <member name="T:XT.Net.Objects.Models.XTFuturesOrderBook">
             <summary>
             Order book info
@@ -4117,14 +4152,14 @@
             Asks
             </summary>
         </member>
+        <member name="P:XT.Net.Objects.Models.XTBaseFuturesOrderBookUpdate.Timestamp">
+            <summary>
+            Timestamp
+            </summary>
+        </member>
         <member name="T:XT.Net.Objects.Models.XTFuturesOrderBookUpdate">
             <summary>
             Order book update
-            </summary>
-        </member>
-        <member name="P:XT.Net.Objects.Models.XTFuturesOrderBookUpdate.Timestamp">
-            <summary>
-            Timestamp
             </summary>
         </member>
         <member name="T:XT.Net.Objects.Models.XTFuturesIncrementalOrderBookUpdate">
@@ -6745,31 +6780,6 @@
         <member name="T:XT.Net.Objects.Options.XTOptions">
             <summary>
             XT options
-            </summary>
-        </member>
-        <member name="P:XT.Net.Objects.Options.XTOptions.Rest">
-            <summary>
-            Rest client options
-            </summary>
-        </member>
-        <member name="P:XT.Net.Objects.Options.XTOptions.Socket">
-            <summary>
-            Socket client options
-            </summary>
-        </member>
-        <member name="P:XT.Net.Objects.Options.XTOptions.Environment">
-            <summary>
-            Trade environment. Contains info about URL's to use to connect to the API. Use `XTEnvironment` to swap environment, for example `Environment = XTEnvironment.Live`
-            </summary>
-        </member>
-        <member name="P:XT.Net.Objects.Options.XTOptions.ApiCredentials">
-            <summary>
-            The api credentials used for signing requests.
-            </summary>
-        </member>
-        <member name="P:XT.Net.Objects.Options.XTOptions.SocketClientLifeTime">
-            <summary>
-            The DI service lifetime for the IXTSocketClient
             </summary>
         </member>
         <member name="T:XT.Net.Objects.Options.XTOrderBookOptions">

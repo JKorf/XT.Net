@@ -19,7 +19,8 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         IFuturesTickerRestClient,
         ILeverageRestClient,
         IOpenInterestRestClient,
-        IFuturesOrderRestClient
+        IFuturesOrderRestClient,
+        IFeeRestClient
     {
     }
 }

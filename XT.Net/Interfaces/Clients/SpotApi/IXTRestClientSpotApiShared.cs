@@ -20,7 +20,8 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         IWithdrawRestClient,
         ISpotTickerRestClient,
         ISpotSymbolRestClient,
-        ISpotOrderRestClient
+        ISpotOrderRestClient,
+        IFeeRestClient
     {
     }
 }

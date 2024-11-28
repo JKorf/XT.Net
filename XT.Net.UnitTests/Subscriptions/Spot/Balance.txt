@@ -1,0 +1,16 @@
+> { "method": "subscribe", "params": [ "balance" ], "listenKey": "key", "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "balance", 
+    "event": "balance", 
+    "data": {
+        "a": "123",                                
+        "t": 1656043204763,  
+        "c": "btc",           
+        "b": "123",          
+        "f": "11",           
+        "z": "SPOT",         
+        "s": "btc_usdt"      
+    }
+}

@@ -14,8 +14,8 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     public interface IXTRestClientSpotApiExchangeData
     {
         /// <summary>
-        /// 
-        /// <para><a href="XXX" /></para>
+        /// Get server time
+        /// <para><a href="https://doc.xt.com/#market1serverInfo" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>

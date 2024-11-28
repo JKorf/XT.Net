@@ -14,7 +14,7 @@ namespace XT.Net.Objects.Models
         /// <summary>
         /// Account id
         /// </summary>
-        [JsonPropertyName("currency")]
+        [JsonPropertyName("a")]
         public string AccountId { get; set; } = string.Empty;
         /// <summary>
         /// Timestamp
@@ -45,7 +45,7 @@ namespace XT.Net.Objects.Models
         /// <summary>
         /// Symbol
         /// </summary>
-        [JsonPropertyName("x")]
+        [JsonPropertyName("s")]
         public string? Symbol { get; set; }
     }
 

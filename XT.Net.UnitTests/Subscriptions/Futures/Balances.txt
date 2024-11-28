@@ -1,0 +1,15 @@
+> { "method": "subscribe", "params": [ "balance@key" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "balance", 
+    "event": "balance", 
+    "data": {
+         "coin":"usdt",
+         "underlyingType":1,
+         "walletBalance":"123",
+         "openOrderMarginFrozen":"123",
+         "isolatedMargin":"213",  
+         "crossedMargin":"0" 
+       }  
+}

@@ -1,0 +1,17 @@
+> { "method": "subscribe", "params": [ "trade" ], "listenKey": "key", "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "trade", 
+    "event": "trade", 
+    "data": {
+        "s": "btc_usdt",        
+        "i": 6316559590087222000, 
+        "t": 1655992403617,      
+        "oi": 6616559590087222666, 
+        "p": "43000",             
+        "q": "0.21",            
+        "v": "9030",                
+        "b": true                
+    }
+}

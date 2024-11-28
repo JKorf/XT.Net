@@ -1,0 +1,14 @@
+> { "method": "subscribe", "params": [ "trade@eth_usdt" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "trade", 
+    "event": "trade@eth_usdt", 
+    "data": {
+        "s":"btc_index", 
+        "p":"50000",  
+        "a":"0.1",   
+        "m": "BID",   
+        "t":123124124 
+    }
+}

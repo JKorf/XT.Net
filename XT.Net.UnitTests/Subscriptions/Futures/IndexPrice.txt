@@ -1,0 +1,12 @@
+> { "method": "subscribe", "params": [ "index_price@eth_usdt" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "index_price", 
+    "event": "index_price@eth_usdt", 
+    "data": {
+        "s":"btc_usdt",
+        "p":"50000",  
+        "t":123124124  
+   }
+}

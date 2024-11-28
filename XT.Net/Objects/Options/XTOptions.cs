@@ -1,4 +1,5 @@
 using CryptoExchange.Net.Authentication;
+using CryptoExchange.Net.Objects.Options;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -9,31 +10,7 @@ namespace XT.Net.Objects.Options
     /// <summary>
     /// XT options
     /// </summary>
-    public class XTOptions
+    public class XTOptions : LibraryOptions<XTRestOptions, XTSocketOptions, ApiCredentials, XTEnvironment>
     {
-        /// <summary>
-        /// Rest client options
-        /// </summary>
-        public XTRestOptions Rest { get; set; } = new XTRestOptions();
-
-        /// <summary>
-        /// Socket client options
-        /// </summary>
-        public XTSocketOptions Socket { get; set; } = new XTSocketOptions();
-
-        /// <summary>
-        /// Trade environment. Contains info about URL's to use to connect to the API. Use `XTEnvironment` to swap environment, for example `Environment = XTEnvironment.Live`
-        /// </summary>
-        public XTEnvironment? Environment { get; set; }
-
-        /// <summary>
-        /// The api credentials used for signing requests.
-        /// </summary>
-        public ApiCredentials? ApiCredentials { get; set; }
-
-        /// <summary>
-        /// The DI service lifetime for the IXTSocketClient
-        /// </summary>
-        public ServiceLifetime? SocketClientLifeTime { get; set; }
     }
 }

@@ -14,8 +14,8 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     public interface IXTRestClientFuturesApiExchangeData
     {
         /// <summary>
-        /// 
-        /// <para><a href="XXX" /></para>
+        /// Get server time
+        /// <para><a href="https://doc.xt.com/#market1serverInfo" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgetTicker" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTFuturesTicker>>> GetTickerAsync(CancellationToken ct = default);
+        Task<WebCallResult<IEnumerable<XTFuturesTicker>>> GetTickersAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get recent trades for a symbol
@@ -155,7 +155,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgetAggTickers" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTMarketInfo>>> GetMarketInfoAsync(CancellationToken ct = default);
+        Task<WebCallResult<IEnumerable<XTMarketInfo>>> GetMarketInfosAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Funding rate

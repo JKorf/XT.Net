@@ -122,7 +122,7 @@ namespace XT.Net.Clients.SpotApi
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
             parameters.AddOptional("limit", limit);
-            parameters.AddOptionalEnum("direction", direction);
+            parameters.AddEnum("direction", direction ?? PageDirection.Previous);
             parameters.AddOptional("fromId", fromId);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/trade/history", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTPage<XTTrade>>(request, parameters, ct).ConfigureAwait(false);

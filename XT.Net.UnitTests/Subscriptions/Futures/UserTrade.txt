@@ -1,0 +1,20 @@
+> { "method": "subscribe", "params": [ "trade@key" ], "id": "|1|" }
+< { "id": "|1|", "code": 0, "msg": "" }
+= 
+{
+    "topic": "trade", 
+    "event": "trade", 
+    "data": {
+            "orderId":"12312312",       
+            "clientOrderId":"123456",  
+            "price":"34244",          
+            "quantity":"123",           
+            "marginUnfrozen":"123",     
+            "timestamp":1731231231,     
+            "symbol": "btc_usdt",       
+            "orderSide": "BUY",         
+            "positionSide": "LONG",     
+            "isMaker": true,           
+            "fee": 0.0002            
+       }
+}
