@@ -42,7 +42,7 @@ namespace XT.Net.SymbolOrderBooks
         /// <inheritdoc />
         public ISymbolOrderBook Create(SharedSymbol symbol, Action<XTOrderBookOptions>? options = null)
         {
-            var symbolName = XTExchange.FormatSymbol(symbol.BaseAsset, symbol.QuoteAsset, symbol.TradingMode, symbol.DeliverTime);
+            var symbolName = symbol.GetSymbol(XTExchange.FormatSymbol);
 
             if (symbol.TradingMode == TradingMode.Spot)
                 return CreateSpot(symbolName, options);
