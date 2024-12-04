@@ -12,15 +12,12 @@ namespace XT.Net.UnitTests
     [NonParallelizable]
     public class XTRestIntegrationTests : RestIntergrationTest<XTRestClient>
     {
-        public override bool Run { get; set; } = true;
+        public override bool Run { get; set; }
 
         public override XTRestClient GetClient(ILoggerFactory loggerFactory)
         {
             var key = Environment.GetEnvironmentVariable("APIKEY");
             var sec = Environment.GetEnvironmentVariable("APISECRET");
-
-            key = "1644023a-9117-4754-bf37-086e96bc1b02";
-            sec = "7de1b089aa698c5a503bfc70a3adcf49b3921d71";
 
             Authenticated = key != null && sec != null;
             return new XTRestClient(null, loggerFactory, Options.Create(new XTRestOptions
