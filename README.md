@@ -164,6 +164,9 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 1.0.1 - 05 Dec 2024
+    * Fixed change percentage response in Shared spot symbol response not being actual percentage
+
 * Version 1.0.0 - 04 Dec 2024
     * Initial version
 
