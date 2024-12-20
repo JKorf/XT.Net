@@ -61,5 +61,8 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("triggerStopPrice"), JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public decimal? TriggerStopPrice { get; set; }
+
+        [JsonInclude, JsonPropertyName("media")]
+        internal string Media => XTExchange.ClientRef;
     }
 }

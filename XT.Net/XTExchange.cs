@@ -42,6 +42,8 @@ namespace XT.Net
             "https://doc.xt.com/"
             };
 
+        internal const string ClientRef = "4XWeqN10M1fcoI5L";
+
         /// <summary>
         /// Format a base and quote asset to an XT recognized symbol 
         /// </summary>
