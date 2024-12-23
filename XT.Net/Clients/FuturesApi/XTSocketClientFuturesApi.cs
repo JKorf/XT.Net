@@ -41,7 +41,19 @@ namespace XT.Net.Clients.FuturesApi
         internal XTSocketClientFuturesApi(ILogger logger, XTSocketOptions options) :
             base(logger, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
         {
-            RegisterPeriodicQuery("Ping", TimeSpan.FromSeconds(20), x => new XTPingQuery(), null);
+            RegisterPeriodicQuery(
+                "Ping",
+                TimeSpan.FromSeconds(20),
+                x => new XTPingQuery(),
+                (connection, result) =>
+                {
+                    if (result.Error?.Message.Equals("Query timeout") == true)
+                    {
+                        // Ping timeout, reconnect
+                        _logger.LogWarning("[Sckt {SocketId}] Ping response timeout, reconnecting", connection.SocketId);
+                        _ = connection.TriggerReconnectAsync();
+                    }
+                });
         }
         #endregion
 

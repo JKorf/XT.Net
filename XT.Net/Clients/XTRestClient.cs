@@ -10,6 +10,7 @@ using XT.Net.Interfaces.Clients.FuturesApi;
 using XT.Net.Clients.FuturesApi;
 using XT.Net.Clients.SpotApi;
 using XT.Net.Interfaces.Clients.SpotApi;
+using CryptoExchange.Net.Objects.Options;
 
 namespace XT.Net.Clients
 {
@@ -55,6 +56,14 @@ namespace XT.Net.Clients
         }
 
         #endregion
+
+        /// <inheritdoc />
+        public void SetOptions(UpdateOptions options)
+        {
+            UsdtFuturesApi.SetOptions(options);
+            CoinFuturesApi.SetOptions(options);
+            SpotApi.SetOptions(options);
+        }
 
         /// <summary>
         /// Set the default options to be used when creating new clients
