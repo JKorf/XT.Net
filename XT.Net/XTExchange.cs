@@ -42,6 +42,11 @@ namespace XT.Net
             "https://doc.xt.com/"
             };
 
+        /// <summary>
+        /// Type of exchange
+        /// </summary>
+        public static ExchangeType Type { get; } = ExchangeType.CEX;
+
         internal const string ClientRef = "4XWeqN10M1fcoI5L";
 
         /// <summary>

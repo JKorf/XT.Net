@@ -7178,6 +7178,11 @@
             Urls to the API documentation
             </summary>
         </member>
+        <member name="P:XT.Net.XTExchange.Type">
+            <summary>
+            Type of exchange
+            </summary>
+        </member>
         <member name="M:XT.Net.XTExchange.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
             <summary>
             Format a base and quote asset to an XT recognized symbol 
