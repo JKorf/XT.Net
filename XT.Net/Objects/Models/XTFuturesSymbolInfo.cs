@@ -55,7 +55,7 @@ namespace XT.Net.Objects.Models
         /// 24h high price
         /// </summary>
         [JsonPropertyName("high")]
-        public decimal HighPrice { get; set; }
+        public decimal? HighPrice { get; set; }
         /// <summary>
         /// Index asset
         /// </summary>
@@ -75,12 +75,12 @@ namespace XT.Net.Objects.Models
         /// Last price
         /// </summary>
         [JsonPropertyName("last_price")]
-        public decimal LastPrice { get; set; }
+        public decimal? LastPrice { get; set; }
         /// <summary>
         /// 24h low price
         /// </summary>
         [JsonPropertyName("low")]
-        public decimal LowPrice { get; set; }
+        public decimal? LowPrice { get; set; }
         /// <summary>
         /// Next funding rate
         /// </summary>
