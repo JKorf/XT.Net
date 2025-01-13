@@ -7,6 +7,6 @@ true
     "msg": ""
     },
     "msgInfo": "",
-    "result": {},
+    "result": 123,
     "returnCode": 0
 }

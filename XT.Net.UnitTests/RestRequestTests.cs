@@ -141,7 +141,7 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelAllTriggerOrdersAsync("123"), "CancelAllTriggerOrders");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetTriggerOrdersAsync(), "GetTriggerOrders", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetClosedTriggerOrdersAsync(), "GetClosedTriggerOrders", nestedJsonProperty: "result");
-            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.PlaceStopLimitOrderAsync("123", 0.1m, 0.1m, 0.1m, DateTime.UtcNow, PositionSide.Long), "PlaceStopLimitOrder");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.PlaceStopLimitOrderAsync("123", 0.1m, 0.1m, 0.1m, DateTime.UtcNow, PositionSide.Long), "PlaceStopLimitOrder", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelStopLimitOrderAsync(123), "CancelStopLimitOrder");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.EditStopLimitOrderAsync(123), "EditStopLimitOrder");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(), "GetOpenTrackOrders", nestedJsonProperty: "result");
