@@ -13,17 +13,17 @@ namespace XT.Net.Enums
         /// <summary>
         /// Index price
         /// </summary>
-        [Map("1")]
+        [Map("INDEX_PRICE", "1")]
         IndexPrice,
         /// <summary>
         /// Mark price
         /// </summary>
-        [Map("2")]
+        [Map("MARK_PRICE", "2")]
         MarkPrice,
         /// <summary>
         /// Last price
         /// </summary>
-        [Map("3")]
+        [Map("LATEST_PRICE", "3")]
         LastPrice
     }
 }

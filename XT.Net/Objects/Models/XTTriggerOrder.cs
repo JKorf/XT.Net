@@ -20,7 +20,7 @@ namespace XT.Net.Objects.Models
         /// Whether triggered to close all
         /// </summary>
         [JsonPropertyName("closePosition")]
-        public bool ClosePosition { get; set; }
+        public bool? ClosePosition { get; set; }
         /// <summary>
         /// Created time
         /// </summary>
@@ -40,7 +40,7 @@ namespace XT.Net.Objects.Models
         /// Market order level
         /// </summary>
         [JsonPropertyName("marketOrderLevel")]
-        public decimal MarketOrderLevel { get; set; }
+        public decimal? MarketOrderLevel { get; set; }
         /// <summary>
         /// Order side
         /// </summary>
@@ -91,6 +91,18 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("triggerPriceType")]
         public PriceType TriggerPriceType { get; set; }
+
+
+        /// <summary>
+        /// Average price
+        /// </summary>
+        [JsonPropertyName("avgPrice")]
+        public decimal? AveragePrice { get; set; }
+        /// <summary>
+        /// Update time
+        /// </summary>
+        [JsonPropertyName("updatedTime")]
+        public DateTime? UpdateTime { get; set; }
     }
 
 

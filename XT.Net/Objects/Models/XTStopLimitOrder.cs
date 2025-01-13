@@ -17,20 +17,25 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }
         /// <summary>
+        /// Update time
+        /// </summary>
+        [JsonPropertyName("updatedTime")]
+        public DateTime UpdateTime { get; set; }
+        /// <summary>
         /// Entry price
         /// </summary>
         [JsonPropertyName("entryPrice")]
-        public decimal EntryPrice { get; set; }
+        public decimal? EntryPrice { get; set; }
         /// <summary>
         /// Executed quantity
         /// </summary>
         [JsonPropertyName("executedQty")]
-        public decimal QuantityFilled { get; set; }
+        public decimal? QuantityFilled { get; set; }
         /// <summary>
         /// Isolated margin
         /// </summary>
         [JsonPropertyName("isolatedMargin")]
-        public decimal IsolatedMargin { get; set; }
+        public decimal? IsolatedMargin { get; set; }
         /// <summary>
         /// Quantity
         /// </summary>
@@ -45,7 +50,7 @@ namespace XT.Net.Objects.Models
         /// Position quantity
         /// </summary>
         [JsonPropertyName("positionSize")]
-        public decimal PositionQuantity { get; set; }
+        public decimal? PositionQuantity { get; set; }
         /// <summary>
         /// Order id
         /// </summary>
@@ -71,6 +76,11 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("triggerStopPrice")]
         public decimal TriggerStopPrice { get; set; }
+        /// <summary>
+        /// Position type
+        /// </summary>
+        [JsonPropertyName("positionType")]
+        public PositionType PositionType { get; set; }
     }
 
 

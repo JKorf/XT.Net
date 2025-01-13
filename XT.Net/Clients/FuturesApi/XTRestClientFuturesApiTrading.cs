@@ -43,8 +43,8 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddOptional("clientOrderId", clientOrderId);
             parameters.Add("media", XTExchange.ClientRef);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/order/create", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<long>(request, parameters, ct).ConfigureAwait(false);
-            return result;
+            var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
+            return result.As<long>(result.Data ?? 0);
         }
 
         #endregion
@@ -250,7 +250,7 @@ namespace XT.Net.Clients.FuturesApi
         #region Place Trigger Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult<XTTriggerOrder>> PlaceTriggerOrderAsync(string symbol, OrderSide orderSide, TriggerOrderType tpSlOrderType, decimal quantity, decimal stopPrice, TimeInForce timeInForce, PriceType triggerPriceType, PositionSide positionSide, decimal? orderPrice = null, string? clientOrderId = null, CancellationToken ct = default)
+        public async Task<WebCallResult<long>> PlaceTriggerOrderAsync(string symbol, OrderSide orderSide, TriggerOrderType tpSlOrderType, decimal quantity, decimal stopPrice, TimeInForce timeInForce, PriceType triggerPriceType, PositionSide positionSide, decimal? orderPrice = null, string? clientOrderId = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
@@ -265,8 +265,8 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddOptional("clientOrderId", clientOrderId);
             parameters.Add("media", XTExchange.ClientRef);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/entrust/create-plan", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<XTTriggerOrder>(request, parameters, ct).ConfigureAwait(false);
-            return result;
+            var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
+            return result.As(result.Data ?? 0);
         }
 
         #endregion
@@ -354,7 +354,7 @@ namespace XT.Net.Clients.FuturesApi
         #region Place Stop Limit Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult> PlaceStopLimitOrderAsync(string symbol, decimal quantity, decimal triggerProfitPrice, decimal triggerStopPrice, DateTime expireTime, PositionSide positionSide, CancellationToken ct = default)
+        public async Task<WebCallResult<long>> PlaceStopLimitOrderAsync(string symbol, decimal quantity, decimal triggerProfitPrice, decimal triggerStopPrice, DateTime expireTime, PositionSide positionSide, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
@@ -365,8 +365,8 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddEnum("positionSide", positionSide);
             parameters.Add("media", XTExchange.ClientRef);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/entrust/create-profit", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
-            return result;
+            var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
+            return result.As(result.Data ?? 0);
         }
 
         #endregion
@@ -451,7 +451,7 @@ namespace XT.Net.Clients.FuturesApi
         #region Place Track Order
 
         /// <inheritdoc />
-        public async Task<WebCallResult> PlaceTrackOrderAsync(string symbol, OrderSide orderSide, PositionSide positionSide, PositionType positionType, decimal quantity, TrackRange trackRange, decimal callbackValue, PriceType triggerPriceType, decimal? activationPrice = null, string? clientMedia = null, string? clientMediaChannel = null, string? clientOrderId = null, DateTime? expireTime = null, CancellationToken ct = default)
+        public async Task<WebCallResult<long>> PlaceTrackOrderAsync(string symbol, OrderSide orderSide, PositionSide positionSide, PositionType positionType, decimal quantity, TrackRange trackRange, decimal callbackValue, PriceType triggerPriceType, decimal? activationPrice = null, string? clientMedia = null, string? clientMediaChannel = null, string? clientOrderId = null, DateTime? expireTime = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
@@ -469,8 +469,8 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddOptionalMilliseconds("expireTime", expireTime);
             parameters.Add("media", XTExchange.ClientRef);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/entrust/create-track", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
-            return result;
+            var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
+            return result.As<long>(result.Data ?? 0);
         }
 
         #endregion
@@ -495,7 +495,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult<XTTrackOrder>> GetTrackOrderAsync(long orderId, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("profitId", orderId);
+            parameters.Add("trackId", orderId);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/trade/v1/entrust/track-detail", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTTrackOrder>(request, parameters, ct).ConfigureAwait(false);
             return result;

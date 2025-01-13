@@ -5885,6 +5885,11 @@
             Created time
             </summary>
         </member>
+        <member name="P:XT.Net.Objects.Models.XTStopLimitOrder.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
         <member name="P:XT.Net.Objects.Models.XTStopLimitOrder.EntryPrice">
             <summary>
             Entry price
@@ -5938,6 +5943,11 @@
         <member name="P:XT.Net.Objects.Models.XTStopLimitOrder.TriggerStopPrice">
             <summary>
             Trigger stop price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTStopLimitOrder.PositionType">
+            <summary>
+            Position type
             </summary>
         </member>
         <member name="T:XT.Net.Objects.Models.XTSymbolFilter">
@@ -6340,6 +6350,11 @@
             Created time
             </summary>
         </member>
+        <member name="P:XT.Net.Objects.Models.XTTrackOrder.UpdateTime">
+            <summary>
+            Update time
+            </summary>
+        </member>
         <member name="P:XT.Net.Objects.Models.XTTrackOrder.CurrentPrice">
             <summary>
             Current price
@@ -6403,11 +6418,6 @@
         <member name="P:XT.Net.Objects.Models.XTTrackOrder.TriggerPriceType">
             <summary>
             Trigger price type
-            </summary>
-        </member>
-        <member name="P:XT.Net.Objects.Models.XTTrackOrder.UpdateTime">
-            <summary>
-            Updated time
             </summary>
         </member>
         <member name="T:XT.Net.Objects.Models.XTTrade">
@@ -6563,6 +6573,16 @@
         <member name="P:XT.Net.Objects.Models.XTTriggerOrder.TriggerPriceType">
             <summary>
             Trigger price type
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTriggerOrder.AveragePrice">
+            <summary>
+            Average price
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTTriggerOrder.UpdateTime">
+            <summary>
+            Update time
             </summary>
         </member>
         <member name="T:XT.Net.Objects.Models.XTUserAsset">

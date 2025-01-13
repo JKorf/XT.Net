@@ -168,7 +168,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="orderPrice">Order price</param>
         /// <param name="clientOrderId">Client order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTTriggerOrder>> PlaceTriggerOrderAsync(string symbol, OrderSide orderSide, TriggerOrderType tpSlOrderType, decimal quantity, decimal stopPrice, TimeInForce timeInForce, PriceType triggerPriceType, PositionSide positionSide, decimal? orderPrice = null, string? clientOrderId = null, CancellationToken ct = default);
+        Task<WebCallResult<long>> PlaceTriggerOrderAsync(string symbol, OrderSide orderSide, TriggerOrderType tpSlOrderType, decimal quantity, decimal stopPrice, TimeInForce timeInForce, PriceType triggerPriceType, PositionSide positionSide, decimal? orderPrice = null, string? clientOrderId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel a trigger order
@@ -231,7 +231,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="expireTime">Expire time</param>
         /// <param name="positionSide">Position side</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> PlaceStopLimitOrderAsync(string symbol, decimal quantity, decimal triggerProfitPrice, decimal triggerStopPrice, DateTime expireTime, PositionSide positionSide, CancellationToken ct = default);
+        Task<WebCallResult<long>> PlaceStopLimitOrderAsync(string symbol, decimal quantity, decimal triggerProfitPrice, decimal triggerStopPrice, DateTime expireTime, PositionSide positionSide, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel a stop limit order
@@ -298,7 +298,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="clientOrderId">Client order id</param>
         /// <param name="expireTime">Expire time</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> PlaceTrackOrderAsync(string symbol, OrderSide orderSide, PositionSide positionSide, PositionType positionType, decimal quantity, TrackRange trackRange, decimal callbackValue, PriceType triggerPriceType, decimal? activationPrice = null, string? clientMedia = null, string? clientMediaChannel = null, string? clientOrderId = null, DateTime? expireTime = null, CancellationToken ct = default);
+        Task<WebCallResult<long>> PlaceTrackOrderAsync(string symbol, OrderSide orderSide, PositionSide positionSide, PositionType positionType, decimal quantity, TrackRange trackRange, decimal callbackValue, PriceType triggerPriceType, decimal? activationPrice = null, string? clientMedia = null, string? clientMediaChannel = null, string? clientOrderId = null, DateTime? expireTime = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel a track order

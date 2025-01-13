@@ -42,6 +42,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }
         /// <summary>
+        /// Update time
+        /// </summary>
+        [JsonPropertyName("updatedTime")]
+        public DateTime UpdateTime { get; set; }
+        /// <summary>
         /// Current price
         /// </summary>
         [JsonPropertyName("currentPrice")]
@@ -55,7 +60,7 @@ namespace XT.Net.Objects.Models
         /// Executed quantity
         /// </summary>
         [JsonPropertyName("executedQty")]
-        public decimal QuantityFilled { get; set; }
+        public decimal? QuantityFilled { get; set; }
         /// <summary>
         /// Order side
         /// </summary>
@@ -106,11 +111,6 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("triggerPriceType")]
         public PriceType TriggerPriceType { get; set; }
-        /// <summary>
-        /// Updated time
-        /// </summary>
-        [JsonPropertyName("updatedTime")]
-        public DateTime? UpdateTime { get; set; }
     }
 
 
