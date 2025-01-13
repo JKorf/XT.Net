@@ -164,6 +164,9 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 1.1.3 - 13 Jan 2025
+    * Various fixes in UsdtFutures trigger/track/stop limit order endpoints
+
 * Version 1.1.2 - 08 Jan 2025
     * Fix for restClient.UsdtFuturesApi.ExchangeData.GetSymbolInfoAsync deserialization
 
