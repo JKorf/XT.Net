@@ -10,7 +10,7 @@ using XT.Net.Objects.Options;
 namespace XT.Net.UnitTests
 {
     [NonParallelizable]
-    public class XTRestIntegrationTests : RestIntergrationTest<XTRestClient>
+    public class XTRestIntegrationTests : RestIntegrationTest<XTRestClient>
     {
         public override bool Run { get; set; }
 

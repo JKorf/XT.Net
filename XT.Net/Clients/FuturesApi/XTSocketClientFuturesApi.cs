@@ -74,7 +74,8 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTFuturesTrade>(_logger,
                 symbols.Select(x => "trade@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -103,7 +104,8 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTFuturesTicker>(_logger,
                 symbols.Select(x => "ticker@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -117,7 +119,8 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTMarketInfo>(_logger,
                 symbols.Select(x => "agg_ticker@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -131,7 +134,8 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTPrice>(_logger,
                 symbols.Select(x => "index_price@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -145,7 +149,8 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTPrice>(_logger,
                 symbols.Select(x => "mark_price@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -159,7 +164,8 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTFuturesIncrementalOrderBookUpdate>(_logger,
                 symbols.Select(x => "depth_update@" + x.ToLower() + "," + (updateInterval ?? 100) + "ms").ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -173,7 +179,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTFuturesOrderBookUpdate>(_logger,
                 symbols.Select(x => "depth@" + x.ToLower() + "," + depth + "," + (updateInterval ?? 100) + "ms").ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol).WithDataTimestamp(x.Data.Timestamp)),
                 false,
                 null,
                 symbols.Select(x => "depth@" + x.ToLower() + "," + depth).ToArray());
@@ -189,7 +195,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var subscription = new XTSubscription<XTFundingRateUpdate>(_logger,
                 symbols.Select(x => "mark_price@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol).WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
@@ -200,7 +206,7 @@ namespace XT.Net.Clients.FuturesApi
             var subscription = new XTFuturesAuthSubscription<XTFuturesBalanceUpdate>(_logger,
                 "balance",
                 listenKey,
-                onMessage);
+                x => onMessage(x));
             return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -210,7 +216,7 @@ namespace XT.Net.Clients.FuturesApi
             var subscription = new XTFuturesAuthSubscription<XTFuturesPositionUpdate>(_logger,
                 "position",
                 listenKey,
-                onMessage);
+                x => onMessage(x));
             return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -220,7 +226,7 @@ namespace XT.Net.Clients.FuturesApi
             var subscription = new XTFuturesAuthSubscription<XTFuturesOrder>(_logger,
                 "order",
                 listenKey,
-                onMessage);
+                x => onMessage(x));
             return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -230,7 +236,7 @@ namespace XT.Net.Clients.FuturesApi
             var subscription = new XTFuturesAuthSubscription<XTFuturesUserTradeUpdate>(_logger,
                 "trade",
                 listenKey,
-                onMessage);
+                x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)));
             return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 

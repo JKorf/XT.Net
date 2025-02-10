@@ -75,7 +75,8 @@ namespace XT.Net.Clients.SpotApi
         {
             var subscription = new XTSubscription<XTTradeUpdate>(_logger,
                 symbols.Select(x => "trade@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -104,7 +105,8 @@ namespace XT.Net.Clients.SpotApi
         {
             var subscription = new XTSubscription<XTOrderBookUpdate>(_logger,
                 symbols.Select(x => "depth@" + x.ToLower() + "," + depth).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -132,7 +134,8 @@ namespace XT.Net.Clients.SpotApi
         {
             var subscription = new XTSubscription<XT24HTicker>(_logger,
                 symbols.Select(x => "ticker@" + x.ToLower()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                x => onMessage(x.WithSymbol(x.Data.Symbol)
+                .WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -142,7 +145,7 @@ namespace XT.Net.Clients.SpotApi
         {
             var subscription = new XTSubscription<XTBalanceUpdate>(_logger,
                 ["balance"],
-                onMessage,
+                x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)),
                 false,
                 token);
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);
@@ -153,7 +156,7 @@ namespace XT.Net.Clients.SpotApi
         {
             var subscription = new XTSubscription<XTOrderUpdate>(_logger,
                 ["order"],
-                onMessage,
+                x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)),
                 false,
                 token);
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);
@@ -165,7 +168,7 @@ namespace XT.Net.Clients.SpotApi
         {
             var subscription = new XTSubscription<XTUserTradeUpdate>(_logger,
                 ["trade"],
-                onMessage,
+                x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)),
                 false,
                 token);
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);

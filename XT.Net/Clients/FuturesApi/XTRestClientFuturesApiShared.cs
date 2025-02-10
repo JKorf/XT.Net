@@ -50,9 +50,11 @@ namespace XT.Net.Clients.FuturesApi
             true,
             1000,
             false,
+            SharedKlineInterval.OneMinute,
             SharedKlineInterval.FiveMinutes,
             SharedKlineInterval.FifteenMinutes,
             SharedKlineInterval.OneHour,
+            SharedKlineInterval.FourHours,
             SharedKlineInterval.OneDay,
             SharedKlineInterval.OneWeek)
         {

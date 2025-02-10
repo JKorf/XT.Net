@@ -205,7 +205,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 
             var result = await SubscribeToPositionUpdatesAsync(request.ListenKey!,
-                update => handler(update.AsExchangeEvent<IEnumerable<SharedPosition>>(Exchange, [new SharedPosition(update.Data.Symbol, update.Data.PositionSize, update.Timestamp)
+                update => handler(update.AsExchangeEvent<IEnumerable<SharedPosition>>(Exchange, [new SharedPosition(update.Data.Symbol, update.Data.PositionSize, update.DataTime ?? update.ReceiveTime)
                 {
                     AverageOpenPrice = update.Data.EntryPrice,
                     PositionSide = update.Data.PositionSide == Enums.PositionSide.Short ? SharedPositionSide.Short : SharedPositionSide.Long,
