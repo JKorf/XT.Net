@@ -72,6 +72,21 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("contract")]
         public string Contract { get; set; } = string.Empty;
+        /// <summary>
+        /// Min deposit quantity
+        /// </summary>
+        [JsonPropertyName("depositMinAmount")]
+        public decimal? MinDepositQuantity { get; set; }
+        /// <summary>
+        /// Deposit confirmations required
+        /// </summary>
+        [JsonPropertyName("depositConfirmations")]
+        public int? DepositConfirmations { get; set; }
+        /// <summary>
+        /// Withdraw quantity precision
+        /// </summary>
+        [JsonPropertyName("withdrawPrecision")]
+        public int WithdrawPrecision { get; set; }
     }
 
 

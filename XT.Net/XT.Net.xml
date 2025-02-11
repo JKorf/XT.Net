@@ -3330,6 +3330,21 @@
             Contract
             </summary>
         </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.MinDepositQuantity">
+            <summary>
+            Min deposit quantity
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.DepositConfirmations">
+            <summary>
+            Deposit confirmations required
+            </summary>
+        </member>
+        <member name="P:XT.Net.Objects.Models.XTAssetNetwork.WithdrawPrecision">
+            <summary>
+            Withdraw quantity precision
+            </summary>
+        </member>
         <member name="T:XT.Net.Objects.Models.XTBalances">
             <summary>
             Balance info
