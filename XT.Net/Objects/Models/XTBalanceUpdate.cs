@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 using XT.Net.Enums;
 
@@ -15,7 +13,7 @@ namespace XT.Net.Objects.Models
         /// Account id
         /// </summary>
         [JsonPropertyName("a")]
-        public string AccountId { get; set; } = string.Empty;
+        public long AccountId { get; set; }
         /// <summary>
         /// Timestamp
         /// </summary>
@@ -26,7 +24,7 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("c")]
         public string Asset { get; set; } = string.Empty;
-        
+
         /// <summary>
         /// Frozen quantity
         /// </summary>
