@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -29,6 +29,6 @@ namespace XT.Net.Objects.Models
         /// Items
         /// </summary>
         [JsonPropertyName("items")]
-        public IEnumerable<T> Data { get; set; } = [];
+        public T[] Data { get; set; } = [];
     }
 }

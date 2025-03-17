@@ -9,6 +9,7 @@ using XT.Net.Objects.Models;
 using XT.Net.Enums;
 using CryptoExchange.Net.RateLimiting.Guards;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace XT.Net.Clients.FuturesApi
 {
@@ -55,7 +56,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> PlaceMultipleOrdersAsync(IEnumerable<XTFuturesOrderRequest> orders, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("list", orders);
+            parameters.Add("list", orders.ToArray());
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
             return result;
@@ -195,12 +196,12 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Positions
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTPosition>>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/position", XTExchange.RateLimiter.RestFutures, 1, true);
-            var result = await _baseClient.SendAsync<IEnumerable<XTPosition>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTPosition[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -209,12 +210,12 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Positions Info
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTPositionInfo>>> GetPositionsInfoAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTPositionInfo[]>> GetPositionsInfoAsync(string? symbol = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/position/list", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTPositionInfo>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTPositionInfo[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -236,12 +237,12 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Margin Call Info
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTMarginCallInfo>>> GetMarginCallInfoAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTMarginCallInfo[]>> GetMarginCallInfoAsync(string? symbol = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/position/break-list", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTMarginCallInfo>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTMarginCallInfo[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 

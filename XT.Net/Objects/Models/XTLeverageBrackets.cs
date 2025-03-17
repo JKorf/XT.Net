@@ -1,4 +1,5 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -8,13 +9,14 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Leverage brackets
     /// </summary>
+    [SerializationModel]
     public record XTLeverageBrackets
     {
         /// <summary>
         /// Leverage brackets
         /// </summary>
         [JsonPropertyName("leverageBrackets")]
-        public IEnumerable<XTLeverageBracket> LeverageBrackets { get; set; } = Array.Empty<XTLeverageBracket>();
+        public XTLeverageBracket[] LeverageBrackets { get; set; } = Array.Empty<XTLeverageBracket>();
         /// <summary>
         /// Symbol
         /// </summary>
@@ -25,6 +27,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Leverage bracket
     /// </summary>
+    [SerializationModel]
     public record XTLeverageBracket
     {
         /// <summary>

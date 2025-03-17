@@ -54,11 +54,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Symbol Assets
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<string>>> GetSymbolAssetsAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<string[]>> GetSymbolAssetsAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/symbol/coins", XTExchange.RateLimiter.XT, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<string>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<string[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -108,11 +108,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Leverage Brackets
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTLeverageBrackets>>> GetLeverageBracketsAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTLeverageBrackets[]>> GetLeverageBracketsAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/leverage/bracket/list", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTLeverageBrackets>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTLeverageBrackets[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -135,11 +135,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Tickers
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTFuturesTicker>>> GetTickersAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTFuturesTicker[]>> GetTickersAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/q/tickers", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTFuturesTicker>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTFuturesTicker[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -148,13 +148,13 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Recent Trades
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTFuturesTrade>>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTFuturesTrade[]>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
             parameters.Add("num", limit ?? 100);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/q/deal", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTFuturesTrade>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTFuturesTrade[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -192,11 +192,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Index Prices
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTPrice>>> GetIndexPricesAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTPrice[]>> GetIndexPricesAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/q/index-price", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTPrice>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTPrice[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -219,11 +219,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Index Prices
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTPrice>>> GetMarkPricesAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTPrice[]>> GetMarkPricesAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/q/mark-price", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTPrice>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTPrice[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -232,7 +232,7 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Klines
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTFuturesKline>>> GetKlinesAsync(string symbol, FuturesKlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTFuturesKline[]>> GetKlinesAsync(string symbol, FuturesKlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
@@ -241,7 +241,7 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddOptionalMilliseconds("endTime", endTime);
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/q/kline", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTFuturesKline>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTFuturesKline[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -264,11 +264,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Market Info
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTMarketInfo>>> GetMarketInfosAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTMarketInfo[]>> GetMarketInfosAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/q/agg-tickers", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTMarketInfo>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTMarketInfo[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -305,11 +305,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Book Tickers
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTFuturesBookTicker>>> GetBookTickersAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTFuturesBookTicker[]>> GetBookTickersAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/q/ticker/books", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTFuturesBookTicker>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTFuturesBookTicker[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -366,11 +366,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Symbol Info
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTFuturesSymbolInfo>>> GetSymbolInfoAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTFuturesSymbolInfo[]>> GetSymbolInfoAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/market/v1/public/cg/contracts", XTExchange.RateLimiter.RestFutures, 1, false);
-            var result = await _baseClient.SendRawAsync<IEnumerable<XTFuturesSymbolInfo>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendRawAsync<XTFuturesSymbolInfo[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 

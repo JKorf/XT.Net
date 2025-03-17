@@ -1,4 +1,5 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -8,6 +9,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Order book info
     /// </summary>
+    [SerializationModel]
     public record XTFuturesOrderBook
     {
         /// <summary>
@@ -30,13 +32,13 @@ namespace XT.Net.Objects.Models
         /// Ask entries
         /// </summary>
         [JsonPropertyName("a")]
-        public IEnumerable<XTOrderBookEntry> Asks { get; set; } = [];
+        public XTOrderBookEntry[] Asks { get; set; } = [];
 
         /// <summary>
         /// Bid entries
         /// </summary>
         [JsonPropertyName("b")]
-        public IEnumerable<XTOrderBookEntry> Bids { get; set; } = [];
+        public XTOrderBookEntry[] Bids { get; set; } = [];
     } 
 
 

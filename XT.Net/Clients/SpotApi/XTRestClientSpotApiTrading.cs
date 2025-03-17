@@ -92,14 +92,14 @@ namespace XT.Net.Clients.SpotApi
         #region Get Open Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTOrder>>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTOrder[]>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             parameters.AddOptionalEnum("bizType", businessType);
             parameters.AddOptionalEnum("side", orderSide);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/open-order", XTExchange.RateLimiter.XT, 1, true, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTOrder>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTOrder[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -178,12 +178,12 @@ namespace XT.Net.Clients.SpotApi
         #region Get Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTOrder>>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default)
+        public async Task<WebCallResult<XTOrder[]>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("orderIds", string.Join(",", orderIds));
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/batch-order", XTExchange.RateLimiter.XT, 1, true);
-            var result = await _baseClient.SendAsync<IEnumerable<XTOrder>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTOrder[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 

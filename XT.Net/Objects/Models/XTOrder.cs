@@ -1,4 +1,5 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -9,6 +10,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Order info
     /// </summary>
+    [SerializationModel]
     public record XTOrder
     {
         /// <summary>
@@ -110,7 +112,7 @@ namespace XT.Net.Objects.Models
         /// Fee deduction list (if set XT deduction fee and the deduction occurs, use this field to represent the trade fee. Otherwise, use the original fee and feeCurrency fields to represent the trade fee). 
         /// </summary>
         [JsonPropertyName("deductServices")]
-        public IEnumerable<XTOrderFee> Fees { get; set; } = Array.Empty<XTOrderFee>();
+        public XTOrderFee[] Fees { get; set; } = Array.Empty<XTOrderFee>();
         /// <summary>
         /// Timestamp
         /// </summary>
@@ -136,6 +138,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Fee info
     /// </summary>
+    [SerializationModel]
     public record XTOrderFee
     {
         /// <summary>

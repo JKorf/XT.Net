@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System.Text.Json.Serialization;
 using XT.Net.Converters;
 using XT.Net.Enums;
 
@@ -8,6 +9,7 @@ namespace XT.Net.Objects.Models
     /// A filter for order placed on a symbol.
     /// </summary>
     [JsonConverter(typeof(SymbolFilterConverterImp<XTSymbolFilter>))]
+    [SerializationModel]
     public record XTSymbolFilter
     {
         /// <summary>
@@ -21,6 +23,7 @@ namespace XT.Net.Objects.Models
     /// Price filter
     /// </summary>
     [JsonConverter(typeof(SymbolFilterConverterImp<XTPriceFilter>))]
+    [SerializationModel]
     public record XTPriceFilter: XTSymbolFilter
     {
         /// <summary>
@@ -41,6 +44,7 @@ namespace XT.Net.Objects.Models
     /// Quantity filter
     /// </summary>
     [JsonConverter(typeof(SymbolFilterConverterImp<XTQuantityFilter>))]
+    [SerializationModel]
     public record XTQuantityFilter : XTSymbolFilter
     {
         /// <summary>
@@ -61,6 +65,7 @@ namespace XT.Net.Objects.Models
     /// Quote quantity filter
     /// </summary>
     [JsonConverter(typeof(SymbolFilterConverterImp<XTQuoteQuantityFilter>))]
+    [SerializationModel]
     public record XTQuoteQuantityFilter : XTSymbolFilter
     {
         /// <summary>
@@ -73,6 +78,7 @@ namespace XT.Net.Objects.Models
     /// Limit protection filter
     /// </summary>
     [JsonConverter(typeof(SymbolFilterConverterImp<XTProtectionLimitFilter>))]
+    [SerializationModel]
     public record XTProtectionLimitFilter : XTSymbolFilter
     {
         /// <summary>
@@ -97,6 +103,7 @@ namespace XT.Net.Objects.Models
     /// Market protection filter
     /// </summary>
     [JsonConverter(typeof(SymbolFilterConverterImp<XTProtectionMarketFilter>))]
+    [SerializationModel]
     public record XTProtectionMarketFilter : XTSymbolFilter
     {
         /// <summary>
@@ -109,6 +116,7 @@ namespace XT.Net.Objects.Models
     /// Online protection filter
     /// </summary>
     [JsonConverter(typeof(SymbolFilterConverterImp<XTProtectionOnlineFilter>))]
+    [SerializationModel]
     public record XTProtectionOnlineFilter : XTSymbolFilter
     {
         /// <summary>

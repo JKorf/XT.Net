@@ -1,16 +1,18 @@
-﻿using CryptoExchange.Net.Converters;
+using CryptoExchange.Net.Converters;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
+using XT.Net.Converters;
 
 namespace XT.Net.Objects.Models
 {
     /// <summary>
     /// Order book info
     /// </summary>
+    [SerializationModel]
     public record XTOrderBook
     {
         /// <summary>
@@ -28,18 +30,19 @@ namespace XT.Net.Objects.Models
         /// Bids
         /// </summary>
         [JsonPropertyName("bids")]
-        public IEnumerable<XTOrderBookEntry> Bids { get; set; } = Array.Empty<XTOrderBookEntry>();
+        public XTOrderBookEntry[] Bids { get; set; } = Array.Empty<XTOrderBookEntry>();
         /// <summary>
         /// Asks
         /// </summary>
         [JsonPropertyName("asks")]
-        public IEnumerable<XTOrderBookEntry> Asks { get; set; } = Array.Empty<XTOrderBookEntry>();
+        public XTOrderBookEntry[] Asks { get; set; } = Array.Empty<XTOrderBookEntry>();
     }
 
     /// <summary>
     /// Order book entry
     /// </summary>
-    [JsonConverter(typeof(ArrayConverter))]
+    [JsonConverter(typeof(ArrayConverter<XTOrderBookEntry, XTSourceGenerationContext>))]
+    [SerializationModel]
     public record XTOrderBookEntry : ISymbolOrderBookEntry
     {
         /// <summary>

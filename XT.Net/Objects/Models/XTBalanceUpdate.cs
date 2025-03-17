@@ -1,4 +1,5 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Text.Json.Serialization;
 using XT.Net.Enums;
 
@@ -7,6 +8,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Balance
     /// </summary>
+    [SerializationModel]
     public record XTBalanceUpdate
     {
         /// <summary>

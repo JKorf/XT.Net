@@ -84,7 +84,7 @@ namespace XT.Net.Clients.SpotApi
         #region Get Klines
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTKline>>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
@@ -93,7 +93,7 @@ namespace XT.Net.Clients.SpotApi
             parameters.AddOptionalMillisecondsString("endTime", endTime);
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/kline", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTKline>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTKline[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -102,13 +102,13 @@ namespace XT.Net.Clients.SpotApi
         #region Get Recent Trades
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTTrade>>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTTrade[]>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("symbol", symbol);
             parameters.AddOptional("limit", limit);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/trade/recent", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTTrade>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTTrade[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -134,13 +134,13 @@ namespace XT.Net.Clients.SpotApi
         #region Get Tickers
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTTicker>>> GetTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTTicker[]>> GetTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             parameters.AddOptional("symbols", symbols == null ? null : string.Join(",", symbols));
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/ticker", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTTicker>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTTicker[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -149,13 +149,13 @@ namespace XT.Net.Clients.SpotApi
         #region Get Price Tickers
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTPriceTicker>>> GetPriceTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTPriceTicker[]>> GetPriceTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             parameters.AddOptional("symbols", symbols == null ? null : string.Join(",", symbols));
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/ticker/price", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTPriceTicker>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTPriceTicker[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -164,13 +164,13 @@ namespace XT.Net.Clients.SpotApi
         #region Get Book Tickers
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTBookTicker>>> GetBookTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTBookTicker[]>> GetBookTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             parameters.AddOptional("symbols", symbols == null ? null : string.Join(",", symbols));
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/ticker/book", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTBookTicker>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTBookTicker[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -179,13 +179,13 @@ namespace XT.Net.Clients.SpotApi
         #region Get 24H Ticker
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XT24HTicker>>> Get24HTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XT24HTicker[]>> Get24HTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("symbol", symbol);
             parameters.AddOptional("symbols", symbols == null ? null : string.Join(",", symbols));
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/ticker/24h", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XT24HTicker>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XT24HTicker[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -207,11 +207,11 @@ namespace XT.Net.Clients.SpotApi
         #region Get Asset Networks
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTAssetNetworks>>> GetAssetNetworksAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTAssetNetworks[]>> GetAssetNetworksAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/public/wallet/support/currency", XTExchange.RateLimiter.XT, 1, false);
-            var result = await _baseClient.SendAsync<IEnumerable<XTAssetNetworks>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTAssetNetworks[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 

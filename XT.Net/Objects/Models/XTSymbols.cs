@@ -1,4 +1,5 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Symbols data
     /// </summary>
+    [SerializationModel]
     public record XTSymbols
     {
         /// <summary>
@@ -26,12 +28,13 @@ namespace XT.Net.Objects.Models
         /// Symbols
         /// </summary>
         [JsonPropertyName("symbols")]
-        public IEnumerable<XTSymbol> Symbols { get; set; } = Array.Empty<XTSymbol>();
+        public XTSymbol[] Symbols { get; set; } = Array.Empty<XTSymbol>();
     }
 
     /// <summary>
     /// Symbol info
     /// </summary>
+    [SerializationModel]
     public record XTSymbol
     {
         /// <summary>
@@ -128,12 +131,12 @@ namespace XT.Net.Objects.Models
         /// Supported order types
         /// </summary>
         [JsonPropertyName("orderTypes")]
-        public IEnumerable<OrderType> OrderTypes { get; set; } = Array.Empty<OrderType>();
+        public OrderType[] OrderTypes { get; set; } = Array.Empty<OrderType>();
         /// <summary>
         /// Supported time in forces
         /// </summary>
         [JsonPropertyName("timeInForces")]
-        public IEnumerable<TimeInForce> TimeInForces { get; set; } = Array.Empty<TimeInForce>();
+        public TimeInForce[] TimeInForces { get; set; } = Array.Empty<TimeInForce>();
         /// <summary>
         /// Display weight
         /// </summary>
@@ -148,12 +151,12 @@ namespace XT.Net.Objects.Models
         /// Plates
         /// </summary>
         [JsonPropertyName("plates")]
-        public IEnumerable<int> Plates { get; set; } = Array.Empty<int>();
+        public int[] Plates { get; set; } = Array.Empty<int>();
         /// <summary>
         /// Filters for order on this symbol
         /// </summary>
         [JsonPropertyName("filters")]
-        public IEnumerable<XTSymbolFilter> Filters { get; set; } = Array.Empty<XTSymbolFilter>();
+        public XTSymbolFilter[] Filters { get; set; } = Array.Empty<XTSymbolFilter>();
         /// <summary>
         /// Price filter for this symbol
         /// </summary>
@@ -174,6 +177,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// 
     /// </summary>
+    [SerializationModel]
     public record XTSymbolSUBSUB
     {
         /// <summary>

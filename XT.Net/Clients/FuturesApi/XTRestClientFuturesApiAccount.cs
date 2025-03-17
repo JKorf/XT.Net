@@ -27,12 +27,12 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Balances
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTFuturesBalance>>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTFuturesBalance[]>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("queryAccountId", accountId);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/compat/balance/list", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTFuturesBalance>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTFuturesBalance[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -68,11 +68,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get User Assets
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTUserAsset>>> GetUserAssetsAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTUserAsset[]>> GetUserAssetsAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/balance/list", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTUserAsset>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTUserAsset[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -171,11 +171,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Adl Info
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTAdlInfo>>> GetAdlInfoAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTAdlInfo[]>> GetAdlInfoAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/position/adl", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTAdlInfo>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTAdlInfo[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 

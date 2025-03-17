@@ -20,7 +20,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="accountId">Account id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTFuturesBalance>>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default);
+        Task<WebCallResult<XTFuturesBalance[]>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get account info
@@ -43,7 +43,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_usergetBalances" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTUserAsset>>> GetUserAssetsAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTUserAsset[]>> GetUserAssetsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get account bills
@@ -109,7 +109,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_usergetAdl" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTAdlInfo>>> GetAdlInfoAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTAdlInfo[]>> GetAdlInfoAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Set position type

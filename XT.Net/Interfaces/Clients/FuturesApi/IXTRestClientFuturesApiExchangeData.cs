@@ -35,7 +35,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<IEnumerable<string>>> GetSymbolAssetsAsync(CancellationToken ct = default);
+        Task<WebCallResult<string[]>> GetSymbolAssetsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get info on a symbol
@@ -65,7 +65,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgetLeverageBrackets" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTLeverageBrackets>>> GetLeverageBracketsAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTLeverageBrackets[]>> GetLeverageBracketsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get ticker info for a symbol
@@ -80,7 +80,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgetTicker" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTFuturesTicker>>> GetTickersAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTFuturesTicker[]>> GetTickersAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get recent trades for a symbol
@@ -89,7 +89,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTFuturesTrade>>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<XTFuturesTrade[]>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get order book
@@ -113,7 +113,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgetIndexPrices" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTPrice>>> GetIndexPricesAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTPrice[]>> GetIndexPricesAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get index price for a symbols
@@ -128,7 +128,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgitMarkPrices" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTPrice>>> GetMarkPricesAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTPrice[]>> GetMarkPricesAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get kline/candlestick data
@@ -140,7 +140,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTFuturesKline>>> GetKlinesAsync(string symbol, FuturesKlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<XTFuturesKline[]>> GetKlinesAsync(string symbol, FuturesKlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get market info
@@ -155,7 +155,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgetAggTickers" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTMarketInfo>>> GetMarketInfosAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTMarketInfo[]>> GetMarketInfosAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Funding rate
@@ -178,7 +178,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quotesgetTickerBooks" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTFuturesBookTicker>>> GetBookTickersAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTFuturesBookTicker[]>> GetBookTickersAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get funding rate history
@@ -215,7 +215,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <para><a href="https://doc.xt.com/#futures_quote_collectiongetFutureInfo" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTFuturesSymbolInfo>>> GetSymbolInfoAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTFuturesSymbolInfo[]>> GetSymbolInfoAsync(CancellationToken ct = default);
 
     }
 }

@@ -67,7 +67,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         {
             var data = (XTSocketUpdate<T>)message.Data;
             _handler.Invoke(message.As(data.Data, data.Event, null, SocketUpdateType.Update));
-            return new CallResult(null);
+            return CallResult.SuccessResult;
         }
     }
 }

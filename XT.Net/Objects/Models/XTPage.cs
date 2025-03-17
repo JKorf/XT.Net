@@ -1,4 +1,5 @@
-﻿using CryptoExchange.Net.Attributes;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Data page
     /// </summary>
+    [SerializationModel]
     public record XTPage<T>
     {
         /// <summary>
@@ -25,6 +27,6 @@ namespace XT.Net.Objects.Models
         /// Data
         /// </summary>
         [JsonPropertyName("items")]
-        public IEnumerable<T> Data { get; set; } = [];
+        public T[] Data { get; set; } = [];
     }
 }

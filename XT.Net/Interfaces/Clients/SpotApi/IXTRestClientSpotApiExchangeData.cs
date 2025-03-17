@@ -57,7 +57,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">Filter by end time</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTKline>>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<XTKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get recent trades
@@ -66,7 +66,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTTrade>>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default);
+        Task<WebCallResult<XTTrade[]>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get trade history
@@ -86,7 +86,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTTicker>>> GetTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<WebCallResult<XTTicker[]>> GetTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get price tickers
@@ -95,7 +95,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTPriceTicker>>> GetPriceTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<WebCallResult<XTPriceTicker[]>> GetPriceTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get best orderbook offers
@@ -104,7 +104,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTBookTicker>>> GetBookTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<WebCallResult<XTBookTicker[]>> GetBookTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get 24h price stats
@@ -113,7 +113,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XT24HTicker>>> Get24HTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<WebCallResult<XT24HTicker[]>> Get24HTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get assets
@@ -127,7 +127,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <para><a href="https://doc.xt.com/#deposit_withdrawalsupportedCurrenciesGet" /></para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTAssetNetworks>>> GetAssetNetworksAsync(CancellationToken ct = default);
+        Task<WebCallResult<XTAssetNetworks[]>> GetAssetNetworksAsync(CancellationToken ct = default);
 
     }
 }
