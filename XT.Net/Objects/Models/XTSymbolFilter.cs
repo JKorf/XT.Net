@@ -7,7 +7,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// A filter for order placed on a symbol.
     /// </summary>
-    [JsonConverter(typeof(SymbolFilterConverter))]
+    [JsonConverter(typeof(SymbolFilterConverterImp<XTSymbolFilter>))]
     public record XTSymbolFilter
     {
         /// <summary>
@@ -20,6 +20,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Price filter
     /// </summary>
+    [JsonConverter(typeof(SymbolFilterConverterImp<XTPriceFilter>))]
     public record XTPriceFilter: XTSymbolFilter
     {
         /// <summary>
@@ -39,6 +40,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Quantity filter
     /// </summary>
+    [JsonConverter(typeof(SymbolFilterConverterImp<XTQuantityFilter>))]
     public record XTQuantityFilter : XTSymbolFilter
     {
         /// <summary>
@@ -58,6 +60,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Quote quantity filter
     /// </summary>
+    [JsonConverter(typeof(SymbolFilterConverterImp<XTQuoteQuantityFilter>))]
     public record XTQuoteQuantityFilter : XTSymbolFilter
     {
         /// <summary>
@@ -69,6 +72,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Limit protection filter
     /// </summary>
+    [JsonConverter(typeof(SymbolFilterConverterImp<XTProtectionLimitFilter>))]
     public record XTProtectionLimitFilter : XTSymbolFilter
     {
         /// <summary>
@@ -92,6 +96,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Market protection filter
     /// </summary>
+    [JsonConverter(typeof(SymbolFilterConverterImp<XTProtectionMarketFilter>))]
     public record XTProtectionMarketFilter : XTSymbolFilter
     {
         /// <summary>
@@ -103,6 +108,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Online protection filter
     /// </summary>
+    [JsonConverter(typeof(SymbolFilterConverterImp<XTProtectionOnlineFilter>))]
     public record XTProtectionOnlineFilter : XTSymbolFilter
     {
         /// <summary>

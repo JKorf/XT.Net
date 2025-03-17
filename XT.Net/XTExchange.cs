@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CryptoExchange.Net.SharedApis;
+using System.Text.Json.Serialization;
+using XT.Net.Converters;
 
 namespace XT.Net
 {
@@ -48,6 +50,8 @@ namespace XT.Net
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
         internal const string ClientRef = "4XWeqN10M1fcoI5L";
+
+        internal static JsonSerializerContext SerializerContext = new XTSourceGenerationContext();
 
         /// <summary>
         /// Format a base and quote asset to an XT recognized symbol 

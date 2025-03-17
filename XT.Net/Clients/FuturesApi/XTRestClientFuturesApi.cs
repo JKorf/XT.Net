@@ -7,8 +7,6 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using CryptoExchange.Net.CommonObjects;
-using CryptoExchange.Net.Interfaces.CommonClients;
 using XT.Net.Interfaces.Clients.FuturesApi;
 using XT.Net.Objects.Options;
 using CryptoExchange.Net.Clients;
@@ -77,9 +75,9 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         /// <inheritdoc />
-        protected override IStreamMessageAccessor CreateAccessor() => new SystemTextJsonStreamMessageAccessor();
+        protected override IStreamMessageAccessor CreateAccessor() => new SystemTextJsonStreamMessageAccessor(SerializerOptions.WithConverters(XTExchange.SerializerContext));
         /// <inheritdoc />
-        protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer();
+        protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange.SerializerContext));
 
         /// <inheritdoc />
         protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
