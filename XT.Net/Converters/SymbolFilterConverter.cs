@@ -14,7 +14,7 @@ namespace XT.Net.Converters
         public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var obj = JsonDocument.ParseValue(ref reader).RootElement;
-            var type = obj.GetProperty("filter").Deserialize<SymbolFilterType>(SerializerOptions.WithConverters);
+            var type = obj.GetProperty("filter").Deserialize<SymbolFilterType>(SerializerOptions.WithConverters(XTExchange.SerializerContext));
             XTSymbolFilter result;
             switch (type)
             {

@@ -22,7 +22,7 @@ namespace XT.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Spot/Account", "https://sapi.xt.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Spot/Account", "https://sapi.xt.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.SpotApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Account.GetDepositAddressAsync("123", "123"), "GetDepositAddress", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Account.GetDepositHistoryAsync("123", "123"), "GetDepositHistory", nestedJsonProperty: "result");
@@ -39,7 +39,7 @@ namespace XT.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Spot/ExchangeData", "https://sapi.xt.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Spot/ExchangeData", "https://sapi.xt.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.SpotApi.ExchangeData.GetClientIpAsync(), "GetClientIp", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.ExchangeData.GetSymbolsAsync(), "GetSymbols", nestedJsonProperty: "result", ignoreProperties: ["timeInForces"]);
             await tester.ValidateAsync(client => client.SpotApi.ExchangeData.GetOrderBookAsync("btc_usdt"), "GetOrderBook", nestedJsonProperty: "result");
@@ -62,7 +62,7 @@ namespace XT.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Spot/Trading", "https://sapi.xt.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Spot/Trading", "https://sapi.xt.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.SpotApi.Trading.PlaceOrderAsync("123", OrderSide.Buy, OrderType.Market, TimeInForce.ImmediateOrCancel, BusinessType.Spot), "PlaceOrder", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Trading.GetOrderAsync(123), "GetOrder", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Trading.CancelOrderAsync(123), "CancelOrder", nestedJsonProperty: "result");
@@ -82,7 +82,7 @@ namespace XT.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Account", "https://fapi.xt.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Account", "https://fapi.xt.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetAccountInfoAsync(), "GetAccountInfo", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetUserAssetsAsync(), "GetUserAssets", nestedJsonProperty: "result");
@@ -101,7 +101,7 @@ namespace XT.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/ExchangeData", "https://fapi.xt.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/ExchangeData", "https://fapi.xt.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetSymbolAsync("123"), "GetSymbol", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync("123"), "GetLeverageBrackets", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetTickerAsync("123"), "GetTicker", nestedJsonProperty: "result");
@@ -125,7 +125,7 @@ namespace XT.Net.UnitTests
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Trading", "https://fapi.xt.com", IsAuthenticated, stjCompare: true);
+            var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Trading", "https://fapi.xt.com", IsAuthenticated);
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetPositionsAsync(), "GetPositions", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetPositionsInfoAsync(), "GetPositionsInfo", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CloseAllPositionsAsync(), "CloseAllPositions");

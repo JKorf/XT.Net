@@ -14,7 +14,7 @@ namespace XT.Net
 {
     internal class XTSpotAuthenticationProvider : AuthenticationProvider
     {
-        private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer();
+        private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange.SerializerContext));
 
         public XTSpotAuthenticationProvider(ApiCredentials credentials) : base(credentials)
         {
