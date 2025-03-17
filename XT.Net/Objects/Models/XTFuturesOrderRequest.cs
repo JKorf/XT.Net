@@ -65,6 +65,6 @@ namespace XT.Net.Objects.Models
         public decimal? TriggerStopPrice { get; set; }
 
         [JsonInclude, JsonPropertyName("media")]
-        internal string Media => XTExchange.ClientRef;
+        internal string Media => XTExchange._clientRef;
     }
 }

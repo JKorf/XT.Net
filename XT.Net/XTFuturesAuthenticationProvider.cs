@@ -13,7 +13,7 @@ namespace XT.Net
 {
     internal class XTFuturesAuthenticationProvider : AuthenticationProvider
     {
-        private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange.SerializerContext));
+        private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
         public XTFuturesAuthenticationProvider(ApiCredentials credentials) : base(credentials)
         {

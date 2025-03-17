@@ -1,9 +1,11 @@
 ﻿using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using XT.Net.Enums;
 using XT.Net.Objects.Models;
 
@@ -14,7 +16,7 @@ namespace XT.Net.Converters
         public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var obj = JsonDocument.ParseValue(ref reader).RootElement;
-            var type = obj.GetProperty("filter").Deserialize<SymbolFilterType>(SerializerOptions.WithConverters(XTExchange.SerializerContext));
+            var type = obj.GetProperty("filter").Deserialize<SymbolFilterType>((JsonTypeInfo<SymbolFilterType>)options.GetTypeInfo(typeof(SymbolFilterType)));
             XTSymbolFilter result;
             switch (type)
             {
@@ -59,7 +61,7 @@ namespace XT.Net.Converters
                     result = new XTProtectionOnlineFilter
                     {
                         MaxPriceMultiple = ParseDecimal(obj, "maxPriceMultiple"),
-                        DurationSeconds = int.Parse(obj.GetProperty("durationSeconds").GetString(), NumberStyles.Float, CultureInfo.InvariantCulture)
+                        DurationSeconds = int.Parse(obj.GetProperty("durationSeconds").GetString()!, NumberStyles.Float, CultureInfo.InvariantCulture)
                     };
                     break;
                 default:
@@ -84,9 +86,13 @@ namespace XT.Net.Converters
             return default;
         }
 
+#if NET5_0_OR_GREATER
+        [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL3050:RequiresUnreferencedCode", Justification = "JsonSerializerOptions provided here has TypeInfoResolver set")]
+        [UnconditionalSuppressMessage("AssemblyLoadTrimming", "IL2026:RequiresUnreferencedCode", Justification = "JsonSerializerOptions provided here has TypeInfoResolver set")]
+#endif
         public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
         {
-            JsonSerializer.Serialize(writer, value, value!.GetType());
+            JsonSerializer.Serialize(writer, value, SerializerOptions.WithConverters(XTExchange._serializerContext));
         }
     }
 }

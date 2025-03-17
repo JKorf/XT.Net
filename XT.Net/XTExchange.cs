@@ -49,9 +49,9 @@ namespace XT.Net
         /// </summary>
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
-        internal const string ClientRef = "4XWeqN10M1fcoI5L";
+        internal const string _clientRef = "4XWeqN10M1fcoI5L";
 
-        internal static JsonSerializerContext SerializerContext = new XTSourceGenerationContext();
+        internal static JsonSerializerContext _serializerContext = new XTSourceGenerationContext();
 
         /// <summary>
         /// Format a base and quote asset to an XT recognized symbol 

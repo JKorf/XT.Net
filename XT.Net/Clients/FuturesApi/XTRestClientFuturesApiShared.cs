@@ -284,6 +284,8 @@ namespace XT.Net.Clients.FuturesApi
                 return resultTicker.AsExchangeResult<SharedFuturesTicker>(Exchange, null, default);
 
             var ticker = resultTicker.Data.SingleOrDefault(x => x.Symbol == request.Symbol.GetSymbol(FormatSymbol));
+            if (ticker == null)
+                return resultTicker.AsExchangeError<SharedFuturesTicker>(Exchange, new ServerError("Not found"));
 
             return resultTicker.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicId, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, null)
             {
