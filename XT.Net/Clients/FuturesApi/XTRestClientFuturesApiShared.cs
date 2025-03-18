@@ -424,7 +424,7 @@ namespace XT.Net.Clients.FuturesApi
                 request.Symbol.GetSymbol(FormatSymbol),
                 request.Side == SharedOrderSide.Buy ? Enums.OrderSide.Buy : Enums.OrderSide.Sell,
                 request.OrderType == SharedOrderType.Limit ? OrderType.Limit : OrderType.Market,
-                quantity: request.Quantity ?? 0,
+                quantity: request.Quantity?.QuantityInContracts ?? 0,
                 price: request.Price,
                 positionSide: request.PositionSide == SharedPositionSide.Long ? PositionSide.Long : PositionSide.Short,
                 timeInForce: GetTimeInForce(request.OrderType, request.TimeInForce),
@@ -463,8 +463,8 @@ namespace XT.Net.Clients.FuturesApi
                 ClientOrderId = order.Data.ClientOrderId,
                 AveragePrice = order.Data.AveragePrice == 0 ? null : order.Data.AveragePrice,
                 OrderPrice = order.Data.Price == 0 ? null : order.Data.Price,
-                Quantity = order.Data.Quantity,
-                QuantityFilled = order.Data.QuantityFilled,
+                OrderQuantity = new SharedOrderQuantity(contractQuantity: order.Data.Quantity),
+                QuantityFilled = new SharedOrderQuantity(contractQuantity: order.Data.QuantityFilled),
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
                 PositionSide = order.Data.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short
             });
@@ -501,8 +501,8 @@ namespace XT.Net.Clients.FuturesApi
                 ClientOrderId = x.ClientOrderId,
                 AveragePrice = x.AveragePrice == 0 ? null : x.AveragePrice,
                 OrderPrice = x.Price == 0 ? null : x.Price,
-                Quantity = x.Quantity,
-                QuantityFilled = x.QuantityFilled,
+                OrderQuantity = new SharedOrderQuantity(contractQuantity: x.Quantity),
+                QuantityFilled = new SharedOrderQuantity(contractQuantity: x.QuantityFilled),
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 PositionSide = x.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short
             }).ToArray());
@@ -548,8 +548,8 @@ namespace XT.Net.Clients.FuturesApi
                 ClientOrderId = x.ClientOrderId,
                 AveragePrice = x.AveragePrice == 0 ? null : x.AveragePrice,
                 OrderPrice = x.Price == 0 ? null : x.Price,
-                Quantity = x.Quantity,
-                QuantityFilled = x.QuantityFilled,
+                OrderQuantity = new SharedOrderQuantity(contractQuantity: x.Quantity),
+                QuantityFilled = new SharedOrderQuantity(contractQuantity: x.QuantityFilled),
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
                 PositionSide = x.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short
             }).ToArray(), nextToken);

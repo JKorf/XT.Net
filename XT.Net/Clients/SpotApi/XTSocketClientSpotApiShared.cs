@@ -191,10 +191,8 @@ namespace XT.Net.Clients.SpotApi
                         update.Data.CreateTime)
                     {
                         ClientOrderId = update.Data.ClientOrderId?.ToString(),
-                        Quantity = update.Data.Quantity,
-                        QuantityFilled = update.Data.OrderType == OrderType.Market && update.Data.OrderSide == OrderSide.Buy ? null : update.Data.QuantityFilled,
-                        QuoteQuantity = update.Data.QuoteQuantity,
-                        QuoteQuantityFilled = update.Data.OrderType == OrderType.Market && update.Data.OrderSide == OrderSide.Buy ? update.Data.QuantityFilled : null,
+                        OrderQuantity = new SharedOrderQuantity(update.Data.Quantity, update.Data.QuoteQuantity),
+                        QuantityFilled = new SharedOrderQuantity(update.Data.OrderType == OrderType.Market && update.Data.OrderSide == OrderSide.Buy ? null : update.Data.QuantityFilled, update.Data.OrderType == OrderType.Market && update.Data.OrderSide == OrderSide.Buy ? update.Data.QuantityFilled : null),
                         AveragePrice = update.Data.AveragePrice,
                         UpdateTime = update.Data.Timestamp ?? update.Data.CreateTime,
                         Fee = update.Data.Fee,
