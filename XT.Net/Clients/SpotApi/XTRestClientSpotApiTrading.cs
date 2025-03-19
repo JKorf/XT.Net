@@ -61,7 +61,6 @@ namespace XT.Net.Clients.SpotApi
 
         #endregion
 
-
         #region Get Order
 
         /// <inheritdoc />
@@ -211,6 +210,5 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
-
     }
 }
