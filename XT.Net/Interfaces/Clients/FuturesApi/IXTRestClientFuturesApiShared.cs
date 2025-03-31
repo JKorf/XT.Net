@@ -21,7 +21,8 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         IOpenInterestRestClient,
         IFuturesOrderRestClient,
         IFeeRestClient,
-        IFuturesTriggerOrderRestClient
+        IFuturesTriggerOrderRestClient,
+        IFuturesTpSlRestClient
     {
     }
 }

@@ -10,6 +10,7 @@ using CryptoExchange.Net.Objects;
 using XT.Net.Enums;
 using CryptoExchange.Net;
 using XT.Net.Objects.Models;
+using System.Drawing;
 
 namespace XT.Net.Clients.FuturesApi
 {
@@ -400,7 +401,7 @@ namespace XT.Net.Clients.FuturesApi
 
         string IFuturesOrderRestClient.GenerateClientOrderId() => ExchangeHelpers.RandomString(32);
 
-        PlaceFuturesOrderOptions IFuturesOrderRestClient.PlaceFuturesOrderOptions { get; } = new PlaceFuturesOrderOptions()
+        PlaceFuturesOrderOptions IFuturesOrderRestClient.PlaceFuturesOrderOptions { get; } = new PlaceFuturesOrderOptions(true)
         {
             RequiredOptionalParameters = new List<ParameterDescription>
             {
@@ -429,6 +430,8 @@ namespace XT.Net.Clients.FuturesApi
                 positionSide: request.PositionSide == SharedPositionSide.Long ? PositionSide.Long : PositionSide.Short,
                 timeInForce: GetTimeInForce(request.OrderType, request.TimeInForce),
                 clientOrderId: request.ClientOrderId,
+                triggerProfitPrice: request.TakeProfitPrice,
+                triggerStopPrice: request.StopLossPrice,
                 ct: ct).ConfigureAwait(false);
 
             if (!result)
@@ -466,7 +469,9 @@ namespace XT.Net.Clients.FuturesApi
                 OrderQuantity = new SharedOrderQuantity(contractQuantity: order.Data.Quantity),
                 QuantityFilled = new SharedOrderQuantity(contractQuantity: order.Data.QuantityFilled),
                 TimeInForce = ParseTimeInForce(order.Data.TimeInForce),
-                PositionSide = order.Data.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short
+                PositionSide = order.Data.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short,
+                TakeProfitPrice = order.Data.TriggerProfitPrice,
+                StopLossPrice = order.Data.TriggerStopPrice
             });
         }
 
@@ -504,7 +509,9 @@ namespace XT.Net.Clients.FuturesApi
                 OrderQuantity = new SharedOrderQuantity(contractQuantity: x.Quantity),
                 QuantityFilled = new SharedOrderQuantity(contractQuantity: x.QuantityFilled),
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
-                PositionSide = x.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short
+                PositionSide = x.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short,
+                TakeProfitPrice = x.TriggerProfitPrice,
+                StopLossPrice = x.TriggerStopPrice
             }).ToArray());
         }
 
@@ -551,7 +558,9 @@ namespace XT.Net.Clients.FuturesApi
                 OrderQuantity = new SharedOrderQuantity(contractQuantity: x.Quantity),
                 QuantityFilled = new SharedOrderQuantity(contractQuantity: x.QuantityFilled),
                 TimeInForce = ParseTimeInForce(x.TimeInForce),
-                PositionSide = x.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short
+                PositionSide = x.PositionSide == PositionSide.Long ? SharedPositionSide.Long : SharedPositionSide.Short,
+                TakeProfitPrice = x.TriggerProfitPrice,
+                StopLossPrice = x.TriggerStopPrice
             }).ToArray(), nextToken);
         }
 
@@ -909,6 +918,68 @@ namespace XT.Net.Clients.FuturesApi
                 return order.AsExchangeResult<SharedId>(Exchange, null, default);
 
             return order.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(request.OrderId));
+        }
+
+        #endregion
+
+        #region Tp/SL Client
+        EndpointOptions<SetTpSlRequest> IFuturesTpSlRestClient.SetTpSlOptions { get; } = new EndpointOptions<SetTpSlRequest>(true)
+        {
+            RequiredOptionalParameters = new List<ParameterDescription>
+            {
+                new ParameterDescription(nameof(SetTpSlRequest.Quantity), typeof(decimal), "Quantity of the position to close", 123m)
+            }
+        };
+
+        async Task<ExchangeWebResult<SharedId>> IFuturesTpSlRestClient.SetTpSlAsync(SetTpSlRequest request, CancellationToken ct)
+        {
+            var validationError = ((IFuturesTpSlRestClient)this).SetTpSlOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<SharedId>(Exchange, validationError);
+
+            var result = await Trading.PlaceTriggerOrderAsync(
+                request.Symbol.GetSymbol(FormatSymbol),
+                request.PositionSide == SharedPositionSide.Long ? OrderSide.Buy: OrderSide.Sell,
+                request.TpSlSide == SharedTpSlSide.TakeProfit ? TriggerOrderType.TakeProfitMarket : TriggerOrderType.StopMarket,
+                quantity: request.Quantity!.Value,
+                stopPrice: request.TriggerPrice,
+                timeInForce: TimeInForce.ImmediateOrCancel,
+                triggerPriceType: PriceType.MarkPrice,
+                positionSide: request.PositionSide == SharedPositionSide.Long ? PositionSide.Long : PositionSide.Short,
+                ct: ct).ConfigureAwait(false);
+
+            if (!result)
+                return result.AsExchangeResult<SharedId>(Exchange, null, default);
+
+            // Return
+            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedId(result.Data.ToString()));
+        }
+
+        EndpointOptions<CancelTpSlRequest> IFuturesTpSlRestClient.CancelTpSlOptions { get; } = new EndpointOptions<CancelTpSlRequest>(true)
+        {
+            RequiredOptionalParameters = new List<ParameterDescription>
+            {
+                new ParameterDescription(nameof(CancelTpSlRequest.OrderId), typeof(string), "Id of the tp/sl order", "123123")
+            }
+        };
+
+        async Task<ExchangeWebResult<bool>> IFuturesTpSlRestClient.CancelTpSlAsync(CancelTpSlRequest request, CancellationToken ct)
+        {
+            var validationError = ((IFuturesTpSlRestClient)this).CancelTpSlOptions.ValidateRequest(Exchange, request, request.Symbol.TradingMode, SupportedTradingModes);
+            if (validationError != null)
+                return new ExchangeWebResult<bool>(Exchange, validationError);
+
+            if (!long.TryParse(request.OrderId, out var orderId))
+                return new ExchangeWebResult<bool>(Exchange, new ArgumentError("Invalid order id"));
+
+            var result = await Trading.CancelTriggerOrderAsync(
+                orderId,
+                ct: ct).ConfigureAwait(false);
+            if (!result)
+                return result.AsExchangeResult<bool>(Exchange, null, default);
+
+            // Return
+            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, true);
         }
 
         #endregion
