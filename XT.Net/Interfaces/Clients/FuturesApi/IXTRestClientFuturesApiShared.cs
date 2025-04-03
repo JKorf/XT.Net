@@ -22,7 +22,8 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         IFuturesOrderRestClient,
         IFeeRestClient,
         IFuturesTriggerOrderRestClient,
-        IFuturesTpSlRestClient
+        IFuturesTpSlRestClient,
+        IBookTickerRestClient
     {
     }
 }

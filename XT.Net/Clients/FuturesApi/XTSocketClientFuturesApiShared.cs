@@ -182,18 +182,21 @@ namespace XT.Net.Clients.FuturesApi
                         update.Data.CreateTime)
                     {
                         ClientOrderId = update.Data.ClientOrderId,
-                        OrderPrice = update.Data.OrderType == OrderType.Market ? null : update.Data.Price,
+                        OrderPrice = update.Data.OrderType == OrderType.Market ? null : update.Data.Price == 0 ? null: update.Data.Price,
                         OrderQuantity = new SharedOrderQuantity(contractQuantity: update.Data.Quantity),
                         QuantityFilled = new SharedOrderQuantity(contractQuantity: update.Data.QuantityFilled),
                         AveragePrice = update.Data.AveragePrice == 0 ? null : update.Data.AveragePrice,
                         PositionSide = update.Data.PositionSide == Enums.PositionSide.Long ? SharedPositionSide.Long : update.Data.PositionSide == Enums.PositionSide.Short ? SharedPositionSide.Short : null,
-                        TimeInForce = ParseTimeInForce(update.Data.TimeInForce)
+                        TimeInForce = ParseTimeInForce(update.Data.TimeInForce),
+                        TakeProfitPrice = update.Data.TriggerProfitPrice,
+                        StopLossPrice = update.Data.TriggerStopPrice
                     }
                 })),
                 ct: ct).ConfigureAwait(false);
 
             return new ExchangeResult<UpdateSubscription>(Exchange, result);
         }
+        #endregion
 
         #region Position client
         EndpointOptions<SubscribePositionRequest> IPositionSocketClient.SubscribePositionOptions { get; } = new EndpointOptions<SubscribePositionRequest>(false)
@@ -220,8 +223,6 @@ namespace XT.Net.Clients.FuturesApi
 
             return new ExchangeResult<UpdateSubscription>(Exchange, result);
         }
-
-        #endregion
 
         private SharedOrderStatus ParseOrderStatus(OrderStatus status)
         {
