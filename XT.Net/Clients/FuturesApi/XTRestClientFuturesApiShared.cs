@@ -923,8 +923,7 @@ namespace XT.Net.Clients.FuturesApi
                 return SharedTriggerOrderStatus.Active;
             }
 
-#warning is there a way to check filled/unfilled?
-            return SharedTriggerOrderStatus.Filled;
+            return SharedTriggerOrderStatus.Triggered;
         }
 
         EndpointOptions<CancelOrderRequest> IFuturesTriggerOrderRestClient.CancelFuturesTriggerOrderOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);

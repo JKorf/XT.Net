@@ -215,7 +215,7 @@ namespace XT.Net.Clients.FuturesApi
             var result = await SubscribeToPositionUpdatesAsync(request.ListenKey!,
                 update => handler(update.AsExchangeEvent<SharedPosition[]>(Exchange, [new SharedPosition(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),update.Data.Symbol, update.Data.PositionSize, update.DataTime ?? update.ReceiveTime)
                 {
-                    AverageOpenPrice = update.Data.EntryPrice,
+                    AverageOpenPrice = update.Data.EntryPrice == 0 ? null : update.Data.EntryPrice,
                     PositionSide = update.Data.PositionSide == Enums.PositionSide.Short ? SharedPositionSide.Short : SharedPositionSide.Long,
                     Leverage = update.Data.Leverage
                 }])),
