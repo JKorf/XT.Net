@@ -10,25 +10,28 @@ namespace XT.Net.Interfaces.Clients
     /// Client for accessing the XT Rest API. 
     /// </summary>
     public interface IXTRestClient : IRestClient
-    {   
+    {
         /// <summary>
         /// USDT-M Futures API endpoints
         /// </summary>
+        /// <see cref="IXTRestClientFuturesApi"/>
         public IXTRestClientFuturesApi UsdtFuturesApi { get; }
         /// <summary>
         /// Coin-M Futures API endpoints
         /// </summary>
+        /// <see cref="IXTRestClientFuturesApi"/>
         public IXTRestClientFuturesApi CoinFuturesApi { get; }
 
         /// <summary>
         /// Spot API endpoints
         /// </summary>
+        /// <see cref="IXTRestClientSpotApi"/>
         public IXTRestClientSpotApi SpotApi { get; }
 
         /// <summary>
         /// Update specific options
         /// </summary>
-        /// <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+        /// <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         void SetOptions(UpdateOptions options);
 
         /// <summary>
