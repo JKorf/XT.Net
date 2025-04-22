@@ -130,7 +130,7 @@ namespace XT.Net.Clients.FuturesApi
             if (!result)
                 return result.AsExchangeResult<string>(Exchange, null, default);
 
-            return result.AsExchangeResult(Exchange, TradingMode.Spot, result.Data);
+            return result.AsExchangeResult(Exchange, SupportedTradingModes, result.Data);
         }
         EndpointOptions<KeepAliveListenKeyRequest> IListenKeyRestClient.KeepAliveOptions { get; } = new EndpointOptions<KeepAliveListenKeyRequest>(true);
         async Task<ExchangeWebResult<string>> IListenKeyRestClient.KeepAliveListenKeyAsync(KeepAliveListenKeyRequest request, CancellationToken ct)
@@ -144,14 +144,14 @@ namespace XT.Net.Clients.FuturesApi
             if (!result)
                 return result.AsExchangeResult<string>(Exchange, null, default);
 
-            return result.AsExchangeResult(Exchange, TradingMode.Spot, request.ListenKey);
+            return result.AsExchangeResult(Exchange, SupportedTradingModes, request.ListenKey);
         }
 
         EndpointOptions<StopListenKeyRequest> IListenKeyRestClient.StopOptions { get; } = new EndpointOptions<StopListenKeyRequest>(true);
         Task<ExchangeWebResult<string>> IListenKeyRestClient.StopListenKeyAsync(StopListenKeyRequest request, CancellationToken ct)
         {
             // There is no way to deactivate a token, just return
-            return Task.FromResult(new ExchangeWebResult<string>(Exchange, TradingMode.Spot, new WebCallResult<string>(null, null, null, null, null, null, null, null, null, null, ResultDataSource.Server, request.ListenKey, null)));
+            return Task.FromResult(new ExchangeWebResult<string>(Exchange, SupportedTradingModes, new WebCallResult<string>(null, null, null, null, null, null, null, null, null, null, ResultDataSource.Server, request.ListenKey, null)));
         }
         #endregion
 
@@ -793,7 +793,7 @@ namespace XT.Net.Clients.FuturesApi
                 return result.AsExchangeResult<SharedFee>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult(Exchange, TradingMode.Spot, new SharedFee(result.Data.MakerFee * 100, result.Data.TakerFee * 100));
+            return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedFee(result.Data.MakerFee * 100, result.Data.TakerFee * 100));
         }
         #endregion
 
