@@ -476,7 +476,7 @@ namespace XT.Net.Clients.SpotApi
             if (!result)
                 return result.AsExchangeResult<SharedSpotSymbol[]>(Exchange, null, default);
 
-            return result.AsExchangeResult<SharedSpotSymbol[]>(Exchange, TradingMode.Spot, result.Data.Symbols.Select(s => new SharedSpotSymbol(s.BaseAsset, s.QuoteAsset, s.Symbol, s.SymbolStatus == SymbolStatus.Online)
+            var resultData = result.AsExchangeResult<SharedSpotSymbol[]>(Exchange, TradingMode.Spot, result.Data.Symbols.Select(s => new SharedSpotSymbol(s.BaseAsset, s.QuoteAsset, s.Symbol, s.SymbolStatus == SymbolStatus.Online)
             {
                 MinTradeQuantity = s.QuantityFilter?.MinQuantity,
                 MaxTradeQuantity = s.QuantityFilter?.MaxQuantity,
@@ -484,6 +484,9 @@ namespace XT.Net.Clients.SpotApi
                 QuantityDecimals = s.QuantityPrecision,
                 PriceDecimals = s.PricePrecision
             }).ToArray());
+
+            ExchangeSymbolCache.UpdateSymbolInfo(_topicId, resultData.Data);
+            return resultData;
         }
 
         #endregion
