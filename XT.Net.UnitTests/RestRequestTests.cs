@@ -67,6 +67,7 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.SpotApi.Trading.GetOrderAsync(123), "GetOrder", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Trading.CancelOrderAsync(123), "CancelOrder", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Trading.GetOpenOrdersAsync(), "GetOpenOrders", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.SpotApi.Trading.GetOpenOrdersAsync(), "GetOpenOrders2", nestedJsonProperty: "result", ignoreProperties: ["nftId", "symbolType", "origRestFee", "origFeeCurrency", "platFormCurrencyFee", "platFormCurrency", "couponAmount", "couponCurrency", "couponDeductFee"]); // Undocumented
             await tester.ValidateAsync(client => client.SpotApi.Trading.CancelAllOrdersAsync(BusinessType.Spot), "CancelAllOrders");
             await tester.ValidateAsync(client => client.SpotApi.Trading.GetClosedOrdersAsync(), "GetClosedOrders", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Trading.EditOrderAsync(123, 0.1m, 0.1m), "EditOrder", nestedJsonProperty: "result");

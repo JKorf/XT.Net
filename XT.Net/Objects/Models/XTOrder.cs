@@ -72,22 +72,22 @@ namespace XT.Net.Objects.Models
         /// Quantity filled, in the placement asset
         /// </summary>
         [JsonPropertyName("executedQty")]
-        public decimal QuantityFilledPlacement { get; set; }
+        public decimal? QuantityFilledPlacement { get; set; }
         /// <summary>
         /// Quantity remaining to be filled, in the placement asset
         /// </summary>
         [JsonPropertyName("leavingQty")]
-        public decimal QuantityRemaining { get; set; }
+        public decimal? QuantityRemaining { get; set; }
         /// <summary>
         /// Quantity filled
         /// </summary>
         [JsonPropertyName("tradeBase")]
-        public decimal QuantityFilled { get; set; }
+        public decimal? QuantityFilled { get; set; }
         /// <summary>
         /// Value filled
         /// </summary>
         [JsonPropertyName("tradeQuote")]
-        public decimal QuoteQuantityFilled { get; set; }
+        public decimal? QuoteQuantityFilled { get; set; }
         /// <summary>
         /// Average price
         /// </summary>
