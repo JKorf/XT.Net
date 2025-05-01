@@ -9260,6 +9260,12 @@
             Get the XT environment by name
             </summary>
         </member>
+        <member name="P:XT.Net.XTEnvironment.All">
+            <summary>
+            Available environment names
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:XT.Net.XTEnvironment.Live">
             <summary>
             Live environment
