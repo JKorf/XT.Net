@@ -9,6 +9,7 @@ using System.Text;
 using CryptoExchange.Net.SharedApis;
 using System.Text.Json.Serialization;
 using XT.Net.Converters;
+using CryptoExchange.Net.Converters;
 
 namespace XT.Net
 {
@@ -51,7 +52,7 @@ namespace XT.Net
 
         internal const string _clientRef = "4XWeqN10M1fcoI5L";
 
-        internal static JsonSerializerContext _serializerContext = new XTSourceGenerationContext();
+        internal static JsonSerializerContext _serializerContext = JsonSerializerContextCache.GetOrCreate<XTSourceGenerationContext>();
 
         /// <summary>
         /// Format a base and quote asset to an XT recognized symbol 
