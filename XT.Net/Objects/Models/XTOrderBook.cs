@@ -41,7 +41,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Order book entry
     /// </summary>
-    [JsonConverter(typeof(ArrayConverter<XTOrderBookEntry, XTSourceGenerationContext>))]
+    [JsonConverter(typeof(ArrayConverter<XTOrderBookEntry>))]
     [SerializationModel]
     public record XTOrderBookEntry : ISymbolOrderBookEntry
     {
