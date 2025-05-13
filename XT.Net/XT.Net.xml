@@ -645,8 +645,2084 @@
         <member name="M:XT.Net.Clients.XTSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Converters.SymbolFilterConverter.CreateConverter(System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc />
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableBoolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.Decimal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableDecimal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.IDictionaryStringObject">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.DateTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableDateTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.AccountStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.BillSide">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.BillType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.BusinessType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.ContractType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.DepositStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.EntrustType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.EntrustTypeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NotificationType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.OrderSide">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.OrderStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.OrderType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.OrderTypeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.PositionSide">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.PositionType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullablePositionType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.PositionTypeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.PriceType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullablePriceType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.ProductType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.SourceType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableSourceType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.SymbolFilterType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.SymbolStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableSymbolStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.TimeInForce">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableTimeInForce">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.TimeInForceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.TrackOrderStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.TrackRange">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.TradeRole">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.TriggerOrderStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.TriggerOrderType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.UnderlyingType">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.WithdrawalStatus">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesError">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesErrorArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTServerTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTToken">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXT24HTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTAdlInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTAssetNetworksArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTAssets">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTBalances">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTBookTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTCancelId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTClientIp">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTDataPageXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTDataPageXTFuturesUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTDataPageXTStopLimitOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTDataPageXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTDataPageXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTDepositAddress">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTEditId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFeeRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFundingRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesAccountInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesBalanceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesBookTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesBookTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesOrderBook">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesSymbol">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesSymbols">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTFuturesTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTLeverageBracketsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTLeverageBrackets">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTMarginCallInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTMarketInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTMarketInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTOpenInterest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTOrderBook">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTOrderId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTAccountBill">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTDeposit">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTFundingFee">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTFundingRateHistory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTRiskBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPageXTWithdrawal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPositionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPositionInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPriceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPrice">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTPriceTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTStopLimitOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTSymbols">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTUserAssetArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseXTUserAsset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseNullableInt64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseInt64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseStringArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesRestResponseString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTServerTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTToken">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXT24HTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTAdlInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTAssetNetworksArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTAssets">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTBalances">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTBookTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTCancelId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTClientIp">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTDataPageXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTDataPageXTFuturesUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTDataPageXTStopLimitOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTDataPageXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTDataPageXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTDepositAddress">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTEditId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFeeRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFundingRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesAccountInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesBalanceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesBookTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesBookTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesOrderBook">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesSymbol">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesSymbols">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTFuturesTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTLeverageBracketsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTLeverageBrackets">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTMarginCallInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTMarketInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTMarketInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTOpenInterest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTOrderBook">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTOrderId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTAccountBill">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTDeposit">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTFundingFee">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTFundingRateHistory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTRiskBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPageXTWithdrawal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPositionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPositionInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPriceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPrice">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTPriceTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTStopLimitOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTSymbols">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTUserAssetArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseXTUserAsset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseNullableInt64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseInt64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseStringArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRestResponseString">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTServerTime">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTServerTimeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketResponse">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXT24HTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTBalanceUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFundingRateUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesBalanceUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesIncrementalOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesKline">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesPositionUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTFuturesUserTradeUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTIncrementalOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTKlineUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTMarketInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTNotification">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTOrderUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTPrice">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTTradeUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSocketUpdateXTUserTradeUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTToken">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XT24HTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XT24HTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAccountBill">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAccountBillArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAdlInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAdlInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAsset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAssetArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAssetNetwork">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAssetNetworkArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAssetNetworks">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAssetNetworksArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAssets">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTAssetsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBalanceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBalances">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBalancesArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBalanceUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBalanceUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBaseFuturesOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBaseFuturesOrderBookUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBaseOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBaseOrderBookUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBookTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTBookTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTCancelId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTCancelIdArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTClientIp">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTClientIpArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDataPageXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDataPageXTFuturesUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDataPageXTStopLimitOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDataPageXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDataPageXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDeposit">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDepositArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDepositAddress">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTDepositAddressArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTEditId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTEditIdArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFeeRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFeeRateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingFee">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingFeeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingRate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingRateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingRateHistory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingRateHistoryArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingRateUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFundingRateUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesAccountInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesAccountInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesBalanceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesBalanceUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesBalanceUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesBookTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesBookTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesIncrementalOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesIncrementalOrderBookUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesKline">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrderBook">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrderBookArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrderBookUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrderRequest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesOrderRequestArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesPositionUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesPositionUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesSymbol">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesSymbolArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesSymbolInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesSymbolInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesSymbols">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesSymbolsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesUserTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesUserTradeUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTFuturesUserTradeUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTIdArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTIncrementalOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTIncrementalOrderBookUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTKline">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTKlineArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTKlineUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTKlineUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTLeverageBracket">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTLeverageBracketArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTLeverageBrackets">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTLeverageBracketsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTMarginCallInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTMarginCallInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTMarketInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTMarketInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTNotification">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTNotificationArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOpenInterest">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOpenInterestArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderBook">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderBookArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderBookEntry">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderBookEntryArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderBookUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderBookUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderFee">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderFeeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderId">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderIdArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTOrderUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTAccountBill">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTDeposit">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTFundingFee">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTFundingRateHistory">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTFuturesOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTRiskBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPageXTWithdrawal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPosition">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPositionArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPositionInfo">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPositionInfoArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPrice">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPriceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPriceFilter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPriceFilterArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPriceTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTPriceTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTProtectionLimitFilter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTProtectionLimitFilterArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTProtectionMarketFilter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTProtectionMarketFilterArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTProtectionOnlineFilter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTProtectionOnlineFilterArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTQuantityFilter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTQuantityFilterArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTQuoteQuantityFilter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTQuoteQuantityFilterArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRiskBalance">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTRiskBalanceArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTStopLimitOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTStopLimitOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbol">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbolArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbolFilter">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbolFilterArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbols">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbolsArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbolSUBSUB">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTSymbolSUBSUBArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTicker">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTickerArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTrackOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTrackOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTradeUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTradeUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTriggerOrder">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTTriggerOrderArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTUserAsset">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTUserAssetArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTUserTrade">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTUserTradeArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTUserTradeUpdate">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTUserTradeUpdateArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTWithdrawal">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.XTWithdrawalArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableInt32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.Int32Array">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.Int64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.NullableInt64">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.Object">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.ObjectArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.StringArray">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:XT.Net.Converters.XTSourceGenerationContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:XT.Net.Converters.XTSourceGenerationContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:XT.Net.Converters.XTSourceGenerationContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:XT.Net.Converters.XTSourceGenerationContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:XT.Net.Enums.AccountStatus">
             <summary>
@@ -1467,20 +3543,23 @@
             <summary>
             Endpoints related to account settings, info or actions
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiAccount"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi.ExchangeData">
             <summary>
             Endpoints related to retrieving market and system data
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiExchangeData"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi.Trading">
             <summary>
             Endpoints related to orders and trades
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiTrading"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi.SharedClient">
             <summary>
-            Get the shared rest requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared rest requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApiAccount">
@@ -2398,7 +4477,7 @@
         </member>
         <member name="P:XT.Net.Interfaces.Clients.FuturesApi.IXTSocketClientFuturesApi.SharedClient">
             <summary>
-            Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared socket requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:XT.Net.Interfaces.Clients.FuturesApi.IXTSocketClientFuturesApiShared">
@@ -2415,22 +4494,25 @@
             <summary>
             USDT-M Futures API endpoints
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.CoinFuturesApi">
             <summary>
             Coin-M Futures API endpoints
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTRestClientFuturesApi"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.IXTRestClient.SpotApi">
             <summary>
             Spot API endpoints
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi"/>
         </member>
         <member name="M:XT.Net.Interfaces.Clients.IXTRestClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
             <summary>
             Update specific options
             </summary>
-            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+            <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         </member>
         <member name="M:XT.Net.Interfaces.Clients.IXTRestClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>
@@ -2447,17 +4529,19 @@
             <summary>
             Futures API endpoints
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.FuturesApi.IXTSocketClientFuturesApi"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.IXTSocketClient.SpotApi">
             <summary>
             Spot API endpoints
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi"/>
         </member>
         <member name="M:XT.Net.Interfaces.Clients.IXTSocketClient.SetOptions(CryptoExchange.Net.Objects.Options.UpdateOptions)">
             <summary>
             Update specific options
             </summary>
-            <param name="options">Options to update. Only specific options are changable after the client has been created</param>
+            <param name="options">Options to update. Only specific options are changeable after the client has been created</param>
         </member>
         <member name="M:XT.Net.Interfaces.Clients.IXTSocketClient.SetApiCredentials(CryptoExchange.Net.Authentication.ApiCredentials)">
             <summary>
@@ -2474,20 +4558,23 @@
             <summary>
             Endpoints related to account settings, info or actions
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi.ExchangeData">
             <summary>
             Endpoints related to retrieving market and system data
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiExchangeData"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi.Trading">
             <summary>
             Endpoints related to orders and trades
             </summary>
+            <see cref="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiTrading"/>
         </member>
         <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApi.SharedClient">
             <summary>
-            Get the shared rest requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared rest requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTRestClientSpotApiAccount">
@@ -2990,7 +5077,7 @@
         </member>
         <member name="P:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApi.SharedClient">
             <summary>
-            Get the shared socket requests client. This interface is shared with other exhanges to allow for a common implementation for different exchanges.
+            Get the shared socket requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.
             </summary>
         </member>
         <member name="T:XT.Net.Interfaces.Clients.SpotApi.IXTSocketClientSpotApiShared">
@@ -7173,6 +9260,12 @@
             Get the XT environment by name
             </summary>
         </member>
+        <member name="P:XT.Net.XTEnvironment.All">
+            <summary>
+            Available environment names
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:XT.Net.XTEnvironment.Live">
             <summary>
             Live environment
@@ -7241,6 +9334,11 @@
         <member name="E:XT.Net.XTRateLimiters.RateLimitTriggered">
             <summary>
             Event for when a rate limit is triggered
+            </summary>
+        </member>
+        <member name="E:XT.Net.XTRateLimiters.RateLimitUpdated">
+            <summary>
+            Event when the rate limit is updated. Note that it's only updated when a request is send, so there are no specific updates when the current usage is decaying.
             </summary>
         </member>
         <member name="T:XT.Net.XTTrackerFactory">

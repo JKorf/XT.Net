@@ -1,4 +1,4 @@
-GET
+POST
 /future/trade/v1/entrust/cancel-all-plan
 true
 {

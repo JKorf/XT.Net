@@ -1,4 +1,4 @@
-﻿using CryptoExchange.Net.Converters;
+using CryptoExchange.Net.Converters;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using System;
@@ -11,6 +11,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Order book info
     /// </summary>
+    [SerializationModel]
     public record XTBaseOrderBookUpdate
     {
         /// <summary>
@@ -23,17 +24,18 @@ namespace XT.Net.Objects.Models
         /// Bids
         /// </summary>
         [JsonPropertyName("b")]
-        public IEnumerable<XTOrderBookEntry> Bids { get; set; } = Array.Empty<XTOrderBookEntry>();
+        public XTOrderBookEntry[] Bids { get; set; } = Array.Empty<XTOrderBookEntry>();
         /// <summary>
         /// Asks
         /// </summary>
         [JsonPropertyName("a")]
-        public IEnumerable<XTOrderBookEntry> Asks { get; set; } = Array.Empty<XTOrderBookEntry>();
+        public XTOrderBookEntry[] Asks { get; set; } = Array.Empty<XTOrderBookEntry>();
     }
 
     /// <summary>
     /// Order book update
     /// </summary>
+    [SerializationModel]
     public record XTOrderBookUpdate : XTBaseOrderBookUpdate
     {
         /// <summary>
@@ -46,6 +48,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Order book info
     /// </summary>
+    [SerializationModel]
     public record XTIncrementalOrderBookUpdate : XTBaseOrderBookUpdate
     {
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -8,6 +9,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Networks
     /// </summary>
+    [SerializationModel]
     public record XTAssetNetworks
     {
         /// <summary>
@@ -19,12 +21,13 @@ namespace XT.Net.Objects.Models
         /// Supported networks
         /// </summary>
         [JsonPropertyName("supportChains")]
-        public IEnumerable<XTAssetNetwork> Networks { get; set; } = Array.Empty<XTAssetNetwork>();
+        public XTAssetNetwork[] Networks { get; set; } = Array.Empty<XTAssetNetwork>();
     }
 
     /// <summary>
     /// Network info
     /// </summary>
+    [SerializationModel]
     public record XTAssetNetwork
     {
         /// <summary>

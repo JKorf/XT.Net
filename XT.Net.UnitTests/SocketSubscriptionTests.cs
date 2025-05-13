@@ -17,7 +17,7 @@ namespace XT.Net.UnitTests
             {
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Spot", "wss://stream.xt.com", stjCompare: true);
+            var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Spot", "wss://stream.xt.com");
             await tester.ValidateAsync<XTTradeUpdate>((client, handler) => client.SpotApi.SubscribeToTradeUpdatesAsync("eth_usdt", handler), "Trades", nestedJsonProperty: "data");
             await tester.ValidateAsync<XTKlineUpdate>((client, handler) => client.SpotApi.SubscribeToKlineUpdatesAsync("eth_usdt", Enums.KlineInterval.FiveMinutes, handler), "Klines", nestedJsonProperty: "data");
             await tester.ValidateAsync<XTOrderBookUpdate>((client, handler) => client.SpotApi.SubscribeToOrderBookUpdatesAsync("eth_usdt", 20, handler), "OrderBook", nestedJsonProperty: "data");
@@ -34,7 +34,7 @@ namespace XT.Net.UnitTests
             {
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
-            var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Futures", "wss://stream.xt.com", stjCompare: true);
+            var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Futures", "wss://stream.xt.com");
             await tester.ValidateAsync<XTFuturesTrade>((client, handler) => client.FuturesApi.SubscribeToTradeUpdatesAsync("eth_usdt", handler), "Trades", nestedJsonProperty: "data");
             await tester.ValidateAsync<XTFuturesKline>((client, handler) => client.FuturesApi.SubscribeToKlineUpdatesAsync("eth_usdt", Enums.KlineInterval.FiveMinutes, handler), "Klines", nestedJsonProperty: "data");
             await tester.ValidateAsync<XTFuturesTicker>((client, handler) => client.FuturesApi.SubscribeToTickerUpdatesAsync("eth_usdt", handler), "Ticker", nestedJsonProperty: "data");

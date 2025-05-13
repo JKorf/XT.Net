@@ -27,12 +27,12 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Balances
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTFuturesBalance>>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTFuturesBalance[]>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.AddOptional("queryAccountId", accountId);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/compat/balance/list", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTFuturesBalance>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTFuturesBalance[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -68,11 +68,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get User Assets
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTUserAsset>>> GetUserAssetsAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTUserAsset[]>> GetUserAssetsAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/balance/list", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTUserAsset>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTUserAsset[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -91,7 +91,7 @@ namespace XT.Net.Clients.FuturesApi
             CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol);
+            parameters.AddOptional("symbol", symbol?.ToLower());
             parameters.AddOptionalEnum("direction", direction);
             parameters.AddOptionalMilliseconds("startTime", startTime);
             parameters.AddOptionalMilliseconds("endTime", endTime);
@@ -109,7 +109,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult<XTPage<XTFundingFee>>> GetFundingFeeHistoryAsync(string? symbol = null, string? id = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol);
+            parameters.AddOptional("symbol", symbol?.ToLower());
             parameters.AddOptional("id", id);
             parameters.AddOptionalEnum("direction", direction);
             parameters.AddOptionalMillisecondsString("startTime", startTime);
@@ -141,7 +141,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> SetLeverageAsync(string symbol, PositionSide positionSide, int leverage, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("symbol", symbol);
+            parameters.Add("symbol", symbol.ToLower());
             parameters.AddEnum("positionSide", positionSide);
             parameters.Add("leverage", leverage);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/user/v1/position/adjust-leverage", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
@@ -157,7 +157,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> AdjustMarginAsync(string symbol, decimal marginChange, PositionSide positionSide, AdjustSide type, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("symbol", symbol);
+            parameters.Add("symbol", symbol.ToLower());
             parameters.Add("margin", marginChange);
             parameters.AddEnum("positionSide", positionSide);
             parameters.AddEnum("type", type);
@@ -171,11 +171,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Adl Info
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTAdlInfo>>> GetAdlInfoAsync(CancellationToken ct = default)
+        public async Task<WebCallResult<XTAdlInfo[]>> GetAdlInfoAsync(CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/user/v1/position/adl", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTAdlInfo>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTAdlInfo[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -187,7 +187,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> SetPositionTypeAsync(string symbol, PositionSide positionSide, PositionType positionType, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("symbol", symbol);
+            parameters.Add("symbol", symbol.ToLower());
             parameters.AddEnum("positionSide", positionSide);
             parameters.AddEnum("positionType", positionType);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/user/v1/position/change-type", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));

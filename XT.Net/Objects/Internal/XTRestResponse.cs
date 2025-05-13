@@ -1,10 +1,12 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
 namespace XT.Net.Objects.Internal
 {
+    [SerializationModel]
     internal record XTRestResponse
     {
         [JsonPropertyName("rc")]
@@ -16,6 +18,7 @@ namespace XT.Net.Objects.Internal
         public object[] MessageArgs { get; set; } = [];
     }
 
+    [SerializationModel]
     internal record XTRestResponse<T> : XTRestResponse
     {
         [JsonPropertyName("result")]

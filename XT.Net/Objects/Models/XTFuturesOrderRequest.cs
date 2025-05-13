@@ -1,4 +1,5 @@
-﻿using System;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -9,6 +10,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Order request
     /// </summary>
+    [SerializationModel]
     public record XTFuturesOrderRequest
     {
         /// <summary>
@@ -63,6 +65,6 @@ namespace XT.Net.Objects.Models
         public decimal? TriggerStopPrice { get; set; }
 
         [JsonInclude, JsonPropertyName("media")]
-        internal string Media => XTExchange.ClientRef;
+        internal string Media => XTExchange._clientRef;
     }
 }

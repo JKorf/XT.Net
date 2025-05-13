@@ -1,6 +1,6 @@
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Clients;
-using CryptoExchange.Net.Converters.JsonNet;
+using CryptoExchange.Net.Converters.SystemTextJson;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -31,7 +31,7 @@ namespace XT.Net.UnitTests
                 {
                     { "symbol", "LTCBTC" },
                 },
-                DateTimeConverter.ParseFromLong(1499827319559),
+                DateTimeConverter.ParseFromDouble(1499827319559),
                 true,
                 false);
         }

@@ -31,7 +31,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<WebCallResult<XTOrderId>> PlaceOrderAsync(string symbol, OrderSide orderSide, OrderType orderType, TimeInForce timeInForce, BusinessType businessType, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("symbol", symbol);
+            parameters.Add("symbol", symbol.ToLower());
             parameters.AddEnum("side", orderSide);
             parameters.AddEnum("type", orderType);
             parameters.AddEnum("timeInForce", timeInForce);
@@ -40,7 +40,7 @@ namespace XT.Net.Clients.SpotApi
             parameters.AddOptionalString("quoteQty", quoteQuantity);
             parameters.AddOptionalString("price", price);
             parameters.AddOptional("clientOrderId", clientOrderId);
-            parameters.Add("media", XTExchange.ClientRef);
+            parameters.Add("media", XTExchange._clientRef);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/v4/order", XTExchange.RateLimiter.XT, 1, true, limitGuard: new SingleLimitGuard(50, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
@@ -60,7 +60,6 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
-
 
         #region Get Order
 
@@ -92,14 +91,14 @@ namespace XT.Net.Clients.SpotApi
         #region Get Open Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTOrder>>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default)
+        public async Task<WebCallResult<XTOrder[]>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol);
+            parameters.AddOptional("symbol", symbol?.ToLower());
             parameters.AddOptionalEnum("bizType", businessType);
             parameters.AddOptionalEnum("side", orderSide);
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/open-order", XTExchange.RateLimiter.XT, 1, true, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
-            var result = await _baseClient.SendAsync<IEnumerable<XTOrder>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTOrder[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -111,7 +110,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<WebCallResult<XTPage<XTOrder>>> GetClosedOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, OrderType? orderType = null, OrderStatus? orderStatus = null, bool? hideCanceled = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol);
+            parameters.AddOptional("symbol", symbol?.ToLower());
             parameters.AddOptionalEnum("bizType", businessType);
             parameters.AddOptionalEnum("side", orderSide);
             parameters.AddOptionalEnum("type", orderType);
@@ -136,7 +135,7 @@ namespace XT.Net.Clients.SpotApi
         {
             var parameters = new ParameterCollection();
             parameters.AddEnum("bizType", businessType);
-            parameters.AddOptional("symbol", symbol);
+            parameters.AddOptional("symbol", symbol?.ToLower());
             parameters.AddOptionalEnum("side", orderSide);
             var request = _definitions.GetOrCreate(HttpMethod.Delete, "/v4/open-order", XTExchange.RateLimiter.XT, 1, true, parameterPosition: HttpMethodParameterPosition.InBody, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
@@ -178,12 +177,12 @@ namespace XT.Net.Clients.SpotApi
         #region Get Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<IEnumerable<XTOrder>>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default)
+        public async Task<WebCallResult<XTOrder[]>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
             parameters.Add("orderIds", string.Join(",", orderIds));
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/v4/batch-order", XTExchange.RateLimiter.XT, 1, true);
-            var result = await _baseClient.SendAsync<IEnumerable<XTOrder>>(request, parameters, ct).ConfigureAwait(false);
+            var result = await _baseClient.SendAsync<XTOrder[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
 
@@ -195,7 +194,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<WebCallResult<XTPage<XTUserTrade>>> GetUserTradesAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, OrderType? orderType = null, long? orderId = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol);
+            parameters.AddOptional("symbol", symbol?.ToLower());
             parameters.AddOptionalEnum("bizType", businessType);
             parameters.AddOptionalEnum("orderSide", orderSide);
             parameters.AddOptionalEnum("orderType", orderType);
@@ -211,6 +210,5 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
-
     }
 }

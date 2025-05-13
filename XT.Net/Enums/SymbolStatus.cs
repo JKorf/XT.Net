@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Attributes;
 
 namespace XT.Net.Enums
@@ -5,6 +7,7 @@ namespace XT.Net.Enums
     /// <summary>
     /// Symbol status
     /// </summary>
+    [JsonConverter(typeof(EnumConverter<SymbolStatus>))]
     public enum SymbolStatus
     {
         /// <summary>

@@ -1,4 +1,4 @@
-﻿using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,6 +11,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Symbols data
     /// </summary>
+    [SerializationModel]
     public record XTFuturesSymbols
     {
         /// <summary>
@@ -27,12 +28,13 @@ namespace XT.Net.Objects.Models
         /// Symbols
         /// </summary>
         [JsonPropertyName("symbols")]
-        public IEnumerable<XTFuturesSymbol> Symbols { get; set; } = Array.Empty<XTFuturesSymbol>();
+        public XTFuturesSymbol[] Symbols { get; set; } = Array.Empty<XTFuturesSymbol>();
     }
 
     /// <summary>
     /// Futures symbol
     /// </summary>
+    [SerializationModel]
     public record XTFuturesSymbol
     {
         /// <summary>
@@ -175,25 +177,25 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("supportOrderType")]
         [JsonConverter(typeof(CommaSplitEnumConverter<OrderType>))]
-        public IEnumerable<OrderType> SupportOrderType { get; set; } = [];
+        public OrderType[] SupportOrderType { get; set; } = [];
         /// <summary>
         /// Support time in force
         /// </summary>
         [JsonPropertyName("supportTimeInForce")]
         [JsonConverter(typeof(CommaSplitEnumConverter<TimeInForce>))]
-        public IEnumerable<TimeInForce> SupportTimeInForce { get; set; } = [];
+        public TimeInForce[] SupportTimeInForce { get; set; } = [];
         /// <summary>
         /// Support entrust type
         /// </summary>
         [JsonPropertyName("supportEntrustType")]
         [JsonConverter(typeof(CommaSplitEnumConverter<EntrustType>))]
-        public IEnumerable<EntrustType> SupportEntrustType { get; set; } = [];
+        public EntrustType[] SupportEntrustType { get; set; } = [];
         /// <summary>
         /// Support position type
         /// </summary>
         [JsonPropertyName("supportPositionType")]
         [JsonConverter(typeof(CommaSplitEnumConverter<PositionType>))]
-        public IEnumerable<PositionType> SupportPositionType { get; set; } = [];
+        public PositionType[] SupportPositionType { get; set; } = [];
         /// <summary>
         /// Min order quantity
         /// </summary>
@@ -258,7 +260,7 @@ namespace XT.Net.Objects.Models
         /// Labels
         /// </summary>
         [JsonPropertyName("labels")]
-        public IEnumerable<string> Labels { get; set; } = Array.Empty<string>();
+        public string[] Labels { get; set; } = Array.Empty<string>();
         /// <summary>
         /// Listing time
         /// </summary>
@@ -328,7 +330,7 @@ namespace XT.Net.Objects.Models
         /// Plates
         /// </summary>
         [JsonPropertyName("plates")]
-        public IEnumerable<int> Plates { get; set; } = Array.Empty<int>();
+        public int[] Plates { get; set; } = Array.Empty<int>();
         /// <summary>
         /// Fast track callback rate1
         /// </summary>

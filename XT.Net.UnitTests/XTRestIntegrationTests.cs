@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using XT.Net.Clients;
 using XT.Net.Objects.Options;
+using XT.Net.SymbolOrderBooks;
 
 namespace XT.Net.UnitTests
 {
@@ -132,6 +133,14 @@ namespace XT.Net.UnitTests
             await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetStopLimitOrdersAsync(default, default, default, default, default, default, default), true);
             await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(default, default, default, default, default, default), true);
             await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetClosedTrackOrdersAsync(default, default, default, default, default, default, default, default), true);
+        }
+
+        [Test]
+        public async Task TestOrderBooks()
+        {
+            await TestOrderBook(new XTSpotSymbolOrderBook("eth_usdt"));
+            await TestOrderBook(new XTCoinFuturesSymbolOrderBook("eth_usd"));
+            await TestOrderBook(new XTUsdtFuturesSymbolOrderBook("eth_usdt"));
         }
     }
 }

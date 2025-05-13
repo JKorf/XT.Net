@@ -1,13 +1,13 @@
-﻿using CryptoExchange.Net.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.Json.Serialization;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Attributes;
 
 namespace XT.Net.Enums
 {
     /// <summary>
     /// Futures kline interval
     /// </summary>
+    [JsonConverter(typeof(EnumConverter<FuturesKlineInterval>))]
     public enum FuturesKlineInterval
     {
         /// <summary>

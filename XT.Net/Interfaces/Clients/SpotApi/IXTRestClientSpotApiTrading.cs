@@ -61,7 +61,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="businessType">Filter by business type</param>
         /// <param name="orderSide">Filter by order side</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTOrder>>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default);
+        Task<WebCallResult<XTOrder[]>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get closed orders
@@ -107,7 +107,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="orderIds">Ids of the orders</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTOrder>>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default);
+        Task<WebCallResult<XTOrder[]>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel multiple orders

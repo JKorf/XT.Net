@@ -7,6 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CryptoExchange.Net.SharedApis;
+using System.Text.Json.Serialization;
+using XT.Net.Converters;
+using CryptoExchange.Net.Converters;
 
 namespace XT.Net
 {
@@ -47,7 +50,9 @@ namespace XT.Net
         /// </summary>
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
-        internal const string ClientRef = "4XWeqN10M1fcoI5L";
+        internal const string _clientRef = "4XWeqN10M1fcoI5L";
+
+        internal static JsonSerializerContext _serializerContext = JsonSerializerContextCache.GetOrCreate<XTSourceGenerationContext>();
 
         /// <summary>
         /// Format a base and quote asset to an XT recognized symbol 
@@ -81,6 +86,11 @@ namespace XT.Net
         /// </summary>
         public event Action<RateLimitEvent> RateLimitTriggered;
 
+        /// <summary>
+        /// Event when the rate limit is updated. Note that it's only updated when a request is send, so there are no specific updates when the current usage is decaying.
+        /// </summary>
+        public event Action<RateLimitUpdateEvent> RateLimitUpdated;
+
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         internal XTRateLimiters()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -95,7 +105,9 @@ namespace XT.Net
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerApiKeyPerEndpoint, [], 10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding))
                 .AddGuard(new RateLimitGuard(RateLimitGuard.PerEndpoint, [], 1000, TimeSpan.FromMinutes(1), RateLimitWindowType.Sliding));
             XT.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            XT.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
             RestFutures.RateLimitTriggered += (x) => RateLimitTriggered?.Invoke(x);
+            RestFutures.RateLimitUpdated += (x) => RateLimitUpdated?.Invoke(x);
         }
 
 

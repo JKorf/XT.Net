@@ -1,13 +1,13 @@
-﻿using CryptoExchange.Net.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Text.Json.Serialization;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Attributes;
 
 namespace XT.Net.Enums
 {
     /// <summary>
     /// Track callback config
     /// </summary>
+    [JsonConverter(typeof(EnumConverter<TrackRange>))]
     public enum TrackRange
     {
         /// <summary>

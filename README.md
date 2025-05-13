@@ -13,6 +13,7 @@ XT.Net is a client library for accessing the [XT REST and Websocket API](https:/
 * Extensive logging
 * Support for different environments
 * Easy integration with other exchange client based on the CryptoExchange.Net base library
+* Native AOT support
 
 ## Supported Frameworks
 The library is targeting both `.NET Standard 2.0` and `.NET Standard 2.1` for optimal compatibility
@@ -166,6 +167,39 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 2.0.0-beta4 - 01 May 2025
+    * Updated CryptoExchange.Net version to 9.0.0-beta5
+    * Added property to retrieve all available API environments
+
+* Version 2.0.0-beta3 - 25 Apr 2025
+    * Fixed deserialization issue in XTOrder response model
+
+* Version 2.0.0-beta2 - 23 Apr 2025
+    * Updated CryptoExchange.Net to version 9.0.0-beta2
+    * Added Shared spot ticker QuoteVolume mapping
+    * Fixed incorrect DataTradeMode on responses
+    * Fixed Shared GetSpotSymbolsAsync not updating ExchangeSymbolCache
+
+* Version 2.0.0-beta1 - 22 Apr 2025
+    * Updated CryptoExchange.Net to version 9.0.0-beta1, see https://github.com/JKorf/CryptoExchange.Net/releases/
+    * Added support for Native AOT compilation
+    * Added RateLimitUpdated event
+    * Added SharedSymbol response property to all Shared interfaces response models returning a symbol name
+    * Added GenerateClientOrderId method to FuturesApi and Spot Shared clients
+    * Added IBookTickerRestClient implementation to FuturesApi and SpotApi Shared clients
+    * Added IFuturesTriggerOrderRestClient implementation to FuturesApi Shared clients
+    * Added IFuturesTpSlRestClient implementation to FuturesApi Shared clients
+    * Added takeProfitPrice, stopLossPrice parameter support to V4Api PlaceFuturesOrderAsync
+    * Added TakeProfitPrice, StopLossPrice to SharedFuturesOrder model
+    * Added TakeProfitPrice, StopLossPrice to SharedPosition model
+    * Added OptionalExchangeParameters and Supported properties to EndpointOptions
+    * Added conversion of symbol to lowercase in various places
+    * Refactored Shared clients quantity parameters and responses to use SharedQuantity
+    * Updated all IEnumerable response and model types to array response types
+    * Removed Newtonsoft.Json dependency
+    * Fixed some typos
+    * Fixed Futures CancelAllTrackOrdersAsync endpoint
+
 * Version 1.2.1 - 03 Mar 2025
     * Fix for balance update deserialization error
 

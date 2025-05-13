@@ -26,7 +26,6 @@ namespace XT.Net.Interfaces
         /// </summary>
         IOrderBookFactory<XTOrderBookOptions> Spot { get; }
 
-
         /// <summary>
         /// Create a SymbolOrderBook for the symbol
         /// </summary>

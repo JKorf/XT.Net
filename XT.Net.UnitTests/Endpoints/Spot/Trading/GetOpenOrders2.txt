@@ -1,0 +1,45 @@
+GET
+/v4/open-order
+true
+{
+    "rc": 0,
+    "mc": "SUCCESS",
+    "ma": [],
+    "result": [
+        {
+            "symbol": "x_usdt",
+            "orderId": "123",
+            "clientOrderId": "123",
+            "baseCurrency": "x",
+            "quoteCurrency": "usdt",
+            "side": "BUY",
+            "type": "LIMIT",
+            "timeInForce": "GTC",
+            "price": "0.00285",
+            "origQty": "54697.00",
+            "origQuoteQty": "155.88645",
+            "executedQty": null,
+            "leavingQty": null,
+            "tradeBase": null,
+            "tradeQuote": null,
+            "avgPrice": null,
+            "fee": null,
+            "feeCurrency": null,
+            "nftId": null,
+            "symbolType": "normal",
+            "deductServices": [],
+            "origRestFee": null,
+            "origFeeCurrency": null,
+            "platFormCurrencyFee": null,
+            "platFormCurrency": null,
+            "couponAmount": null,
+            "couponCurrency": null,
+            "couponDeductFee": null,
+            "closed": false,
+            "state": "NEW",
+            "time": 1745532141557,
+            "updatedTime": null,
+            "ip": "123"
+        }
+    ]
+}

@@ -128,7 +128,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTPosition>>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
+        Task<WebCallResult<XTPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get position info
@@ -136,7 +136,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTPositionInfo>>> GetPositionsInfoAsync(string? symbol = null, CancellationToken ct = default);
+        Task<WebCallResult<XTPositionInfo[]>> GetPositionsInfoAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Close all open positions
@@ -151,7 +151,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<IEnumerable<XTMarginCallInfo>>> GetMarginCallInfoAsync(string? symbol = null, CancellationToken ct = default);
+        Task<WebCallResult<XTMarginCallInfo[]>> GetMarginCallInfoAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Place a new trigger order
