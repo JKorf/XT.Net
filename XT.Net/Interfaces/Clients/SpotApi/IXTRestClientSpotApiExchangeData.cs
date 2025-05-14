@@ -51,7 +51,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get klines
         /// <para><a href="https://doc.xt.com/#market4kline" /></para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
+        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="interval">Interval of the klines</param>
         /// <param name="startTime">Filter by start time</param>
         /// <param name="endTime">Filter by end time</param>
@@ -72,7 +72,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get trade history
         /// <para><a href="https://doc.xt.com/#market6tradeHistory" /></para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
+        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="direction">Page direction</param>
         /// <param name="fromId">From id</param>
