@@ -4728,7 +4728,7 @@
             Get klines
             <para><a href="https://doc.xt.com/#market4kline" /></para>
             </summary>
-            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="symbol">The symbol, for example `eth_usdt`</param>
             <param name="interval">Interval of the klines</param>
             <param name="startTime">Filter by start time</param>
             <param name="endTime">Filter by end time</param>
@@ -4749,7 +4749,7 @@
             Get trade history
             <para><a href="https://doc.xt.com/#market6tradeHistory" /></para>
             </summary>
-            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="symbol">The symbol, for example `eth_usdt`</param>
             <param name="limit">Max number of results</param>
             <param name="direction">Page direction</param>
             <param name="fromId">From id</param>
@@ -9400,6 +9400,12 @@
             <param name="services">The service collection</param>
             <param name="optionsDelegate">Set options for the XT services</param>
             <returns></returns>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.Bind_XTOptions(Microsoft.Extensions.Configuration.IConfiguration,System.Object)">
+            <summary>Attempts to bind the given object instance to configuration values by matching property names against configuration keys recursively.</summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.ValidateConfigurationKeys(System.Type,System.Lazy{System.Collections.Generic.HashSet{System.String}},Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Configuration.BinderOptions)">
+            <summary>If required by the binder options, validates that there are no unknown keys in the input configuration object.</summary>
         </member>
     </members>
 </doc>
