@@ -120,13 +120,18 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<ICryptoSocketClient, CryptoSocketClient>();
             services.AddTransient<IXTOrderBookFactory, XTOrderBookFactory>();
             services.AddTransient<IXTTrackerFactory, XTTrackerFactory>();
+            services.AddSingleton<IXTUserClientProvider, XTUserClientProvider>(x =>
+            new XTUserClientProvider(
+                x.GetRequiredService<HttpClient>(),
+                x.GetRequiredService<ILoggerFactory>(),
+                x.GetRequiredService<IOptions<XTRestOptions>>(),
+                x.GetRequiredService<IOptions<XTSocketOptions>>()));
 
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().SpotApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().SpotApi.SharedClient);
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().UsdtFuturesApi.SharedClient);
-            //services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().UsdtFuturesApi.SharedClient);
+            services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().FuturesApi.SharedClient);
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().CoinFuturesApi.SharedClient);
-            //services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().CoinFuturesApi.SharedClient);
 
             return services;
         }
