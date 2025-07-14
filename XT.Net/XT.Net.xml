@@ -272,7 +272,7 @@
             ctor
             </summary>
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateAccessor">
+        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateAccessor(System.Net.WebSockets.WebSocketMessageType)">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateSerializer">
@@ -516,7 +516,7 @@
             ctor
             </summary>
         </member>
-        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateAccessor">
+        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateAccessor(System.Net.WebSockets.WebSocketMessageType)">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateSerializer">

@@ -22,7 +22,7 @@ namespace XT.Net.Objects.Sockets
 
         public override CallResult<object> Deserialize(IMessageAccessor message, Type type)
         {
-            if (!message.IsJson)
+            if (!message.IsValid)
                 return new CallResult<object>(new XTSocketResponse() { Code = -1, Message = "Invalid listen key" });
 
             return base.Deserialize(message, type);

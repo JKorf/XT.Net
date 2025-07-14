@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
 using CryptoExchange.Net;
@@ -58,7 +59,7 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         /// <inheritdoc />
-        protected override IByteMessageAccessor CreateAccessor() => new SystemTextJsonByteMessageAccessor(SerializerOptions.WithConverters(XTExchange._serializerContext));
+        protected override IByteMessageAccessor CreateAccessor(WebSocketMessageType type) => new SystemTextJsonByteMessageAccessor(SerializerOptions.WithConverters(XTExchange._serializerContext));
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
@@ -253,7 +254,7 @@ namespace XT.Net.Clients.FuturesApi
         /// <inheritdoc />
         public override string? GetListenerIdentifier(IMessageAccessor message)
         {
-            if (!message.IsJson)
+            if (!message.IsValid)
                 return message.GetOriginalString();
 
             var id = message.GetValue<string?>(_idPath);
