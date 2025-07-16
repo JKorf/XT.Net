@@ -43,6 +43,8 @@ namespace XT.Net.Clients.SpotApi
         internal XTSocketClientSpotApi(ILogger logger, XTSocketOptions options) :
             base(logger, options.Environment.SpotSocketClientAddress!, options, options.SpotOptions)
         {
+            ProcessUnparsableMessages = true;
+
             RegisterPeriodicQuery(
                 "Ping",
                 TimeSpan.FromSeconds(20),

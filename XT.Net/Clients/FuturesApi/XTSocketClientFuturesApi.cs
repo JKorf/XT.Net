@@ -42,6 +42,8 @@ namespace XT.Net.Clients.FuturesApi
         internal XTSocketClientFuturesApi(ILogger logger, XTSocketOptions options) :
             base(logger, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
         {
+            ProcessUnparsableMessages = true;
+
             RegisterPeriodicQuery(
                 "Ping",
                 TimeSpan.FromSeconds(20),
