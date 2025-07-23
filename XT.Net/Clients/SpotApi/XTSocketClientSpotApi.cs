@@ -77,7 +77,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTTradeUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTTradeUpdate>(_logger,
-                symbols.Select(x => "trade@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "trade@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -93,7 +93,7 @@ namespace XT.Net.Clients.SpotApi
         {
             var intervalStr = EnumConverter.GetString(interval);
             var subscription = new XTSubscription<XTKlineUpdate>(_logger,
-                symbols.Select(x => "kline@" + x.ToLower() + "," + intervalStr).ToArray(),
+                symbols.Select(x => "kline@" + x.ToLowerInvariant() + "," + intervalStr).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
@@ -107,7 +107,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<XTOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTOrderBookUpdate>(_logger,
-                symbols.Select(x => "depth@" + x.ToLower() + "," + depth).ToArray(),
+                symbols.Select(x => "depth@" + x.ToLowerInvariant() + "," + depth).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -122,7 +122,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIncrementalOrderBookUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTIncrementalOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTIncrementalOrderBookUpdate>(_logger,
-                symbols.Select(x => "depth_update@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "depth_update@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
@@ -136,7 +136,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XT24HTicker>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XT24HTicker>(_logger,
-                symbols.Select(x => "ticker@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "ticker@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);

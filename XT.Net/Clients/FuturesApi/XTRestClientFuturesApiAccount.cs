@@ -91,7 +91,7 @@ namespace XT.Net.Clients.FuturesApi
             CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol?.ToLower());
+            parameters.AddOptional("symbol", symbol?.ToLowerInvariant());
             parameters.AddOptionalEnum("direction", direction);
             parameters.AddOptionalMilliseconds("startTime", startTime);
             parameters.AddOptionalMilliseconds("endTime", endTime);
@@ -109,7 +109,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult<XTPage<XTFundingFee>>> GetFundingFeeHistoryAsync(string? symbol = null, string? id = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol?.ToLower());
+            parameters.AddOptional("symbol", symbol?.ToLowerInvariant());
             parameters.AddOptional("id", id);
             parameters.AddOptionalEnum("direction", direction);
             parameters.AddOptionalMillisecondsString("startTime", startTime);
@@ -141,7 +141,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> SetLeverageAsync(string symbol, PositionSide positionSide, int leverage, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("symbol", symbol.ToLower());
+            parameters.Add("symbol", symbol.ToLowerInvariant());
             parameters.AddEnum("positionSide", positionSide);
             parameters.Add("leverage", leverage);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/user/v1/position/adjust-leverage", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
@@ -157,7 +157,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> AdjustMarginAsync(string symbol, decimal marginChange, PositionSide positionSide, AdjustSide type, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("symbol", symbol.ToLower());
+            parameters.Add("symbol", symbol.ToLowerInvariant());
             parameters.Add("margin", marginChange);
             parameters.AddEnum("positionSide", positionSide);
             parameters.AddEnum("type", type);
@@ -187,7 +187,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> SetPositionTypeAsync(string symbol, PositionSide positionSide, PositionType positionType, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("symbol", symbol.ToLower());
+            parameters.Add("symbol", symbol.ToLowerInvariant());
             parameters.AddEnum("positionSide", positionSide);
             parameters.AddEnum("positionType", positionType);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/user/v1/position/change-type", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));

@@ -65,9 +65,9 @@ namespace XT.Net
         public static string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverTime = null)
         {
             if (deliverTime == null)
-                return baseAsset.ToLower() + "_" + quoteAsset.ToLower();
+                return baseAsset.ToLowerInvariant() + "_" + quoteAsset.ToLowerInvariant();
 
-            return baseAsset.ToLower() + "_" + quoteAsset.ToLower() + "_" + deliverTime.Value.ToString("yyMMdd");
+            return baseAsset.ToLowerInvariant() + "_" + quoteAsset.ToLowerInvariant() + "_" + deliverTime.Value.ToString("yyMMdd");
         }
 
         /// <summary>

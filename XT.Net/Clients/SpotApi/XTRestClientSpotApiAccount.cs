@@ -138,7 +138,7 @@ namespace XT.Net.Clients.SpotApi
             parameters.AddEnum("to", to);
             parameters.Add("amount", quantity);
             parameters.Add("bizId", clientId);
-            parameters.AddOptional("symbol", symbol?.ToLower());
+            parameters.AddOptional("symbol", symbol?.ToLowerInvariant());
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/v4/balance/transfer", XTExchange.RateLimiter.XT, 1, true);
             var result = await _baseClient.SendAsync<long>(request, parameters, ct).ConfigureAwait(false);
             return result;
@@ -157,7 +157,7 @@ namespace XT.Net.Clients.SpotApi
             parameters.AddEnum("to", to);
             parameters.Add("amount", quantity);
             parameters.Add("bizId", clientId);
-            parameters.AddOptional("symbol", symbol?.ToLower());
+            parameters.AddOptional("symbol", symbol?.ToLowerInvariant());
             parameters.Add("toAccountId", toAccountId);
             parameters.AddOptional("fromAccountId", fromAccountId);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/v4/balance/account/transfer", XTExchange.RateLimiter.XT, 1, true);

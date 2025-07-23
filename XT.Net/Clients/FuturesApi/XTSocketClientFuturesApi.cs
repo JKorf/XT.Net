@@ -76,7 +76,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTFuturesTrade>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesTrade>(_logger,
-                symbols.Select(x => "trade@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "trade@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -92,7 +92,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var intervalStr = EnumConverter.GetString(interval);
             var subscription = new XTSubscription<XTFuturesKline>(_logger,
-                symbols.Select(x => "kline@" + x.ToLower() + "," + intervalStr).ToArray(),
+                symbols.Select(x => "kline@" + x.ToLowerInvariant() + "," + intervalStr).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
@@ -106,7 +106,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTFuturesTicker>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesTicker>(_logger,
-                symbols.Select(x => "ticker@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "ticker@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -121,7 +121,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToAggregatedTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTMarketInfo>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTMarketInfo>(_logger,
-                symbols.Select(x => "agg_ticker@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "agg_ticker@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -136,7 +136,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTPrice>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTPrice>(_logger,
-                symbols.Select(x => "index_price@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "index_price@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -151,7 +151,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTPrice>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTPrice>(_logger,
-                symbols.Select(x => "mark_price@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "mark_price@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -166,7 +166,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIncrementalOrderBookUpdatesAsync(IEnumerable<string> symbols, int? updateInterval, Action<DataEvent<XTFuturesIncrementalOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesIncrementalOrderBookUpdate>(_logger,
-                symbols.Select(x => "depth_update@" + x.ToLower() + "," + (updateInterval ?? 100) + "ms").ToArray(),
+                symbols.Select(x => "depth_update@" + x.ToLowerInvariant() + "," + (updateInterval ?? 100) + "ms").ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -181,11 +181,11 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, int? updateInterval, Action<DataEvent<XTFuturesOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesOrderBookUpdate>(_logger,
-                symbols.Select(x => "depth@" + x.ToLower() + "," + depth + "," + (updateInterval ?? 100) + "ms").ToArray(),
+                symbols.Select(x => "depth@" + x.ToLowerInvariant() + "," + depth + "," + (updateInterval ?? 100) + "ms").ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol).WithDataTimestamp(x.Data.Timestamp)),
                 false,
                 null,
-                symbols.Select(x => "depth@" + x.ToLower() + "," + depth).ToArray());
+                symbols.Select(x => "depth@" + x.ToLowerInvariant() + "," + depth).ToArray());
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
         }
 
@@ -197,7 +197,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTFundingRateUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFundingRateUpdate>(_logger,
-                symbols.Select(x => "mark_price@" + x.ToLower()).ToArray(),
+                symbols.Select(x => "mark_price@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol).WithDataTimestamp(x.Data.Timestamp)),
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/market"), subscription, ct).ConfigureAwait(false);
