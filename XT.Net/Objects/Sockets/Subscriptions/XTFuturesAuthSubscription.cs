@@ -14,19 +14,10 @@ namespace XT.Net.Objects.Sockets.Subscriptions
     /// <inheritdoc />
     internal class XTFuturesAuthSubscription<T> : Subscription<XTSocketResponse, XTSocketResponse>
     {
-        /// <inheritdoc />
-        public override HashSet<string> ListenerIdentifiers { get; set; }
-
         private readonly string[]? _queryIdentifiers;
         private readonly Action<DataEvent<T>> _handler;
         private readonly string _listenKey;
         private readonly string _topic;
-
-        /// <inheritdoc />
-        public override Type? GetMessageType(IMessageAccessor message)
-        {
-            return typeof(XTSocketUpdate<T>);
-        }
 
         /// <summary>
         /// ctor
@@ -37,7 +28,8 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             _queryIdentifiers = [topic+"@invalid_listen_key"];
             _listenKey = listenKey;
             _topic = topic;
-            ListenerIdentifiers = new HashSet<string>() { topic };
+
+            MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(topic, DoHandleMessage);
         }
 
         /// <inheritdoc />
@@ -63,10 +55,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public override CallResult DoHandleMessage(SocketConnection connection, DataEvent<object> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<XTSocketUpdate<T>> message)
         {
-            var data = (XTSocketUpdate<T>)message.Data;
-            _handler.Invoke(message.As(data.Data, data.Event, null, SocketUpdateType.Update));
+            _handler.Invoke(message.As(message.Data.Data, message.Data.Event, null, SocketUpdateType.Update));
             return CallResult.SuccessResult;
         }
     }

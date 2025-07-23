@@ -9057,12 +9057,6 @@
         <member name="T:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1">
             <inheritdoc />
         </member>
-        <member name="P:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.ListenerIdentifiers">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
-            <inheritdoc />
-        </member>
         <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String,System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}})">
             <summary>
             ctor
@@ -9074,16 +9068,10 @@
         <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.GetUnsubQuery">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{System.Object})">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Internal.XTSocketUpdate{`0}})">
             <inheritdoc />
         </member>
         <member name="T:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1">
-            <inheritdoc />
-        </member>
-        <member name="P:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.ListenerIdentifiers">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.GetMessageType(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}},System.Boolean,System.String,System.String[],System.String[])">
@@ -9097,7 +9085,7 @@
         <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.GetUnsubQuery">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{System.Object})">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Internal.XTSocketUpdate{`0}})">
             <inheritdoc />
         </member>
         <member name="T:XT.Net.Objects.XTApiAddresses">

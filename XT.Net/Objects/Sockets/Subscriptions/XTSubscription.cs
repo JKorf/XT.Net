@@ -6,6 +6,7 @@ using CryptoExchange.Net.Sockets;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using XT.Net.Objects.Internal;
 using XT.Net.Objects.Models;
 
@@ -14,19 +15,10 @@ namespace XT.Net.Objects.Sockets.Subscriptions
     /// <inheritdoc />
     internal class XTSubscription<T> : Subscription<XTSocketResponse, XTSocketResponse>
     {
-        /// <inheritdoc />
-        public override HashSet<string> ListenerIdentifiers { get; set; }
-
         private readonly string? _token;
         private readonly string[]? _queryIdentifiers;
         private readonly Action<DataEvent<T>> _handler;
         private readonly string[] _topics;
-
-        /// <inheritdoc />
-        public override Type? GetMessageType(IMessageAccessor message)
-        {
-            return typeof(XTSocketUpdate<T>);
-        }
 
         /// <summary>
         /// ctor
@@ -37,7 +29,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             _token = token;
             _topics = topics;
             _queryIdentifiers = queryIdentifiers;
-            ListenerIdentifiers = new HashSet<string>(listenerIdentifiers ?? topics);
+            MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(listenerIdentifiers ?? topics, DoHandleMessage);
         }
 
         /// <inheritdoc />
@@ -65,10 +57,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public override CallResult DoHandleMessage(SocketConnection connection, DataEvent<object> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<XTSocketUpdate<T>> message)
         {
-            var data = (XTSocketUpdate<T>)message.Data;
-            _handler.Invoke(message.As(data.Data, data.Event, null, SocketUpdateType.Update));
+            _handler.Invoke(message.As(message.Data.Data, message.Data.Event, null, SocketUpdateType.Update));
             return CallResult.SuccessResult;
         }
     }

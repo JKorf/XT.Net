@@ -10,15 +10,13 @@ namespace XT.Net.Objects.Sockets
 {
     internal class XTPingQuery : Query<string>
     {
-        public override HashSet<string> ListenerIdentifiers { get; set; }
-
         public XTPingQuery() : base("ping", false, 0)
         {
             RequestTimeout = TimeSpan.FromSeconds(5);
-            ListenerIdentifiers = new HashSet<string> { "pong" };
+            MessageMatcher.Create<string>("pong", HandleMessage);
         }
 
-        public override CallResult<string> HandleMessage(SocketConnection connection, DataEvent<string> message)
+        public CallResult<string> HandleMessage(SocketConnection connection, DataEvent<string> message)
         {
             return message.ToCallResult();
         }

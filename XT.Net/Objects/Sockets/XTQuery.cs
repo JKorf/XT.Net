@@ -11,13 +11,15 @@ namespace XT.Net.Objects.Sockets
 {
     internal class XTQuery : Query<XTSocketResponse>
     {
-        public override HashSet<string> ListenerIdentifiers { get; set; }
-
         public XTQuery(XTSocketRequest request, params string[] additionalIdentifiers) : base(request, false, 1)
         {
-            ListenerIdentifiers = new HashSet<string> { request.Id };
+            var checkers = new List<MessageHandlerLink>();
+            checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, request.Id, HandleMessage));
+
             foreach (string identifier in additionalIdentifiers)
-                ListenerIdentifiers.Add(identifier);
+                checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, identifier, HandleMessage));
+
+            MessageMatcher = MessageMatcher.Create(checkers.ToArray());
         }
 
         public override CallResult<object> Deserialize(IMessageAccessor message, Type type)
@@ -28,7 +30,7 @@ namespace XT.Net.Objects.Sockets
             return base.Deserialize(message, type);
         }
 
-        public override CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DataEvent<XTSocketResponse> message)
+        public CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DataEvent<XTSocketResponse> message)
         {
             if (message.Data.Code != 0)
                 return new CallResult<XTSocketResponse>(new ServerError(message.Data.Code, message.Data.Message));
