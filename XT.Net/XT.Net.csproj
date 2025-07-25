@@ -7,9 +7,9 @@
   <PropertyGroup>
     <PackageId>XT.Net</PackageId>
     <Authors>JKorf</Authors>
-    <PackageVersion>2.3.0</PackageVersion>
-    <AssemblyVersion>2.3.0</AssemblyVersion>
-    <FileVersion>2.3.0</FileVersion>
+    <PackageVersion>2.3.1</PackageVersion>
+    <AssemblyVersion>2.3.1</AssemblyVersion>
+    <FileVersion>2.3.1</FileVersion>
     <Description>XT.Net is a client library for accessing the XT Spot and Futures REST and Websocket API. All data is mapped to readable models and enum values. Additional features include an implementation for maintaining a client side order book, easy integration with other exchange client libraries and more.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>XT;XT.Net;XT.com;XT Client;XT API;CryptoCurrency;CryptoCurrency Exchange</PackageTags>
