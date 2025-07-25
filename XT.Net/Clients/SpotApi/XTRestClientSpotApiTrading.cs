@@ -9,6 +9,7 @@ using XT.Net.Enums;
 using XT.Net.Objects.Models;
 using CryptoExchange.Net.RateLimiting.Guards;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace XT.Net.Clients.SpotApi
 {
@@ -150,7 +151,7 @@ namespace XT.Net.Clients.SpotApi
         public async Task<WebCallResult> CancelOrdersAsync(IEnumerable<long> orderIds, string? clientBatchId = null, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            parameters.Add("orderIds", orderIds);
+            parameters.Add("orderIds", orderIds.ToArray());
             parameters.AddOptional("clientBatchId", clientBatchId);
             var request = _definitions.GetOrCreate(HttpMethod.Delete, "/v4/batch-order", XTExchange.RateLimiter.XT, 1, true, parameterPosition: HttpMethodParameterPosition.InBody);
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
