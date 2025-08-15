@@ -11,6 +11,7 @@ using XT.Net.Enums;
 using CryptoExchange.Net;
 using XT.Net.Objects.Models;
 using System.Drawing;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace XT.Net.Clients.FuturesApi
 {
@@ -68,7 +69,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var interval = (Enums.FuturesKlineInterval)request.Interval;
             if (!Enum.IsDefined(typeof(Enums.FuturesKlineInterval), interval))
-                return new ExchangeWebResult<SharedKline[]>(Exchange, new ArgumentError("Interval not supported"));
+                return new ExchangeWebResult<SharedKline[]>(Exchange, ArgumentError.Invalid(nameof(GetKlinesRequest.Interval), "Interval not supported"));
 
             var validationError = ((IKlineRestClient)this).GetKlinesOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
@@ -286,7 +287,7 @@ namespace XT.Net.Clients.FuturesApi
 
             var ticker = resultTicker.Data.SingleOrDefault(x => x.Symbol == request.Symbol!.GetSymbol(FormatSymbol));
             if (ticker == null)
-                return resultTicker.AsExchangeError<SharedFuturesTicker>(Exchange, new ServerError("Not found"));
+                return resultTicker.AsExchangeError<SharedFuturesTicker>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
 
             return resultTicker.AsExchangeResult(Exchange, request.Symbol!.TradingMode, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicId, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, null)
             {
@@ -363,7 +364,7 @@ namespace XT.Net.Clients.FuturesApi
                 return result.AsExchangeResult<SharedLeverage>(Exchange, null, default);
 
             if (!result.Data.Any())
-                return result.AsExchangeError<SharedLeverage>(Exchange, new ServerError("Not found"));
+                return result.AsExchangeError<SharedLeverage>(Exchange, new ServerError(new ErrorInfo(ErrorType.NoPosition, "Position not found")));
 
             return result.AsExchangeResult(Exchange, request.Symbol.TradingMode, new SharedLeverage(result.Data.First().Leverage)
             {
@@ -472,7 +473,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeWebResult<SharedFuturesOrder>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return new ExchangeWebResult<SharedFuturesOrder>(Exchange, new ArgumentError("Invalid order id"));
+                return new ExchangeWebResult<SharedFuturesOrder>(Exchange, ArgumentError.Invalid(nameof(GetOrderRequest.OrderId), "Invalid order id"));
 
             var order = await Trading.GetOrderAsync(orderId, ct: ct).ConfigureAwait(false);
             if (!order)
@@ -596,7 +597,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeWebResult<SharedUserTrade[]>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return new ExchangeWebResult<SharedUserTrade[]>(Exchange, new ArgumentError("Invalid order id"));
+                return new ExchangeWebResult<SharedUserTrade[]>(Exchange, ArgumentError.Invalid(nameof(GetOrderTradesRequest.OrderId), "Invalid order id"));
 
             var orders = await Trading.GetUserTradesAsync(request.Symbol!.GetSymbol(FormatSymbol), orderId: orderId, ct: ct).ConfigureAwait(false);
             if (!orders)
@@ -678,7 +679,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return new ExchangeWebResult<SharedId>(Exchange, new ArgumentError("Invalid order id"));
+                return new ExchangeWebResult<SharedId>(Exchange, ArgumentError.Invalid(nameof(CancelOrderRequest.OrderId), "Invalid order id"));
 
             var order = await Trading.CancelOrderAsync(orderId, ct: ct).ConfigureAwait(false);
             if (!order)
@@ -875,7 +876,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeWebResult<SharedFuturesTriggerOrder>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return new ExchangeWebResult<SharedFuturesTriggerOrder>(Exchange, new ArgumentError("Invalid order id"));
+                return new ExchangeWebResult<SharedFuturesTriggerOrder>(Exchange, ArgumentError.Invalid(nameof(GetOrderRequest.OrderId), "Invalid order id"));
 
             var order = await Trading.GetTriggerOrderAsync(orderId, ct: ct).ConfigureAwait(false);
             if (!order)
@@ -934,7 +935,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeWebResult<SharedId>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return new ExchangeWebResult<SharedId>(Exchange, new ArgumentError("Invalid order id"));
+                return new ExchangeWebResult<SharedId>(Exchange, ArgumentError.Invalid(nameof(CancelOrderRequest.OrderId), "Invalid order id"));
 
             var order = await Trading.CancelTriggerOrderAsync(
                 orderId,
@@ -995,7 +996,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeWebResult<bool>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return new ExchangeWebResult<bool>(Exchange, new ArgumentError("Invalid order id"));
+                return new ExchangeWebResult<bool>(Exchange, ArgumentError.Invalid(nameof(CancelTpSlRequest.OrderId), "Invalid order id"));
 
             var result = await Trading.CancelTriggerOrderAsync(
                 orderId,

@@ -3,7 +3,7 @@ GET
 true
 {
   "rc": 0,
-  "mc": "string",
+  "mc": "SUCCESS",
   "ma": [
     {}
   ],

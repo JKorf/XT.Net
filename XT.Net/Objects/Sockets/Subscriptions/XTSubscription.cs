@@ -1,4 +1,5 @@
 using CryptoExchange.Net;
+using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Objects.Sockets;
@@ -15,6 +16,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
     /// <inheritdoc />
     internal class XTSubscription<T> : Subscription<XTSocketResponse, XTSocketResponse>
     {
+        private readonly SocketApiClient _client;
         private readonly string? _token;
         private readonly string[]? _queryIdentifiers;
         private readonly Action<DataEvent<T>> _handler;
@@ -23,8 +25,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public XTSubscription(ILogger logger, string[] topics, Action<DataEvent<T>> handler, bool auth, string? token = null, string[]? listenerIdentifiers = null, string[]? queryIdentifiers = null) : base(logger, auth)
+        public XTSubscription(ILogger logger, SocketApiClient client, string[] topics, Action<DataEvent<T>> handler, bool auth, string? token = null, string[]? listenerIdentifiers = null, string[]? queryIdentifiers = null) : base(logger, auth)
         {
+            _client = client;
             _handler = handler;
             _token = token;
             _topics = topics;
@@ -35,7 +38,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         public override Query? GetSubQuery(SocketConnection connection)
         {
-            return new XTQuery(new XTSocketRequest
+            return new XTQuery(_client, new XTSocketRequest
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
@@ -47,7 +50,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         public override Query? GetUnsubQuery()
         {
-            return new XTQuery(new XTSocketRequest
+            return new XTQuery(_client, new XTSocketRequest
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",

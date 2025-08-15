@@ -17,7 +17,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Place a new order
         /// <para><a href="https://doc.xt.com/#futures_ordercreate" /></para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
+        /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="orderSide">Order side</param>
         /// <param name="orderType">Order type</param>
         /// <param name="quantity">Order quantity</param>

@@ -15,6 +15,7 @@ using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.SharedApis;
 using XT.Net.Objects.Internal;
 using CryptoExchange.Net.Converters.MessageParsing;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace XT.Net.Clients.SpotApi
 {
@@ -25,6 +26,8 @@ namespace XT.Net.Clients.SpotApi
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Spot Api");
 
         internal new XTSpotRestApiOptions ApiOptions => (XTSpotRestApiOptions)base.ApiOptions;
+
+        protected override ErrorCollection ErrorMapping => XTErrors.SpotErrors;
         #endregion
 
         #region Api clients
@@ -66,9 +69,6 @@ namespace XT.Net.Clients.SpotApi
             if (!result)
                 return result.AsDataless();
 
-            if (result.Data.ReturnCode != 0)
-                return result.AsDatalessError(new ServerError(result.Data.MessageCode));
-
             return result.AsDataless();
         }
 
@@ -81,22 +81,28 @@ namespace XT.Net.Clients.SpotApi
             if (!result)
                 return result.As<T>(default);
 
-            if (result.Data.ReturnCode != 0)
-                return result.AsError<T>(new ServerError(result.Data.MessageCode));
-
             return result.As(result.Data.Result!);
+        }
+
+        protected override Error? TryParseError(KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
+        {
+            var msgCode = accessor.GetValue<string>(MessagePath.Get().Property("mc"));
+            if (msgCode != null && msgCode != "SUCCESS")
+                return new ServerError(msgCode, GetErrorInfo(msgCode));
+
+            return null;
         }
 
         protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor, Exception? exception)
         {
             if (!accessor.IsValid)
-                return new ServerError(null, "Unknown request error", exception: exception);
+                return new ServerError(ErrorInfo.Unknown, exception: exception);
 
             var code = accessor.GetValue<string?>(MessagePath.Get().Property("mc"));
             if (code == null)
-                return new ServerError(null, "Unknown request error", exception: exception);
+                return new ServerError(ErrorInfo.Unknown, exception: exception);
 
-            return new ServerError(null, code, exception);
+            return new ServerError(code, GetErrorInfo(code), exception);
         }
 
         /// <inheritdoc />

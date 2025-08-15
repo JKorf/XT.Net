@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Objects.Errors;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -38,7 +39,8 @@ namespace XT.Net.UnitTests
             var result = await CreateClient().SpotApi.ExchangeData.GetTickersAsync("TSTTST", default);
 
             Assert.That(result.Success, Is.False);
-            Assert.That(result.Error.Message, Is.EqualTo("SYMBOL_001"));
+            Assert.That(result.Error.ErrorCode, Is.EqualTo("SYMBOL_001"));
+            Assert.That(result.Error.ErrorType, Is.EqualTo(ErrorType.UnknownSymbol));
         }
 
         [Test]
