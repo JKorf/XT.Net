@@ -9,7 +9,7 @@ namespace XT.Net
 {
     internal static class XTErrors
     {
-        public static ErrorCollection SpotErrors { get; } = new ErrorCollection([
+        public static ErrorMapping SpotErrors { get; } = new ErrorMapping([
             
             new ErrorInfo(ErrorType.Unauthorized, false, "API key does not exist", "AUTH_101"),
             new ErrorInfo(ErrorType.Unauthorized, false, "API key not active", "AUTH_102"),
@@ -18,8 +18,7 @@ namespace XT.Net
             new ErrorInfo(ErrorType.Unauthorized, false, "Symbol trading not allowed based on region", "SYMBOL_004"),
             new ErrorInfo(ErrorType.Unauthorized, false, "Symbol trading not allowed via API", "SYMBOL_005"),
             new ErrorInfo(ErrorType.Unauthorized, false, "Account security too low", "DEPOSIT_002", "WITHDRAW_003"),
-
-            new ErrorInfo(ErrorType.InvalidSignature, false, "Signature error", "AUTH_103"),
+            new ErrorInfo(ErrorType.Unauthorized, false, "Signature error", "AUTH_103"),
 
             new ErrorInfo(ErrorType.SystemError, true, "System busy", "COMMON_002"),
             new ErrorInfo(ErrorType.SystemError, true, "Operation failed", "COMMON_003"),
@@ -59,11 +58,10 @@ namespace XT.Net
 
             ]);
 
-        public static ErrorCollection FuturesErrors { get; } = new ErrorCollection([
+        public static ErrorMapping FuturesErrors { get; } = new ErrorMapping([
 
             new ErrorInfo(ErrorType.Unauthorized, false, "Unauthorized", "400"),
-
-            new ErrorInfo(ErrorType.InvalidSignature, false, "Invalid signature", "403"),
+            new ErrorInfo(ErrorType.Unauthorized, false, "Invalid signature", "403"),
 
             new ErrorInfo(ErrorType.UnknownSymbol, false, "Symbol does not exist", "invalid_symbol"),
 

@@ -27,7 +27,7 @@ namespace XT.Net.Clients.SpotApi
 
         internal new XTSpotRestApiOptions ApiOptions => (XTSpotRestApiOptions)base.ApiOptions;
 
-        protected override ErrorCollection ErrorMapping => XTErrors.SpotErrors;
+        protected override ErrorMapping ErrorMapping => XTErrors.SpotErrors;
         #endregion
 
         #region Api clients

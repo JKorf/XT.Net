@@ -50,7 +50,7 @@ namespace XT.Net.Clients.FuturesApi
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Futures Api");
         internal XTRestClient _baseClient;
 
-        protected override ErrorCollection ErrorMapping => XTErrors.FuturesErrors;
+        protected override ErrorMapping ErrorMapping => XTErrors.FuturesErrors;
 
         #endregion
 

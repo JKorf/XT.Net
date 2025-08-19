@@ -58,7 +58,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var parameters = new ParameterCollection();
             parameters.Add("list", orders.ToArray());
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v2/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
