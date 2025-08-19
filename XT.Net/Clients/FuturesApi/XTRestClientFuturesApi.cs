@@ -15,6 +15,8 @@ using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net.Objects.Options;
 using XT.Net.Objects.Internal;
+using CryptoExchange.Net.Converters.MessageParsing;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace XT.Net.Clients.FuturesApi
 {
@@ -47,6 +49,9 @@ namespace XT.Net.Clients.FuturesApi
         #region fields 
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Futures Api");
         internal XTRestClient _baseClient;
+
+        protected override ErrorMapping ErrorMapping => XTErrors.FuturesErrors;
+
         #endregion
 
         #region Api clients
@@ -92,9 +97,6 @@ namespace XT.Net.Clients.FuturesApi
             if (!result)
                 return result.AsDataless();
 
-            if (result.Data.ReturnCode != 0)
-                return result.AsDatalessError(new ServerError(result.Data.Error!.Code + ": " + result.Data.Error.Message));
-
             return result.AsDataless();
         }
 
@@ -107,10 +109,33 @@ namespace XT.Net.Clients.FuturesApi
             if (!result)
                 return result.As<T>(default);
 
-            if (result.Data.ReturnCode != 0)
-                return result.AsError<T>(new ServerError(result.Data.Error!.Code + ": " + result.Data.Error.Message));
-
             return result.As(result.Data.Result!);
+        }
+
+        protected override Error? TryParseError(KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
+        {
+            var msgCode = accessor.GetValue<int>(MessagePath.Get().Property("returnCode"));
+            if (msgCode != 0)
+            {
+                var errorCode = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("code"));
+                var errorMsg = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("msg"));
+                return new ServerError(errorCode!, GetErrorInfo(errorCode!, errorMsg));
+            }
+            return null;
+        }
+
+        protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor, Exception? exception)
+        {
+            if (!accessor.IsValid)
+                return new ServerError(ErrorInfo.Unknown, exception);
+
+            var msgCode = accessor.GetValue<int?>(MessagePath.Get().Property("returnCode"));
+            if (msgCode == null)
+                return new ServerError(ErrorInfo.Unknown, exception);
+
+            var errorCode = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("code"));
+            var errorMsg = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("msg"));
+            return new ServerError(errorCode!, GetErrorInfo(errorCode!, errorMsg));
         }
 
         internal Task<WebCallResult<T>> SendRawAsync<T>(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class

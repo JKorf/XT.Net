@@ -10,6 +10,7 @@ using XT.Net.Enums;
 using CryptoExchange.Net.RateLimiting.Guards;
 using System.Collections.Generic;
 using System.Linq;
+using CryptoExchange.Net.Objects.Errors;
 
 namespace XT.Net.Clients.FuturesApi
 {
@@ -57,7 +58,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var parameters = new ParameterCollection();
             parameters.Add("list", orders.ToArray());
-            var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v2/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
@@ -138,7 +139,7 @@ namespace XT.Net.Clients.FuturesApi
             var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/trade/v1/order/detail", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTFuturesOrder>(request, parameters, ct).ConfigureAwait(false);
             if (result && result.Data == null)
-                return result.AsError<XTFuturesOrder>(new ServerError("Order not found"));
+                return result.AsError<XTFuturesOrder>(new ServerError(new ErrorInfo(ErrorType.UnknownOrder, "Order not found")));
 
             return result;
         }

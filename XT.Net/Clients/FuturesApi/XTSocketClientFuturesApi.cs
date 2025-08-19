@@ -11,6 +11,7 @@ using CryptoExchange.Net.Converters.MessageParsing;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
+using CryptoExchange.Net.Objects.Errors;
 using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net.Sockets;
@@ -50,7 +51,7 @@ namespace XT.Net.Clients.FuturesApi
                 x => new XTPingQuery(),
                 (connection, result) =>
                 {
-                    if (result.Error?.Message.Equals("Query timeout") == true)
+                    if (result.Error?.ErrorType == ErrorType.Timeout)
                     {
                         // Ping timeout, reconnect
                         _logger.LogWarning("[Sckt {SocketId}] Ping response timeout, reconnecting", connection.SocketId);
@@ -76,6 +77,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTFuturesTrade>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesTrade>(_logger,
+                this,
                 symbols.Select(x => "trade@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
@@ -92,6 +94,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var intervalStr = EnumConverter.GetString(interval);
             var subscription = new XTSubscription<XTFuturesKline>(_logger,
+                this,
                 symbols.Select(x => "kline@" + x.ToLowerInvariant() + "," + intervalStr).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)),
                 false);
@@ -106,6 +109,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTFuturesTicker>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesTicker>(_logger,
+                this,
                 symbols.Select(x => "ticker@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
@@ -121,6 +125,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToAggregatedTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTMarketInfo>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTMarketInfo>(_logger,
+                this,
                 symbols.Select(x => "agg_ticker@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
@@ -136,6 +141,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIndexPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTPrice>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTPrice>(_logger,
+                this,
                 symbols.Select(x => "index_price@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
@@ -151,6 +157,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToMarkPriceUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTPrice>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTPrice>(_logger,
+                this,
                 symbols.Select(x => "mark_price@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
@@ -166,6 +173,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToIncrementalOrderBookUpdatesAsync(IEnumerable<string> symbols, int? updateInterval, Action<DataEvent<XTFuturesIncrementalOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesIncrementalOrderBookUpdate>(_logger,
+                this,
                 symbols.Select(x => "depth_update@" + x.ToLowerInvariant() + "," + (updateInterval ?? 100) + "ms").ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol)
                 .WithDataTimestamp(x.Data.Timestamp)),
@@ -181,6 +189,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, int? updateInterval, Action<DataEvent<XTFuturesOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFuturesOrderBookUpdate>(_logger,
+                this,
                 symbols.Select(x => "depth@" + x.ToLowerInvariant() + "," + depth + "," + (updateInterval ?? 100) + "ms").ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol).WithDataTimestamp(x.Data.Timestamp)),
                 false,
@@ -197,6 +206,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToFundingRateUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTFundingRateUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTSubscription<XTFundingRateUpdate>(_logger,
+                this,
                 symbols.Select(x => "mark_price@" + x.ToLowerInvariant()).ToArray(),
                 x => onMessage(x.WithSymbol(x.Data.Symbol).WithDataTimestamp(x.Data.Timestamp)),
                 false);
@@ -207,6 +217,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTFuturesAuthSubscription<XTFuturesBalanceUpdate>(_logger,
+                this,
                 "balance",
                 listenKey,
                 x => onMessage(x));
@@ -217,6 +228,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTFuturesAuthSubscription<XTFuturesPositionUpdate>(_logger,
+                this,
                 "position",
                 listenKey,
                 x => onMessage(x));
@@ -227,6 +239,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTFuturesAuthSubscription<XTFuturesOrder>(_logger,
+                this,
                 "order",
                 listenKey,
                 x => onMessage(x));
@@ -237,6 +250,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTFuturesAuthSubscription<XTFuturesUserTradeUpdate>(_logger,
+                this,
                 "trade",
                 listenKey,
                 x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)));
@@ -247,6 +261,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<CallResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(string listenKey, Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default)
         {
             var subscription = new XTFuturesAuthSubscription<XTNotification>(_logger,
+                this,
                 "notify",
                 listenKey,
                 onMessage);

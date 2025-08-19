@@ -3923,7 +3923,7 @@
             Place a new order
             <para><a href="https://doc.xt.com/#futures_ordercreate" /></para>
             </summary>
-            <param name="symbol">The symbol, for example `ETHUSDT`</param>
+            <param name="symbol">The symbol, for example `ETH_USDT`</param>
             <param name="orderSide">Order side</param>
             <param name="orderType">Order type</param>
             <param name="quantity">Order quantity</param>
@@ -9057,7 +9057,7 @@
         <member name="T:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String,System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}})">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String,System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}})">
             <summary>
             ctor
             </summary>
@@ -9074,7 +9074,7 @@
         <member name="T:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}},System.Boolean,System.String,System.String[],System.String[])">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}},System.Boolean,System.String,System.String[],System.String[])">
             <summary>
             ctor
             </summary>

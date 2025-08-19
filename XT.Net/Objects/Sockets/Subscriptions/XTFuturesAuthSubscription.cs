@@ -1,4 +1,5 @@
 using CryptoExchange.Net;
+using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Objects.Sockets;
@@ -14,6 +15,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
     /// <inheritdoc />
     internal class XTFuturesAuthSubscription<T> : Subscription<XTSocketResponse, XTSocketResponse>
     {
+        private readonly SocketApiClient _client;
         private readonly string[]? _queryIdentifiers;
         private readonly Action<DataEvent<T>> _handler;
         private readonly string _listenKey;
@@ -22,8 +24,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public XTFuturesAuthSubscription(ILogger logger, string topic, string listenKey, Action<DataEvent<T>> handler) : base(logger, false)
+        public XTFuturesAuthSubscription(ILogger logger, SocketApiClient client, string topic, string listenKey, Action<DataEvent<T>> handler) : base(logger, false)
         {
+            _client = client;
             _handler = handler;
             _queryIdentifiers = [topic+"@invalid_listen_key"];
             _listenKey = listenKey;
@@ -35,7 +38,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         public override Query? GetSubQuery(SocketConnection connection)
         {
-            return new XTQuery(new XTSocketRequest
+            return new XTQuery(_client, new XTSocketRequest
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
@@ -46,7 +49,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <inheritdoc />
         public override Query? GetUnsubQuery()
         {
-            return new XTQuery(new XTSocketRequest
+            return new XTQuery(_client, new XTSocketRequest
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",

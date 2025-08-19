@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
 using CryptoExchange.Net.Objects.Sockets;
@@ -11,8 +12,11 @@ namespace XT.Net.Objects.Sockets
 {
     internal class XTQuery : Query<XTSocketResponse>
     {
-        public XTQuery(XTSocketRequest request, params string[] additionalIdentifiers) : base(request, false, 1)
+        private readonly SocketApiClient _client;
+
+        public XTQuery(SocketApiClient client, XTSocketRequest request, params string[] additionalIdentifiers) : base(request, false, 1)
         {
+            _client = client;
             var checkers = new List<MessageHandlerLink>();
             checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, request.Id, HandleMessage));
 
@@ -33,7 +37,7 @@ namespace XT.Net.Objects.Sockets
         public CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DataEvent<XTSocketResponse> message)
         {
             if (message.Data.Code != 0)
-                return new CallResult<XTSocketResponse>(new ServerError(message.Data.Code, message.Data.Message));
+                return new CallResult<XTSocketResponse>(new ServerError(message.Data.Code, _client.GetErrorInfo(message.Data.Code, message.Data.Message)));
 
             return message.ToCallResult();
         }
