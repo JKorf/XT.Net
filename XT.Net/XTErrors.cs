@@ -58,6 +58,12 @@ namespace XT.Net
 
             ]);
 
+        public static ErrorMapping SpotSocketErrors { get; } = new ErrorMapping([
+
+           new ErrorInfo(ErrorType.Unauthorized, false, "Unauthorized", "1"),
+
+            ]);
+
         public static ErrorMapping FuturesErrors { get; } = new ErrorMapping([
 
             new ErrorInfo(ErrorType.Unauthorized, false, "Unauthorized", "400"),
@@ -69,8 +75,6 @@ namespace XT.Net
 
             new ErrorInfo(ErrorType.InvalidQuantity, false, "Invalid quantity", "invalid_quantity"),
             new ErrorInfo(ErrorType.InvalidQuantity, false, "Quantity too low", "open_order_min_nominal_value_limit"),
-
-
             ]);
     }
 }

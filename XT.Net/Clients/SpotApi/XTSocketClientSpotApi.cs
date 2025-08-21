@@ -34,6 +34,8 @@ namespace XT.Net.Clients.SpotApi
         #region fields
         private static readonly MessagePath _idPath = MessagePath.Get().Property("id");
         private static readonly MessagePath _eventPath = MessagePath.Get().Property("event");
+
+        protected override ErrorMapping ErrorMapping => XTErrors.SpotSocketErrors;
         #endregion
 
         #region constructor/destructor
