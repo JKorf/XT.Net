@@ -84,7 +84,7 @@ namespace XT.Net.Clients.SpotApi
             return result.As(result.Data.Result!);
         }
 
-        protected override Error? TryParseError(KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
+        protected override Error? TryParseError(RequestDefinition request, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
         {
             var msgCode = accessor.GetValue<string>(MessagePath.Get().Property("mc"));
             if (msgCode != null && msgCode != "SUCCESS")

@@ -112,7 +112,7 @@ namespace XT.Net.Clients.FuturesApi
             return result.As(result.Data.Result!);
         }
 
-        protected override Error? TryParseError(KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
+        protected override Error? TryParseError(RequestDefinition request, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
         {
             var msgCode = accessor.GetValue<int>(MessagePath.Get().Property("returnCode"));
             if (msgCode != 0)
