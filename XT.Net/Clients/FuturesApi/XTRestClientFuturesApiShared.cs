@@ -152,7 +152,7 @@ namespace XT.Net.Clients.FuturesApi
         Task<ExchangeWebResult<string>> IListenKeyRestClient.StopListenKeyAsync(StopListenKeyRequest request, CancellationToken ct)
         {
             // There is no way to deactivate a token, just return
-            return Task.FromResult(new ExchangeWebResult<string>(Exchange, SupportedTradingModes, new WebCallResult<string>(null, null, null, null, null, null, null, null, null, null, ResultDataSource.Server, request.ListenKey, null)));
+            return Task.FromResult(new ExchangeWebResult<string>(Exchange, SupportedTradingModes, new WebCallResult<string>(null, null, null, null, null, null, null, null, null, null, null, ResultDataSource.Server, request.ListenKey, null)));
         }
         #endregion
 
