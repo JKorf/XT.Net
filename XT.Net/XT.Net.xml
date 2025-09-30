@@ -5193,25 +5193,6 @@
             Tracker factory
             </summary>
         </member>
-        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateKlineTracker(CryptoExchange.Net.SharedApis.SharedSymbol,CryptoExchange.Net.SharedApis.SharedKlineInterval,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
-            <summary>
-            Create a new kline tracker
-            </summary>
-            <param name="symbol">The symbol</param>
-            <param name="interval">Kline interval</param>
-            <param name="limit">The max amount of klines to retain</param>
-            <param name="period">The max period the data should be retained</param>
-            <returns></returns>
-        </member>
-        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateTradeTracker(CryptoExchange.Net.SharedApis.SharedSymbol,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
-            <summary>
-            Create a new trade tracker for a symbol
-            </summary>
-            <param name="symbol">The symbol</param>
-            <param name="limit">The max amount of klines to retain</param>
-            <param name="period">The max period the data should be retained</param>
-            <returns></returns>
-        </member>
         <member name="T:XT.Net.Objects.Models.XT24HTicker">
             <summary>
             24 hour price stats ticker
@@ -9402,6 +9383,12 @@
             ctor
             </summary>
             <param name="serviceProvider">Service provider for resolving logging and clients</param>
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CanCreateKlineTracker(CryptoExchange.Net.SharedApis.SharedSymbol,CryptoExchange.Net.SharedApis.SharedKlineInterval)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CanCreateTradeTracker(CryptoExchange.Net.SharedApis.SharedSymbol)">
+            <inheritdoc />
         </member>
         <member name="M:XT.Net.XTTrackerFactory.CreateKlineTracker(CryptoExchange.Net.SharedApis.SharedSymbol,CryptoExchange.Net.SharedApis.SharedKlineInterval,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
             <inheritdoc />

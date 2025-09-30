@@ -33,6 +33,17 @@ namespace XT.Net
         }
 
         /// <inheritdoc />
+        public bool CanCreateKlineTracker(SharedSymbol symbol, SharedKlineInterval interval)
+        {
+            var client = (_serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient());
+            SubscribeKlineOptions klineOptions = symbol.TradingMode == TradingMode.Spot ? client.SpotApi.SharedClient.SubscribeKlineOptions : client.FuturesApi.SharedClient.SubscribeKlineOptions;
+            return klineOptions.IsSupported(interval);
+        }
+
+        /// <inheritdoc />
+        public bool CanCreateTradeTracker(SharedSymbol symbol) => true;
+
+        /// <inheritdoc />
         public IKlineTracker CreateKlineTracker(SharedSymbol symbol, SharedKlineInterval interval, int? limit = null, TimeSpan? period = null)
         {
             var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();

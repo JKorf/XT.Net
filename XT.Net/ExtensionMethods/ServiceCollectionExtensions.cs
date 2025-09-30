@@ -103,6 +103,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddSingleton<ICryptoSocketClient, CryptoSocketClient>();
             services.AddTransient<IXTOrderBookFactory, XTOrderBookFactory>();
             services.AddTransient<IXTTrackerFactory, XTTrackerFactory>();
+            services.AddTransient<ITrackerFactory, XTTrackerFactory>();
             services.AddSingleton<IXTUserClientProvider, XTUserClientProvider>(x =>
             new XTUserClientProvider(
                 x.GetRequiredService<HttpClient>(),

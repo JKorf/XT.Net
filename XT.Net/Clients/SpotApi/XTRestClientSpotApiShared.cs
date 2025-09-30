@@ -45,7 +45,8 @@ namespace XT.Net.Clients.SpotApi
                     MinWithdrawQuantity = x.WithdrawMinQuantity,
                     WithdrawEnabled = x.WithdrawEnabled,
                     WithdrawFee = x.WithdrawFeeQuantity,
-                    MinConfirmations = x.DepositConfirmations
+                    MinConfirmations = x.DepositConfirmations,
+                    ContractAddress = x.Contract
                 }).ToArray()
             }).ToArray());
         }
@@ -72,7 +73,8 @@ namespace XT.Net.Clients.SpotApi
                     DepositEnabled = x.DepositEnabled,
                     MinWithdrawQuantity = x.WithdrawMinQuantity,
                     WithdrawEnabled = x.WithdrawEnabled,
-                    WithdrawFee = x.WithdrawFeeQuantity
+                    WithdrawFee = x.WithdrawFeeQuantity,
+                    ContractAddress = x.Contract
                 }).ToArray()
             });
         }
