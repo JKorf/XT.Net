@@ -161,6 +161,7 @@ namespace XT.Net.Clients.FuturesApi
                         update.Data.Price,
                         update.Data.Timestamp)
                     {
+                        ClientOrderId = update.Data.ClientOrderId,
                         Fee = update.Data.Fee,
                         Role = update.Data.IsMaker ? SharedRole.Maker : SharedRole.Taker
                     }]

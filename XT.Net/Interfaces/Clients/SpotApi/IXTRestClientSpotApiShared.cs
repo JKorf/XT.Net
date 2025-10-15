@@ -22,7 +22,8 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         ISpotSymbolRestClient,
         ISpotOrderRestClient,
         IFeeRestClient,
-        IBookTickerRestClient
+        IBookTickerRestClient,
+        ITransferRestClient
     {
     }
 }
