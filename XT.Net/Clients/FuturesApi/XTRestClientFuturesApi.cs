@@ -51,7 +51,7 @@ namespace XT.Net.Clients.FuturesApi
         internal XTRestClient _baseClient;
 
         protected override ErrorMapping ErrorMapping => XTErrors.FuturesErrors;
-
+        internal new XTRestOptions ClientOptions => (XTRestOptions)base.ClientOptions;
         #endregion
 
         #region Api clients

@@ -26,6 +26,7 @@ namespace XT.Net.Clients.SpotApi
         internal static TimeSyncState _timeSyncState = new TimeSyncState("Spot Api");
 
         internal new XTSpotRestApiOptions ApiOptions => (XTSpotRestApiOptions)base.ApiOptions;
+        internal new XTRestOptions ClientOptions => (XTRestOptions)base.ClientOptions;
 
         protected override ErrorMapping ErrorMapping => XTErrors.SpotErrors;
         #endregion

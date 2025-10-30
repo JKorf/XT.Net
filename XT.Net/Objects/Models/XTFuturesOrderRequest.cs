@@ -1,3 +1,4 @@
+using CryptoExchange.Net;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,6 @@ namespace XT.Net.Objects.Models
         public decimal? TriggerStopPrice { get; set; }
 
         [JsonInclude, JsonPropertyName("media")]
-        internal string Media => XTExchange._clientRef;
+        internal string? Media { get; set; }
     }
 }

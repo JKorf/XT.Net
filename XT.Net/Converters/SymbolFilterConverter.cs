@@ -1,4 +1,6 @@
-﻿using CryptoExchange.Net.Converters.SystemTextJson;
+﻿using CryptoExchange.Net;
+using CryptoExchange.Net.Converters.SystemTextJson;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -65,7 +67,7 @@ namespace XT.Net.Converters
                     };
                     break;
                 default:
-                    Trace.WriteLine($"{DateTime.Now:yyyy/MM/dd HH:mm:ss:fff} | Warning | Can't parse symbol filter of type: " + obj.GetProperty("filter").GetString());
+                    LibraryHelpers.StaticLogger?.LogWarning("Can't parse symbol filter of type: " + obj.GetProperty("filter").GetString());
                     result = new XTSymbolFilter();
                     break;
             }

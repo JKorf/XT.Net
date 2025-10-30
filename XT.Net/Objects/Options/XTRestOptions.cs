@@ -24,6 +24,11 @@ namespace XT.Net.Objects.Options
             Default?.Set(this);
         }
         
+        /// <summary>
+        /// Broker reference
+        /// </summary>
+        public string? BrokerId { get; set; }
+
          /// <summary>
         /// Futures API options
         /// </summary>
@@ -37,6 +42,7 @@ namespace XT.Net.Objects.Options
         internal XTRestOptions Set(XTRestOptions targetOptions)
         {
             targetOptions = base.Set<XTRestOptions>(targetOptions);            
+            targetOptions.BrokerId = BrokerId;
             targetOptions.FuturesOptions = FuturesOptions.Set(targetOptions.FuturesOptions);
             targetOptions.SpotOptions = SpotOptions.Set(targetOptions.SpotOptions);
             return targetOptions;

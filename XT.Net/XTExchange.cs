@@ -50,8 +50,6 @@ namespace XT.Net
         /// </summary>
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
-        internal const string _clientRef = "4XWeqN10M1fcoI5L";
-
         internal static JsonSerializerContext _serializerContext = JsonSerializerContextCache.GetOrCreate<XTSourceGenerationContext>();
 
         /// <summary>

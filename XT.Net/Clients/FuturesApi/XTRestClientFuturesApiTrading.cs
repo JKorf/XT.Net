@@ -11,6 +11,7 @@ using CryptoExchange.Net.RateLimiting.Guards;
 using System.Collections.Generic;
 using System.Linq;
 using CryptoExchange.Net.Objects.Errors;
+using CryptoExchange.Net;
 
 namespace XT.Net.Clients.FuturesApi
 {
@@ -43,7 +44,7 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddOptional("triggerProfitPrice", triggerProfitPrice);
             parameters.AddOptional("triggerStopPrice", triggerStopPrice);
             parameters.AddOptional("clientOrderId", clientOrderId);
-            parameters.Add("media", XTExchange._clientRef);
+            parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/order/create", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
             return result.As<long>(result.Data ?? 0);
@@ -57,6 +58,9 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> PlaceMultipleOrdersAsync(IEnumerable<XTFuturesOrderRequest> orders, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
+            foreach(var order in orders)
+                order.Media = LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange);
+
             parameters.Add("list", orders.ToArray());
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v2/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
@@ -265,7 +269,7 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddEnum("positionSide", positionSide);
             parameters.AddOptional("price", orderPrice);
             parameters.AddOptional("clientOrderId", clientOrderId);
-            parameters.Add("media", XTExchange._clientRef);
+            parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/entrust/create-plan", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
             return result.As(result.Data ?? 0);
@@ -365,7 +369,7 @@ namespace XT.Net.Clients.FuturesApi
             parameters.Add("triggerStopPrice", triggerStopPrice);
             parameters.AddMilliseconds("expireTime", expireTime);
             parameters.AddEnum("positionSide", positionSide);
-            parameters.Add("media", XTExchange._clientRef);
+            parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/entrust/create-profit", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
             return result.As(result.Data ?? 0);
@@ -469,7 +473,7 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddOptional("clientMediaChannel", clientMediaChannel);
             parameters.AddOptional("clientOrderId", clientOrderId);
             parameters.AddOptionalMilliseconds("expireTime", expireTime);
-            parameters.Add("media", XTExchange._clientRef);
+            parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/entrust/create-track", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
             return result.As<long>(result.Data ?? 0);

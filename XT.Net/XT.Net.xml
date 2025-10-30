@@ -8998,6 +8998,11 @@
             ctor
             </summary>
         </member>
+        <member name="P:XT.Net.Objects.Options.XTRestOptions.BrokerId">
+            <summary>
+            Broker reference
+            </summary>
+        </member>
         <member name="P:XT.Net.Objects.Options.XTRestOptions.FuturesOptions">
             <summary>
             Futures API options
