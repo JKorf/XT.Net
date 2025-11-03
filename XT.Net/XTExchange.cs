@@ -53,6 +53,17 @@ namespace XT.Net
         internal static JsonSerializerContext _serializerContext = JsonSerializerContextCache.GetOrCreate<XTSourceGenerationContext>();
 
         /// <summary>
+        /// Aliases for XT assets
+        /// </summary>
+        public static AssetAliasConfiguration AssetAliases { get; } = new AssetAliasConfiguration
+        {
+            Aliases =
+            [
+                new AssetAlias("usdt", SharedSymbol.UsdOrStable.ToLowerInvariant(), AliasType.OnlyToExchange)
+            ]
+        };
+
+        /// <summary>
         /// Format a base and quote asset to an XT recognized symbol 
         /// </summary>
         /// <param name="baseAsset">Base asset</param>
@@ -62,10 +73,13 @@ namespace XT.Net
         /// <returns></returns>
         public static string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverTime = null)
         {
-            if (deliverTime == null)
-                return baseAsset.ToLowerInvariant() + "_" + quoteAsset.ToLowerInvariant();
+            baseAsset = AssetAliases.CommonToExchangeName(baseAsset.ToLowerInvariant());
+            quoteAsset = AssetAliases.CommonToExchangeName(quoteAsset.ToLowerInvariant());
 
-            return baseAsset.ToLowerInvariant() + "_" + quoteAsset.ToLowerInvariant() + "_" + deliverTime.Value.ToString("yyMMdd");
+            if (deliverTime == null)
+                return baseAsset + "_" + quoteAsset;
+
+            return baseAsset + "_" + quoteAsset + "_" + deliverTime.Value.ToString("yyMMdd");
         }
 
         /// <summary>
