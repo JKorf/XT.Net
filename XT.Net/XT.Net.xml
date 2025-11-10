@@ -648,6 +648,9 @@
         <member name="T:XT.Net.Clients.XTUserClientProvider">
             <inheritdoc />
         </member>
+        <member name="P:XT.Net.Clients.XTUserClientProvider.ExchangeName">
+            <inheritdoc />
+        </member>
         <member name="M:XT.Net.Clients.XTUserClientProvider.#ctor(System.Action{XT.Net.Objects.Options.XTOptions})">
             <summary>
             ctor
@@ -9191,6 +9194,9 @@
             <summary>
             XT order book factory
             </summary>
+        </member>
+        <member name="P:XT.Net.SymbolOrderBooks.XTOrderBookFactory.ExchangeName">
+            <inheritdoc />
         </member>
         <member name="M:XT.Net.SymbolOrderBooks.XTOrderBookFactory.#ctor(System.IServiceProvider)">
             <summary>

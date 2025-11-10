@@ -22,6 +22,9 @@ namespace XT.Net.Clients
         private readonly HttpClient _httpClient;
         private readonly ILoggerFactory? _loggerFactory;
 
+        /// <inheritdoc />
+        public string ExchangeName => XTExchange.ExchangeName;
+
         /// <summary>
         /// ctor
         /// </summary>

@@ -68,7 +68,8 @@ namespace XT.Net.Clients.SpotApi
                 if (update.UpdateType == SocketUpdateType.Snapshot)
                     return;
 
-                handler(update.AsExchangeEvent(Exchange, new SharedKline(update.Data.OpenTime, update.Data.ClosePrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.OpenPrice, update.Data.Volume)));
+                handler(update.AsExchangeEvent(Exchange, 
+                    new SharedKline(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol, update.Data.OpenTime, update.Data.ClosePrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.OpenPrice, update.Data.Volume)));
             }, ct).ConfigureAwait(false);
 
             return new ExchangeResult<UpdateSubscription>(Exchange, result);
@@ -97,7 +98,7 @@ namespace XT.Net.Clients.SpotApi
         #endregion
 
         #region Ticker client
-        EndpointOptions<SubscribeTickerRequest> ITickerSocketClient.SubscribeTickerOptions { get; } = new EndpointOptions<SubscribeTickerRequest>(false)
+        SubscribeTickerOptions ITickerSocketClient.SubscribeTickerOptions { get; } = new SubscribeTickerOptions()
         {
             SupportsMultipleSymbols = true
         };
@@ -132,7 +133,8 @@ namespace XT.Net.Clients.SpotApi
             var result = await SubscribeToTradeUpdatesAsync(symbols,
                 update =>
                 {
-                    handler(update.AsExchangeEvent<SharedTrade[]>(Exchange, [new SharedTrade(update.Data.Quantity, update.Data.Price, update.Data.Timestamp)
+                    handler(update.AsExchangeEvent<SharedTrade[]>(Exchange, [
+                        new SharedTrade(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol,update.Data.Quantity, update.Data.Price, update.Data.Timestamp)
                     {
                         Side = update.Data.BuyerIsMaker ? SharedOrderSide.Sell : SharedOrderSide.Buy,
                     }]));

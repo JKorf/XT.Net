@@ -8,7 +8,7 @@ namespace XT.Net.Interfaces
     /// <summary>
     /// XT local order book factory
     /// </summary>
-    public interface IXTOrderBookFactory
+    public interface IXTOrderBookFactory : IExchangeService
     {
         
         /// <summary>

@@ -18,6 +18,9 @@ namespace XT.Net.SymbolOrderBooks
     {
         private readonly IServiceProvider _serviceProvider;
 
+        /// <inheritdoc />
+        public string ExchangeName => XTExchange.ExchangeName;
+
         /// <summary>
         /// ctor
         /// </summary>

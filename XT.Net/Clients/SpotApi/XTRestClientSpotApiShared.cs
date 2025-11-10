@@ -210,8 +210,9 @@ namespace XT.Net.Clients.SpotApi
                 startTime = request.StartTime;
 
             // Get data
+            var symbol = request.Symbol!.GetSymbol(FormatSymbol);
             var result = await ExchangeData.GetKlinesAsync(
-                request.Symbol!.GetSymbol(FormatSymbol),
+                symbol,
                 interval,
                 startTime,
                 endTime,
@@ -230,7 +231,8 @@ namespace XT.Net.Clients.SpotApi
                     nextToken = new DateTimeToken(minOpenTime);
             }
 
-            return result.AsExchangeResult<SharedKline[]>(Exchange, request.Symbol.TradingMode, result.Data.Select(x => new SharedKline(x.OpenTime, x.ClosePrice, x.HighPrice, x.LowPrice, x.OpenPrice, x.Volume)).ToArray(), nextToken);
+            return result.AsExchangeResult<SharedKline[]>(Exchange, request.Symbol.TradingMode, result.Data.Select(x => 
+                new SharedKline(request.Symbol, symbol, x.OpenTime, x.ClosePrice, x.HighPrice, x.LowPrice, x.OpenPrice, x.Volume)).ToArray(), nextToken);
         }
 
         #endregion
@@ -304,18 +306,20 @@ namespace XT.Net.Clients.SpotApi
                 return new ExchangeWebResult<SharedTrade[]>(Exchange, validationError);
 
             // Get data
+            var symbol = request.Symbol!.GetSymbol(FormatSymbol);
             var result = await ExchangeData.GetRecentTradesAsync(
-                request.Symbol!.GetSymbol(FormatSymbol),
+                symbol,
                 limit: request.Limit,
                 ct: ct).ConfigureAwait(false);
             if (!result)
                 return result.AsExchangeResult<SharedTrade[]>(Exchange, null, default);
 
             // Return
-            return result.AsExchangeResult<SharedTrade[]>(Exchange, TradingMode.Spot, result.Data.Select(x => new SharedTrade(x.Quantity, x.Price, x.Timestamp)
-            {
-                Side = x.BuyerIsMaker ? SharedOrderSide.Sell : SharedOrderSide.Buy,
-            }).ToArray());
+            return result.AsExchangeResult<SharedTrade[]>(Exchange, TradingMode.Spot, result.Data.Select(x => 
+                new SharedTrade(request.Symbol, symbol, x.Quantity, x.Price, x.Timestamp)
+                {
+                    Side = x.BuyerIsMaker ? SharedOrderSide.Sell : SharedOrderSide.Buy,
+                }).ToArray());
         }
         #endregion
 
@@ -407,7 +411,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region Ticker client
 
-        EndpointOptions<GetTickerRequest> ISpotTickerRestClient.GetSpotTickerOptions { get; } = new EndpointOptions<GetTickerRequest>(false);
+        GetTickerOptions ISpotTickerRestClient.GetSpotTickerOptions { get; } = new GetTickerOptions();
         async Task<ExchangeWebResult<SharedSpotTicker>> ISpotTickerRestClient.GetSpotTickerAsync(GetTickerRequest request, CancellationToken ct)
         {
             var validationError = ((ISpotTickerRestClient)this).GetSpotTickerOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
@@ -428,7 +432,7 @@ namespace XT.Net.Clients.SpotApi
             });
         }
 
-        EndpointOptions<GetTickersRequest> ISpotTickerRestClient.GetSpotTickersOptions { get; } = new EndpointOptions<GetTickersRequest>(false);
+        GetTickersOptions ISpotTickerRestClient.GetSpotTickersOptions { get; } = new GetTickersOptions();
         async Task<ExchangeWebResult<SharedSpotTicker[]>> ISpotTickerRestClient.GetSpotTickersAsync(GetTickersRequest request, CancellationToken ct)
         {
             var validationError = ((ISpotTickerRestClient)this).GetSpotTickersOptions.ValidateRequest(Exchange, request, TradingMode.Spot, SupportedTradingModes);
