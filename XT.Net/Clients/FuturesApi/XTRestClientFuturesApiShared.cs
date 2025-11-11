@@ -21,8 +21,8 @@ namespace XT.Net.Clients.FuturesApi
 
         public string Exchange => "XT";
 
-        public TradingMode[] SupportedTradingModes => 
-            this is XTRestClientUsdtFuturesApi 
+        public TradingMode[] SupportedTradingModes =>
+            this is XTRestClientUsdtFuturesApi
             ? new[] { TradingMode.PerpetualLinear, TradingMode.DeliveryLinear }
             : [TradingMode.PerpetualInverse, TradingMode.DeliveryInverse];
 
@@ -223,7 +223,7 @@ namespace XT.Net.Clients.FuturesApi
                 return result.AsExchangeResult<SharedFundingRate[]>(Exchange, null, default);
 
             FromIdToken? nextToken = null;
-            if (result.Data.HasNext)
+            if (result.Data.HasNext == true)
                 nextToken = new FromIdToken(result.Data.Data.Min(x => x.Id).ToString());
 
             // Return
@@ -249,22 +249,22 @@ namespace XT.Net.Clients.FuturesApi
                 data = data.Where(x => request.TradingMode.Value.IsPerpetual() ? x.ContractType == ContractType.Perpetual : x.ContractType != ContractType.Perpetual);
 
 
-            var response = result.AsExchangeResult<SharedFuturesSymbol[]>(Exchange, request.TradingMode == null ? SupportedTradingModes : new[] { request.TradingMode.Value }, 
+            var response = result.AsExchangeResult<SharedFuturesSymbol[]>(Exchange, request.TradingMode == null ? SupportedTradingModes : new[] { request.TradingMode.Value },
                 data.Select(s => new SharedFuturesSymbol(
                     (s.ContractType == ContractType.Perpetual && s.UnderlyingType == UnderlyingType.UsdtBased) ? TradingMode.PerpetualLinear
                     : (s.ContractType != ContractType.Perpetual && s.UnderlyingType == UnderlyingType.UsdtBased) ? TradingMode.DeliveryLinear
                     : (s.ContractType == ContractType.Perpetual && s.UnderlyingType == UnderlyingType.UsdtBased) ? TradingMode.PerpetualInverse
                     : TradingMode.DeliveryInverse
                     , s.BaseAsset, s.QuoteAsset, s.Symbol, s.Status == SymbolStatus.Online)
-            {
-                ContractSize = s.ContractSize,
-                DeliveryTime = s.DeliveryDate,
-                MinTradeQuantity = s.MinQuantity,
-                MinNotionalValue = s.MinNotional,
-                PriceStep = s.MinStepPrice,
-                PriceDecimals = s.PricePrecision,
-                QuantityDecimals = s.QuantityPrecision
-            }).ToArray());
+                {
+                    ContractSize = s.ContractSize,
+                    DeliveryTime = s.DeliveryDate,
+                    MinTradeQuantity = s.MinQuantity,
+                    MinNotionalValue = s.MinNotional,
+                    PriceStep = s.MinStepPrice,
+                    PriceDecimals = s.PricePrecision,
+                    QuantityDecimals = s.QuantityPrecision
+                }).ToArray());
 
             ExchangeSymbolCache.UpdateSymbolInfo(_topicId, response.Data);
             return response;
@@ -310,7 +310,7 @@ namespace XT.Net.Clients.FuturesApi
 
             IEnumerable<XTFuturesSymbolInfo> data = resultTickers.Data;
             if (request.TradingMode.HasValue)
-                data = data.Where(x => (request.TradingMode.Value.IsPerpetual() ? x.Symbol.IndexOf('_') == x.Symbol.LastIndexOf('_'): x.Symbol.IndexOf('_') != x.Symbol.LastIndexOf('_')));
+                data = data.Where(x => (request.TradingMode.Value.IsPerpetual() ? x.Symbol.IndexOf('_') == x.Symbol.LastIndexOf('_') : x.Symbol.IndexOf('_') != x.Symbol.LastIndexOf('_')));
 
             return resultTickers.AsExchangeResult<SharedFuturesTicker[]>(Exchange, request.TradingMode == null ? SupportedTradingModes : new[] { request.TradingMode.Value }, data.Select(x =>
             {
@@ -520,7 +520,7 @@ namespace XT.Net.Clients.FuturesApi
             data.AddRange(ordersPartialFilled.Result.Data.Data.Where(x => !data.Any(x => x.OrderId == x.OrderId)));
 
             return ordersNew.Result.AsExchangeResult<SharedFuturesOrder[]>(Exchange, request.Symbol == null ? SupportedTradingModes : new[] { request.Symbol.TradingMode }, data.Select(x => new SharedFuturesOrder(
-                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol), 
+                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol),
                 x.Symbol,
                 x.OrderId.ToString(),
                 ParseOrderType(x.OrderType, x.TimeInForce),
@@ -565,11 +565,11 @@ namespace XT.Net.Clients.FuturesApi
 
             // Get next token
             FromIdToken? nextToken = null;
-            if (orders.Data.HasNext)
+            if (orders.Data.HasNext == true)
                 nextToken = new FromIdToken(orders.Data.Data.Min(o => o.OrderId).ToString());
 
             return orders.AsExchangeResult<SharedFuturesOrder[]>(Exchange, request.Symbol.TradingMode, orders.Data.Data.Select(x => new SharedFuturesOrder(
-                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol), 
+                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol),
                 x.Symbol,
                 x.OrderId.ToString(),
                 ParseOrderType(x.OrderType, x.TimeInForce),
@@ -604,7 +604,7 @@ namespace XT.Net.Clients.FuturesApi
                 return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, null, default);
 
             return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, request.Symbol.TradingMode, orders.Data.Data.Select(x => new SharedUserTrade(
-                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol), 
+                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol),
                 x.Symbol,
                 x.OrderId.ToString(),
                 x.TradeId.ToString(),
@@ -652,7 +652,7 @@ namespace XT.Net.Clients.FuturesApi
                 nextToken = new PageToken(page + 1, pageSize);
 
             return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, request.Symbol.TradingMode, orders.Data.Data.Select(x => new SharedUserTrade(
-                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol), 
+                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol),
                 x.Symbol,
                 x.OrderId.ToString(),
                 x.TradeId.ToString(),
@@ -894,14 +894,14 @@ namespace XT.Net.Clients.FuturesApi
                 OrderPrice = order.Data.Price == 0 ? null : order.Data.Price,
                 OrderQuantity = new SharedOrderQuantity(contractQuantity: order.Data.Quantity),
                 ClientOrderId = order.Data.ClientOrderId
-            });            
+            });
         }
 
         private SharedTriggerOrderDirection? ParseOrderDirection(XTTriggerOrder data)
         {
             if (data.PositionSide == PositionSide.Long)
                 return data.OrderSide == OrderSide.Buy ? SharedTriggerOrderDirection.Enter : SharedTriggerOrderDirection.Exit;
-    
+
             return data.OrderSide == OrderSide.Buy ? SharedTriggerOrderDirection.Exit : SharedTriggerOrderDirection.Enter;
         }
 
@@ -909,13 +909,13 @@ namespace XT.Net.Clients.FuturesApi
         {
             if (data.Status == TriggerOrderStatus.Expired
                 || data.Status == TriggerOrderStatus.PlatformRevocation
-                || data.Status == TriggerOrderStatus.UserRevocation) 
+                || data.Status == TriggerOrderStatus.UserRevocation)
             {
                 return SharedTriggerOrderStatus.CanceledOrRejected;
             }
 
             if (data.Status == TriggerOrderStatus.NotTriggered
-                || data.Status == TriggerOrderStatus.Unfinished) 
+                || data.Status == TriggerOrderStatus.Unfinished)
             {
                 return SharedTriggerOrderStatus.Active;
             }
@@ -961,7 +961,7 @@ namespace XT.Net.Clients.FuturesApi
 
             var result = await Trading.PlaceTriggerOrderAsync(
                 request.Symbol!.GetSymbol(FormatSymbol),
-                request.PositionSide == SharedPositionSide.Long ? OrderSide.Buy: OrderSide.Sell,
+                request.PositionSide == SharedPositionSide.Long ? OrderSide.Buy : OrderSide.Sell,
                 request.TpSlSide == SharedTpSlSide.TakeProfit ? TriggerOrderType.TakeProfitMarket : TriggerOrderType.StopMarket,
                 quantity: request.Quantity!.Value,
                 stopPrice: request.TriggerPrice,

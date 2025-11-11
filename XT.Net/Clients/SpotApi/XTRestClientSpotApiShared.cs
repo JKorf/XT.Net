@@ -163,7 +163,7 @@ namespace XT.Net.Clients.SpotApi
 
             // Determine next token
             FromIdToken? nextToken = null;
-            if (deposits.Data.HasPrevious)
+            if (deposits.Data.HasPrevious == true)
                 nextToken = new FromIdToken(deposits.Data.Data.Min(x => x.Id - 1).ToString());
 
             return deposits.AsExchangeResult<SharedDeposit[]>(Exchange, TradingMode.Spot, deposits.Data.Data.Select(x => new SharedDeposit(x.Asset, x.Quantity, x.Status == DepositStatus.Success, x.CreateTime)
@@ -358,7 +358,7 @@ namespace XT.Net.Clients.SpotApi
 
             // Determine next token
             FromIdToken? nextToken = null;
-            if (withdrawals.Data.HasNext)
+            if (withdrawals.Data.HasNext == true)
                 nextToken = new FromIdToken(withdrawals.Data.Data.Min(x => x.Id - 1).ToString());
 
             return withdrawals.AsExchangeResult<SharedWithdrawal[]>(Exchange, TradingMode.Spot, withdrawals.Data.Data.Select(x => new SharedWithdrawal(x.Asset, x.Address, x.Quantity, x.Status == WithdrawalStatus.Success, x.CreateTime)
@@ -640,7 +640,7 @@ namespace XT.Net.Clients.SpotApi
 
             // Get next token
             FromIdToken? nextToken = null;
-            if (orders.Data.HasNext)
+            if (orders.Data.HasNext == true)
                 nextToken = new FromIdToken(orders.Data.Data.Min(x => x.OrderId - 1).ToString());
 
             return orders.AsExchangeResult<SharedSpotOrder[]>(Exchange, TradingMode.Spot, orders.Data.Data.Select(x => new SharedSpotOrder(
@@ -679,7 +679,7 @@ namespace XT.Net.Clients.SpotApi
                 return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, null, default);
 
             return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, TradingMode.Spot, orders.Data.Data.Select(x => new SharedUserTrade(
-                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol), 
+                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol),
                 x.Symbol,
                 x.OrderId.ToString(),
                 x.TradeId.ToString(),
@@ -721,11 +721,11 @@ namespace XT.Net.Clients.SpotApi
 
             // Determine next token
             FromIdToken? nextToken = null;
-            if (orders.Data.HasNext)
+            if (orders.Data.HasNext == true)
                 nextToken = new FromIdToken(orders.Data.Data.Min(x => x.OrderId - 1).ToString());
 
             return orders.AsExchangeResult<SharedUserTrade[]>(Exchange, TradingMode.Spot, orders.Data.Data.Select(x => new SharedUserTrade(
-                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol), 
+                ExchangeSymbolCache.ParseSymbol(_topicId, x.Symbol),
                 x.Symbol,
                 x.OrderId.ToString(),
                 x.TradeId.ToString(),

@@ -17,16 +17,16 @@ namespace XT.Net.Objects.Models
         /// Whether there is a next page
         /// </summary>
         [JsonPropertyName("hasNext")]
-        public bool HasNext { get; set; }
+        public bool? HasNext { get; set; }
         /// <summary>
         /// Whether there is a previous page
         /// </summary>
         [JsonPropertyName("hasPrev")]
-        public bool HasPrevious { get; set; }
+        public bool? HasPrevious { get; set; }
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("items")]
-        public T[] Data { get; set; } = [];
+        public T[]? Data { get; set; } = [];
     }
 }
