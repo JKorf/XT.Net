@@ -23,10 +23,16 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("hasPrev")]
         public bool? HasPrevious { get; set; }
+
+        private T[]? _data;
         /// <summary>
         /// Data
         /// </summary>
         [JsonPropertyName("items")]
-        public T[]? Data { get; set; } = [];
+        public T[] Data
+        {
+            get => _data ?? [];
+            set => _data = value;
+        }
     }
 }

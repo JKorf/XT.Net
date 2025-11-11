@@ -1,0 +1,4 @@
+GET
+/v4/deposit/history
+true
+{"rc":0,"mc":"SUCCESS","ma":[],"result":{"hasPrev":null,"hasNext":null,"items":null}}

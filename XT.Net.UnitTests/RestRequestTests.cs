@@ -26,6 +26,7 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.SpotApi.Account.GetBalancesAsync(), "GetBalances", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Account.GetDepositAddressAsync("123", "123"), "GetDepositAddress", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Account.GetDepositHistoryAsync("123", "123"), "GetDepositHistory", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.SpotApi.Account.GetDepositHistoryAsync("123", "123"), "GetDepositHistoryEmpty", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Account.WithdrawAsync("123", "123", "123", 0.1m), "Withdraw", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Account.GetWithdrawalHistoryAsync("123", "123"), "GetWithdrawalHistory", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.SpotApi.Account.TransferAsync("123", BusinessType.Spot, BusinessType.UsdtFutures, 0.1m, "123"), "Transfer", nestedJsonProperty: "result");
