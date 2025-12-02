@@ -5,7 +5,7 @@
     "topic": "trade", 
     "event": "trade@eth_usdt", 
     "data": {
-        "s": "btc_usdt",        
+        "s": "eth_usdt",        
         "i": 6316559590087222000,  
         "t": 1655992403617,      
         "p": "43000",             

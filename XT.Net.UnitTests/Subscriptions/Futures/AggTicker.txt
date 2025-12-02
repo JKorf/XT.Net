@@ -5,7 +5,7 @@
     "topic": "agg_ticker", 
     "event": "agg_ticker@eth_usdt", 
     "data": {
-        "s":"btc_index",
+        "s":"eth_usdt",
         "o":"49000",     
         "c":"50000",   
         "h":"0.1",      

@@ -16,6 +16,9 @@ using CryptoExchange.Net.SharedApis;
 using XT.Net.Objects.Internal;
 using CryptoExchange.Net.Converters.MessageParsing;
 using CryptoExchange.Net.Objects.Errors;
+using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
+using XT.Net.Clients.MessageHandlers;
+using System.Net.Http.Headers;
 
 namespace XT.Net.Clients.SpotApi
 {
@@ -29,6 +32,7 @@ namespace XT.Net.Clients.SpotApi
         internal new XTRestOptions ClientOptions => (XTRestOptions)base.ClientOptions;
 
         protected override ErrorMapping ErrorMapping => XTErrors.SpotErrors;
+        protected override IRestMessageHandler MessageHandler { get; } = new XTRestMessageHandler(XTErrors.SpotErrors);
         #endregion
 
         #region Api clients
@@ -85,7 +89,7 @@ namespace XT.Net.Clients.SpotApi
             return result.As(result.Data.Result!);
         }
 
-        protected override Error? TryParseError(RequestDefinition request, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
+        protected override Error? TryParseError(RequestDefinition request, HttpResponseHeaders responseHeaders, IMessageAccessor accessor)
         {
             var msgCode = accessor.GetValue<string>(MessagePath.Get().Property("mc"));
             if (msgCode != null && msgCode != "SUCCESS")
@@ -94,7 +98,7 @@ namespace XT.Net.Clients.SpotApi
             return null;
         }
 
-        protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor, Exception? exception)
+        protected override Error ParseErrorResponse(int httpStatusCode, HttpResponseHeaders responseHeaders, IMessageAccessor accessor, Exception? exception)
         {
             if (!accessor.IsValid)
                 return new ServerError(ErrorInfo.Unknown, exception: exception);

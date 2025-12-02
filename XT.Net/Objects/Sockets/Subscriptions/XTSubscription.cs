@@ -19,20 +19,26 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         private readonly SocketApiClient _client;
         private readonly string? _token;
         private readonly string[]? _queryIdentifiers;
-        private readonly Action<DataEvent<T>> _handler;
+        private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
+        private readonly string _topic;
         private readonly string[] _topics;
+        private readonly string[]? _symbols;
 
         /// <summary>
         /// ctor
         /// </summary>
-        public XTSubscription(ILogger logger, SocketApiClient client, string[] topics, Action<DataEvent<T>> handler, bool auth, string? token = null, string[]? listenerIdentifiers = null, string[]? queryIdentifiers = null) : base(logger, auth)
+        public XTSubscription(ILogger logger, SocketApiClient client, string topic, string[]? symbols, Action<DateTime, string?, XTSocketUpdate<T>> handler, bool auth, string? token = null, string[]? listenerIdentifiers = null, string[]? queryIdentifiers = null) : base(logger, auth)
         {
             _client = client;
             _handler = handler;
             _token = token;
-            _topics = topics;
+            _topic = topic;
+            _topics = symbols == null ? [topic] : symbols!.Select(x => $"{topic}@{x}").ToArray();
+            _symbols = symbols;
             _queryIdentifiers = queryIdentifiers;
-            MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(listenerIdentifiers ?? topics, DoHandleMessage);
+
+            MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(listenerIdentifiers ?? _topics, DoHandleMessage);            
+            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<XTSocketUpdate<T>>(topic, symbols?.ToArray(), DoHandleMessage);
         }
 
         /// <inheritdoc />
@@ -60,9 +66,9 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<XTSocketUpdate<T>> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketUpdate<T> message)
         {
-            _handler.Invoke(message.As(message.Data.Data, message.Data.Event, null, SocketUpdateType.Update));
+            _handler.Invoke(receiveTime, originalData, message);
             return CallResult.SuccessResult;
         }
     }

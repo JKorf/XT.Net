@@ -5,7 +5,7 @@
     "topic": "kline", 
     "event": "kline@eth_usdt,5m", 
     "data": {
-        "s":"btc_index",
+        "s":"eth_usdt",
         "o":"49000",   
         "c":"50000",  
         "h":"0.1",      

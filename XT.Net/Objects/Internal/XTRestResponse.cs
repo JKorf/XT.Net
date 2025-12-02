@@ -12,7 +12,7 @@ namespace XT.Net.Objects.Internal
         [JsonPropertyName("rc")]
         public int ReturnCode { get; set; }
         [JsonPropertyName("mc")]
-        public string MessageCode { get; set; } = string.Empty;
+        public string? MessageCode { get; set; }
 
         [JsonPropertyName("ma")]
         public object[] MessageArgs { get; set; } = [];

@@ -5,7 +5,7 @@
     "topic": "depth", 
     "event": "depth@eth_usdt,20", 
     "data": {
-        "s": "btc_usdt",       
+        "s": "eth_usdt",       
         "t": 1657699200000,   
         "a": [             
             [                  

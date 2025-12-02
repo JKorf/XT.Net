@@ -9054,7 +9054,7 @@
         <member name="T:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String,System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}})">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String,System.String,System.Action{System.DateTime,System.String,XT.Net.Objects.Internal.XTSocketUpdate{`0}})">
             <summary>
             ctor
             </summary>
@@ -9065,13 +9065,13 @@
         <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.GetUnsubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Internal.XTSocketUpdate{`0}})">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTFuturesAuthSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,System.DateTime,System.String,XT.Net.Objects.Internal.XTSocketUpdate{`0})">
             <inheritdoc />
         </member>
         <member name="T:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String[],System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{`0}},System.Boolean,System.String,System.String[],System.String[])">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.#ctor(Microsoft.Extensions.Logging.ILogger,CryptoExchange.Net.Clients.SocketApiClient,System.String,System.String[],System.Action{System.DateTime,System.String,XT.Net.Objects.Internal.XTSocketUpdate{`0}},System.Boolean,System.String,System.String[],System.String[])">
             <summary>
             ctor
             </summary>
@@ -9082,7 +9082,7 @@
         <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.GetUnsubQuery(CryptoExchange.Net.Sockets.SocketConnection)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Internal.XTSocketUpdate{`0}})">
+        <member name="M:XT.Net.Objects.Sockets.Subscriptions.XTSubscription`1.DoHandleMessage(CryptoExchange.Net.Sockets.SocketConnection,System.DateTime,System.String,XT.Net.Objects.Internal.XTSocketUpdate{`0})">
             <inheritdoc />
         </member>
         <member name="T:XT.Net.Objects.XTApiAddresses">
@@ -9454,6 +9454,9 @@
         </member>
         <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.Bind_XTOptions(Microsoft.Extensions.Configuration.IConfiguration,System.Object)">
             <summary>Attempts to bind the given object instance to configuration values by matching property names against configuration keys recursively.</summary>
+        </member>
+        <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.TryGetConfigurationValue(Microsoft.Extensions.Configuration.IConfiguration,System.String,System.String@)">
+            <summary>Tries to get the configuration value for the specified key.</summary>
         </member>
         <member name="M:Microsoft.Extensions.Configuration.Binder.SourceGeneration.BindingExtensions.ValidateConfigurationKeys(System.Type,System.Lazy{System.Collections.Generic.HashSet{System.String}},Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Configuration.BinderOptions)">
             <summary>If required by the binder options, validates that there are no unknown keys in the input configuration object.</summary>

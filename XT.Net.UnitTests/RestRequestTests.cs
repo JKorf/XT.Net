@@ -14,11 +14,13 @@ namespace XT.Net.UnitTests
     [TestFixture]
     public class RestRequestTests
     {
-        [Test]
-        public async Task ValidateSpotAccountCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateSpotAccountCalls(bool useUpdatedDeserialization)
         {
             var client = new XTRestClient(opts =>
             {
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
@@ -32,11 +34,13 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.SpotApi.Account.TransferAsync("123", BusinessType.Spot, BusinessType.UsdtFutures, 0.1m, "123"), "Transfer", nestedJsonProperty: "result");
         }
 
-        [Test]
-        public async Task ValidateSpotExchangeDataCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateSpotExchangeDataCalls(bool useUpdatedDeserialization)
         {
             var client = new XTRestClient(opts =>
             {
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
@@ -55,11 +59,13 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.SpotApi.ExchangeData.GetAssetNetworksAsync(), "GetAssetNetworks", nestedJsonProperty: "result");
         }
 
-        [Test]
-        public async Task ValidateSpotTradingCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateSpotTradingCalls(bool useUpdatedDeserialization)
         {
             var client = new XTRestClient(opts =>
             {
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
@@ -76,12 +82,14 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.SpotApi.Trading.GetUserTradesAsync(), "GetUserTrades", nestedJsonProperty: "result");
         }
 
-        [Test]
-        public async Task ValidateFuturesAccountCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateFuturesAccountCalls(bool useUpdatedDeserialization)
         {
             var client = new XTRestClient(opts =>
             {
                 opts.AutoTimestamp = false;
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
             var tester = new RestRequestValidator<XTRestClient>(client, "Endpoints/Futures/Account", "https://fapi.xt.com", IsAuthenticated);
@@ -95,11 +103,13 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetAdlInfoAsync(), "GetAdlInfo", nestedJsonProperty: "result");
         }
 
-        [Test]
-        public async Task ValidateFuturesExchangeDataCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateFuturesExchangeDataCalls(bool useUpdatedDeserialization)
         {
             var client = new XTRestClient(opts =>
             {
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
@@ -119,11 +129,13 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.UsdtFuturesApi.ExchangeData.GetSymbolInfoAsync(), "GetSymbolInfo");
         }
 
-        [Test]
-        public async Task ValidateFuturesTradingCalls()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task ValidateFuturesTradingCalls(bool useUpdatedDeserialization)
         {
             var client = new XTRestClient(opts =>
             {
+                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.AutoTimestamp = false;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });

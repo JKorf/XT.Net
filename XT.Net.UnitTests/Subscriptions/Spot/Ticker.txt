@@ -5,7 +5,7 @@
     "topic": "ticker", 
     "event": "ticker@eth_usdt", 
     "data": {
-        "s": "btc_usdt",      
+        "s": "eth_usdt",      
         "t": 1657586700119,   
         "cv": "-200",        
         "cr": "-0.02",        

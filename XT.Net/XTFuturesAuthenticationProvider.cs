@@ -26,10 +26,11 @@ namespace XT.Net
                 return;
 
             var timestamp = GetMillisecondTimestamp(apiClient);
+            request.Headers ??= new Dictionary<string, string>();
             request.Headers.Add("validate-appkey", ApiKey);
             request.Headers.Add("validate-timestamp", timestamp);
 
-            var body = !request.BodyParameters.Any() ? string.Empty : GetSerializedBody(_serializer, request.BodyParameters);
+            var body = request.BodyParameters?.Count > 0 ? GetSerializedBody(_serializer, request.BodyParameters) : string.Empty;
             var queryString = request.GetQueryString(false);
             var signStr = $"{string.Join("&", request.Headers.Select(x => x.Key + "=" + x.Value))}#{request.Path}";
             if (!string.IsNullOrEmpty(queryString))

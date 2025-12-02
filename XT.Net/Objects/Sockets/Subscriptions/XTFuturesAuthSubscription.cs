@@ -17,14 +17,14 @@ namespace XT.Net.Objects.Sockets.Subscriptions
     {
         private readonly SocketApiClient _client;
         private readonly string[]? _queryIdentifiers;
-        private readonly Action<DataEvent<T>> _handler;
+        private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
         private readonly string _listenKey;
         private readonly string _topic;
 
         /// <summary>
         /// ctor
         /// </summary>
-        public XTFuturesAuthSubscription(ILogger logger, SocketApiClient client, string topic, string listenKey, Action<DataEvent<T>> handler) : base(logger, false)
+        public XTFuturesAuthSubscription(ILogger logger, SocketApiClient client, string topic, string listenKey, Action<DateTime, string?, XTSocketUpdate<T>> handler) : base(logger, false)
         {
             _client = client;
             _handler = handler;
@@ -33,6 +33,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             _topic = topic;
 
             MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(topic, DoHandleMessage);
+            MessageRouter = MessageRouter.CreateWithoutTopicFilter<XTSocketUpdate<T>>(topic, DoHandleMessage);
         }
 
         /// <inheritdoc />
@@ -58,9 +59,10 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         }
 
         /// <inheritdoc />
-        public CallResult DoHandleMessage(SocketConnection connection, DataEvent<XTSocketUpdate<T>> message)
+        public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketUpdate<T> message)
         {
-            _handler.Invoke(message.As(message.Data.Data, message.Data.Event, null, SocketUpdateType.Update));
+            _handler.Invoke(receiveTime, originalData, message);
+            //_handler.Invoke(message.As(message.Data.Data, message.Data.Event, null, SocketUpdateType.Update));
             return CallResult.SuccessResult;
         }
     }

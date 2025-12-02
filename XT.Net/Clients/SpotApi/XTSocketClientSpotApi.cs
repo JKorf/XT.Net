@@ -9,6 +9,7 @@ using CryptoExchange.Net;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Converters.MessageParsing;
+using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
@@ -17,8 +18,10 @@ using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net.Sockets;
 using Microsoft.Extensions.Logging;
+using Toobit.Net.Clients.MessageHandlers;
 using XT.Net.Enums;
 using XT.Net.Interfaces.Clients.SpotApi;
+using XT.Net.Objects.Internal;
 using XT.Net.Objects.Models;
 using XT.Net.Objects.Options;
 using XT.Net.Objects.Sockets;
@@ -69,6 +72,8 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
+        public override ISocketMessageHandler CreateMessageConverter(WebSocketMessageType messageType) => new XTSocketMessageHandler();
+
         /// <inheritdoc />
         protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
             => new XTSpotAuthenticationProvider(credentials);
@@ -79,11 +84,22 @@ namespace XT.Net.Clients.SpotApi
 
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTTradeUpdate>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTTradeUpdate>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XTTradeUpdate>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithDataTimestamp(data.Data!.Timestamp)
+                        .WithStreamId(data.Event)
+                        .WithSymbol(data.Data.Symbol)
+                    );
+            });
+
             var subscription = new XTSubscription<XTTradeUpdate>(_logger,
                 this,
-                symbols.Select(x => "trade@" + x.ToLowerInvariant()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)
-                .WithDataTimestamp(x.Data.Timestamp)),
+                "trade",
+                symbols.Select(x => x.ToLowerInvariant()).ToArray(),
+                internalHandler,
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -95,11 +111,22 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToKlineUpdatesAsync(IEnumerable<string> symbols, KlineInterval interval, Action<DataEvent<XTKlineUpdate>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTKlineUpdate>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XTKlineUpdate>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithStreamId(data.Event)
+                        .WithSymbol(data.Data.Symbol)
+                    );
+            });
+
             var intervalStr = EnumConverter.GetString(interval);
             var subscription = new XTSubscription<XTKlineUpdate>(_logger,
                 this,
-                symbols.Select(x => "kline@" + x.ToLowerInvariant() + "," + intervalStr).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                "kline",
+                symbols.Select(x => x.ToLowerInvariant() + "," + intervalStr).ToArray(),
+                internalHandler,
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -111,11 +138,22 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderBookUpdatesAsync(IEnumerable<string> symbols, int depth, Action<DataEvent<XTOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTOrderBookUpdate>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XTOrderBookUpdate>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithStreamId(data.Event)
+                        .WithSymbol(data.Data.Symbol)
+                        .WithDataTimestamp(data.Data.Timestamp)
+                    );
+            });
+
             var subscription = new XTSubscription<XTOrderBookUpdate>(_logger,
                 this,
-                symbols.Select(x => "depth@" + x.ToLowerInvariant() + "," + depth).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)
-                .WithDataTimestamp(x.Data.Timestamp)),
+                "depth",
+                symbols.Select(x => x.ToLowerInvariant() + "," + depth).ToArray(),
+                internalHandler,
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -127,10 +165,21 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToIncrementalOrderBookUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XTIncrementalOrderBookUpdate>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTIncrementalOrderBookUpdate>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XTIncrementalOrderBookUpdate>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithStreamId(data.Event)
+                        .WithSymbol(data.Data.Symbol)
+                    );
+            });
+
             var subscription = new XTSubscription<XTIncrementalOrderBookUpdate>(_logger,
                 this,
-                symbols.Select(x => "depth_update@" + x.ToLowerInvariant()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)),
+                "depth_update",
+                symbols.Select(x => x.ToLowerInvariant()).ToArray(),
+                internalHandler,
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -142,11 +191,22 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToTickerUpdatesAsync(IEnumerable<string> symbols, Action<DataEvent<XT24HTicker>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XT24HTicker>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XT24HTicker>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithStreamId(data.Event)
+                        .WithDataTimestamp(data.Data.Timestamp)
+                        .WithSymbol(data.Data.Symbol)
+                    );
+            });
+
             var subscription = new XTSubscription<XT24HTicker>(_logger,
                 this,
-                symbols.Select(x => "ticker@" + x.ToLowerInvariant()).ToArray(),
-                x => onMessage(x.WithSymbol(x.Data.Symbol)
-                .WithDataTimestamp(x.Data.Timestamp)),
+                "ticker",
+                symbols.Select(x => x.ToLowerInvariant()).ToArray(),
+                internalHandler,
                 false);
             return await SubscribeAsync(BaseAddress.AppendPath("public"), subscription, ct).ConfigureAwait(false);
         }
@@ -154,10 +214,21 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(string token, Action<DataEvent<XTBalanceUpdate>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTBalanceUpdate>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XTBalanceUpdate>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithStreamId(data.Event)
+                        .WithDataTimestamp(data.Data.Timestamp)
+                    );
+            });
+
             var subscription = new XTSubscription<XTBalanceUpdate>(_logger,
                 this,
-                ["balance"],
-                x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)),
+                "balance",
+                null,
+                internalHandler,
                 false,
                 token);
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);
@@ -166,10 +237,21 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string token, Action<DataEvent<XTOrderUpdate>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTOrderUpdate>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XTOrderUpdate>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithStreamId(data.Event)
+                        .WithDataTimestamp(data.Data.Timestamp)
+                    );
+            });
+
             var subscription = new XTSubscription<XTOrderUpdate>(_logger,
                 this,
-                ["order"],
-                x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)),
+                "order",
+                null,
+                internalHandler,
                 false,
                 token);
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);
@@ -179,10 +261,21 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string token, Action<DataEvent<XTUserTradeUpdate>> onMessage, CancellationToken ct = default)
         {
+            var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTUserTradeUpdate>>((receiveTime, originalData, data) =>
+            {
+                onMessage(
+                    new DataEvent<XTUserTradeUpdate>(data.Data!, receiveTime, originalData)
+                        .WithUpdateType(SocketUpdateType.Update)
+                        .WithStreamId(data.Event)
+                        .WithDataTimestamp(data.Data.Timestamp)
+                    );
+            });
+
             var subscription = new XTSubscription<XTUserTradeUpdate>(_logger,
                 this,
-                ["trade"],
-                x => onMessage(x.WithDataTimestamp(x.Data.Timestamp)),
+                "trade",
+                null,
+                internalHandler,
                 false,
                 token);
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);

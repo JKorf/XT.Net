@@ -18,12 +18,19 @@ namespace XT.Net.Objects.Sockets
         {
             _client = client;
             var checkers = new List<MessageHandlerLink>();
+            var routes = new List<MessageRoute>();
+
             checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, request.Id, HandleMessage));
+            routes.Add(MessageRoute<XTSocketResponse>.CreateWithoutTopicFilter(request.Id, HandleMessage));
 
             foreach (string identifier in additionalIdentifiers)
+            {
                 checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, identifier, HandleMessage));
+                routes.Add(MessageRoute<XTSocketResponse>.CreateWithoutTopicFilter(identifier, HandleMessage));
+            }
 
             MessageMatcher = MessageMatcher.Create(checkers.ToArray());
+            MessageRouter = MessageRouter.Create(routes.ToArray());
         }
 
         public override CallResult<object> Deserialize(IMessageAccessor message, Type type)
@@ -34,12 +41,12 @@ namespace XT.Net.Objects.Sockets
             return base.Deserialize(message, type);
         }
 
-        public CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DataEvent<XTSocketResponse> message)
+        public CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketResponse message)
         {
-            if (message.Data.Code != 0)
-                return new CallResult<XTSocketResponse>(new ServerError(message.Data.Code, _client.GetErrorInfo(message.Data.Code, message.Data.Message)));
+            if (message.Code != 0)
+                return new CallResult<XTSocketResponse>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message)));
 
-            return message.ToCallResult();
+            return new CallResult<XTSocketResponse>(message, originalData, null);
         }
     }
 }
