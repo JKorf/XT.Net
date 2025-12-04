@@ -13,7 +13,7 @@ using XT.Net.Objects.Models;
 namespace XT.Net.Objects.Sockets.Subscriptions
 {
     /// <inheritdoc />
-    internal class XTFuturesAuthSubscription<T> : Subscription<XTSocketResponse, XTSocketResponse>
+    internal class XTFuturesAuthSubscription<T> : Subscription
     {
         private readonly SocketApiClient _client;
         private readonly string[]? _queryIdentifiers;

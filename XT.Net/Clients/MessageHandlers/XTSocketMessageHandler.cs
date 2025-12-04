@@ -17,17 +17,17 @@ namespace Toobit.Net.Clients.MessageHandlers
         public XTSocketMessageHandler()
         {
             AddTopicMapping<XTSocketUpdate<XTTradeUpdate>>(x => x.Data.Symbol);
-            AddTopicMapping<XTSocketUpdate<XTKlineUpdate>>(x => x.Data.Symbol);
-            AddTopicMapping<XTSocketUpdate<XTOrderBookUpdate>>(x => x.Data.Symbol);
-            AddTopicMapping<XTSocketUpdate<XTIncrementalOrderBookUpdate>>(x => x.Data.Symbol);
+            AddTopicMapping<XTSocketUpdate<XTKlineUpdate>>(x => x.Event.Split('@')[1]);
+            AddTopicMapping<XTSocketUpdate<XTOrderBookUpdate>>(x => x.Event.Split('@')[1]);
+            AddTopicMapping<XTSocketUpdate<XTIncrementalOrderBookUpdate>>(x => x.Event.Split('@')[1]);
             AddTopicMapping<XTSocketUpdate<XT24HTicker>>(x => x.Data.Symbol);
             AddTopicMapping<XTSocketUpdate<XTFuturesTrade>>(x => x.Data.Symbol);
-            AddTopicMapping<XTSocketUpdate<XTFuturesKline>>(x => x.Data.Symbol);
+            AddTopicMapping<XTSocketUpdate<XTFuturesKline>>(x => x.Event.Split('@')[1]);
             AddTopicMapping<XTSocketUpdate<XTFuturesTicker>>(x => x.Data.Symbol);
             AddTopicMapping<XTSocketUpdate<XTMarketInfo>>(x => x.Data.Symbol);
             AddTopicMapping<XTSocketUpdate<XTPrice>>(x => x.Data.Symbol);
-            AddTopicMapping<XTSocketUpdate<XTFuturesIncrementalOrderBookUpdate>>(x => x.Data.Symbol);
-            AddTopicMapping<XTSocketUpdate<XTFuturesOrderBookUpdate>>(x => x.Data.Symbol);
+            AddTopicMapping<XTSocketUpdate<XTFuturesIncrementalOrderBookUpdate>>(x => x.Event.Split('@')[1]);
+            AddTopicMapping<XTSocketUpdate<XTFuturesOrderBookUpdate>>(x => x.Event.Split('@')[1]);
             AddTopicMapping<XTSocketUpdate<XTFundingRateUpdate>>(x => x.Data.Symbol);
         }
 
