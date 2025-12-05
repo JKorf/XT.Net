@@ -17,7 +17,7 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
-using Toobit.Net.Clients.MessageHandlers;
+using XT.Net.Clients.MessageHandlers;
 using XT.Net.Enums;
 using XT.Net.Interfaces.Clients.FuturesApi;
 using XT.Net.Objects.Internal;

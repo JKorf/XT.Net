@@ -8,7 +8,7 @@ using XT.Net;
 using XT.Net.Objects.Internal;
 using XT.Net.Objects.Models;
 
-namespace Toobit.Net.Clients.MessageHandlers
+namespace XT.Net.Clients.MessageHandlers
 {
     internal class XTSocketMessageHandler : JsonSocketMessageHandler
     {
