@@ -31,21 +31,19 @@ namespace XT.Net.Clients.MessageHandlers
             AddTopicMapping<XTSocketUpdate<XTFundingRateUpdate>>(x => x.Data.Symbol);
         }
 
-        protected override MessageEvaluator[] TypeEvaluators { get; } = [ 
-            new MessageEvaluator {
-                Priority = 1,
+        protected override MessageTypeDefinition[] TypeEvaluators { get; } = [ 
+            new MessageTypeDefinition {
                 Fields = [
                     new PropertyFieldReference("id"),
                 ],
-                IdentifyMessageCallback = x => x.FieldValue("id")!
+                TypeIdentifierCallback = x => x.FieldValue("id")!
             },
 
-            new MessageEvaluator {
-                Priority = 2,
+            new MessageTypeDefinition {
                 Fields = [
                     new PropertyFieldReference("topic"),
                 ],
-                IdentifyMessageCallback = x => x.FieldValue("topic")!
+                TypeIdentifierCallback = x => x.FieldValue("topic")!
             },
 
         ];

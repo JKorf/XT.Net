@@ -1,0 +1,7 @@
+>1 { "method": "subscribe", "params": [ "kline@eth_usdt,5m" ], "id": "|*|" }
+>2 { "method": "subscribe", "params": [ "kline@eth_usdt,1h" ], "id": "|*|" }
+<1 { "id": "|id|", "code": 0, "msg": "" }
+<2 { "id": "|id|", "code": 0, "msg": "" }
+=1 { "topic": "kline", "event": "kline@eth_usdt,5m", "data": { "s": "eth_usdt" } }
+=2 { "topic": "kline", "event": "kline@eth_usdt,1h", "data": { "s": "eth_usdt" } }
+

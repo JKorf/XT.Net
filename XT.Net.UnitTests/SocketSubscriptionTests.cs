@@ -16,6 +16,27 @@ namespace XT.Net.UnitTests
     {
         [TestCase(false)]
         [TestCase(true)]
+        public async Task ValidateConcurrentFuturesSubscriptions(bool newDeserialization)
+        {
+            var logger = new LoggerFactory();
+            logger.AddProvider(new TraceLoggerProvider());
+
+            var client = new XTSocketClient(Options.Create(new XTSocketOptions
+            {
+                OutputOriginalData = true,
+                UseUpdatedDeserialization = newDeserialization,
+
+            }), logger);
+
+            var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Spot", "wss://stream.xt.com");
+            await tester.ValidateConcurrentAsync<XTKlineUpdate>(
+                (client, handler) => client.SpotApi.SubscribeToKlineUpdatesAsync("eth_usdt", Enums.KlineInterval.FiveMinutes, handler),
+                (client, handler) => client.SpotApi.SubscribeToKlineUpdatesAsync("eth_usdt", Enums.KlineInterval.OneHour, handler),
+                "Concurrent");
+        }
+
+        [TestCase(false)]
+        [TestCase(true)]
         public async Task ValidateSpotSubscriptions(bool useUpdatedDeserialization)
         {
             var client = new XTSocketClient(opts =>
