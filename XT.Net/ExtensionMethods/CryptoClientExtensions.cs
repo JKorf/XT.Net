@@ -1,4 +1,4 @@
-using CryptoExchange.Net.Interfaces;
+using CryptoExchange.Net.Interfaces.Clients;
 using XT.Net.Clients;
 using XT.Net.Interfaces.Clients;
 

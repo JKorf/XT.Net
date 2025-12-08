@@ -1,10 +1,10 @@
 ﻿using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
 using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Converters.SystemTextJson.MessageHandlers;
 using System;
-using System.Linq;
 using System.Net.WebSockets;
+using System.Text;
 using System.Text.Json;
-using XT.Net;
 using XT.Net.Objects.Internal;
 using XT.Net.Objects.Models;
 
@@ -52,6 +52,17 @@ namespace XT.Net.Clients.MessageHandlers
         {
             if (data.Length == 4)
                 return "pong";
+
+            if (data[0] != 0x7b && data[0] != 0x5b) // Json value should start with `{` or `[`
+            {
+                // Invalid json, need to handle this for invalid listen key error response:
+                // `balance@invalid_listen_key`
+#if NETSTANDARD2_0
+                return Encoding.UTF8.GetString(data.ToArray());
+#else
+                return Encoding.UTF8.GetString(data);
+#endif
+            }
 
             return base.GetTypeIdentifier(data, webSocketMessageType);
         }

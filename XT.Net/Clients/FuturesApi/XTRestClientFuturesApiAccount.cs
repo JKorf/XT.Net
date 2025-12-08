@@ -1,10 +1,8 @@
 using CryptoExchange.Net.Objects;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-using XT.Net.Clients.FuturesApi;
 using XT.Net.Interfaces.Clients.FuturesApi;
 using XT.Net.Objects.Models;
 using CryptoExchange.Net.RateLimiting.Guards;

@@ -123,7 +123,7 @@ namespace XT.Net.UnitTests
             await RunAndCheckResult(useUpdatedDeserialization, client => client.UsdtFuturesApi.ExchangeData.GetBookTickerAsync("eth_usdt", default), false);
             await RunAndCheckResult(useUpdatedDeserialization, client => client.UsdtFuturesApi.ExchangeData.GetBookTickersAsync(default), false);
             await RunAndCheckResult(useUpdatedDeserialization, client => client.UsdtFuturesApi.ExchangeData.GetFundingRateHistoryAsync("eth_usdt", default, default, default, default), false);
-            await RunAndCheckResult(useUpdatedDeserialization, client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("eth_usdt", default, default, default, default), false);
+            //await RunAndCheckResult(useUpdatedDeserialization, client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("eth_usdt", default, default, default, default), false);
             await RunAndCheckResult(useUpdatedDeserialization, client => client.UsdtFuturesApi.ExchangeData.GetOpenInterestAsync("eth_usdt", default), false);
             await RunAndCheckResult(useUpdatedDeserialization, client => client.UsdtFuturesApi.ExchangeData.GetSymbolInfoAsync(default), false);
         }

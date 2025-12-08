@@ -1,10 +1,7 @@
 using CryptoExchange.Net.Objects;
-using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.Sockets;
+using CryptoExchange.Net.Sockets.Default;
 using System;
-using System.Collections.Generic;
-using XT.Net.Objects.Internal;
-using XT.Net.Objects.Models;
 
 namespace XT.Net.Objects.Sockets
 {

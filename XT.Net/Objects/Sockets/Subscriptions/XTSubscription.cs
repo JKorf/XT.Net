@@ -1,15 +1,12 @@
 using CryptoExchange.Net;
 using CryptoExchange.Net.Clients;
-using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
-using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.Sockets;
+using CryptoExchange.Net.Sockets.Default;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using XT.Net.Objects.Internal;
-using XT.Net.Objects.Models;
 
 namespace XT.Net.Objects.Sockets.Subscriptions
 {
@@ -18,7 +15,6 @@ namespace XT.Net.Objects.Sockets.Subscriptions
     {
         private readonly SocketApiClient _client;
         private readonly string? _token;
-        private readonly string[]? _queryIdentifiers;
         private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
         private readonly string _topic;
         private readonly string[] _topics;
@@ -27,7 +23,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         /// <summary>
         /// ctor
         /// </summary>
-        public XTSubscription(ILogger logger, SocketApiClient client, string topic, string[]? symbols, Action<DateTime, string?, XTSocketUpdate<T>> handler, bool auth, string? token = null, string[]? listenerIdentifiers = null, string[]? queryIdentifiers = null) : base(logger, auth)
+        public XTSubscription(ILogger logger, SocketApiClient client, string topic, string[]? symbols, Action<DateTime, string?, XTSocketUpdate<T>> handler, bool auth, string? token = null, string[]? listenerIdentifiers = null) : base(logger, auth)
         {
             _client = client;
             _handler = handler;
@@ -35,7 +31,6 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             _topic = topic;
             _topics = symbols == null ? [topic] : symbols!.Select(x => $"{topic}@{x}").ToArray();
             _symbols = symbols;
-            _queryIdentifiers = queryIdentifiers;
 
             MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(listenerIdentifiers ?? _topics, DoHandleMessage);            
             MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<XTSocketUpdate<T>>(topic, symbols?.ToArray(), DoHandleMessage);
@@ -49,8 +44,8 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
                 Parameters = _topics,
-                ListenKey = _token,
-            }, _queryIdentifiers ?? []);
+                ListenKey = _token
+            }, null);
         }
 
         /// <inheritdoc />
@@ -62,7 +57,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Method = "unsubscribe",
                 Parameters = _topics,
                 ListenKey = _token,
-            }, _queryIdentifiers ?? []);
+            }, null);
         }
 
         /// <inheritdoc />

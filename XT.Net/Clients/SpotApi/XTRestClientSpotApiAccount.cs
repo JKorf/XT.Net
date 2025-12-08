@@ -3,11 +3,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-using XT.Net.Clients.SpotApi;
 using XT.Net.Interfaces.Clients.SpotApi;
 using CryptoExchange.Net.RateLimiting.Guards;
 using XT.Net.Objects.Models;
-using System.Collections.Generic;
 using XT.Net.Enums;
 using XT.Net.Objects.Internal;
 

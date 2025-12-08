@@ -1,13 +1,10 @@
-using CryptoExchange.Net;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using XT.Net.Clients.SpotApi;
 
 namespace XT.Net

@@ -1,7 +1,6 @@
 using CryptoExchange.Net.SharedApis;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using XT.Net.Interfaces.Clients.FuturesApi;
@@ -10,7 +9,6 @@ using CryptoExchange.Net.Objects;
 using XT.Net.Enums;
 using CryptoExchange.Net;
 using XT.Net.Objects.Models;
-using System.Drawing;
 using CryptoExchange.Net.Objects.Errors;
 
 namespace XT.Net.Clients.FuturesApi

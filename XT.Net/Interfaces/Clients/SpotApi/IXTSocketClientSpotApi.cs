@@ -2,11 +2,11 @@ using CryptoExchange.Net.Objects;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects.Sockets;
 using XT.Net.Objects.Models;
 using XT.Net.Enums;
 using System.Collections.Generic;
+using CryptoExchange.Net.Interfaces.Clients;
 
 namespace XT.Net.Interfaces.Clients.SpotApi
 {

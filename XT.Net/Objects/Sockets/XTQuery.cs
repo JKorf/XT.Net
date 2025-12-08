@@ -1,12 +1,12 @@
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
-using CryptoExchange.Net.Objects.Sockets;
+using CryptoExchange.Net.Objects.Errors;
 using CryptoExchange.Net.Sockets;
+using CryptoExchange.Net.Sockets.Default;
 using System;
 using System.Collections.Generic;
 using XT.Net.Objects.Internal;
-using XT.Net.Objects.Models;
 
 namespace XT.Net.Objects.Sockets
 {
@@ -14,7 +14,7 @@ namespace XT.Net.Objects.Sockets
     {
         private readonly SocketApiClient _client;
 
-        public XTQuery(SocketApiClient client, XTSocketRequest request, params string[] additionalIdentifiers) : base(request, false, 1)
+        public XTQuery(SocketApiClient client, XTSocketRequest request, string? listenKeyTopic) : base(request, false, 1)
         {
             _client = client;
             var checkers = new List<MessageHandlerLink>();
@@ -23,10 +23,10 @@ namespace XT.Net.Objects.Sockets
             checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, request.Id, HandleMessage));
             routes.Add(MessageRoute<XTSocketResponse>.CreateWithoutTopicFilter(request.Id, HandleMessage));
 
-            foreach (string identifier in additionalIdentifiers)
+            if (listenKeyTopic != null)
             {
-                checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, identifier, HandleMessage));
-                routes.Add(MessageRoute<XTSocketResponse>.CreateWithoutTopicFilter(identifier, HandleMessage));
+                checkers.Add(new MessageHandlerLink<string>(MessageLinkType.Full, $"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
+                routes.Add(MessageRoute<string>.CreateWithoutTopicFilter($"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
             }
 
             MessageMatcher = MessageMatcher.Create(checkers.ToArray());
@@ -39,6 +39,11 @@ namespace XT.Net.Objects.Sockets
                 return new CallResult<object>(new XTSocketResponse() { Code = -1, Message = "Invalid listen key" });
 
             return base.Deserialize(message, type);
+        }
+
+        public CallResult<string> HandleListenKeyError(SocketConnection connection, DateTime receiveTime, string? originalData, string message)
+        {
+            return new CallResult<string>(new ServerError(new ErrorInfo(ErrorType.Unauthorized, "Invalid listen key")));
         }
 
         public CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketResponse message)

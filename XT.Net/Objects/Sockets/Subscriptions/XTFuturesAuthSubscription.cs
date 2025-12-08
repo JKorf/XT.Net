@@ -1,14 +1,11 @@
 using CryptoExchange.Net;
 using CryptoExchange.Net.Clients;
-using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
-using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.Sockets;
+using CryptoExchange.Net.Sockets.Default;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using XT.Net.Objects.Internal;
-using XT.Net.Objects.Models;
 
 namespace XT.Net.Objects.Sockets.Subscriptions
 {
@@ -16,7 +13,6 @@ namespace XT.Net.Objects.Sockets.Subscriptions
     internal class XTFuturesAuthSubscription<T> : Subscription
     {
         private readonly SocketApiClient _client;
-        private readonly string[]? _queryIdentifiers;
         private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
         private readonly string _listenKey;
         private readonly string _topic;
@@ -28,7 +24,6 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         {
             _client = client;
             _handler = handler;
-            _queryIdentifiers = [topic+"@invalid_listen_key"];
             _listenKey = listenKey;
             _topic = topic;
 
@@ -44,7 +39,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
                 Parameters = [_topic + "@" + _listenKey],
-            }, _queryIdentifiers ?? []);
+            }, _topic);
         }
 
         /// <inheritdoc />
@@ -55,7 +50,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",
                 Parameters = [_topic + "@" + _listenKey],
-            }, _queryIdentifiers ?? []);
+            }, _topic);
         }
 
         /// <inheritdoc />
