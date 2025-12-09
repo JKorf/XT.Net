@@ -5,7 +5,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Data page
     /// </summary>
-    public class XTDataPage<T>
+    public record XTDataPage<T>
     {
         /// <summary>
         /// Page
