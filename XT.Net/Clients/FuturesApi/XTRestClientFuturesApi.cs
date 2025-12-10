@@ -114,32 +114,6 @@ namespace XT.Net.Clients.FuturesApi
             return result.As(result.Data.Result!);
         }
 
-        protected override Error? TryParseError(RequestDefinition request, HttpResponseHeaders responseHeaders, IMessageAccessor accessor)
-        {
-            var msgCode = accessor.GetValue<int>(MessagePath.Get().Property("returnCode"));
-            if (msgCode != 0)
-            {
-                var errorCode = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("code"));
-                var errorMsg = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("msg"));
-                return new ServerError(errorCode!, GetErrorInfo(errorCode!, errorMsg));
-            }
-            return null;
-        }
-
-        protected override Error ParseErrorResponse(int httpStatusCode, HttpResponseHeaders responseHeaders, IMessageAccessor accessor, Exception? exception)
-        {
-            if (!accessor.IsValid)
-                return new ServerError(ErrorInfo.Unknown, exception);
-
-            var msgCode = accessor.GetValue<int?>(MessagePath.Get().Property("returnCode"));
-            if (msgCode == null)
-                return new ServerError(ErrorInfo.Unknown, exception);
-
-            var errorCode = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("code"));
-            var errorMsg = accessor.GetValue<string>(MessagePath.Get().Property("error").Property("msg"));
-            return new ServerError(errorCode!, GetErrorInfo(errorCode!, errorMsg));
-        }
-
         internal Task<WebCallResult<T>> SendRawAsync<T>(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null) where T : class
             => SendToAddressRawAsync<T>(BaseAddress, definition, parameters, cancellationToken, weight);
 

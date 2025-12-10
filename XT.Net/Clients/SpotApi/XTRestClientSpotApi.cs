@@ -87,27 +87,6 @@ namespace XT.Net.Clients.SpotApi
             return result.As(result.Data.Result!);
         }
 
-        protected override Error? TryParseError(RequestDefinition request, HttpResponseHeaders responseHeaders, IMessageAccessor accessor)
-        {
-            var msgCode = accessor.GetValue<string>(MessagePath.Get().Property("mc"));
-            if (msgCode != null && msgCode != "SUCCESS")
-                return new ServerError(msgCode, GetErrorInfo(msgCode));
-
-            return null;
-        }
-
-        protected override Error ParseErrorResponse(int httpStatusCode, HttpResponseHeaders responseHeaders, IMessageAccessor accessor, Exception? exception)
-        {
-            if (!accessor.IsValid)
-                return new ServerError(ErrorInfo.Unknown, exception: exception);
-
-            var code = accessor.GetValue<string?>(MessagePath.Get().Property("mc"));
-            if (code == null)
-                return new ServerError(ErrorInfo.Unknown, exception: exception);
-
-            return new ServerError(code, GetErrorInfo(code), exception);
-        }
-
         /// <inheritdoc />
         protected override Task<WebCallResult<DateTime>> GetServerTimestampAsync()
             => ExchangeData.GetServerTimeAsync();

@@ -32,7 +32,7 @@ namespace XT.Net.UnitTests
             }), loggerFactory);
         }
 
-        private XTRestClient GetRestClient(bool useUpdatedDeserialization)
+        private XTRestClient GetRestClient()
         {
             var key = Environment.GetEnvironmentVariable("APIKEY");
             var sec = Environment.GetEnvironmentVariable("APISECRET");
@@ -40,7 +40,6 @@ namespace XT.Net.UnitTests
             Authenticated = key != null && sec != null;
             return new XTRestClient(x =>
             {
-                x.UseUpdatedDeserialization = useUpdatedDeserialization;
                 x.ApiCredentials = Authenticated ? new CryptoExchange.Net.Authentication.ApiCredentials(key, sec) : null;
             });
         }
@@ -49,11 +48,11 @@ namespace XT.Net.UnitTests
         [TestCase(true)]
         public async Task TestSubscriptions(bool useUpdatedDeserialization)
         {
-            var listenKey = await GetRestClient(useUpdatedDeserialization).SpotApi.Account.GetWebsocketTokenAsync();
+            var listenKey = await GetRestClient().SpotApi.Account.GetWebsocketTokenAsync();
             await RunAndCheckUpdate<XT24HTicker>(useUpdatedDeserialization , (client, updateHandler) => client.SpotApi.SubscribeToBalanceUpdatesAsync(listenKey.Data, default, default), false, true);
             await RunAndCheckUpdate<XT24HTicker>(useUpdatedDeserialization, (client, updateHandler) => client.SpotApi.SubscribeToTickerUpdatesAsync("eth_usdt", updateHandler, default), true, false);
              
-            listenKey = await GetRestClient(useUpdatedDeserialization).UsdtFuturesApi.Account.GetListenKeyAsync();
+            listenKey = await GetRestClient().UsdtFuturesApi.Account.GetListenKeyAsync();
             await RunAndCheckUpdate<XTFuturesTicker>(useUpdatedDeserialization, (client, updateHandler) => client.FuturesApi.SubscribeToBalancesUpdatesAsync(listenKey.Data, default, default), false, true);
             await RunAndCheckUpdate<XTFuturesTicker>(useUpdatedDeserialization, (client, updateHandler) => client.FuturesApi.SubscribeToTickerUpdatesAsync("eth_usdt", updateHandler, default), true, false);
         } 
