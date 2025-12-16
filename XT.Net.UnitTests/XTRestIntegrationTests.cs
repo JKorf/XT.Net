@@ -14,7 +14,7 @@ namespace XT.Net.UnitTests
     [NonParallelizable]
     public class XTRestIntegrationTests : RestIntegrationTest<XTRestClient>
     {
-        public override bool Run { get; set; } = true;
+        public override bool Run { get; set; } = false;
 
         public override XTRestClient GetClient(ILoggerFactory loggerFactory)
         {

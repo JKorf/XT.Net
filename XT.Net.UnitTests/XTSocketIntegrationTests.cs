@@ -12,7 +12,7 @@ namespace XT.Net.UnitTests
 {
     internal class XTSocketIntegrationTests : SocketIntegrationTest<XTSocketClient>
     {
-        public override bool Run { get; set; } = true;
+        public override bool Run { get; set; } = false;
 
         public XTSocketIntegrationTests()
         {
