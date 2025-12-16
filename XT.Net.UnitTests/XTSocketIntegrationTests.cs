@@ -18,7 +18,7 @@ namespace XT.Net.UnitTests
         {
         }
 
-        public override XTSocketClient GetClient(ILoggerFactory loggerFactory)
+        public override XTSocketClient GetClient(ILoggerFactory loggerFactory, bool useUpdatedDeserialization)
         {
             var key = Environment.GetEnvironmentVariable("APIKEY");
             var sec = Environment.GetEnvironmentVariable("APISECRET");
@@ -26,6 +26,7 @@ namespace XT.Net.UnitTests
             Authenticated = key != null && sec != null;
             return new XTSocketClient(Options.Create(new XTSocketOptions
             {
+                UseUpdatedDeserialization = useUpdatedDeserialization,
                 OutputOriginalData = true,
                 ApiCredentials = Authenticated ? new CryptoExchange.Net.Authentication.ApiCredentials(key, sec) : null
             }), loggerFactory);
@@ -43,16 +44,17 @@ namespace XT.Net.UnitTests
             });
         }
 
-        [Test]
-        public async Task TestSubscriptions()
+        [TestCase(false)]
+        [TestCase(true)]
+        public async Task TestSubscriptions(bool useUpdatedDeserialization)
         {
             var listenKey = await GetRestClient().SpotApi.Account.GetWebsocketTokenAsync();
-            await RunAndCheckUpdate<XT24HTicker>((client, updateHandler) => client.SpotApi.SubscribeToBalanceUpdatesAsync(listenKey.Data, default, default), false, true);
-            await RunAndCheckUpdate<XT24HTicker>((client, updateHandler) => client.SpotApi.SubscribeToTickerUpdatesAsync("eth_usdt", updateHandler, default), true, false);
+            await RunAndCheckUpdate<XT24HTicker>(useUpdatedDeserialization , (client, updateHandler) => client.SpotApi.SubscribeToBalanceUpdatesAsync(listenKey.Data, default, default), false, true);
+            await RunAndCheckUpdate<XT24HTicker>(useUpdatedDeserialization, (client, updateHandler) => client.SpotApi.SubscribeToTickerUpdatesAsync("eth_usdt", updateHandler, default), true, false);
              
             listenKey = await GetRestClient().UsdtFuturesApi.Account.GetListenKeyAsync();
-            await RunAndCheckUpdate<XTFuturesTicker>((client, updateHandler) => client.FuturesApi.SubscribeToBalancesUpdatesAsync(listenKey.Data, default, default), false, true);
-            await RunAndCheckUpdate<XTFuturesTicker>((client, updateHandler) => client.FuturesApi.SubscribeToTickerUpdatesAsync("eth_usdt", updateHandler, default), true, false);
+            await RunAndCheckUpdate<XTFuturesTicker>(useUpdatedDeserialization, (client, updateHandler) => client.FuturesApi.SubscribeToBalancesUpdatesAsync(listenKey.Data, default, default), false, true);
+            await RunAndCheckUpdate<XTFuturesTicker>(useUpdatedDeserialization, (client, updateHandler) => client.FuturesApi.SubscribeToTickerUpdatesAsync("eth_usdt", updateHandler, default), true, false);
         } 
     }
 }

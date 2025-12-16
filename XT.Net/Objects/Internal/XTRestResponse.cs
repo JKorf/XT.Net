@@ -1,7 +1,4 @@
 using CryptoExchange.Net.Converters.SystemTextJson;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace XT.Net.Objects.Internal
@@ -12,7 +9,7 @@ namespace XT.Net.Objects.Internal
         [JsonPropertyName("rc")]
         public int ReturnCode { get; set; }
         [JsonPropertyName("mc")]
-        public string MessageCode { get; set; } = string.Empty;
+        public string? MessageCode { get; set; }
 
         [JsonPropertyName("ma")]
         public object[] MessageArgs { get; set; } = [];

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json.Serialization;
 
 namespace XT.Net.Objects.Models
@@ -8,7 +5,7 @@ namespace XT.Net.Objects.Models
     /// <summary>
     /// Data page
     /// </summary>
-    public class XTDataPage<T>
+    public record XTDataPage<T>
     {
         /// <summary>
         /// Page

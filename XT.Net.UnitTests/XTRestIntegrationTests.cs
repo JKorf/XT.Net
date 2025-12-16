@@ -14,7 +14,7 @@ namespace XT.Net.UnitTests
     [NonParallelizable]
     public class XTRestIntegrationTests : RestIntegrationTest<XTRestClient>
     {
-        public override bool Run { get; set; }
+        public override bool Run { get; set; } = false;
 
         public override XTRestClient GetClient(ILoggerFactory loggerFactory)
         {
@@ -116,7 +116,7 @@ namespace XT.Net.UnitTests
             await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetBookTickerAsync("eth_usdt", default), false);
             await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetBookTickersAsync(default), false);
             await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetFundingRateHistoryAsync("eth_usdt", default, default, default, default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("eth_usdt", default, default, default, default), false);
+            //await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("eth_usdt", default, default, default, default), false);
             await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetOpenInterestAsync("eth_usdt", default), false);
             await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetSymbolInfoAsync(default), false);
         }

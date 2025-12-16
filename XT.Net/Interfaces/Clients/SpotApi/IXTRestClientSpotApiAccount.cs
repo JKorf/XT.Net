@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using CryptoExchange.Net.Objects;
 using XT.Net.Objects.Models;
-using System.Collections.Generic;
 using System;
 using XT.Net.Enums;
 

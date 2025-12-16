@@ -1,9 +1,7 @@
-using CryptoExchange.Net;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -16,6 +14,9 @@ using CryptoExchange.Net.SharedApis;
 using XT.Net.Objects.Internal;
 using CryptoExchange.Net.Converters.MessageParsing;
 using CryptoExchange.Net.Objects.Errors;
+using CryptoExchange.Net.Converters.MessageParsing.DynamicConverters;
+using XT.Net.Clients.MessageHandlers;
+using System.Net.Http.Headers;
 
 namespace XT.Net.Clients.SpotApi
 {
@@ -29,6 +30,7 @@ namespace XT.Net.Clients.SpotApi
         internal new XTRestOptions ClientOptions => (XTRestOptions)base.ClientOptions;
 
         protected override ErrorMapping ErrorMapping => XTErrors.SpotErrors;
+        protected override IRestMessageHandler MessageHandler { get; } = new XTRestMessageHandler(XTErrors.SpotErrors);
         #endregion
 
         #region Api clients
@@ -83,27 +85,6 @@ namespace XT.Net.Clients.SpotApi
                 return result.As<T>(default);
 
             return result.As(result.Data.Result!);
-        }
-
-        protected override Error? TryParseError(RequestDefinition request, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor)
-        {
-            var msgCode = accessor.GetValue<string>(MessagePath.Get().Property("mc"));
-            if (msgCode != null && msgCode != "SUCCESS")
-                return new ServerError(msgCode, GetErrorInfo(msgCode));
-
-            return null;
-        }
-
-        protected override Error ParseErrorResponse(int httpStatusCode, KeyValuePair<string, string[]>[] responseHeaders, IMessageAccessor accessor, Exception? exception)
-        {
-            if (!accessor.IsValid)
-                return new ServerError(ErrorInfo.Unknown, exception: exception);
-
-            var code = accessor.GetValue<string?>(MessagePath.Get().Property("mc"));
-            if (code == null)
-                return new ServerError(ErrorInfo.Unknown, exception: exception);
-
-            return new ServerError(code, GetErrorInfo(code), exception);
         }
 
         /// <inheritdoc />

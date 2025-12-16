@@ -5,7 +5,7 @@
     "topic": "index_price", 
     "event": "index_price@eth_usdt", 
     "data": {
-        "s":"btc_usdt",
+        "s":"eth_usdt",
         "p":"50000",  
         "t":123124124  
    }

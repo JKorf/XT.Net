@@ -1,7 +1,6 @@
 using CryptoExchange.Net.SharedApis;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using XT.Net.Interfaces.Clients.FuturesApi;
@@ -32,14 +31,14 @@ namespace XT.Net.Clients.FuturesApi
                 new ParameterDescription(nameof(SubscribeBalancesRequest.ListenKey), typeof(string), "The listenkey for starting the user stream", "123123123")
             }
         };
-        async Task<ExchangeResult<UpdateSubscription>> IBalanceSocketClient.SubscribeToBalanceUpdatesAsync(SubscribeBalancesRequest request, Action<ExchangeEvent<SharedBalance[]>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> IBalanceSocketClient.SubscribeToBalanceUpdatesAsync(SubscribeBalancesRequest request, Action<DataEvent<SharedBalance[]>> handler, CancellationToken ct)
         {
             var validationError = ((IBalanceSocketClient)this).SubscribeBalanceOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 
             var result = await SubscribeToBalancesUpdatesAsync(request.ListenKey!,
-                update => handler(update.AsExchangeEvent<SharedBalance[]>(Exchange, [new SharedBalance(update.Data.Asset, update.Data.AvailableBalance, update.Data.WalletBalance)])),
+                update => handler(update.ToType<SharedBalance[]>([new SharedBalance(update.Data.Asset, update.Data.AvailableBalance, update.Data.WalletBalance)])),
                 ct: ct).ConfigureAwait(false);
 
             return new ExchangeResult<UpdateSubscription>(Exchange, result);
@@ -52,7 +51,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             SupportsMultipleSymbols = true
         };
-        async Task<ExchangeResult<UpdateSubscription>> IKlineSocketClient.SubscribeToKlineUpdatesAsync(SubscribeKlineRequest request, Action<ExchangeEvent<SharedKline>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> IKlineSocketClient.SubscribeToKlineUpdatesAsync(SubscribeKlineRequest request, Action<DataEvent<SharedKline>> handler, CancellationToken ct)
         {
             var interval = (Enums.KlineInterval)request.Interval;
             if (!Enum.IsDefined(typeof(Enums.KlineInterval), interval))
@@ -63,7 +62,7 @@ namespace XT.Net.Clients.FuturesApi
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
-            var result = await SubscribeToKlineUpdatesAsync(symbols, interval, update => handler(update.AsExchangeEvent(Exchange,
+            var result = await SubscribeToKlineUpdatesAsync(symbols, interval, update => handler(update.ToType(
                 new SharedKline(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol, update.Data.OpenTime, update.Data.ClosePrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.OpenPrice, update.Data.Volume))), ct).ConfigureAwait(false);
 
             return new ExchangeResult<UpdateSubscription>(Exchange, result);
@@ -75,14 +74,14 @@ namespace XT.Net.Clients.FuturesApi
         {
             SupportsMultipleSymbols = true
         };
-        async Task<ExchangeResult<UpdateSubscription>> IOrderBookSocketClient.SubscribeToOrderBookUpdatesAsync(SubscribeOrderBookRequest request, Action<ExchangeEvent<SharedOrderBook>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> IOrderBookSocketClient.SubscribeToOrderBookUpdatesAsync(SubscribeOrderBookRequest request, Action<DataEvent<SharedOrderBook>> handler, CancellationToken ct)
         {
             var validationError = ((IOrderBookSocketClient)this).SubscribeOrderBookOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 ;
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
-            var result = await SubscribeToOrderBookUpdatesAsync(symbols, request.Limit ?? 20, 100, update => handler(update.AsExchangeEvent(Exchange, new SharedOrderBook(update.Data.Asks, update.Data.Bids))), ct).ConfigureAwait(false);
+            var result = await SubscribeToOrderBookUpdatesAsync(symbols, request.Limit ?? 20, 100, update => handler(update.ToType(new SharedOrderBook(update.Data.Asks, update.Data.Bids))), ct).ConfigureAwait(false);
 
             return new ExchangeResult<UpdateSubscription>(Exchange, result);
         }
@@ -94,14 +93,14 @@ namespace XT.Net.Clients.FuturesApi
         {
             SupportsMultipleSymbols = true
         };
-        async Task<ExchangeResult<UpdateSubscription>> ITickerSocketClient.SubscribeToTickerUpdatesAsync(SubscribeTickerRequest request, Action<ExchangeEvent<SharedSpotTicker>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> ITickerSocketClient.SubscribeToTickerUpdatesAsync(SubscribeTickerRequest request, Action<DataEvent<SharedSpotTicker>> handler, CancellationToken ct)
         {
             var validationError = ((ITickerSocketClient)this).SubscribeTickerOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
-            var result = await SubscribeToTickerUpdatesAsync(symbols, update => handler(update.AsExchangeEvent(Exchange, new SharedSpotTicker(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol, update.Data.LastPrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.Volume, update.Data.PriceChange * 100)
+            var result = await SubscribeToTickerUpdatesAsync(symbols, update => handler(update.ToType(new SharedSpotTicker(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol, update.Data.LastPrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.Volume, update.Data.PriceChange * 100)
             {
                 QuoteVolume = update.Data.Turnover
             })), ct: ct).ConfigureAwait(false);
@@ -117,14 +116,14 @@ namespace XT.Net.Clients.FuturesApi
         {
             SupportsMultipleSymbols = true
         };
-        async Task<ExchangeResult<UpdateSubscription>> ITradeSocketClient.SubscribeToTradeUpdatesAsync(SubscribeTradeRequest request, Action<ExchangeEvent<SharedTrade[]>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> ITradeSocketClient.SubscribeToTradeUpdatesAsync(SubscribeTradeRequest request, Action<DataEvent<SharedTrade[]>> handler, CancellationToken ct)
         {
             var validationError = ((ITradeSocketClient)this).SubscribeTradeOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
-            var result = await SubscribeToTradeUpdatesAsync(symbols, update => handler(update.AsExchangeEvent<SharedTrade[]>(Exchange, new[] { 
+            var result = await SubscribeToTradeUpdatesAsync(symbols, update => handler(update.ToType<SharedTrade[]>(new[] { 
                 new SharedTrade(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol, update.Data.Quantity, update.Data.Price, update.Data.Timestamp)
                 {
                     Side = update.Data.Side == Enums.OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell,
@@ -144,7 +143,7 @@ namespace XT.Net.Clients.FuturesApi
                 new ParameterDescription(nameof(SubscribeUserTradeRequest.ListenKey), typeof(string), "The listenkey for starting the user stream", "123123123")
             }
         };
-        async Task<ExchangeResult<UpdateSubscription>> IUserTradeSocketClient.SubscribeToUserTradeUpdatesAsync(SubscribeUserTradeRequest request, Action<ExchangeEvent<SharedUserTrade[]>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> IUserTradeSocketClient.SubscribeToUserTradeUpdatesAsync(SubscribeUserTradeRequest request, Action<DataEvent<SharedUserTrade[]>> handler, CancellationToken ct)
         {
             var validationError = ((IUserTradeSocketClient)this).SubscribeUserTradeOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
@@ -152,7 +151,7 @@ namespace XT.Net.Clients.FuturesApi
 
             var result = await SubscribeToUserTradeUpdatesAsync(
                 request.ListenKey!,
-                update => handler(update.AsExchangeEvent<SharedUserTrade[]>(Exchange, 
+                update => handler(update.ToType<SharedUserTrade[]>( 
                     [new SharedUserTrade(
                         ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),
                         update.Data.Symbol,
@@ -183,14 +182,14 @@ namespace XT.Net.Clients.FuturesApi
                 new ParameterDescription(nameof(SubscribeFuturesOrderRequest.ListenKey), typeof(string), "The listenkey for starting the user stream", "123123123")
             }
         };
-        async Task<ExchangeResult<UpdateSubscription>> IFuturesOrderSocketClient.SubscribeToFuturesOrderUpdatesAsync(SubscribeFuturesOrderRequest request, Action<ExchangeEvent<SharedFuturesOrder[]>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> IFuturesOrderSocketClient.SubscribeToFuturesOrderUpdatesAsync(SubscribeFuturesOrderRequest request, Action<DataEvent<SharedFuturesOrder[]>> handler, CancellationToken ct)
         {
             var validationError = ((IFuturesOrderSocketClient)this).SubscribeFuturesOrderOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 
             var result = await SubscribeToOrderUpdatesAsync(request.ListenKey!,
-                update => handler(update.AsExchangeEvent<SharedFuturesOrder[]>(Exchange, new[] {
+                update => handler(update.ToType<SharedFuturesOrder[]>(new[] {
                     new SharedFuturesOrder(
                         ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),
                         update.Data.Symbol,
@@ -225,14 +224,14 @@ namespace XT.Net.Clients.FuturesApi
                 new ParameterDescription(nameof(SubscribePositionRequest.ListenKey), typeof(string), "The listenkey for starting the user stream", "123123123")
             }
         };
-        async Task<ExchangeResult<UpdateSubscription>> IPositionSocketClient.SubscribeToPositionUpdatesAsync(SubscribePositionRequest request, Action<ExchangeEvent<SharedPosition[]>> handler, CancellationToken ct)
+        async Task<ExchangeResult<UpdateSubscription>> IPositionSocketClient.SubscribeToPositionUpdatesAsync(SubscribePositionRequest request, Action<DataEvent<SharedPosition[]>> handler, CancellationToken ct)
         {
             var validationError = ((IPositionSocketClient)this).SubscribePositionOptions.ValidateRequest(Exchange, request, request.TradingMode, SupportedTradingModes);
             if (validationError != null)
                 return new ExchangeResult<UpdateSubscription>(Exchange, validationError);
 
             var result = await SubscribeToPositionUpdatesAsync(request.ListenKey!,
-                update => handler(update.AsExchangeEvent<SharedPosition[]>(Exchange, [new SharedPosition(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),update.Data.Symbol, update.Data.PositionSize, update.DataTime ?? update.ReceiveTime)
+                update => handler(update.ToType<SharedPosition[]>([new SharedPosition(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),update.Data.Symbol, update.Data.PositionSize, update.DataTime ?? update.ReceiveTime)
                 {
                     AverageOpenPrice = update.Data.EntryPrice == 0 ? null : update.Data.EntryPrice,
                     PositionSide = update.Data.PositionSide == Enums.PositionSide.Short ? SharedPositionSide.Short : SharedPositionSide.Long,

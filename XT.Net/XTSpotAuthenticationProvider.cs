@@ -1,13 +1,10 @@
-using CryptoExchange.Net;
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Converters.SystemTextJson;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Objects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using XT.Net.Clients.SpotApi;
 
 namespace XT.Net
@@ -15,6 +12,8 @@ namespace XT.Net
     internal class XTSpotAuthenticationProvider : AuthenticationProvider
     {
         private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
+
+        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.Hmac];
 
         public XTSpotAuthenticationProvider(ApiCredentials credentials) : base(credentials)
         {
@@ -26,12 +25,13 @@ namespace XT.Net
                 return;
 
             var timestamp = GetMillisecondTimestamp(apiClient);
+            request.Headers ??= new Dictionary<string, string>();
             request.Headers.Add("validate-algorithms", "HmacSHA256");
             request.Headers.Add("validate-appkey", ApiKey);
             request.Headers.Add("validate-recvwindow", ((int)((XTRestClientSpotApi)apiClient).ApiOptions.ReceiveWindow.TotalMilliseconds).ToString());
             request.Headers.Add("validate-timestamp", timestamp);
 
-            var body = !request.BodyParameters.Any() ? string.Empty : GetSerializedBody(_serializer, request.BodyParameters);
+            var body = request.BodyParameters?.Count > 0 ? GetSerializedBody(_serializer, request.BodyParameters) : string.Empty;
             var queryString = request.GetQueryString(false);
             var signStr = $"{string.Join("&", request.Headers.Select(x => x.Key + "=" + x.Value))}#{request.Method}#{request.Path}";
             if (!string.IsNullOrEmpty(queryString))

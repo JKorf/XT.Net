@@ -1,10 +1,7 @@
 using CryptoExchange.Net.Objects;
-using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.Sockets;
+using CryptoExchange.Net.Sockets.Default;
 using System;
-using System.Collections.Generic;
-using XT.Net.Objects.Internal;
-using XT.Net.Objects.Models;
 
 namespace XT.Net.Objects.Sockets
 {
@@ -14,11 +11,12 @@ namespace XT.Net.Objects.Sockets
         {
             RequestTimeout = TimeSpan.FromSeconds(5);
             MessageMatcher = MessageMatcher.Create<string>("pong", HandleMessage);
+            MessageRouter = MessageRouter.CreateWithoutHandler<string>("pong");
         }
 
-        public CallResult<string> HandleMessage(SocketConnection connection, DataEvent<string> message)
+        public CallResult<string> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, string message)
         {
-            return message.ToCallResult();
+            return new CallResult<string>(message, originalData, null);
         }
     }
 }
