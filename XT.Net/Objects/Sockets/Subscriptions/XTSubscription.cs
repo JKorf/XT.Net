@@ -35,7 +35,10 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             IndividualSubscriptionCount = symbols?.Length ?? 1;
 
             MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(listenerIdentifiers ?? _topics, DoHandleMessage);            
-            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<XTSocketUpdate<T>>(topic, symbols?.ToArray(), DoHandleMessage);
+            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<XTSocketUpdate<T>>(
+                                topic,
+                                listenerIdentifiers == null ? symbols?.ToArray() : listenerIdentifiers.Select(x => x.Split('@')[1]).ToArray(), // When Matcher is removed this can be simplified
+                                DoHandleMessage);
         }
 
         /// <inheritdoc />

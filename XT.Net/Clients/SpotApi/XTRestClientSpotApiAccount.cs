@@ -138,8 +138,8 @@ namespace XT.Net.Clients.SpotApi
             parameters.Add("bizId", clientId);
             parameters.AddOptional("symbol", symbol?.ToLowerInvariant());
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/v4/balance/transfer", XTExchange.RateLimiter.XT, 1, true);
-            var result = await _baseClient.SendAsync<long>(request, parameters, ct).ConfigureAwait(false);
-            return result;
+            var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
+            return result.As(result.Data ?? 0);
         }
 
         #endregion
@@ -159,8 +159,8 @@ namespace XT.Net.Clients.SpotApi
             parameters.Add("toAccountId", toAccountId);
             parameters.AddOptional("fromAccountId", fromAccountId);
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/v4/balance/account/transfer", XTExchange.RateLimiter.XT, 1, true);
-            var result = await _baseClient.SendAsync<long>(request, parameters, ct).ConfigureAwait(false);
-            return result;
+            var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
+            return result.As(result.Data ?? default);
         }
 
         #endregion
