@@ -344,9 +344,6 @@
         <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.GetAuthenticationRequestAsync(CryptoExchange.Net.Sockets.Default.SocketConnection)">
-            <inheritdoc />
-        </member>
         <member name="P:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.SharedClient">
             <inheritdoc />
         </member>
@@ -550,9 +547,6 @@
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.GetAuthenticationRequestAsync(CryptoExchange.Net.Sockets.Default.SocketConnection)">
             <inheritdoc />
         </member>
         <member name="P:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SharedClient">
