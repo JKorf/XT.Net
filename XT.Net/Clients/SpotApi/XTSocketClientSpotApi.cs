@@ -86,10 +86,12 @@ namespace XT.Net.Clients.SpotApi
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTTradeUpdate>>((receiveTime, originalData, data) =>
             {
+                UpdateTimeOffset(data.Data.Timestamp);
+
                 onMessage(
                     new DataEvent<XTTradeUpdate>(XTExchange.ExchangeName, data.Data!, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
-                        .WithDataTimestamp(data.Data!.Timestamp)
+                        .WithDataTimestamp(data.Data!.Timestamp, GetTimeOffset())
                         .WithStreamId(data.Event)
                         .WithSymbol(data.Data.Symbol)
                     );
@@ -140,12 +142,14 @@ namespace XT.Net.Clients.SpotApi
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTOrderBookUpdate>>((receiveTime, originalData, data) =>
             {
+                UpdateTimeOffset(data.Data.Timestamp);
+
                 onMessage(
                     new DataEvent<XTOrderBookUpdate>(XTExchange.ExchangeName, data.Data!, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Event)
                         .WithSymbol(data.Data.Symbol)
-                        .WithDataTimestamp(data.Data.Timestamp)
+                        .WithDataTimestamp(data.Data.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -167,11 +171,14 @@ namespace XT.Net.Clients.SpotApi
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTIncrementalOrderBookUpdate>>((receiveTime, originalData, data) =>
             {
+                UpdateTimeOffset(data.Data.Timestamp);
+
                 onMessage(
                     new DataEvent<XTIncrementalOrderBookUpdate>(XTExchange.ExchangeName, data.Data!, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Event)
                         .WithSymbol(data.Data.Symbol)
+                        .WithDataTimestamp(data.Data.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -193,11 +200,13 @@ namespace XT.Net.Clients.SpotApi
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XT24HTicker>>((receiveTime, originalData, data) =>
             {
+                UpdateTimeOffset(data.Data.Timestamp);
+
                 onMessage(
                     new DataEvent<XT24HTicker>(XTExchange.ExchangeName, data.Data!, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Event)
-                        .WithDataTimestamp(data.Data.Timestamp)
+                        .WithDataTimestamp(data.Data.Timestamp, GetTimeOffset())
                         .WithSymbol(data.Data.Symbol)
                     );
             });
@@ -216,11 +225,13 @@ namespace XT.Net.Clients.SpotApi
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTBalanceUpdate>>((receiveTime, originalData, data) =>
             {
+                UpdateTimeOffset(data.Data.Timestamp);
+
                 onMessage(
                     new DataEvent<XTBalanceUpdate>(XTExchange.ExchangeName, data.Data!, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Event)
-                        .WithDataTimestamp(data.Data.Timestamp)
+                        .WithDataTimestamp(data.Data.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -239,11 +250,14 @@ namespace XT.Net.Clients.SpotApi
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTOrderUpdate>>((receiveTime, originalData, data) =>
             {
+                if (data.Data.Timestamp != null)
+                    UpdateTimeOffset(data.Data.Timestamp.Value);
+
                 onMessage(
                     new DataEvent<XTOrderUpdate>(XTExchange.ExchangeName, data.Data!, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Event)
-                        .WithDataTimestamp(data.Data.Timestamp)
+                        .WithDataTimestamp(data.Data.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -263,11 +277,13 @@ namespace XT.Net.Clients.SpotApi
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTUserTradeUpdate>>((receiveTime, originalData, data) =>
             {
+                UpdateTimeOffset(data.Data.Timestamp);
+
                 onMessage(
                     new DataEvent<XTUserTradeUpdate>(XTExchange.ExchangeName, data.Data!, receiveTime, originalData)
                         .WithUpdateType(SocketUpdateType.Update)
                         .WithStreamId(data.Event)
-                        .WithDataTimestamp(data.Data.Timestamp)
+                        .WithDataTimestamp(data.Data.Timestamp, GetTimeOffset())
                     );
             });
 
@@ -293,9 +309,6 @@ namespace XT.Net.Clients.SpotApi
 
             return message.GetValue<string>(_eventPath);
         }
-
-        /// <inheritdoc />
-        protected override Task<Query?> GetAuthenticationRequestAsync(SocketConnection connection) => Task.FromResult<Query?>(null);
 
         /// <inheritdoc />
         public IXTSocketClientSpotApiShared SharedClient => this;

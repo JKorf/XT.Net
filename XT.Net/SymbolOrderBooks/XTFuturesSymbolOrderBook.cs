@@ -117,13 +117,12 @@ namespace XT.Net.SymbolOrderBooks
 
         private void HandleUpdate(DataEvent<XTFuturesIncrementalOrderBookUpdate> data)
         {
-            UpdateOrderBook(data.Data.FirstUpdateId, data.Data.LastUpdateId, data.Data.Bids, data.Data.Asks);
+            UpdateOrderBook(data.Data.FirstUpdateId, data.Data.LastUpdateId, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
         }
-
 
         private void HandleUpdate(DataEvent<XTFuturesOrderBookUpdate> data)
         {
-            SetInitialOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks);
+            SetInitialOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
         }
 
         /// <inheritdoc />

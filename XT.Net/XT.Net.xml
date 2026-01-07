@@ -37,12 +37,6 @@
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.GetServerTimestampAsync">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.GetTimeSyncInfo">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.GetTimeOffset">
-            <inheritdoc />
-        </member>
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">
             <inheritdoc />
         </member>
@@ -384,12 +378,6 @@
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.GetServerTimestampAsync">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.GetTimeSyncInfo">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.GetTimeOffset">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.FormatSymbol(System.String,System.String,CryptoExchange.Net.SharedApis.TradingMode,System.Nullable{System.DateTime})">

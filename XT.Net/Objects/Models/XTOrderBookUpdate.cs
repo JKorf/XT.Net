@@ -45,7 +45,7 @@ namespace XT.Net.Objects.Models
     /// Order book info
     /// </summary>
     [SerializationModel]
-    public record XTIncrementalOrderBookUpdate : XTBaseOrderBookUpdate
+    public record XTIncrementalOrderBookUpdate : XTOrderBookUpdate
     {
         /// <summary>
         /// First update id

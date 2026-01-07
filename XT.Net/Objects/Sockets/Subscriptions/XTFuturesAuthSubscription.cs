@@ -57,7 +57,6 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketUpdate<T> message)
         {
             _handler.Invoke(receiveTime, originalData, message);
-            //_handler.Invoke(message.As(message.Data.Data, message.Data.Event, null, SocketUpdateType.Update));
             return CallResult.SuccessResult;
         }
     }
