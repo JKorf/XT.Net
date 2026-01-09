@@ -98,7 +98,7 @@ namespace XT.Net.SymbolOrderBooks
                     return new CallResult<UpdateSubscription>(bookResult.Error!);
                 }
 
-                SetInitialOrderBook(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
+                SetSnapshot(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
             }
             else
             {
@@ -122,7 +122,7 @@ namespace XT.Net.SymbolOrderBooks
 
         private void HandleUpdate(DataEvent<XTFuturesOrderBookUpdate> data)
         {
-            SetInitialOrderBook(DateTime.UtcNow.Ticks, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
+            SetSnapshot(data.Data.Timestamp.Ticks, data.Data.Bids, data.Data.Asks, data.DataTime, data.DataTimeLocal);
         }
 
         /// <inheritdoc />
@@ -136,11 +136,13 @@ namespace XT.Net.SymbolOrderBooks
             if (Levels != null)
                 return await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
 
+            // Small delay to make sure the snapshot is from after our first stream update
+            await Task.Delay(200).ConfigureAwait(false);
             var bookResult = await GetOrderBookAsync().ConfigureAwait(false);
             if (!bookResult)
                 return new CallResult<bool>(bookResult.Error!);
 
-            SetInitialOrderBook(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
+            SetSnapshot(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
             return new CallResult<bool>(true);
         }
 
