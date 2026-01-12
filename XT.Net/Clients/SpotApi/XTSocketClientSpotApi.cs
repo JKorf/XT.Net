@@ -179,6 +179,7 @@ namespace XT.Net.Clients.SpotApi
                         .WithStreamId(data.Event)
                         .WithSymbol(data.Data.Symbol)
                         .WithDataTimestamp(data.Data.Timestamp, GetTimeOffset())
+                        .WithSequenceNumber(data.Data.LastUpdateId)
                     );
             });
 
