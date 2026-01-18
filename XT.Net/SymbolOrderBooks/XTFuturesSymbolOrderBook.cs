@@ -88,8 +88,8 @@ namespace XT.Net.SymbolOrderBooks
             Status = OrderBookStatus.Syncing;
             if (Levels == null)
             {
-                // Small delay to make sure the snapshot is from after our first stream update
-                await Task.Delay(200).ConfigureAwait(false);
+                // Wait up to 500ms until the first update has been received
+                await WaitUntilFirstUpdateBufferedAsync(TimeSpan.FromMilliseconds(250), TimeSpan.FromMilliseconds(500), ct).ConfigureAwait(false);
                 var bookResult = await GetOrderBookAsync().ConfigureAwait(false);
                 if (!bookResult)
                 {
@@ -136,8 +136,8 @@ namespace XT.Net.SymbolOrderBooks
             if (Levels != null)
                 return await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
 
-            // Small delay to make sure the snapshot is from after our first stream update
-            await Task.Delay(200).ConfigureAwait(false);
+            // Wait up to 500ms until the first update has been received
+            await WaitUntilFirstUpdateBufferedAsync(TimeSpan.FromMilliseconds(250), TimeSpan.FromMilliseconds(500), ct).ConfigureAwait(false);
             var bookResult = await GetOrderBookAsync().ConfigureAwait(false);
             if (!bookResult)
                 return new CallResult<bool>(bookResult.Error!);
