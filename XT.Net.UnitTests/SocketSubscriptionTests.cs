@@ -14,17 +14,15 @@ namespace XT.Net.UnitTests
     [TestFixture]
     public class SocketSubscriptionTests
     {
-        [TestCase(false)]
-        [TestCase(true)]
-        public async Task ValidateConcurrentFuturesSubscriptions(bool newDeserialization)
+        [Test]
+        public async Task ValidateConcurrentFuturesSubscriptions()
         {
             var logger = new LoggerFactory();
             logger.AddProvider(new TraceLoggerProvider());
 
             var client = new XTSocketClient(Options.Create(new XTSocketOptions
             {
-                OutputOriginalData = true,
-                UseUpdatedDeserialization = newDeserialization,
+                OutputOriginalData = true
 
             }), logger);
 
@@ -34,14 +32,12 @@ namespace XT.Net.UnitTests
                 (client, handler) => client.SpotApi.SubscribeToKlineUpdatesAsync("eth_usdt", Enums.KlineInterval.OneHour, handler),
                 "Concurrent");
         }
-
-        [TestCase(false)]
-        [TestCase(true)]
-        public async Task ValidateSpotSubscriptions(bool useUpdatedDeserialization)
+        
+        [Test]
+        public async Task ValidateSpotSubscriptions()
         {
             var client = new XTSocketClient(opts =>
             {
-                opts.UseUpdatedDeserialization = useUpdatedDeserialization;
                 opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
             });
             var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Spot", "wss://stream.xt.com");
@@ -54,16 +50,14 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync<XTUserTradeUpdate>((client, handler) => client.SpotApi.SubscribeToUserTradeUpdatesAsync("key", handler), "UserTrade", nestedJsonProperty: "data");
         }
 
-        [TestCase(false)]
-        [TestCase(true)]
-        public async Task ValidateFuturesSubscriptions(bool useUpdatedDeserialization)
+        [Test]
+        public async Task ValidateFuturesSubscriptions()
         {
             var loggerFactory = new LoggerFactory();
             loggerFactory.AddProvider(new TraceLoggerProvider());
             var client = new XTSocketClient(Options.Create(new XTSocketOptions
             {
                 OutputOriginalData = true,
-                UseUpdatedDeserialization = useUpdatedDeserialization,
                 ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456")
             }), loggerFactory);
             var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Futures", "wss://stream.xt.com");

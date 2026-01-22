@@ -34,11 +34,6 @@ namespace XT.Net.Clients.FuturesApi
     /// </summary>
     internal partial class XTSocketClientFuturesApi : SocketApiClient, IXTSocketClientFuturesApi
     {
-        #region fields
-        private static readonly MessagePath _idPath = MessagePath.Get().Property("id");
-        private static readonly MessagePath _eventPath = MessagePath.Get().Property("event");
-        #endregion
-
         #region constructor/destructor
 
         /// <summary>
@@ -47,8 +42,6 @@ namespace XT.Net.Clients.FuturesApi
         internal XTSocketClientFuturesApi(ILogger logger, XTSocketOptions options) :
             base(logger, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
         {
-            ProcessUnparsableMessages = true;
-
             RegisterPeriodicQuery(
                 "Ping",
                 TimeSpan.FromSeconds(20),
@@ -65,8 +58,6 @@ namespace XT.Net.Clients.FuturesApi
         }
         #endregion
 
-        /// <inheritdoc />
-        protected override IByteMessageAccessor CreateAccessor(WebSocketMessageType type) => new SystemTextJsonByteMessageAccessor(SerializerOptions.WithConverters(XTExchange._serializerContext));
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
         public override ISocketMessageHandler CreateMessageConverter(WebSocketMessageType messageType) => new XTSocketMessageHandler();
@@ -437,19 +428,6 @@ namespace XT.Net.Clients.FuturesApi
                 listenKey,
                 internalHandler);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
-        }
-
-        /// <inheritdoc />
-        public override string? GetListenerIdentifier(IMessageAccessor message)
-        {
-            if (!message.IsValid)
-                return message.GetOriginalString();
-
-            var id = message.GetValue<string?>(_idPath);
-            if (id != null)
-                return id;
-
-            return message.GetValue<string>(_eventPath);
         }
 
         /// <inheritdoc />

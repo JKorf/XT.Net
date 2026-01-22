@@ -25,9 +25,6 @@
         <member name="P:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.ExchangeName">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.CreateAccessor">
-            <inheritdoc />
-        </member>
         <member name="M:XT.Net.Clients.FuturesApi.XTRestClientFuturesApi.CreateSerializer">
             <inheritdoc />
         </member>
@@ -266,9 +263,6 @@
             ctor
             </summary>
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateAccessor(System.Net.WebSockets.WebSocketMessageType)">
-            <inheritdoc />
-        </member>
         <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.CreateSerializer">
             <inheritdoc />
         </member>
@@ -341,9 +335,6 @@
         <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.SubscribeToNotificationUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTNotification}},System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
-            <inheritdoc />
-        </member>
         <member name="P:XT.Net.Clients.FuturesApi.XTSocketClientFuturesApi.SharedClient">
             <inheritdoc />
         </member>
@@ -363,9 +354,6 @@
             <inheritdoc />
         </member>
         <member name="P:XT.Net.Clients.SpotApi.XTRestClientSpotApi.ExchangeName">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.CreateAccessor">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.SpotApi.XTRestClientSpotApi.CreateSerializer">
@@ -501,9 +489,6 @@
             ctor
             </summary>
         </member>
-        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateAccessor(System.Net.WebSockets.WebSocketMessageType)">
-            <inheritdoc />
-        </member>
         <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.CreateSerializer">
             <inheritdoc />
         </member>
@@ -544,9 +529,6 @@
             <inheritdoc />
         </member>
         <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SubscribeToUserTradeUpdatesAsync(System.String,System.Action{CryptoExchange.Net.Objects.Sockets.DataEvent{XT.Net.Objects.Models.XTUserTradeUpdate}},System.Threading.CancellationToken)">
-            <inheritdoc />
-        </member>
-        <member name="M:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.GetListenerIdentifier(CryptoExchange.Net.Interfaces.IMessageAccessor)">
             <inheritdoc />
         </member>
         <member name="P:XT.Net.Clients.SpotApi.XTSocketClientSpotApi.SharedClient">
@@ -9301,6 +9283,11 @@
         <member name="T:XT.Net.XTExchange">
             <summary>
             XT exchange information and configuration
+            </summary>
+        </member>
+        <member name="P:XT.Net.XTExchange.Metadata">
+            <summary>
+            Platform metadata
             </summary>
         </member>
         <member name="P:XT.Net.XTExchange.ExchangeName">

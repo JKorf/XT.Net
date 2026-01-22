@@ -10,7 +10,6 @@ namespace XT.Net.Objects.Sockets
         public XTPingQuery() : base("ping", false, 0)
         {
             RequestTimeout = TimeSpan.FromSeconds(5);
-            MessageMatcher = MessageMatcher.Create<string>("pong", HandleMessage);
             MessageRouter = MessageRouter.CreateWithoutHandler<string>("pong");
         }
 

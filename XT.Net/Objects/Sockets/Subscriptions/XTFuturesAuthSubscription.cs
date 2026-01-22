@@ -27,7 +27,6 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             _listenKey = listenKey;
             _topic = topic;
 
-            MessageMatcher = MessageMatcher.Create<XTSocketUpdate<T>>(topic, DoHandleMessage);
             MessageRouter = MessageRouter.CreateWithoutTopicFilter<XTSocketUpdate<T>>(topic, DoHandleMessage);
         }
 

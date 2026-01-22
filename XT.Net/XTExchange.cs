@@ -16,6 +16,19 @@ namespace XT.Net
     public static class XTExchange
     {
         /// <summary>
+        /// Platform metadata
+        /// </summary>
+        public static PlatformInfo Metadata { get; } = new PlatformInfo(
+                "XT",
+                "XT",
+                "https://raw.githubusercontent.com/JKorf/XT.Net/master/XT.Net/Icon/icon.png",
+                "https://www.xt.com",
+                ["https://doc.xt.com/"],
+                PlatformType.CryptoCurrencyExchange,
+                CentralizationType.Centralized
+                );
+
+        /// <summary>
         /// Exchange name
         /// </summary>
         public static string ExchangeName => "XT";

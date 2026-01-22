@@ -17,28 +17,14 @@ namespace XT.Net.Objects.Sockets
         public XTQuery(SocketApiClient client, XTSocketRequest request, string? listenKeyTopic) : base(request, false, 1)
         {
             _client = client;
-            var checkers = new List<MessageHandlerLink>();
             var routes = new List<MessageRoute>();
 
-            checkers.Add(new MessageHandlerLink<XTSocketResponse>(MessageLinkType.Full, request.Id, HandleMessage));
             routes.Add(MessageRoute<XTSocketResponse>.CreateWithoutTopicFilter(request.Id, HandleMessage));
 
             if (listenKeyTopic != null)
-            {
-                checkers.Add(new MessageHandlerLink<string>(MessageLinkType.Full, $"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
                 routes.Add(MessageRoute<string>.CreateWithoutTopicFilter($"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
-            }
-
-            MessageMatcher = MessageMatcher.Create(checkers.ToArray());
+            
             MessageRouter = MessageRouter.Create(routes.ToArray());
-        }
-
-        public override CallResult<object> Deserialize(IMessageAccessor message, Type type)
-        {
-            if (!message.IsValid)
-                return new CallResult<object>(new XTSocketResponse() { Code = -1, Message = "Invalid listen key" });
-
-            return base.Deserialize(message, type);
         }
 
         public CallResult<string> HandleListenKeyError(SocketConnection connection, DateTime receiveTime, string? originalData, string message)

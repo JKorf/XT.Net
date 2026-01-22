@@ -35,9 +35,6 @@ namespace XT.Net.Clients.SpotApi
     internal partial class XTSocketClientSpotApi : SocketApiClient, IXTSocketClientSpotApi
     {
         #region fields
-        private static readonly MessagePath _idPath = MessagePath.Get().Property("id");
-        private static readonly MessagePath _eventPath = MessagePath.Get().Property("event");
-
         protected override ErrorMapping ErrorMapping => XTErrors.SpotSocketErrors;
         #endregion
 
@@ -49,8 +46,6 @@ namespace XT.Net.Clients.SpotApi
         internal XTSocketClientSpotApi(ILogger logger, XTSocketOptions options) :
             base(logger, options.Environment.SpotSocketClientAddress!, options, options.SpotOptions)
         {
-            ProcessUnparsableMessages = true;
-
             RegisterPeriodicQuery(
                 "Ping",
                 TimeSpan.FromSeconds(20),
@@ -67,8 +62,6 @@ namespace XT.Net.Clients.SpotApi
         }
         #endregion
 
-        /// <inheritdoc />
-        protected override IByteMessageAccessor CreateAccessor(WebSocketMessageType type) => new SystemTextJsonByteMessageAccessor(SerializerOptions.WithConverters(XTExchange._serializerContext));
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
@@ -298,19 +291,6 @@ namespace XT.Net.Clients.SpotApi
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);
         }
         
-        /// <inheritdoc />
-        public override string? GetListenerIdentifier(IMessageAccessor message)
-        {
-            if (!message.IsValid)
-                return "pong";
-
-            var id = message.GetValue<string?>(_idPath);
-            if (id != null)
-                return id;
-
-            return message.GetValue<string>(_eventPath);
-        }
-
         /// <inheritdoc />
         public IXTSocketClientSpotApiShared SharedClient => this;
 
