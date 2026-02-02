@@ -746,6 +746,7 @@ namespace XT.Net.Clients.FuturesApi
                 UnrealizedPnl = x.UnrealizedPnl,
                 Leverage = x.Leverage,
                 AverageOpenPrice = x.EntryPrice,
+                PositionMode = SharedPositionMode.HedgeMode,
                 PositionSide = x.PositionSide == PositionSide.Short ? SharedPositionSide.Short : SharedPositionSide.Long,
                 StopLossPrice = x.TriggerStopPrice,
                 TakeProfitPrice = x.TriggerProfitPrice
