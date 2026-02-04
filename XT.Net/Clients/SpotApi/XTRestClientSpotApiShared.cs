@@ -165,7 +165,15 @@ namespace XT.Net.Clients.SpotApi
             if (deposits.Data.HasPrevious == true)
                 nextToken = new FromIdToken(deposits.Data.Data.Min(x => x.Id - 1).ToString());
 
-            return deposits.AsExchangeResult<SharedDeposit[]>(Exchange, TradingMode.Spot, deposits.Data.Data.Select(x => new SharedDeposit(x.Asset, x.Quantity, x.Status == DepositStatus.Success, x.CreateTime)
+            return deposits.AsExchangeResult<SharedDeposit[]>(Exchange, TradingMode.Spot, deposits.Data.Data.Select(x => 
+            new SharedDeposit(
+                x.Asset, 
+                x.Quantity,
+                x.Status == DepositStatus.Success,
+                x.CreateTime,
+                x.Status == DepositStatus.Success ? SharedTransferStatus.Completed
+                : x.Status == DepositStatus.Fail || x.Status == DepositStatus.Canceled ? SharedTransferStatus.Failed
+                : SharedTransferStatus.InProgress)
             {
                 Confirmations = x.Confirmations,
                 Network = x.Network,
