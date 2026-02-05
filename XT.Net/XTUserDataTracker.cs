@@ -17,7 +17,7 @@ namespace XT.Net
             IXTRestClient restClient,
             IXTSocketClient socketClient,
             string? userIdentifier,
-            SpotUserDataTrackerConfig config) : base(
+            SpotUserDataTrackerConfig? config) : base(
                 logger,
                 restClient.SpotApi.SharedClient,
                 restClient.SpotApi.SharedClient,
@@ -27,7 +27,7 @@ namespace XT.Net
                 socketClient.SpotApi.SharedClient,
                 socketClient.SpotApi.SharedClient,
                 userIdentifier,
-                config)
+                config ?? new SpotUserDataTrackerConfig())
         {
         }
     }
@@ -46,7 +46,7 @@ namespace XT.Net
             IXTRestClient restClient,
             IXTSocketClient socketClient,
             string? userIdentifier,
-            FuturesUserDataTrackerConfig config) : base(logger,
+            FuturesUserDataTrackerConfig? config) : base(logger,
                 restClient.UsdtFuturesApi.SharedClient,
                 restClient.UsdtFuturesApi.SharedClient,
                 restClient.UsdtFuturesApi.SharedClient,
@@ -56,7 +56,7 @@ namespace XT.Net
                 socketClient.FuturesApi.SharedClient,
                 socketClient.FuturesApi.SharedClient,
                 userIdentifier,
-                config)
+                config ?? new FuturesUserDataTrackerConfig())
         {
         }
     }

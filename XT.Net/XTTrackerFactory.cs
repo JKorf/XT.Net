@@ -117,7 +117,7 @@ namespace XT.Net
         }
 
         /// <inheritdoc />
-        public IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig config)
+        public IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig? config = null)
         {
             var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();
             var socketClient = _serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient();
@@ -131,7 +131,7 @@ namespace XT.Net
         }
 
         /// <inheritdoc />
-        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, SpotUserDataTrackerConfig config, ApiCredentials credentials, XTEnvironment? environment = null)
+        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<IXTUserClientProvider>() ?? new XTUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
@@ -146,7 +146,7 @@ namespace XT.Net
         }
 
         /// <inheritdoc />
-        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(FuturesUserDataTrackerConfig config)
+        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(FuturesUserDataTrackerConfig? config = null)
         {
             var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();
             var socketClient = _serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient();
@@ -160,7 +160,7 @@ namespace XT.Net
         }
 
         /// <inheritdoc />
-        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, FuturesUserDataTrackerConfig config, ApiCredentials credentials, XTEnvironment? environment = null)
+        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<IXTUserClientProvider>() ?? new XTUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);

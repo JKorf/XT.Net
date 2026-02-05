@@ -17,12 +17,12 @@ namespace XT.Net.Interfaces
         /// <param name="config">Configuration</param>
         /// <param name="credentials">Credentials</param>
         /// <param name="environment">Environment</param>
-        IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, SpotUserDataTrackerConfig config, ApiCredentials credentials, XTEnvironment? environment = null);
+        IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, XTEnvironment? environment = null);
         /// <summary>
         /// Create a new spot user data tracker
         /// </summary>
         /// <param name="config">Configuration</param>
-        IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig config);
+        IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig? config = null);
 
         /// <summary>
         /// Create a new USDT futures user data tracker
@@ -31,12 +31,12 @@ namespace XT.Net.Interfaces
         /// <param name="config">Configuration</param>
         /// <param name="credentials">Credentials</param>
         /// <param name="environment">Environment</param>
-        IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, FuturesUserDataTrackerConfig config, ApiCredentials credentials, XTEnvironment? environment = null);
+        IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null);
         /// <summary>
         /// Create a new USDT futures user data tracker
         /// </summary>
         /// <param name="config">Configuration</param>
-        IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(FuturesUserDataTrackerConfig config);
+        IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(FuturesUserDataTrackerConfig? config = null);
 
         ///// <summary>
         ///// Create a new Coin futures user data tracker
@@ -45,11 +45,11 @@ namespace XT.Net.Interfaces
         ///// <param name="config">Configuration</param>
         ///// <param name="credentials">Credentials</param>
         ///// <param name="environment">Environment</param>
-        //IUserFuturesDataTracker CreateUserCoinFuturesDataTracker(string userIdentifier, FuturesUserDataTrackerConfig config, ApiCredentials credentials, XTEnvironment? environment = null);
+        //IUserFuturesDataTracker CreateUserCoinFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null);
         ///// <summary>
         ///// Create a new Coin futures user data tracker
         ///// </summary>
         ///// <param name="config">Configuration</param>
-        //IUserFuturesDataTracker CreateUserCoinFuturesDataTracker(FuturesUserDataTrackerConfig config);
+        //IUserFuturesDataTracker CreateUserCoinFuturesDataTracker(FuturesUserDataTrackerConfig? config = null);
     }
 }

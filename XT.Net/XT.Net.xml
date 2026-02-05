@@ -5160,7 +5160,7 @@
             Tracker factory
             </summary>
         </member>
-        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,XT.Net.XTEnvironment)">
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,XT.Net.XTEnvironment)">
             <summary>
             Create a new Spot user data tracker
             </summary>
@@ -5175,7 +5175,7 @@
             </summary>
             <param name="config">Configuration</param>
         </member>
-        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserUsdtFuturesDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,XT.Net.XTEnvironment)">
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserUsdtFuturesDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,XT.Net.XTEnvironment)">
             <summary>
             Create a new USDT futures user data tracker
             </summary>
@@ -9414,13 +9414,13 @@
         <member name="M:XT.Net.XTTrackerFactory.CreateUserSpotDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.XTTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,XT.Net.XTEnvironment)">
+        <member name="M:XT.Net.XTTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,XT.Net.XTEnvironment)">
             <inheritdoc />
         </member>
         <member name="M:XT.Net.XTTrackerFactory.CreateUserUsdtFuturesDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig)">
             <inheritdoc />
         </member>
-        <member name="M:XT.Net.XTTrackerFactory.CreateUserUsdtFuturesDataTracker(System.String,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,CryptoExchange.Net.Authentication.ApiCredentials,XT.Net.XTEnvironment)">
+        <member name="M:XT.Net.XTTrackerFactory.CreateUserUsdtFuturesDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,XT.Net.XTEnvironment)">
             <inheritdoc />
         </member>
         <member name="T:XT.Net.XTUserSpotDataTracker">
