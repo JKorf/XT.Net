@@ -1,13 +1,17 @@
+using CryptoExchange.Net;
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net.Trackers.Klines;
 using CryptoExchange.Net.Trackers.Trades;
-using XT.Net.Interfaces;
-using XT.Net.Interfaces.Clients;
+using CryptoExchange.Net.Trackers.UserData.Interfaces;
+using CryptoExchange.Net.Trackers.UserData.Objects;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using System;
 using XT.Net.Clients;
-using CryptoExchange.Net;
+using XT.Net.Interfaces;
+using XT.Net.Interfaces.Clients;
 
 namespace XT.Net
 {
@@ -111,5 +115,95 @@ namespace XT.Net
                 period
                 );
         }
+
+        /// <inheritdoc />
+        public IUserSpotDataTracker CreateUserSpotDataTracker(SpotUserDataTrackerConfig? config = null)
+        {
+            var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();
+            var socketClient = _serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient();
+            return new XTUserSpotDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<XTUserSpotDataTracker>>() ?? new NullLogger<XTUserSpotDataTracker>(),
+                restClient,
+                socketClient,
+                null,
+                config
+                );
+        }
+
+        /// <inheritdoc />
+        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
+        {
+            var clientProvider = _serviceProvider?.GetRequiredService<IXTUserClientProvider>() ?? new XTUserClientProvider();
+            var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
+            var socketClient = clientProvider.GetSocketClient(userIdentifier, credentials, environment);
+            return new XTUserSpotDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<XTUserSpotDataTracker>>() ?? new NullLogger<XTUserSpotDataTracker>(),
+                restClient,
+                socketClient,
+                userIdentifier,
+                config
+                );
+        }
+
+        /// <inheritdoc />
+        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(FuturesUserDataTrackerConfig? config = null)
+        {
+            var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();
+            var socketClient = _serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient();
+            return new XTUserUsdtFuturesDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<XTUserUsdtFuturesDataTracker>>() ?? new NullLogger<XTUserUsdtFuturesDataTracker>(),
+                restClient,
+                socketClient,
+                null,
+                config
+                );
+        }
+
+        /// <inheritdoc />
+        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
+        {
+            var clientProvider = _serviceProvider?.GetRequiredService<IXTUserClientProvider>() ?? new XTUserClientProvider();
+            var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
+            var socketClient = clientProvider.GetSocketClient(userIdentifier, credentials, environment);
+            return new XTUserUsdtFuturesDataTracker(
+                _serviceProvider?.GetRequiredService<ILogger<XTUserUsdtFuturesDataTracker>>() ?? new NullLogger<XTUserUsdtFuturesDataTracker>(),
+                restClient,
+                socketClient,
+                userIdentifier,
+                config
+                );
+        }
+
+
+        // Coin futures doesn't work correctly ATM
+
+        ///// <inheritdoc />
+        //public IUserFuturesDataTracker CreateUserCoinFuturesDataTracker(FuturesUserDataTrackerConfig config)
+        //{
+        //    var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();
+        //    var socketClient = _serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient();
+        //    return new XTUserCoinFuturesDataTracker(
+        //        _serviceProvider?.GetRequiredService<ILogger<XTUserCoinFuturesDataTracker>>() ?? new NullLogger<XTUserCoinFuturesDataTracker>(),
+        //        restClient,
+        //        socketClient,
+        //        null,
+        //        config
+        //        );
+        //}
+
+        ///// <inheritdoc />
+        //public IUserFuturesDataTracker CreateUserCoinFuturesDataTracker(string userIdentifier, FuturesUserDataTrackerConfig config, ApiCredentials credentials, XTEnvironment? environment = null)
+        //{
+        //    var clientProvider = _serviceProvider?.GetRequiredService<IXTUserClientProvider>() ?? new XTUserClientProvider();
+        //    var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
+        //    var socketClient = clientProvider.GetSocketClient(userIdentifier, credentials, environment);
+        //    return new XTUserCoinFuturesDataTracker(
+        //        _serviceProvider?.GetRequiredService<ILogger<XTUserCoinFuturesDataTracker>>() ?? new NullLogger<XTUserCoinFuturesDataTracker>(),
+        //        restClient,
+        //        socketClient,
+        //        userIdentifier,
+        //        config
+        //        );
+        //}
     }
 }

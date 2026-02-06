@@ -234,6 +234,7 @@ namespace XT.Net.Clients.FuturesApi
                 update => handler(update.ToType<SharedPosition[]>([new SharedPosition(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),update.Data.Symbol, update.Data.PositionSize, update.DataTime ?? update.ReceiveTime)
                 {
                     AverageOpenPrice = update.Data.EntryPrice == 0 ? null : update.Data.EntryPrice,
+                    PositionMode = SharedPositionMode.HedgeMode,
                     PositionSide = update.Data.PositionSide == Enums.PositionSide.Short ? SharedPositionSide.Short : SharedPositionSide.Long,
                     Leverage = update.Data.Leverage
                 }])),

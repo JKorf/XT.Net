@@ -5160,6 +5160,36 @@
             Tracker factory
             </summary>
         </member>
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,XT.Net.XTEnvironment)">
+            <summary>
+            Create a new Spot user data tracker
+            </summary>
+            <param name="userIdentifier">User identifier</param>
+            <param name="config">Configuration</param>
+            <param name="credentials">Credentials</param>
+            <param name="environment">Environment</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserSpotDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig)">
+            <summary>
+            Create a new spot user data tracker
+            </summary>
+            <param name="config">Configuration</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserUsdtFuturesDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,XT.Net.XTEnvironment)">
+            <summary>
+            Create a new USDT futures user data tracker
+            </summary>
+            <param name="userIdentifier">User identifier</param>
+            <param name="config">Configuration</param>
+            <param name="credentials">Credentials</param>
+            <param name="environment">Environment</param>
+        </member>
+        <member name="M:XT.Net.Interfaces.IXTTrackerFactory.CreateUserUsdtFuturesDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig)">
+            <summary>
+            Create a new USDT futures user data tracker
+            </summary>
+            <param name="config">Configuration</param>
+        </member>
         <member name="T:XT.Net.Objects.Models.XT24HTicker">
             <summary>
             24 hour price stats ticker
@@ -9380,6 +9410,48 @@
         </member>
         <member name="M:XT.Net.XTTrackerFactory.CreateTradeTracker(CryptoExchange.Net.SharedApis.SharedSymbol,System.Nullable{System.Int32},System.Nullable{System.TimeSpan})">
             <inheritdoc />
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CreateUserSpotDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CreateUserSpotDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig,XT.Net.XTEnvironment)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CreateUserUsdtFuturesDataTracker(CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig)">
+            <inheritdoc />
+        </member>
+        <member name="M:XT.Net.XTTrackerFactory.CreateUserUsdtFuturesDataTracker(System.String,CryptoExchange.Net.Authentication.ApiCredentials,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig,XT.Net.XTEnvironment)">
+            <inheritdoc />
+        </member>
+        <member name="T:XT.Net.XTUserSpotDataTracker">
+            <inheritdoc/>
+        </member>
+        <member name="M:XT.Net.XTUserSpotDataTracker.#ctor(Microsoft.Extensions.Logging.ILogger{XT.Net.XTUserSpotDataTracker},XT.Net.Interfaces.Clients.IXTRestClient,XT.Net.Interfaces.Clients.IXTSocketClient,System.String,CryptoExchange.Net.Trackers.UserData.Objects.SpotUserDataTrackerConfig)">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="T:XT.Net.XTUserUsdtFuturesDataTracker">
+            <inheritdoc/>
+        </member>
+        <member name="P:XT.Net.XTUserUsdtFuturesDataTracker.WebsocketPositionUpdatesAreFullSnapshots">
+            <inheritdoc/>
+        </member>
+        <member name="M:XT.Net.XTUserUsdtFuturesDataTracker.#ctor(Microsoft.Extensions.Logging.ILogger{XT.Net.XTUserUsdtFuturesDataTracker},XT.Net.Interfaces.Clients.IXTRestClient,XT.Net.Interfaces.Clients.IXTSocketClient,System.String,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig)">
+            <summary>
+            ctor
+            </summary>
+        </member>
+        <member name="T:XT.Net.XTUserCoinFuturesDataTracker">
+            <inheritdoc/>
+        </member>
+        <member name="P:XT.Net.XTUserCoinFuturesDataTracker.WebsocketPositionUpdatesAreFullSnapshots">
+            <inheritdoc/>
+        </member>
+        <member name="M:XT.Net.XTUserCoinFuturesDataTracker.#ctor(Microsoft.Extensions.Logging.ILogger{XT.Net.XTUserCoinFuturesDataTracker},XT.Net.Interfaces.Clients.IXTRestClient,XT.Net.Interfaces.Clients.IXTSocketClient,System.String,CryptoExchange.Net.Trackers.UserData.Objects.FuturesUserDataTrackerConfig)">
+            <summary>
+            ctor
+            </summary>
         </member>
         <member name="T:CryptoExchange.Net.Interfaces.CryptoClientExtensions">
             <summary>
