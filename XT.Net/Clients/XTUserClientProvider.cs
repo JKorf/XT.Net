@@ -12,8 +12,8 @@ namespace XT.Net.Clients
     /// <inheritdoc />
     public class XTUserClientProvider : IXTUserClientProvider
     {
-        private static ConcurrentDictionary<string, IXTRestClient> _restClients = new ConcurrentDictionary<string, IXTRestClient>();
-        private static ConcurrentDictionary<string, IXTSocketClient> _socketClients = new ConcurrentDictionary<string, IXTSocketClient>();
+        private ConcurrentDictionary<string, IXTRestClient> _restClients = new ConcurrentDictionary<string, IXTRestClient>();
+        private ConcurrentDictionary<string, IXTSocketClient> _socketClients = new ConcurrentDictionary<string, IXTSocketClient>();
 
         private readonly IOptions<XTRestOptions> _restOptions;
         private readonly IOptions<XTSocketOptions> _socketOptions;
