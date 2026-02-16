@@ -100,6 +100,9 @@ namespace XT.Net.SymbolOrderBooks
             else
             {
                 var setResult = await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
+                if (!setResult)
+                    await subResult.Data.CloseAsync().ConfigureAwait(false);
+
                 return setResult ? subResult : new CallResult<UpdateSubscription>(setResult.Error!);
             }
 
