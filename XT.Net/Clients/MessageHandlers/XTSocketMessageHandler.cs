@@ -48,23 +48,18 @@ namespace XT.Net.Clients.MessageHandlers
 
         ];
 
-        public override string? GetTypeIdentifier(ReadOnlySpan<byte> data, WebSocketMessageType? webSocketMessageType)
+        protected override string? GetTypeIdentifierNonJson(ReadOnlySpan<byte> data, WebSocketMessageType? webSocketMessageType)
         {
             if (data.Length == 4)
                 return "pong";
 
-            if (data[0] != 0x7b && data[0] != 0x5b) // Json value should start with `{` or `[`
-            {
-                // Invalid json, need to handle this for invalid listen key error response:
-                // `balance@invalid_listen_key`
+            // Invalid json, need to handle this for invalid listen key error response:
+            // `balance@invalid_listen_key`
 #if NETSTANDARD2_0
-                return Encoding.UTF8.GetString(data.ToArray());
+            return Encoding.UTF8.GetString(data.ToArray());
 #else
-                return Encoding.UTF8.GetString(data);
+            return Encoding.UTF8.GetString(data);
 #endif
-            }
-
-            return base.GetTypeIdentifier(data, webSocketMessageType);
         }
     }
 }
