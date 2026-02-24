@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 using System.Net.Http;
+using System.Threading;
 using XT.Net;
 using XT.Net.Clients;
 using XT.Net.Interfaces;
@@ -95,8 +96,8 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new XTRestClient(client, serviceProvider.GetRequiredService<ILoggerFactory>(), serviceProvider.GetRequiredService<IOptions<XTRestOptions>>());
             }).ConfigurePrimaryHttpMessageHandler((serviceProvider) => {
                 var options = serviceProvider.GetRequiredService<IOptions<XTRestOptions>>().Value;
-                return LibraryHelpers.CreateHttpClientMessageHandler(options.Proxy, options.HttpKeepAliveInterval);
-            });
+                return LibraryHelpers.CreateHttpClientMessageHandler(options);
+            }).SetHandlerLifetime(Timeout.InfiniteTimeSpan);
             services.Add(new ServiceDescriptor(typeof(IXTSocketClient), x => { return new XTSocketClient(x.GetRequiredService<IOptions<XTSocketOptions>>(), x.GetRequiredService<ILoggerFactory>()); }, socketClientLifeTime ?? ServiceLifetime.Singleton));
 
             services.AddTransient<ICryptoRestClient, CryptoRestClient>();
@@ -106,7 +107,7 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddTransient<ITrackerFactory, XTTrackerFactory>();
             services.AddSingleton<IXTUserClientProvider, XTUserClientProvider>(x =>
             new XTUserClientProvider(
-                x.GetRequiredService<HttpClient>(),
+                x.GetRequiredService<IHttpClientFactory>().CreateClient(typeof(IXTRestClient).Name),
                 x.GetRequiredService<ILoggerFactory>(),
                 x.GetRequiredService<IOptions<XTRestOptions>>(),
                 x.GetRequiredService<IOptions<XTSocketOptions>>()));
