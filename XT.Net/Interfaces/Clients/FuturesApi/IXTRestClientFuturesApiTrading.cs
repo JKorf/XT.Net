@@ -15,7 +15,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     {
         /// <summary>
         /// Place a new order
-        /// <para><a href="https://doc.xt.com/#futures_ordercreate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordercreate" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/order/create
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="orderSide">Order side</param>
@@ -32,7 +37,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Place multiple new orders in a single call
-        /// <para><a href="https://doc.xt.com/#futures_ordercreateBatch" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordercreateBatch" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v2/order/create-batch
+        /// </para>
         /// </summary>
         /// <param name="orders">Order requests</param>
         /// <param name="ct">Cancellation token</param>
@@ -40,7 +50,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Edit an existing order
-        /// <para><a href="https://doc.xt.com/#futures_orderupdate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_orderupdate" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/order/update
+        /// </para>
         /// </summary>
         /// <param name="orderId">Order id</param>
         /// <param name="price">Price</param>
@@ -60,7 +75,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get closed orders
-        /// <para><a href="https://doc.xt.com/#futures_ordergetHistory" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordergetHistory" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/order/list-history
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="fromId">From id</param>
@@ -73,7 +93,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get user trades
-        /// <para><a href="https://doc.xt.com/#futures_ordergetTrades" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordergetTrades" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/order/trade-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter b symbol, for example `ETH_USDT`</param>
         /// <param name="orderId">Filter by order id</param>
@@ -86,7 +111,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get order by id
-        /// <para><a href="https://doc.xt.com/#futures_ordergetById" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordergetById" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/order/detail
+        /// </para>
         /// </summary>
         /// <param name="orderId">Order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -94,7 +124,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get orders
-        /// <para><a href="https://doc.xt.com/#futures_ordergetOrders" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordergetOrders" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/order/list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="status">Filter by status</param>
@@ -108,7 +143,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         
         /// <summary>
         /// Cancel an order
-        /// <para><a href="https://doc.xt.com/#futures_ordercancel" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordercancel" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/order/cancel
+        /// </para>
         /// </summary>
         /// <param name="orderId">Order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -116,7 +156,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Cancel all open orders
-        /// <para><a href="https://doc.xt.com/#futures_ordercancel" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_ordercancel" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/order/cancel-all
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -124,7 +169,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get open positions
-        /// <para><a href="https://doc.xt.com/#futures_usergetActivitePosition" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetActivitePosition" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/position
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="ct">Cancellation token</param>
@@ -132,7 +182,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get position info
-        /// <para><a href="https://doc.xt.com/#futures_usergetPosition" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetPosition" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/position/list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="ct">Cancellation token</param>
@@ -140,14 +195,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Close all open positions
-        /// <para><a href="https://doc.xt.com/#futures_usercloseAllPosition" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usercloseAllPosition" /><br />
+        /// Endpoint:<br />
+        /// POST /future/user/v1/position/close-all
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> CloseAllPositionsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get margin call info
-        /// <para><a href="https://doc.xt.com/#futures_usergetMarginCall" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetMarginCall" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/position/break-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -155,7 +220,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Place a new trigger order
-        /// <para><a href="https://doc.xt.com/#futures_entrustcreatePlan" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcreatePlan" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/create-plan
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="orderSide">Order side</param>
@@ -172,7 +242,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Cancel a trigger order
-        /// <para><a href="https://doc.xt.com/#futures_entrustcancelPlan" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcancelPlan" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/cancel-plan
+        /// </para>
         /// </summary>
         /// <param name="triggerOrderId">Trigger order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -180,7 +255,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Cancel all trigger orders for a symbol
-        /// <para><a href="https://doc.xt.com/#futures_entrustcancelPlanBatch" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcancelPlanBatch" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/cancel-all-plan
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -188,7 +268,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get trigger orders
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetPlan" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetPlan" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/plan-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="status">Filter by status</param>
@@ -201,7 +286,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get trigger order
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetPlanById" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetPlanById" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/plan-detail
+        /// </para>
         /// </summary>
         /// <param name="orderId">Trigger order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -209,7 +299,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get closed trigger orders
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetPlanHistory" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetPlanHistory" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/plan-list-history
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="orderId">Filter by id</param>
@@ -222,7 +317,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Place a new stop limit order
-        /// <para><a href="https://doc.xt.com/#futures_entrustcreateProfit" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcreateProfit" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/create-profit
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="quantity">Quantity</param>
@@ -235,7 +335,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Cancel a stop limit order
-        /// <para><a href="https://doc.xt.com/#futures_entrustcancelProfit" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcancelProfit" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/cancel-profit-stop
+        /// </para>
         /// </summary>
         /// <param name="orderId">Stop limit order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -243,7 +348,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Cancel all stop limit orders for a symbol
-        /// <para><a href="https://doc.xt.com/#futures_entrustcancelProfitBatch" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcancelProfitBatch" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/cancel-all-profit-stop
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -251,7 +361,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get trigger orders
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetProfit" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetProfit" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/profit-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="status">Filter by status</param>
@@ -264,7 +379,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get stop limit order
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetProfitById" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetProfitById" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/profit-detail
+        /// </para>
         /// </summary>
         /// <param name="orderId">Stop limit order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -272,7 +392,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Edit a stop limit order
-        /// <para><a href="https://doc.xt.com/#futures_entrustupdateProfit" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustupdateProfit" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/update-profit-stop
+        /// </para>
         /// </summary>
         /// <param name="orderId">Order id</param>
         /// <param name="triggerProfitPrice">Trigger profit price</param>
@@ -282,7 +407,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// 
-        /// <para><a href="https://doc.xt.com/#futures_entrustcreateTrack" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcreateTrack" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/create-track
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="orderSide">Order side</param>
@@ -302,7 +432,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Cancel a track order
-        /// <para><a href="https://doc.xt.com/#futures_entrustcancelTrack" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcancelTrack" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/cancel-track
+        /// </para>
         /// </summary>
         /// <param name="orderId">Track order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -310,7 +445,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get trigger order
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetTrackDetail" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetTrackDetail" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/track-detail
+        /// </para>
         /// </summary>
         /// <param name="orderId">Track order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -318,7 +458,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get open track orders
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetTrackList" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetTrackList" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/track-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="startTime">Filter by start time</param>
@@ -330,7 +475,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Cancel all track orders for a symbol
-        /// <para><a href="https://doc.xt.com/#futures_entrustcancelAllTrack" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustcancelAllTrack" /><br />
+        /// Endpoint:<br />
+        /// POST /future/trade/v1/entrust/cancel-all-track
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
@@ -338,7 +488,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get closed track orders
-        /// <para><a href="https://doc.xt.com/#futures_entrustgetTrackHistoryList" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_entrustgetTrackHistoryList" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/entrust/profit-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symboll</param>
         /// <param name="status">Filter by order status</param>

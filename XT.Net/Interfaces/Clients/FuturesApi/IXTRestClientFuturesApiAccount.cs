@@ -15,7 +15,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get balances
-        /// <para><a href="https://doc.xt.com/#futures_usergetContractAccountInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetContractAccountInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/compat/balance/list
+        /// </para>
         /// </summary>
         /// <param name="accountId">Account id</param>
         /// <param name="ct">Cancellation token</param>
@@ -23,14 +28,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get account info
-        /// <para><a href="https://doc.xt.com/#futures_usergetContractInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetContractInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/account/info
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesAccountInfo>> GetAccountInfoAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get user asset
-        /// <para><a href="https://doc.xt.com/#futures_usergetBalance" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetBalance" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/balance/detail
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="ct">Cancellation token</param>
@@ -39,14 +54,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get user assets
-        /// <para><a href="https://doc.xt.com/#futures_usergetBalances" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetBalances" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/balance/list
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTUserAsset[]>> GetUserAssetsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get account bills
-        /// <para><a href="https://doc.xt.com/#futures_usergetBalanceBill" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetBalanceBill" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/balance/bills
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol</param>
         /// <param name="id">Filter by id</param>
@@ -64,7 +89,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get funding fee info
-        /// <para><a href="https://doc.xt.com/#futures_usergetFunding" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetFunding" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/balance/funding-rate-list
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `ETH-USDT`</param>
         /// <param name="id">Filter by id</param>
@@ -77,14 +107,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get user trading fees
-        /// <para><a href="https://doc.xt.com/#futures_usergetStepRate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetStepRate" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/user/step-rate
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFeeRate>> GetFeeRateAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Set leverage
-        /// <para><a href="https://doc.xt.com/#futures_useradjustLeverage" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_useradjustLeverage" /><br />
+        /// Endpoint:<br />
+        /// POST /future/user/v1/position/adjust-leverage
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH-USDT`</param>
         /// <param name="positionSide">Position side</param>
@@ -94,7 +134,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Adjust margin
-        /// <para><a href="https://doc.xt.com/#futures_useradjustMargin" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_useradjustMargin" /><br />
+        /// Endpoint:<br />
+        /// POST /future/user/v1/position/margin
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH-USDT`</param>
         /// <param name="marginChange">The change in margin</param>
@@ -105,14 +150,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get auto deleverage info
-        /// <para><a href="https://doc.xt.com/#futures_usergetAdl" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetAdl" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/position/adl
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTAdlInfo[]>> GetAdlInfoAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Set position type
-        /// <para><a href="https://doc.xt.com/#futures_userchangePositionType" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_userchangePositionType" /><br />
+        /// Endpoint:<br />
+        /// POST /future/user/v1/position/change-type
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETH-USDT`</param>
         /// <param name="positionSide">Position side</param>
@@ -122,7 +177,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get listen key for starting the user websocket connection
-        /// <para><a href="https://doc.xt.com/#futures_usergetListenKey" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_usergetListenKey" /><br />
+        /// Endpoint:<br />
+        /// GET /future/user/v1/user/listen-key
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<string>> GetListenKeyAsync(CancellationToken ct = default);

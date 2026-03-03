@@ -17,7 +17,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     {
         /// <summary>
         /// Subscribe to public trade updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2dealRecord" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2dealRecord" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market trade
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -27,7 +32,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to public trade updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2dealRecord" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2dealRecord" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market trade
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbols</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -37,7 +47,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to kline/candlestick updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2symbolKline" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2symbolKline" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market kline
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="interval">Interval of the kline</param>
@@ -48,7 +63,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to kline/candlestick updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2symbolKline" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2symbolKline" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market kline
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="interval">Interval of the kline</param>
@@ -59,7 +79,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to ticker updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2tickerRealTime" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2tickerRealTime" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market ticker
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -69,7 +94,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to ticker updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2tickerRealTime" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2tickerRealTime" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market ticker
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -79,7 +109,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to ticker updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2aggTickerRealTime" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2aggTickerRealTime" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market agg_ticker
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -89,7 +124,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to ticker updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2aggTickerRealTime" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2aggTickerRealTime" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market agg_ticker
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -99,7 +139,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to index price updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2indexPrice" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2indexPrice" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market index_price
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -109,7 +154,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to index price updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2indexPrice" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2indexPrice" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market index_price
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -119,7 +169,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to mark price updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2markPrice" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2markPrice" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market mark_price
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -129,7 +184,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to mark price updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2markPrice" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2markPrice" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market mark_price
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -139,7 +199,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to incremental order book updates, only pushes changed entries
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2increDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2increDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market depth_update
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="updateInterval">The update push interval, 100, 250, 500 or 1000ms</param>
@@ -150,7 +215,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to incremental order book updates, only pushes changed entries
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2increDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2increDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market depth_update
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="updateInterval">The update push interval, 100, 250, 500 or 1000ms</param>
@@ -161,7 +231,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to incremental order book updates, only pushes changed entries
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2limitDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2limitDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market depth
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="depth">Order book levels, 5, 10, 20 or 50</param>
@@ -173,7 +248,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to incremental order book updates, only pushes changed entries
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2limitDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2limitDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market depth
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="depth">Order book levels, 5, 10, 20 or 50</param>
@@ -185,7 +265,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to funding rate updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2fundRate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2fundRate" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market mark_price
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -195,7 +280,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to funding rate updates
-        /// <para><a href="https://doc.xt.com/#futures_market_websocket_v2fundRate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_market_websocket_v2fundRate" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/market mark_price
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -205,7 +295,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to user balance updates
-        /// <para><a href="https://doc.xt.com/#futures_user_websocket_v2base" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2base" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user balance
+        /// </para>
         /// </summary>
         /// <param name="listenKey">Listen key retrieved by <see cref="IXTRestClientFuturesApiAccount.GetListenKeyAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -215,7 +310,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to user position updates
-        /// <para><a href="https://doc.xt.com/#futures_user_websocket_v2position" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2position" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user position
+        /// </para>
         /// </summary>
         /// <param name="listenKey">Listen key retrieved by <see cref="IXTRestClientFuturesApiAccount.GetListenKeyAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -225,7 +325,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to user order updates
-        /// <para><a href="https://doc.xt.com/#futures_user_websocket_v2order" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2order" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user order
+        /// </para>
         /// </summary>
         /// <param name="listenKey">Listen key retrieved by <see cref="IXTRestClientFuturesApiAccount.GetListenKeyAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -235,7 +340,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to user trade updates
-        /// <para><a href="https://doc.xt.com/#futures_user_websocket_v2trade" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2trade" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user trade
+        /// </para>
         /// </summary>
         /// <param name="listenKey">Listen key retrieved by <see cref="IXTRestClientFuturesApiAccount.GetListenKeyAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -245,7 +355,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Subscribe to user notifications
-        /// <para><a href="https://doc.xt.com/#futures_user_websocket_v2notify" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2notify" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user notify
+        /// </para>
         /// </summary>
         /// <param name="listenKey">Listen key retrieved by <see cref="IXTRestClientFuturesApiAccount.GetListenKeyAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>

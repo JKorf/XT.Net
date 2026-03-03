@@ -15,7 +15,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     {
         /// <summary>
         /// Place a new order
-        /// <para><a href="https://doc.xt.com/#orderorderPost" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderorderPost" /><br />
+        /// Endpoint:<br />
+        /// POST /v4/order
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="orderSide">Order side</param>
@@ -31,7 +36,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get order info
-        /// <para><a href="https://doc.xt.com/#orderorderGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderorderGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/order/{orderId}
+        /// </para>
         /// </summary>
         /// <param name="orderId">Id of the order</param>
         /// <param name="ct">Cancellation token</param>
@@ -39,7 +49,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get order info by client order id
-        /// <para><a href="https://doc.xt.com/#orderorderGetQueryParam" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderorderGetQueryParam" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/order
+        /// </para>
         /// </summary>
         /// <param name="clientOrderId">Client order id</param>
         /// <param name="ct">Cancellation token</param>
@@ -47,7 +62,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Cancel an order
-        /// <para><a href="https://doc.xt.com/#orderorderDel" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderorderDel" /><br />
+        /// Endpoint:<br />
+        /// DELETE /v4/order/{orderId}
+        /// </para>
         /// </summary>
         /// <param name="orderId">Id of the order</param>
         /// <param name="ct">Cancellation token</param>
@@ -55,7 +75,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get open orders
-        /// <para><a href="https://doc.xt.com/#orderopenOrderGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderopenOrderGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/open-order
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol</param>
         /// <param name="businessType">Filter by business type</param>
@@ -65,7 +90,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get closed orders
-        /// <para><a href="https://doc.xt.com/#orderhistoryOrderGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderhistoryOrderGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/history-order
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="businessType">Filter by business type</param>
@@ -83,7 +113,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Cancel all orders matching the parameters
-        /// <para><a href="https://doc.xt.com/#orderopenOrderDel" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderopenOrderDel" /><br />
+        /// Endpoint:<br />
+        /// DELETE /v4/open-order
+        /// </para>
         /// </summary>
         /// <param name="businessType">Filter by business type</param>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
@@ -93,7 +128,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Edit an active order
-        /// <para><a href="https://doc.xt.com/#orderorderUpdate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderorderUpdate" /><br />
+        /// Endpoint:<br />
+        /// PUT /v4/order/{orderId}
+        /// </para>
         /// </summary>
         /// <param name="orderId">Id of order to edit</param>
         /// <param name="price">New price</param>
@@ -103,7 +143,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get multiple orders
-        /// <para><a href="https://doc.xt.com/#orderbatchOrderGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#orderbatchOrderGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/batch-order
+        /// </para>
         /// </summary>
         /// <param name="orderIds">Ids of the orders</param>
         /// <param name="ct">Cancellation token</param>
@@ -111,6 +156,10 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Cancel multiple orders
+        /// <para>
+        /// Endpoint:<br />
+        /// DELETE /v4/batch-order
+        /// </para>
         /// </summary>
         /// <param name="orderIds">Ids of orders to cancel</param>
         /// <param name="clientBatchId">Client batch id</param>
@@ -119,7 +168,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get user trades
-        /// <para><a href="https://doc.xt.com/#tradetradeGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#tradetradeGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/trade
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="businessType">Filter by business type</param>

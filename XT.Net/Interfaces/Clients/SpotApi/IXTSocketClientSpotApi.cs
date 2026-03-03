@@ -17,7 +17,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     {
         /// <summary>
         /// Subscribe to trade updates
-        /// <para><a href="https://doc.xt.com/#websocket_publicdealRecord" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publicdealRecord" /><br />
+        /// Endpoint:<br />
+        /// SUB /public trade
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -27,7 +32,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to trade updates
-        /// <para><a href="https://doc.xt.com/#websocket_publicdealRecord" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publicdealRecord" /><br />
+        /// Endpoint:<br />
+        /// SUB /public trade
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -37,7 +47,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to kline/candlestick updates
-        /// <para><a href="https://doc.xt.com/#websocket_publicsymbolKline" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publicsymbolKline" /><br />
+        /// Endpoint:<br />
+        /// SUB /public kline
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="interval">Interval of the kline</param>
@@ -48,7 +63,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to kline/candlestick updates
-        /// <para><a href="https://doc.xt.com/#websocket_publicsymbolKline" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publicsymbolKline" /><br />
+        /// Endpoint:<br />
+        /// SUB /public kline
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="interval">Interval of the kline</param>
@@ -59,7 +79,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to order book updates, pushes the selected depth at each update
-        /// <para><a href="https://doc.xt.com/#websocket_publiclimitDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publiclimitDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /public depth
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="depth">Book depth, 5, 10, 20 or 50</param>
@@ -70,7 +95,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to order book updates, pushes the selected depth at each update
-        /// <para><a href="https://doc.xt.com/#websocket_publiclimitDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publiclimitDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /public depth
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="depth">Book depth, 5, 10, 20 or 50</param>
@@ -81,7 +111,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to incremental order book updates, only pushes changed entries
-        /// <para><a href="https://doc.xt.com/#websocket_publicincreDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publicincreDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /public depth_update
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -91,7 +126,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to incremental order book updates, only pushes changed entries
-        /// <para><a href="https://doc.xt.com/#websocket_publicincreDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publicincreDepth" /><br />
+        /// Endpoint:<br />
+        /// SUB /public depth_update
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -101,7 +141,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to ticker updates
-        /// <para><a href="https://doc.xt.com/#websocket_publictickerRealTime" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publictickerRealTime" /><br />
+        /// Endpoint:<br />
+        /// SUB /public ticker
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -111,7 +156,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to ticker updates
-        /// <para><a href="https://doc.xt.com/#websocket_publictickerRealTime" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_publictickerRealTime" /><br />
+        /// Endpoint:<br />
+        /// SUB /public ticker
+        /// </para>
         /// </summary>
         /// <param name="symbols">Symbol names</param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -121,7 +171,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to user balance updates
-        /// <para><a href="https://doc.xt.com/#websocket_privatebalanceChange" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_privatebalanceChange" /><br />
+        /// Endpoint:<br />
+        /// SUB /private balance
+        /// </para>
         /// </summary>
         /// <param name="token">Websocket token, can be retrieved using <see cref="IXTRestClientSpotApiAccount.GetWebsocketTokenAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -131,7 +186,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to user order updates
-        /// <para><a href="https://doc.xt.com/#websocket_privateorderChange" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_privateorderChange" /><br />
+        /// Endpoint:<br />
+        /// SUB /private order
+        /// </para>
         /// </summary>
         /// <param name="token">Websocket token, can be retrieved using <see cref="IXTRestClientSpotApiAccount.GetWebsocketTokenAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>
@@ -141,7 +201,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Subscribe to user trade update
-        /// <para><a href="https://doc.xt.com/#websocket_privateorderDeal" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_privateorderDeal" /><br />
+        /// Endpoint:<br />
+        /// SUB /private trade
+        /// </para>
         /// </summary>
         /// <param name="token">Websocket token, can be retrieved using <see cref="IXTRestClientSpotApiAccount.GetWebsocketTokenAsync(CancellationToken)" /></param>
         /// <param name="onMessage">The event handler for the received data</param>
