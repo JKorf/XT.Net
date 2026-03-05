@@ -14,7 +14,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     {
         /// <summary>
         /// Get server time
-        /// <para><a href="https://doc.xt.com/#market1serverInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market1serverInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/time
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
@@ -22,7 +27,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get client IP
-        /// <para><a href="https://doc.xt.com/#futures_quotesclientInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesclientInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /future/public/client
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
@@ -30,7 +40,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get supported assets as quote asset in symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesclientInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesclientInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/symbol/coins
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
@@ -38,7 +53,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get info on a symbol
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetSymbols" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetSymbols" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/symbol/detail
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="ct">Cancellation token</param>
@@ -46,14 +66,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get futures symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetSymbols" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetSymbols" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v3/public/symbol/list
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesSymbols>> GetSymbolsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get leverage brackets for a symbol
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetLeverageBracket" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetLeverageBracket" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/leverage/bracket/detail
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="ct">Cancellation token</param>
@@ -61,14 +91,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get leverage brackets for all symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetLeverageBrackets" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetLeverageBrackets" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/leverage/bracket/list
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTLeverageBrackets[]>> GetLeverageBracketsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get ticker info for a symbol
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetTicker" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetTicker" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/ticker
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
@@ -76,14 +116,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get tickers for all symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetTicker" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetTicker" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/tickers
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesTicker[]>> GetTickersAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get recent trades for a symbol
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetDeal" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetDeal" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/deal
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Max number of results</param>
@@ -92,7 +142,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get order book
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetDepth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetDepth" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/depth
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Number of levels, max 50</param>
@@ -101,7 +156,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get index price for a symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetIndexPrices" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetIndexPrices" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/symbol-index-price
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
@@ -109,14 +169,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get index prices for all symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetIndexPrices" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetIndexPrices" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/index-price
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPrice[]>> GetIndexPricesAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get index price for a symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetMarkPrice" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetMarkPrice" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/symbol-mark-price
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
@@ -124,14 +194,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get index prices for all symbols
-        /// <para><a href="https://doc.xt.com/#futures_quotesgitMarkPrices" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgitMarkPrices" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/mark-price
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPrice[]>> GetMarkPricesAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get kline/candlestick data
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetKLine" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetKLine" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/kline
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="interval">Kline interval</param>
@@ -143,7 +223,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get market info
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetAggTicker" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetAggTicker" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/agg-ticker
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
@@ -151,14 +236,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get market info
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetAggTickers" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetAggTickers" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/agg-tickers
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTMarketInfo[]>> GetMarketInfosAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Funding rate
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetFundingRate" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetFundingRate" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/funding-rate
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
@@ -166,7 +261,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get book ticker
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetTickerBook" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetTickerBook" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/ticker/book
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
@@ -174,14 +274,24 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get book tickers
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetTickerBooks" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetTickerBooks" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/ticker/books
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesBookTicker[]>> GetBookTickersAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get funding rate history
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetFundingRateRecord" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetFundingRateRecord" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/q/funding-rate-record
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
         /// <param name="fromId">From id</param>
@@ -192,7 +302,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get risk balance info
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetRiskBalance" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetRiskBalance" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/contract/risk-balance
+        /// </para>
         /// </summary>
         /// <param name="symbol">Symbol name</param>
         /// <param name="direction">Page direction</param>
@@ -203,7 +318,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get open interest info
-        /// <para><a href="https://doc.xt.com/#futures_quotesgetOpenInterest" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quotesgetOpenInterest" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/contract/open-interest
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
@@ -211,7 +331,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
 
         /// <summary>
         /// Get symbol info
-        /// <para><a href="https://doc.xt.com/#futures_quote_collectiongetFutureInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_quote_collectiongetFutureInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /future/market/v1/public/cg/contracts
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesSymbolInfo[]>> GetSymbolInfoAsync(CancellationToken ct = default);

@@ -14,7 +14,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     {
         /// <summary>
         /// Get balance for an asset
-        /// <para><a href="https://doc.xt.com/#balancebalanceGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#balancebalanceGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/balance
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="ct">Cancellation token</param>
@@ -22,7 +27,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get balances
-        /// <para><a href="https://doc.xt.com/#balancecurrenciesGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#balancecurrenciesGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/balances
+        /// </para>
         /// </summary>
         /// <param name="assets">Filter by assets</param>
         /// <param name="ct">Cancellation token</param>
@@ -30,7 +40,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get deposit address for an asset
-        /// <para><a href="https://doc.xt.com/#deposit_withdrawaldepositAddressGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#deposit_withdrawaldepositAddressGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/deposit/address
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="network">Network</param>
@@ -39,7 +54,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get deposit history
-        /// <para><a href="https://doc.xt.com/#deposit_withdrawalhistoryDepositGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#deposit_withdrawalhistoryDepositGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/deposit/history
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="network">Network</param>
@@ -54,7 +74,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Withdraw an asset
-        /// <para><a href="https://doc.xt.com/#deposit_withdrawalwithdraw" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#deposit_withdrawalwithdraw" /><br />
+        /// Endpoint:<br />
+        /// POST /v4/withdraw
+        /// </para>
         /// </summary>
         /// <param name="asset">The asset, for example `eth`</param>
         /// <param name="network">The network to withdraw on</param>
@@ -66,7 +91,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get withdrawal history
-        /// <para><a href="https://doc.xt.com/#deposit_withdrawalwithdrawHistory" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#deposit_withdrawalwithdrawHistory" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/withdraw/history
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="network">Network</param>
@@ -81,7 +111,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Transfer assets
-        /// <para><a href="https://doc.xt.com/#transfertransferPost" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#transfertransferPost" /><br />
+        /// Endpoint:<br />
+        /// POST /v4/balance/transfer
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="from">From account</param>
@@ -94,7 +129,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Transfer assets for sub accounts
-        /// <para><a href="https://doc.xt.com/#transfersubTransferPost" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#transfersubTransferPost" /><br />
+        /// Endpoint:<br />
+        /// POST /v4/balance/account/transfer
+        /// </para>
         /// </summary>
         /// <param name="asset">Asset name</param>
         /// <param name="from">From account</param>
@@ -109,6 +149,10 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get a websocket token, required for listening to private websocket streams
+        /// <para>
+        /// Endpoint:<br />
+        /// POST /v4/ws-token
+        /// </para>
         /// </summary>
         /// <param name="ct"></param>
         /// <returns></returns>

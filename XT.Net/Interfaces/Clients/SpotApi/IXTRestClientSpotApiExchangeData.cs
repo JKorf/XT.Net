@@ -15,7 +15,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     {
         /// <summary>
         /// Get server time
-        /// <para><a href="https://doc.xt.com/#market1serverInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market1serverInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/time
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
@@ -23,14 +28,24 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get your client IP
-        /// <para><a href="https://doc.xt.com/#market1clientInfo" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market1clientInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/client
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTClientIp>> GetClientIpAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get symbol information
-        /// <para><a href="https://doc.xt.com/#market2symbol" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market2symbol" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/symbol
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
@@ -40,7 +55,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get the order book
-        /// <para><a href="https://doc.xt.com/#market3depth" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market3depth" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/depth
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Number of rows of the book to return, max 1000</param>
@@ -49,7 +69,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get klines
-        /// <para><a href="https://doc.xt.com/#market4kline" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market4kline" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/kline
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="interval">Interval of the klines</param>
@@ -61,7 +86,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get recent trades
-        /// <para><a href="https://doc.xt.com/#market5tradeRecent" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market5tradeRecent" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/trade/recent
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Max number of results</param>
@@ -70,7 +100,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get trade history
-        /// <para><a href="https://doc.xt.com/#market6tradeHistory" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market6tradeHistory" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/trade/history
+        /// </para>
         /// </summary>
         /// <param name="symbol">The symbol, for example `eth_usdt`</param>
         /// <param name="limit">Max number of results</param>
@@ -81,7 +116,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get tickers
-        /// <para><a href="https://doc.xt.com/#market7allTicker" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market7allTicker" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/ticker
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
@@ -90,7 +130,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get price tickers
-        /// <para><a href="https://doc.xt.com/#market8tickerPrice" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market8tickerPrice" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/ticker/price
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
@@ -99,7 +144,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get best orderbook offers
-        /// <para><a href="https://doc.xt.com/#market9tickerBook" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market9tickerBook" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/ticker/book
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
@@ -108,7 +158,12 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get 24h price stats
-        /// <para><a href="https://doc.xt.com/#market10ticker24h" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#market10ticker24h" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/ticker/24h
+        /// </para>
         /// </summary>
         /// <param name="symbol">Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">Filter by symbols</param>
@@ -117,14 +172,24 @@ namespace XT.Net.Interfaces.Clients.SpotApi
 
         /// <summary>
         /// Get assets
-        /// <para><a href="https://doc.xt.com/#balancecurrenciesGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#balancecurrenciesGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/currencies
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTAssets>> GetAssetsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get assets network info
-        /// <para><a href="https://doc.xt.com/#deposit_withdrawalsupportedCurrenciesGet" /></para>
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#deposit_withdrawalsupportedCurrenciesGet" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/public/wallet/support/currency
+        /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTAssetNetworks[]>> GetAssetNetworksAsync(CancellationToken ct = default);
