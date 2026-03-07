@@ -60,7 +60,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/symbol/detail
         /// </para>
         /// </summary>
-        /// <param name="symbol">Symbol name</param>
+        /// <param name="symbol">["<c>symbol</c>"] Symbol name</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesSymbol>> GetSymbolAsync(string symbol, CancellationToken ct = default);
 
@@ -85,7 +85,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/leverage/bracket/detail
         /// </para>
         /// </summary>
-        /// <param name="symbol">Symbol name</param>
+        /// <param name="symbol">["<c>symbol</c>"] Symbol name</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTLeverageBrackets>> GetLeverageBracketsAsync(string symbol, CancellationToken ct = default);
 
@@ -110,7 +110,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/ticker
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesTicker>> GetTickerAsync(string symbol, CancellationToken ct = default);
 
@@ -135,8 +135,8 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/deal
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
+        /// <param name="limit">["<c>num</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesTrade[]>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default);
 
@@ -149,8 +149,8 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/depth
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
-        /// <param name="limit">Number of levels, max 50</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
+        /// <param name="limit">["<c>level</c>"] Number of levels, max 50</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesOrderBook>> GetOrderBookAsync(string symbol, int? limit = null, CancellationToken ct = default);
 
@@ -163,7 +163,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/symbol-index-price
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPrice>> GetIndexPriceAsync(string symbol, CancellationToken ct = default);
 
@@ -188,7 +188,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/symbol-mark-price
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPrice>> GetMarkPriceAsync(string symbol, CancellationToken ct = default);
 
@@ -213,11 +213,11 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/kline
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
-        /// <param name="interval">Kline interval</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
+        /// <param name="interval">["<c>interval</c>"] Kline interval</param>
+        /// <param name="startTime">["<c>startTime</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesKline[]>> GetKlinesAsync(string symbol, FuturesKlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
@@ -230,7 +230,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/agg-ticker
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTMarketInfo>> GetMarketInfoAsync(string symbol, CancellationToken ct = default);
 
@@ -255,7 +255,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/funding-rate
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFundingRate>> GetFundingRateAsync(string symbol, CancellationToken ct = default);
 
@@ -268,7 +268,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/ticker/book
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesBookTicker>> GetBookTickerAsync(string symbol, CancellationToken ct = default);
 
@@ -293,9 +293,9 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/q/funding-rate-record
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETHUSDT`</param>
-        /// <param name="fromId">From id</param>
-        /// <param name="direction">Page direction</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETHUSDT`</param>
+        /// <param name="fromId">["<c>id</c>"] From id</param>
+        /// <param name="direction">["<c>direction</c>"] Page direction</param>
         /// <param name="limit">Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPage<XTFundingRateHistory>>> GetFundingRateHistoryAsync(string symbol, long? fromId = null, PageDirection? direction = null, int? limit = null, CancellationToken ct = default);
@@ -309,10 +309,10 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/contract/risk-balance
         /// </para>
         /// </summary>
-        /// <param name="symbol">Symbol name</param>
-        /// <param name="direction">Page direction</param>
-        /// <param name="fromId">From id</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="symbol">["<c>symbol</c>"] Symbol name</param>
+        /// <param name="direction">["<c>direction</c>"] Page direction</param>
+        /// <param name="fromId">["<c>id</c>"] From id</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPage<XTRiskBalance>>> GetRiskBalanceAsync(string symbol, PageDirection? direction = null, string? fromId = null, int? limit = null, CancellationToken ct = default);
 
@@ -325,7 +325,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/market/v1/public/contract/open-interest
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `eth_usdt`</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTOpenInterest>> GetOpenInterestAsync(string symbol, CancellationToken ct = default);
 

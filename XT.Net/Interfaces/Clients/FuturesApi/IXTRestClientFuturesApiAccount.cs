@@ -22,7 +22,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/user/v1/compat/balance/list
         /// </para>
         /// </summary>
-        /// <param name="accountId">Account id</param>
+        /// <param name="accountId">["<c>queryAccountId</c>"] Account id</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTFuturesBalance[]>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default);
 
@@ -47,7 +47,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/user/v1/balance/detail
         /// </para>
         /// </summary>
-        /// <param name="asset">Asset name</param>
+        /// <param name="asset">["<c>coin</c>"] Asset name</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
         Task<WebCallResult<XTUserAsset>> GetUserAssetAsync(string asset, CancellationToken ct = default);
@@ -73,12 +73,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/user/v1/balance/bills
         /// </para>
         /// </summary>
-        /// <param name="symbol">Symbol</param>
+        /// <param name="symbol">["<c>symbol</c>"] Symbol</param>
         /// <param name="id">Filter by id</param>
-        /// <param name="direction">Page direction</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="direction">["<c>direction</c>"] Page direction</param>
+        /// <param name="startTime">["<c>startTime</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPage<XTAccountBill>>> GetAccountBillsAsync(string? symbol = null,
             long? id = null,
@@ -96,12 +96,12 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// GET /future/user/v1/balance/funding-rate-list
         /// </para>
         /// </summary>
-        /// <param name="symbol">Filter by symbol, for example `ETH-USDT`</param>
-        /// <param name="id">Filter by id</param>
-        /// <param name="direction">Page direction</param>
-        /// <param name="startTime">Filter by start time</param>
-        /// <param name="endTime">Filter by end time</param>
-        /// <param name="limit">Max number of results</param>
+        /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `ETH-USDT`</param>
+        /// <param name="id">["<c>id</c>"] Filter by id</param>
+        /// <param name="direction">["<c>direction</c>"] Page direction</param>
+        /// <param name="startTime">["<c>startTime</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
+        /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult<XTPage<XTFundingFee>>> GetFundingFeeHistoryAsync(string? symbol = null, string? id = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
@@ -126,9 +126,9 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// POST /future/user/v1/position/adjust-leverage
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETH-USDT`</param>
-        /// <param name="positionSide">Position side</param>
-        /// <param name="leverage">Leverage</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETH-USDT`</param>
+        /// <param name="positionSide">["<c>positionSide</c>"] Position side</param>
+        /// <param name="leverage">["<c>leverage</c>"] Leverage</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> SetLeverageAsync(string symbol, PositionSide positionSide, int leverage, CancellationToken ct = default);
 
@@ -141,10 +141,10 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// POST /future/user/v1/position/margin
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETH-USDT`</param>
-        /// <param name="marginChange">The change in margin</param>
-        /// <param name="positionSide">Position side</param>
-        /// <param name="type">Adjust type</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETH-USDT`</param>
+        /// <param name="marginChange">["<c>margin</c>"] The change in margin</param>
+        /// <param name="positionSide">["<c>positionSide</c>"] Position side</param>
+        /// <param name="type">["<c>type</c>"] Adjust type</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> AdjustMarginAsync(string symbol, decimal marginChange, PositionSide positionSide, AdjustSide type, CancellationToken ct = default);
 
@@ -169,9 +169,9 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// POST /future/user/v1/position/change-type
         /// </para>
         /// </summary>
-        /// <param name="symbol">The symbol, for example `ETH-USDT`</param>
-        /// <param name="positionSide">Position side</param>
-        /// <param name="positionType">Position margin type</param>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETH-USDT`</param>
+        /// <param name="positionSide">["<c>positionSide</c>"] Position side</param>
+        /// <param name="positionType">["<c>positionType</c>"] Position margin type</param>
         /// <param name="ct">Cancellation token</param>
         Task<WebCallResult> SetPositionTypeAsync(string symbol, PositionSide positionSide, PositionType positionType, CancellationToken ct = default);
 
