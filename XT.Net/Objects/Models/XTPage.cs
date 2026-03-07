@@ -10,19 +10,19 @@ namespace XT.Net.Objects.Models
     public record XTPage<T>
     {
         /// <summary>
-        /// Whether there is a next page
+        /// ["<c>hasNext</c>"] Whether there is a next page
         /// </summary>
         [JsonPropertyName("hasNext")]
         public bool? HasNext { get; set; }
         /// <summary>
-        /// Whether there is a previous page
+        /// ["<c>hasPrev</c>"] Whether there is a previous page
         /// </summary>
         [JsonPropertyName("hasPrev")]
         public bool? HasPrevious { get; set; }
 
         private T[]? _data;
         /// <summary>
-        /// Data
+        /// ["<c>items</c>"] Data
         /// </summary>
         [JsonPropertyName("items")]
         public T[] Data

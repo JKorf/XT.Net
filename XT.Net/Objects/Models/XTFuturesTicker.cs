@@ -11,47 +11,47 @@ namespace XT.Net.Objects.Models
     public record XTFuturesTicker
     {
         /// <summary>
-        /// Volume
+        /// ["<c>a</c>"] Volume
         /// </summary>
         [JsonPropertyName("a")]
         public decimal Volume { get; set; }
         /// <summary>
-        /// Last trade price
+        /// ["<c>c</c>"] Last trade price
         /// </summary>
         [JsonPropertyName("c")]
         public decimal LastPrice { get; set; }
         /// <summary>
-        /// Highest price last 24h
+        /// ["<c>h</c>"] Highest price last 24h
         /// </summary>
         [JsonPropertyName("h")]
         public decimal HighPrice { get; set; }
         /// <summary>
-        /// Lowest price last 24h
+        /// ["<c>l</c>"] Lowest price last 24h
         /// </summary>
         [JsonPropertyName("l")]
         public decimal LowPrice { get; set; }
         /// <summary>
-        /// Price 24h ago
+        /// ["<c>o</c>"] Price 24h ago
         /// </summary>
         [JsonPropertyName("o")]
         public decimal OpenPrice { get; set; }
         /// <summary>
-        /// Price change since 24h ago
+        /// ["<c>r</c>"] Price change since 24h ago
         /// </summary>
         [JsonPropertyName("r")]
         public decimal PriceChange { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>s</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Turnover in last 24h
+        /// ["<c>v</c>"] Turnover in last 24h
         /// </summary>
         [JsonPropertyName("v")]
         public decimal Turnover { get; set; }

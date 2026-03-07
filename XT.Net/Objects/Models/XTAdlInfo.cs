@@ -10,17 +10,17 @@ namespace XT.Net.Objects.Models
     public record XTAdlInfo
     {
         /// <summary>
-        /// Long quantile
+        /// ["<c>longQuantile</c>"] Long quantile
         /// </summary>
         [JsonPropertyName("longQuantile")]
         public decimal LongQuantile { get; set; }
         /// <summary>
-        /// Short quantile
+        /// ["<c>shortQuantile</c>"] Short quantile
         /// </summary>
         [JsonPropertyName("shortQuantile")]
         public decimal ShortQuantile { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;

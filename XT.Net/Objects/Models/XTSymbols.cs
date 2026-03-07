@@ -13,17 +13,17 @@ namespace XT.Net.Objects.Models
     public record XTSymbols
     {
         /// <summary>
-        /// Timestamp
+        /// ["<c>time</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("time")]
         public DateTime Time { get; set; }
         /// <summary>
-        /// Data version
+        /// ["<c>version</c>"] Data version
         /// </summary>
         [JsonPropertyName("version")]
         public string Version { get; set; } = string.Empty;
         /// <summary>
-        /// Symbols
+        /// ["<c>symbols</c>"] Symbols
         /// </summary>
         [JsonPropertyName("symbols")]
         public XTSymbol[] Symbols { get; set; } = Array.Empty<XTSymbol>();
@@ -36,122 +36,122 @@ namespace XT.Net.Objects.Models
     public record XTSymbol
     {
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>symbol</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Symbol status
+        /// ["<c>state</c>"] Symbol status
         /// </summary>
         [JsonPropertyName("state")]
         public SymbolStatus SymbolStatus { get; set; }
         /// <summary>
-        /// Is trading enabled
+        /// ["<c>tradingEnabled</c>"] Is trading enabled
         /// </summary>
         [JsonPropertyName("tradingEnabled")]
         public bool TradingEnabled { get; set; }
         /// <summary>
-        /// Is OpenApi enabled
+        /// ["<c>openapiEnabled</c>"] Is OpenApi enabled
         /// </summary>
         [JsonPropertyName("openapiEnabled")]
         public bool OpenapiEnabled { get; set; }
         /// <summary>
-        /// Next state time
+        /// ["<c>nextStateTime</c>"] Next state time
         /// </summary>
         [JsonPropertyName("nextStateTime")]
         public DateTime? NextStateTime { get; set; }
         /// <summary>
-        /// Next state
+        /// ["<c>nextState</c>"] Next state
         /// </summary>
         [JsonPropertyName("nextState")]
         public SymbolStatus? NextState { get; set; }
         /// <summary>
-        /// Depth merge precision
+        /// ["<c>depthMergePrecision</c>"] Depth merge precision
         /// </summary>
         [JsonPropertyName("depthMergePrecision")]
         public int DepthMergePrecision { get; set; }
         /// <summary>
-        /// Base asset
+        /// ["<c>baseCurrency</c>"] Base asset
         /// </summary>
         [JsonPropertyName("baseCurrency")]
         public string BaseAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Base asset precision
+        /// ["<c>baseCurrencyPrecision</c>"] Base asset precision
         /// </summary>
         [JsonPropertyName("baseCurrencyPrecision")]
         public int BaseAssetPrecision { get; set; }
         /// <summary>
-        /// Base asset id
+        /// ["<c>baseCurrencyId</c>"] Base asset id
         /// </summary>
         [JsonPropertyName("baseCurrencyId")]
         public long BaseAssetId { get; set; }
         /// <summary>
-        /// Quote asset
+        /// ["<c>quoteCurrency</c>"] Quote asset
         /// </summary>
         [JsonPropertyName("quoteCurrency")]
         public string QuoteAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Quote asset precision
+        /// ["<c>quoteCurrencyPrecision</c>"] Quote asset precision
         /// </summary>
         [JsonPropertyName("quoteCurrencyPrecision")]
         public int QuoteAssetPrecision { get; set; }
         /// <summary>
-        /// Quote asset id
+        /// ["<c>quoteCurrencyId</c>"] Quote asset id
         /// </summary>
         [JsonPropertyName("quoteCurrencyId")]
         public long QuoteAssetId { get; set; }
         /// <summary>
-        /// Price precision
+        /// ["<c>pricePrecision</c>"] Price precision
         /// </summary>
         [JsonPropertyName("pricePrecision")]
         public int PricePrecision { get; set; }
         /// <summary>
-        /// Quantity precision
+        /// ["<c>quantityPrecision</c>"] Quantity precision
         /// </summary>
         [JsonPropertyName("quantityPrecision")]
         public int QuantityPrecision { get; set; }
         /// <summary>
-        /// Taker fee rate
+        /// ["<c>takerFeeRate</c>"] Taker fee rate
         /// </summary>
         [JsonPropertyName("takerFeeRate")]
         public decimal TakerFeeRate { get; set; }
         /// <summary>
-        /// Maker fee rate
+        /// ["<c>makerFeeRate</c>"] Maker fee rate
         /// </summary>
         [JsonPropertyName("makerFeeRate")]
         public decimal MakerFeeRate { get; set; }
         /// <summary>
-        /// Supported order types
+        /// ["<c>orderTypes</c>"] Supported order types
         /// </summary>
         [JsonPropertyName("orderTypes")]
         public OrderType[] OrderTypes { get; set; } = Array.Empty<OrderType>();
         /// <summary>
-        /// Supported time in forces
+        /// ["<c>timeInForces</c>"] Supported time in forces
         /// </summary>
         [JsonPropertyName("timeInForces")]
         public TimeInForce[] TimeInForces { get; set; } = Array.Empty<TimeInForce>();
         /// <summary>
-        /// Display weight
+        /// ["<c>displayWeight</c>"] Display weight
         /// </summary>
         [JsonPropertyName("displayWeight")]
         public int DisplayWeight { get; set; }
         /// <summary>
-        /// Display level
+        /// ["<c>displayLevel</c>"] Display level
         /// </summary>
         [JsonPropertyName("displayLevel")]
         public string DisplayLevel { get; set; } = string.Empty;
         /// <summary>
-        /// Plates
+        /// ["<c>plates</c>"] Plates
         /// </summary>
         [JsonPropertyName("plates")]
         public int[] Plates { get; set; } = Array.Empty<int>();
         /// <summary>
-        /// Filters for order on this symbol
+        /// ["<c>filters</c>"] Filters for order on this symbol
         /// </summary>
         [JsonPropertyName("filters")]
         public XTSymbolFilter[] Filters { get; set; } = Array.Empty<XTSymbolFilter>();
@@ -179,17 +179,17 @@ namespace XT.Net.Objects.Models
     public record XTSymbolSUBSUB
     {
         /// <summary>
-        /// Filter
+        /// ["<c>filter</c>"] Filter
         /// </summary>
         [JsonPropertyName("filter")]
         public string Filter { get; set; } = string.Empty;
         /// <summary>
-        /// Buy max deviation
+        /// ["<c>buyMaxDeviation</c>"] Buy max deviation
         /// </summary>
         [JsonPropertyName("buyMaxDeviation")]
         public decimal BuyMaxDeviation { get; set; }
         /// <summary>
-        /// Sell max deviation
+        /// ["<c>sellMaxDeviation</c>"] Sell max deviation
         /// </summary>
         [JsonPropertyName("sellMaxDeviation")]
         public decimal SellMaxDeviation { get; set; }

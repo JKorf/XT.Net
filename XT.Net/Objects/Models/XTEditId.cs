@@ -10,12 +10,12 @@ namespace XT.Net.Objects.Models
     public record XTEditId
     {
         /// <summary>
-        /// Order id
+        /// ["<c>orderId</c>"] Order id
         /// </summary>
         [JsonPropertyName("orderId")]
         public long OrderId { get; set; }
         /// <summary>
-        /// Modify id
+        /// ["<c>modifyId</c>"] Modify id
         /// </summary>
         [JsonPropertyName("modifyId")]
         public long ModifyId { get; set; }

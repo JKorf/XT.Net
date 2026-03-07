@@ -11,67 +11,67 @@ namespace XT.Net.Objects.Models
     public record XTMarketInfo
     {
         /// <summary>
-        /// 24 hour volume
+        /// ["<c>a</c>"] 24 hour volume
         /// </summary>
         [JsonPropertyName("a")]
         public decimal Volume { get; set; }
         /// <summary>
-        /// Best ask price
+        /// ["<c>ap</c>"] Best ask price
         /// </summary>
         [JsonPropertyName("ap")]
         public decimal? BestAskPrice { get; set; }
         /// <summary>
-        /// Best bid price
+        /// ["<c>bp</c>"] Best bid price
         /// </summary>
         [JsonPropertyName("bp")]
         public decimal? BestBidPrice { get; set; }
         /// <summary>
-        /// Last trade price
+        /// ["<c>c</c>"] Last trade price
         /// </summary>
         [JsonPropertyName("c")]
         public decimal? LastPrice { get; set; }
         /// <summary>
-        /// 24 hour high price
+        /// ["<c>h</c>"] 24 hour high price
         /// </summary>
         [JsonPropertyName("h")]
         public decimal? HighPrice { get; set; }
         /// <summary>
-        /// Index price
+        /// ["<c>i</c>"] Index price
         /// </summary>
         [JsonPropertyName("i")]
         public decimal? IndexPrice { get; set; }
         /// <summary>
-        /// 24 hour low price
+        /// ["<c>l</c>"] 24 hour low price
         /// </summary>
         [JsonPropertyName("l")]
         public decimal? LowPrice { get; set; }
         /// <summary>
-        /// Mark price
+        /// ["<c>m</c>"] Mark price
         /// </summary>
         [JsonPropertyName("m")]
         public decimal? MarkPrice { get; set; }
         /// <summary>
-        /// Price 24h ago
+        /// ["<c>o</c>"] Price 24h ago
         /// </summary>
         [JsonPropertyName("o")]
         public decimal? OpenPrice { get; set; }
         /// <summary>
-        /// 24h price change percentage
+        /// ["<c>r</c>"] 24h price change percentage
         /// </summary>
         [JsonPropertyName("r")]
         public decimal? ChangePercentage { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>s</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// 24h turnover
+        /// ["<c>v</c>"] 24h turnover
         /// </summary>
         [JsonPropertyName("v")]
         public decimal? Turnover { get; set; }

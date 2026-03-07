@@ -11,22 +11,22 @@ namespace XT.Net.Objects.Models
     public record XTFundingRate
     {
         /// <summary>
-        /// Funding rate interval in hours
+        /// ["<c>collectionInternal</c>"] Funding rate interval in hours
         /// </summary>
         [JsonPropertyName("collectionInternal")]
         public int? FundingRateInterval { get; set; }
         /// <summary>
-        /// Next funding time
+        /// ["<c>nextCollectionTime</c>"] Next funding time
         /// </summary>
         [JsonPropertyName("nextCollectionTime")]
         public DateTime NextFundingTime { get; set; }
         /// <summary>
-        /// Latest funding rate
+        /// ["<c>fundingRate</c>"] Latest funding rate
         /// </summary>
         [JsonPropertyName("fundingRate")]
         public decimal LastFundingRate { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>symbol</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;

@@ -12,102 +12,102 @@ namespace XT.Net.Objects.Models
     public record XTTrackOrder
     {
         /// <summary>
-        /// Activation price
+        /// ["<c>activationPrice</c>"] Activation price
         /// </summary>
         [JsonPropertyName("activationPrice")]
         public decimal? ActivationPrice { get; set; }
         /// <summary>
-        /// Average price
+        /// ["<c>avgPrice</c>"] Average price
         /// </summary>
         [JsonPropertyName("avgPrice")]
         public decimal? AveragePrice { get; set; }
         /// <summary>
-        /// Callback track config
+        /// ["<c>callback</c>"] Callback track config
         /// </summary>
         [JsonPropertyName("callback")]
         public TrackRange TrackType { get; set; }
         /// <summary>
-        /// Callback value
+        /// ["<c>callbackVal</c>"] Callback value
         /// </summary>
         [JsonPropertyName("callbackVal")]
         public decimal CallbackValue { get; set; }
         /// <summary>
-        /// Whether to configure activation price
+        /// ["<c>configActivation</c>"] Whether to configure activation price
         /// </summary>
         [JsonPropertyName("configActivation")]
         public bool ConfigActivation { get; set; }
         /// <summary>
-        /// Created time
+        /// ["<c>createdTime</c>"] Created time
         /// </summary>
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Update time
+        /// ["<c>updatedTime</c>"] Update time
         /// </summary>
         [JsonPropertyName("updatedTime")]
         public DateTime UpdateTime { get; set; }
         /// <summary>
-        /// Current price
+        /// ["<c>currentPrice</c>"] Current price
         /// </summary>
         [JsonPropertyName("currentPrice")]
         public decimal CurrentPrice { get; set; }
         /// <summary>
-        /// Description
+        /// ["<c>desc</c>"] Description
         /// </summary>
         [JsonPropertyName("desc")]
         public string? Description { get; set; }
         /// <summary>
-        /// Executed quantity
+        /// ["<c>executedQty</c>"] Executed quantity
         /// </summary>
         [JsonPropertyName("executedQty")]
         public decimal? QuantityFilled { get; set; }
         /// <summary>
-        /// Order side
+        /// ["<c>orderSide</c>"] Order side
         /// </summary>
         [JsonPropertyName("orderSide")]
         public OrderSide OrderSide { get; set; }
         /// <summary>
-        /// Ordinary
+        /// ["<c>ordinary</c>"] Ordinary
         /// </summary>
         [JsonPropertyName("ordinary")]
         public bool Ordinary { get; set; }
         /// <summary>
-        /// Original quantity
+        /// ["<c>origQty</c>"] Original quantity
         /// </summary>
         [JsonPropertyName("origQty")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Position side
+        /// ["<c>positionSide</c>"] Position side
         /// </summary>
         [JsonPropertyName("positionSide")]
         public PositionSide PositionSide { get; set; }
         /// <summary>
-        /// Price
+        /// ["<c>price</c>"] Price
         /// </summary>
         [JsonPropertyName("price")]
         public decimal? Price { get; set; }
         /// <summary>
-        /// Track order status
+        /// ["<c>state</c>"] Track order status
         /// </summary>
         [JsonPropertyName("state")]
         public TrackOrderStatus TrackOrderStatus { get; set; }
         /// <summary>
-        /// Stop price
+        /// ["<c>stopPrice</c>"] Stop price
         /// </summary>
         [JsonPropertyName("stopPrice")]
         public decimal StopPrice { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Track id
+        /// ["<c>trackId</c>"] Track id
         /// </summary>
         [JsonPropertyName("trackId")]
         public long TrackId { get; set; }
         /// <summary>
-        /// Trigger price type
+        /// ["<c>triggerPriceType</c>"] Trigger price type
         /// </summary>
         [JsonPropertyName("triggerPriceType")]
         public PriceType TriggerPriceType { get; set; }

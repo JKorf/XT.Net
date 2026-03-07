@@ -12,47 +12,47 @@ namespace XT.Net.Objects.Models
     public record XTFuturesUserTrade
     {
         /// <summary>
-        /// Fee
+        /// ["<c>fee</c>"] Fee
         /// </summary>
         [JsonPropertyName("fee")]
         public decimal Fee { get; set; }
         /// <summary>
-        /// Fee asset
+        /// ["<c>feeCoin</c>"] Fee asset
         /// </summary>
         [JsonPropertyName("feeCoin")]
         public string FeeAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Order id
+        /// ["<c>orderId</c>"] Order id
         /// </summary>
         [JsonPropertyName("orderId")]
         public long OrderId { get; set; }
         /// <summary>
-        /// Trade id
+        /// ["<c>execId</c>"] Trade id
         /// </summary>
         [JsonPropertyName("execId")]
         public long TradeId { get; set; }
         /// <summary>
-        /// Price
+        /// ["<c>price</c>"] Price
         /// </summary>
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>quantity</c>"] Quantity
         /// </summary>
         [JsonPropertyName("quantity")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Timestamp
+        /// ["<c>timestamp</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Role
+        /// ["<c>takerMaker</c>"] Role
         /// </summary>
         [JsonPropertyName("takerMaker")]
         public TradeRole TradeRole { get; set; }

@@ -12,38 +12,38 @@ namespace XT.Net.Objects.Models
     public record XTBalanceUpdate
     {
         /// <summary>
-        /// Account id
+        /// ["<c>a</c>"] Account id
         /// </summary>
         [JsonPropertyName("a")]
         public long AccountId { get; set; }
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Asset name
+        /// ["<c>c</c>"] Asset name
         /// </summary>
         [JsonPropertyName("c")]
         public string Asset { get; set; } = string.Empty;
 
         /// <summary>
-        /// Frozen quantity
+        /// ["<c>f</c>"] Frozen quantity
         /// </summary>
         [JsonPropertyName("f")]
         public decimal Frozen { get; set; }
         /// <summary>
-        /// Total quantity
+        /// ["<c>b</c>"] Total quantity
         /// </summary>
         [JsonPropertyName("b")]
         public decimal Total { get; set; }
         /// <summary>
-        /// Business type
+        /// ["<c>z</c>"] Business type
         /// </summary>
         [JsonPropertyName("z")]
         public BusinessType BusinessType { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>s</c>"] Symbol
         /// </summary>
         [JsonPropertyName("s")]
         public string? Symbol { get; set; }

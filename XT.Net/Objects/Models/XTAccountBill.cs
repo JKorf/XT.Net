@@ -12,42 +12,42 @@ namespace XT.Net.Objects.Models
     public record XTAccountBill
     {
         /// <summary>
-        /// Balance after change
+        /// ["<c>afterAmount</c>"] Balance after change
         /// </summary>
         [JsonPropertyName("afterAmount")]
         public decimal AfterQuantity { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>amount</c>"] Quantity
         /// </summary>
         [JsonPropertyName("amount")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Asset
+        /// ["<c>coin</c>"] Asset
         /// </summary>
         [JsonPropertyName("coin")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Created time
+        /// ["<c>createdTime</c>"] Created time
         /// </summary>
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }
         /// <summary>
-        /// Side
+        /// ["<c>side</c>"] Side
         /// </summary>
         [JsonPropertyName("side")]
         public BillSide BillSide { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string? Symbol { get; set; }
         /// <summary>
-        /// Type
+        /// ["<c>type</c>"] Type
         /// </summary>
         [JsonPropertyName("type")]
         public BillType Type { get; set; }

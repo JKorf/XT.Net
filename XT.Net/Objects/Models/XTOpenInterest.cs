@@ -11,22 +11,22 @@ namespace XT.Net.Objects.Models
     public record XTOpenInterest
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Open interest
+        /// ["<c>openInterest</c>"] Open interest
         /// </summary>
         [JsonPropertyName("openInterest")]
         public decimal OpenInterest { get; set; }
         /// <summary>
-        /// Open interest usd
+        /// ["<c>openInterestUsd</c>"] Open interest usd
         /// </summary>
         [JsonPropertyName("openInterestUsd")]
         public decimal OpenInterestUsd { get; set; }
         /// <summary>
-        /// Timestamp
+        /// ["<c>time</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("time")]
         public DateTime Timestamp { get; set; }

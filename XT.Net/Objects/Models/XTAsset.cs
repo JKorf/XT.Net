@@ -11,17 +11,17 @@ namespace XT.Net.Objects.Models
     public record XTAssets
     {
         /// <summary>
-        /// Timestamp
+        /// ["<c>time</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("time")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Version of the data
+        /// ["<c>version</c>"] Version of the data
         /// </summary>
         [JsonPropertyName("version")]
         public string Version { get; set; } = string.Empty;
         /// <summary>
-        /// Assets
+        /// ["<c>currencies</c>"] Assets
         /// </summary>
         [JsonPropertyName("currencies")]
         public XTAsset[] Assets { get; set; } = [];
@@ -34,57 +34,57 @@ namespace XT.Net.Objects.Models
     public record XTAsset
     {
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }
         /// <summary>
-        /// Asset
+        /// ["<c>currency</c>"] Asset
         /// </summary>
         [JsonPropertyName("currency")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Full name
+        /// ["<c>fullName</c>"] Full name
         /// </summary>
         [JsonPropertyName("fullName")]
         public string FullName { get; set; } = string.Empty;
         /// <summary>
-        /// Logo
+        /// ["<c>logo</c>"] Logo
         /// </summary>
         [JsonPropertyName("logo")]
         public string? Logo { get; set; }
         /// <summary>
-        /// Cmc link
+        /// ["<c>cmcLink</c>"] Cmc link
         /// </summary>
         [JsonPropertyName("cmcLink")]
         public string? CmcLink { get; set; }
         /// <summary>
-        /// Weight
+        /// ["<c>weight</c>"] Weight
         /// </summary>
         [JsonPropertyName("weight")]
         public decimal Weight { get; set; }
         /// <summary>
-        /// Max precision
+        /// ["<c>maxPrecision</c>"] Max precision
         /// </summary>
         [JsonPropertyName("maxPrecision")]
         public int MaxPrecision { get; set; }
         /// <summary>
-        /// Deposit available
+        /// ["<c>depositStatus</c>"] Deposit available
         /// </summary>
         [JsonPropertyName("depositStatus")]
         public bool DepositStatus { get; set; }
         /// <summary>
-        /// Withdraw available
+        /// ["<c>withdrawStatus</c>"] Withdraw available
         /// </summary>
         [JsonPropertyName("withdrawStatus")]
         public bool WithdrawStatus { get; set; }
         /// <summary>
-        /// Convert enabled
+        /// ["<c>convertEnabled</c>"] Convert enabled
         /// </summary>
         [JsonPropertyName("convertEnabled")]
         public bool ConvertEnabled { get; set; }
         /// <summary>
-        /// Transfer enabled
+        /// ["<c>transferEnabled</c>"] Transfer enabled
         /// </summary>
         [JsonPropertyName("transferEnabled")]
         public bool TransferEnabled { get; set; }

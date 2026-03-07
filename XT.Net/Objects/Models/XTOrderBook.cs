@@ -13,23 +13,23 @@ namespace XT.Net.Objects.Models
     public record XTOrderBook
     {
         /// <summary>
-        /// Timestamp
+        /// ["<c>timestamp</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Last update id
+        /// ["<c>lastUpdateId</c>"] Last update id
         /// </summary>
         [JsonPropertyName("lastUpdateId")]
         public long LastUpdateId { get; set; }
     
         /// <summary>
-        /// Bids
+        /// ["<c>bids</c>"] Bids
         /// </summary>
         [JsonPropertyName("bids")]
         public XTOrderBookEntry[] Bids { get; set; } = Array.Empty<XTOrderBookEntry>();
         /// <summary>
-        /// Asks
+        /// ["<c>asks</c>"] Asks
         /// </summary>
         [JsonPropertyName("asks")]
         public XTOrderBookEntry[] Asks { get; set; } = Array.Empty<XTOrderBookEntry>();

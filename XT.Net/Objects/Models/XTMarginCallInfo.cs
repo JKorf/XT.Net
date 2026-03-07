@@ -11,52 +11,52 @@ namespace XT.Net.Objects.Models
     public record XTMarginCallInfo
     {
         /// <summary>
-        /// Margin call price. 0 means no margin call
+        /// ["<c>breakPrice</c>"] Margin call price. 0 means no margin call
         /// </summary>
         [JsonPropertyName("breakPrice")]
         public decimal BreakPrice { get; set; }
         /// <summary>
-        /// Calculated mark price
+        /// ["<c>calMarkPrice</c>"] Calculated mark price
         /// </summary>
         [JsonPropertyName("calMarkPrice")]
         public decimal MarkPrice { get; set; }
         /// <summary>
-        /// Contract type
+        /// ["<c>contractType</c>"] Contract type
         /// </summary>
         [JsonPropertyName("contractType")]
         public ProductType ContractType { get; set; }
         /// <summary>
-        /// Average entry price
+        /// ["<c>entryPrice</c>"] Average entry price
         /// </summary>
         [JsonPropertyName("entryPrice")]
         public decimal EntryPrice { get; set; }
         /// <summary>
-        /// Isolated margin
+        /// ["<c>isolatedMargin</c>"] Isolated margin
         /// </summary>
         [JsonPropertyName("isolatedMargin")]
         public decimal IsolatedMargin { get; set; }
         /// <summary>
-        /// Leverage
+        /// ["<c>leverage</c>"] Leverage
         /// </summary>
         [JsonPropertyName("leverage")]
         public decimal Leverage { get; set; }
         /// <summary>
-        /// Position side
+        /// ["<c>positionSide</c>"] Position side
         /// </summary>
         [JsonPropertyName("positionSide")]
         public PositionSide PositionSide { get; set; }
         /// <summary>
-        /// Position quantity
+        /// ["<c>positionSize</c>"] Position quantity
         /// </summary>
         [JsonPropertyName("positionSize")]
         public decimal PositionQuantity { get; set; }
         /// <summary>
-        /// Position type
+        /// ["<c>positionType</c>"] Position type
         /// </summary>
         [JsonPropertyName("positionType")]
         public PositionType PositionType { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;

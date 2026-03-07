@@ -10,7 +10,7 @@ namespace XT.Net.Objects.Models
     public record XTCancelId
     {
         /// <summary>
-        /// Cancel id
+        /// ["<c>cancelId</c>"] Cancel id
         /// </summary>
         [JsonPropertyName("cancelId")]
         public string CancelId { get; set; } = string.Empty;

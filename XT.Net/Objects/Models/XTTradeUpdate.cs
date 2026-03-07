@@ -11,32 +11,32 @@ namespace XT.Net.Objects.Models
     public record XTTradeUpdate
     {
         /// <summary>
-        /// Trade id
+        /// ["<c>i</c>"] Trade id
         /// </summary>
         [JsonPropertyName("i")]
         public long Id { get; set; }
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Price
+        /// ["<c>p</c>"] Price
         /// </summary>
         [JsonPropertyName("p")]
         public decimal Price { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>q</c>"] Quantity
         /// </summary>
         [JsonPropertyName("q")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Whether the buyer is the maker
+        /// ["<c>b</c>"] Whether the buyer is the maker
         /// </summary>
         [JsonPropertyName("b")]
         public bool BuyerIsMaker { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>s</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;

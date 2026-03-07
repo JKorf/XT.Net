@@ -10,7 +10,7 @@ namespace XT.Net.Objects.Models
     public record XTClientIp
     {
         /// <summary>
-        /// Ip
+        /// ["<c>ip</c>"] Ip
         /// </summary>
         [JsonPropertyName("ip")]
         public string Ip { get; set; } = string.Empty;

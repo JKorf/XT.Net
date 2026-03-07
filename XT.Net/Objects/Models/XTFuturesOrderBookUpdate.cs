@@ -11,24 +11,24 @@ namespace XT.Net.Objects.Models
     public record XTBaseFuturesOrderBookUpdate
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>s</c>"] Symbol
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
     
         /// <summary>
-        /// Bids
+        /// ["<c>b</c>"] Bids
         /// </summary>
         [JsonPropertyName("b")]
         public XTOrderBookEntry[] Bids { get; set; } = Array.Empty<XTOrderBookEntry>();
         /// <summary>
-        /// Asks
+        /// ["<c>a</c>"] Asks
         /// </summary>
         [JsonPropertyName("a")]
         public XTOrderBookEntry[] Asks { get; set; } = Array.Empty<XTOrderBookEntry>();
 
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
@@ -49,17 +49,17 @@ namespace XT.Net.Objects.Models
     public record XTFuturesIncrementalOrderBookUpdate : XTBaseFuturesOrderBookUpdate
     {
         /// <summary>
-        /// First update id
+        /// ["<c>fu</c>"] First update id
         /// </summary>
         [JsonPropertyName("fu")]
         public long FirstUpdateId { get; set; }
         /// <summary>
-        /// Previous update id
+        /// ["<c>pu</c>"] Previous update id
         /// </summary>
         [JsonPropertyName("pu")]
         public long PreviousUpdateId { get; set; }
         /// <summary>
-        /// Last update id
+        /// ["<c>u</c>"] Last update id
         /// </summary>
         [JsonPropertyName("u")]
         public long LastUpdateId { get; set; }

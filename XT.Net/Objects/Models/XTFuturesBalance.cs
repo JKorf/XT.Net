@@ -11,82 +11,82 @@ namespace XT.Net.Objects.Models
     public record XTFuturesBalance
     {
         /// <summary>
-        /// Account id
+        /// ["<c>accountId</c>"] Account id
         /// </summary>
         [JsonPropertyName("accountId")]
         public long AccountId { get; set; }
         /// <summary>
-        /// User id
+        /// ["<c>userId</c>"] User id
         /// </summary>
         [JsonPropertyName("userId")]
         public long UserId { get; set; }
         /// <summary>
-        /// Asset
+        /// ["<c>coin</c>"] Asset
         /// </summary>
         [JsonPropertyName("coin")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Underlying type
+        /// ["<c>underlyingType</c>"] Underlying type
         /// </summary>
         [JsonPropertyName("underlyingType")]
         public UnderlyingType UnderlyingType { get; set; }
         /// <summary>
-        /// Wallet balance
+        /// ["<c>walletBalance</c>"] Wallet balance
         /// </summary>
         [JsonPropertyName("walletBalance")]
         public decimal WalletBalance { get; set; }
         /// <summary>
-        /// Open order margin frozen
+        /// ["<c>openOrderMarginFrozen</c>"] Open order margin frozen
         /// </summary>
         [JsonPropertyName("openOrderMarginFrozen")]
         public decimal OpenOrderMarginFrozen { get; set; }
         /// <summary>
-        /// Isolated margin
+        /// ["<c>isolatedMargin</c>"] Isolated margin
         /// </summary>
         [JsonPropertyName("isolatedMargin")]
         public decimal IsolatedMargin { get; set; }
         /// <summary>
-        /// Crossed margin
+        /// ["<c>crossedMargin</c>"] Crossed margin
         /// </summary>
         [JsonPropertyName("crossedMargin")]
         public decimal CrossedMargin { get; set; }
         /// <summary>
-        /// Net asset balance
+        /// ["<c>amount</c>"] Net asset balance
         /// </summary>
         [JsonPropertyName("amount")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Margin balance
+        /// ["<c>totalAmount</c>"] Margin balance
         /// </summary>
         [JsonPropertyName("totalAmount")]
         public decimal TotalQuantity { get; set; }
         /// <summary>
-        /// Wallet balance in BTC
+        /// ["<c>convertBtcAmount</c>"] Wallet balance in BTC
         /// </summary>
         [JsonPropertyName("convertBtcAmount")]
         public decimal ConvertBtcQuantity { get; set; }
         /// <summary>
-        /// Wallet balance in USDT
+        /// ["<c>convertUsdtAmount</c>"] Wallet balance in USDT
         /// </summary>
         [JsonPropertyName("convertUsdtAmount")]
         public decimal ConvertUsdtQuantity { get; set; }
         /// <summary>
-        /// Profit and loss
+        /// ["<c>profit</c>"] Profit and loss
         /// </summary>
         [JsonPropertyName("profit")]
         public decimal Pnl { get; set; }
         /// <summary>
-        /// Unrealized profit and loss
+        /// ["<c>notProfit</c>"] Unrealized profit and loss
         /// </summary>
         [JsonPropertyName("notProfit")]
         public decimal UnrealizedPnl { get; set; }
         /// <summary>
-        /// Bonus
+        /// ["<c>bonus</c>"] Bonus
         /// </summary>
         [JsonPropertyName("bonus")]
         public decimal Bonus { get; set; }
         /// <summary>
-        /// Coupon
+        /// ["<c>coupon</c>"] Coupon
         /// </summary>
         [JsonPropertyName("coupon")]
         public decimal Coupon { get; set; }

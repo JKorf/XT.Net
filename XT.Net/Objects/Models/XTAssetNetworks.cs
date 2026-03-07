@@ -11,12 +11,12 @@ namespace XT.Net.Objects.Models
     public record XTAssetNetworks
     {
         /// <summary>
-        /// Asset name
+        /// ["<c>currency</c>"] Asset name
         /// </summary>
         [JsonPropertyName("currency")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Supported networks
+        /// ["<c>supportChains</c>"] Supported networks
         /// </summary>
         [JsonPropertyName("supportChains")]
         public XTAssetNetwork[] Networks { get; set; } = Array.Empty<XTAssetNetwork>();
@@ -29,62 +29,62 @@ namespace XT.Net.Objects.Models
     public record XTAssetNetwork
     {
         /// <summary>
-        /// Network name
+        /// ["<c>chain</c>"] Network name
         /// </summary>
         [JsonPropertyName("chain")]
         public string Network { get; set; } = string.Empty;
         /// <summary>
-        /// Deposit enabled
+        /// ["<c>depositEnabled</c>"] Deposit enabled
         /// </summary>
         [JsonPropertyName("depositEnabled")]
         public bool DepositEnabled { get; set; }
         /// <summary>
-        /// Withdraw enabled
+        /// ["<c>withdrawEnabled</c>"] Withdraw enabled
         /// </summary>
         [JsonPropertyName("withdrawEnabled")]
         public bool WithdrawEnabled { get; set; }
         /// <summary>
-        /// Withdraw fee
+        /// ["<c>withdrawFeeAmount</c>"] Withdraw fee
         /// </summary>
         [JsonPropertyName("withdrawFeeAmount")]
         public decimal WithdrawFeeQuantity { get; set; }
         /// <summary>
-        /// Withdraw fee asset
+        /// ["<c>withdrawFeeCurrency</c>"] Withdraw fee asset
         /// </summary>
         [JsonPropertyName("withdrawFeeCurrency")]
         public string WithdrawFeeAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Withdraw fee asset id
+        /// ["<c>withdrawFeeCurrencyId</c>"] Withdraw fee asset id
         /// </summary>
         [JsonPropertyName("withdrawFeeCurrencyId")]
         public int WithdrawFeeAssetId { get; set; }
         /// <summary>
-        /// Withdraw min quantity
+        /// ["<c>withdrawMinAmount</c>"] Withdraw min quantity
         /// </summary>
         [JsonPropertyName("withdrawMinAmount")]
         public decimal WithdrawMinQuantity { get; set; }
         /// <summary>
-        /// Deposit fee rate
+        /// ["<c>depositFeeRate</c>"] Deposit fee rate
         /// </summary>
         [JsonPropertyName("depositFeeRate")]
         public decimal DepositFeeRate { get; set; }
         /// <summary>
-        /// Contract
+        /// ["<c>contract</c>"] Contract
         /// </summary>
         [JsonPropertyName("contract")]
         public string Contract { get; set; } = string.Empty;
         /// <summary>
-        /// Min deposit quantity
+        /// ["<c>depositMinAmount</c>"] Min deposit quantity
         /// </summary>
         [JsonPropertyName("depositMinAmount")]
         public decimal? MinDepositQuantity { get; set; }
         /// <summary>
-        /// Deposit confirmations required
+        /// ["<c>depositConfirmations</c>"] Deposit confirmations required
         /// </summary>
         [JsonPropertyName("depositConfirmations")]
         public int? DepositConfirmations { get; set; }
         /// <summary>
-        /// Withdraw quantity precision
+        /// ["<c>withdrawPrecision</c>"] Withdraw quantity precision
         /// </summary>
         [JsonPropertyName("withdrawPrecision")]
         public int WithdrawPrecision { get; set; }

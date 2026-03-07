@@ -12,17 +12,17 @@ namespace XT.Net.Objects.Models
     public record XTFuturesSymbols
     {
         /// <summary>
-        /// Timestamp
+        /// ["<c>time</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("time")]
         public DateTime Time { get; set; }
         /// <summary>
-        /// Data version
+        /// ["<c>version</c>"] Data version
         /// </summary>
         [JsonPropertyName("version")]
         public string Version { get; set; } = string.Empty;
         /// <summary>
-        /// Symbols
+        /// ["<c>symbols</c>"] Symbols
         /// </summary>
         [JsonPropertyName("symbols")]
         public XTFuturesSymbol[] Symbols { get; set; } = Array.Empty<XTFuturesSymbol>();
@@ -35,321 +35,321 @@ namespace XT.Net.Objects.Models
     public record XTFuturesSymbol
     {
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Symbol group id
+        /// ["<c>symbolGroupId</c>"] Symbol group id
         /// </summary>
         [JsonPropertyName("symbolGroupId")]
         public int? SymbolGroupId { get; set; }
         /// <summary>
-        /// Pair
+        /// ["<c>pair</c>"] Pair
         /// </summary>
         [JsonPropertyName("pair")]
         public string Pair { get; set; } = string.Empty;
         /// <summary>
-        /// Contract type
+        /// ["<c>contractType</c>"] Contract type
         /// </summary>
         [JsonPropertyName("contractType")]
         public ContractType ContractType { get; set; }
         /// <summary>
-        /// Product type
+        /// ["<c>productType</c>"] Product type
         /// </summary>
         [JsonPropertyName("productType")]
         public ProductType ProductType { get; set; }
         /// <summary>
-        /// Predict event type
+        /// ["<c>predictEventType</c>"] Predict event type
         /// </summary>
         [JsonPropertyName("predictEventType")]
         public string? PredictEventType { get; set; }
         /// <summary>
-        /// Predict event param
+        /// ["<c>predictEventParam</c>"] Predict event param
         /// </summary>
         [JsonPropertyName("predictEventParam")]
         public string? PredictEventParam { get; set; }
         /// <summary>
-        /// Predict event sort
+        /// ["<c>predictEventSort</c>"] Predict event sort
         /// </summary>
         [JsonPropertyName("predictEventSort")]
         public string? PredictEventSort { get; set; }
         /// <summary>
-        /// Underlying type
+        /// ["<c>underlyingType</c>"] Underlying type
         /// </summary>
         [JsonPropertyName("underlyingType")]
         public UnderlyingType UnderlyingType { get; set; }
         /// <summary>
-        /// Contract size
+        /// ["<c>contractSize</c>"] Contract size
         /// </summary>
         [JsonPropertyName("contractSize")]
         public decimal ContractSize { get; set; }
         /// <summary>
-        /// Trade switch
+        /// ["<c>tradeSwitch</c>"] Trade switch
         /// </summary>
         [JsonPropertyName("tradeSwitch")]
         public bool TradeSwitch { get; set; }
         /// <summary>
-        /// Open switch
+        /// ["<c>openSwitch</c>"] Open switch
         /// </summary>
         [JsonPropertyName("openSwitch")]
         public bool OpenSwitch { get; set; }
         /// <summary>
-        /// Whether symbol should be displayed
+        /// ["<c>isDisplay</c>"] Whether symbol should be displayed
         /// </summary>
         [JsonPropertyName("isDisplay")]
         public bool IsDisplay { get; set; }
         /// <summary>
-        /// Is open api
+        /// ["<c>isOpenApi</c>"] Is open api
         /// </summary>
         [JsonPropertyName("isOpenApi")]
         public bool IsOpenApi { get; set; }
         /// <summary>
-        /// Status
+        /// ["<c>state</c>"] Status
         /// </summary>
         [JsonPropertyName("state")]
         public SymbolStatus Status { get; set; }
         /// <summary>
-        /// Initial leverage
+        /// ["<c>initLeverage</c>"] Initial leverage
         /// </summary>
         [JsonPropertyName("initLeverage")]
         public decimal InitialLeverage { get; set; }
         /// <summary>
-        /// Initial position type
+        /// ["<c>initPositionType</c>"] Initial position type
         /// </summary>
         [JsonPropertyName("initPositionType")]
         public PositionType InitialPositionType { get; set; }
         /// <summary>
-        /// Base asset
+        /// ["<c>baseCoin</c>"] Base asset
         /// </summary>
         [JsonPropertyName("baseCoin")]
         public string BaseAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Spot asset
+        /// ["<c>spotCoin</c>"] Spot asset
         /// </summary>
         [JsonPropertyName("spotCoin")]
         public string SpotAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Quote asset
+        /// ["<c>quoteCoin</c>"] Quote asset
         /// </summary>
         [JsonPropertyName("quoteCoin")]
         public string QuoteAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Base asset precision
+        /// ["<c>baseCoinPrecision</c>"] Base asset precision
         /// </summary>
         [JsonPropertyName("baseCoinPrecision")]
         public int BaseAssetPrecision { get; set; }
         /// <summary>
-        /// Base asset display precision
+        /// ["<c>baseCoinDisplayPrecision</c>"] Base asset display precision
         /// </summary>
         [JsonPropertyName("baseCoinDisplayPrecision")]
         public int BaseAssetDisplayPrecision { get; set; }
         /// <summary>
-        /// Quote asset precision
+        /// ["<c>quoteCoinPrecision</c>"] Quote asset precision
         /// </summary>
         [JsonPropertyName("quoteCoinPrecision")]
         public int QuoteAssetPrecision { get; set; }
         /// <summary>
-        /// Quote asset display precision
+        /// ["<c>quoteCoinDisplayPrecision</c>"] Quote asset display precision
         /// </summary>
         [JsonPropertyName("quoteCoinDisplayPrecision")]
         public int QuoteAssetDisplayPrecision { get; set; }
         /// <summary>
-        /// Quantity precision
+        /// ["<c>quantityPrecision</c>"] Quantity precision
         /// </summary>
         [JsonPropertyName("quantityPrecision")]
         public int QuantityPrecision { get; set; }
         /// <summary>
-        /// Price precision
+        /// ["<c>pricePrecision</c>"] Price precision
         /// </summary>
         [JsonPropertyName("pricePrecision")]
         public int PricePrecision { get; set; }
         /// <summary>
-        /// Support order type
+        /// ["<c>supportOrderType</c>"] Support order type
         /// </summary>
         [JsonPropertyName("supportOrderType")]
         [JsonConverter(typeof(CommaSplitEnumConverter<OrderType>))]
         public OrderType[] SupportOrderType { get; set; } = [];
         /// <summary>
-        /// Support time in force
+        /// ["<c>supportTimeInForce</c>"] Support time in force
         /// </summary>
         [JsonPropertyName("supportTimeInForce")]
         [JsonConverter(typeof(CommaSplitEnumConverter<TimeInForce>))]
         public TimeInForce[] SupportTimeInForce { get; set; } = [];
         /// <summary>
-        /// Support entrust type
+        /// ["<c>supportEntrustType</c>"] Support entrust type
         /// </summary>
         [JsonPropertyName("supportEntrustType")]
         [JsonConverter(typeof(CommaSplitEnumConverter<EntrustType>))]
         public EntrustType[] SupportEntrustType { get; set; } = [];
         /// <summary>
-        /// Support position type
+        /// ["<c>supportPositionType</c>"] Support position type
         /// </summary>
         [JsonPropertyName("supportPositionType")]
         [JsonConverter(typeof(CommaSplitEnumConverter<PositionType>))]
         public PositionType[] SupportPositionType { get; set; } = [];
         /// <summary>
-        /// Min order quantity
+        /// ["<c>minQty</c>"] Min order quantity
         /// </summary>
         [JsonPropertyName("minQty")]
         public decimal MinQuantity { get; set; }
         /// <summary>
-        /// Min notional order value
+        /// ["<c>minNotional</c>"] Min notional order value
         /// </summary>
         [JsonPropertyName("minNotional")]
         public decimal MinNotional { get; set; }
         /// <summary>
-        /// Max notional order value
+        /// ["<c>maxNotional</c>"] Max notional order value
         /// </summary>
         [JsonPropertyName("maxNotional")]
         public decimal MaxNotional { get; set; }
         /// <summary>
-        /// Floor percentage of sell limit order
+        /// ["<c>multiplierDown</c>"] Floor percentage of sell limit order
         /// </summary>
         [JsonPropertyName("multiplierDown")]
         public decimal MultiplierDown { get; set; }
         /// <summary>
-        /// Cap percentage of buy limit order
+        /// ["<c>multiplierUp</c>"] Cap percentage of buy limit order
         /// </summary>
         [JsonPropertyName("multiplierUp")]
         public decimal MultiplierUp { get; set; }
         /// <summary>
-        /// Max open orders
+        /// ["<c>maxOpenOrders</c>"] Max open orders
         /// </summary>
         [JsonPropertyName("maxOpenOrders")]
         public int MaxOpenOrders { get; set; }
         /// <summary>
-        /// Max entrusts
+        /// ["<c>maxEntrusts</c>"] Max entrusts
         /// </summary>
         [JsonPropertyName("maxEntrusts")]
         public int MaxEntrusts { get; set; }
         /// <summary>
-        /// Maker fee
+        /// ["<c>makerFee</c>"] Maker fee
         /// </summary>
         [JsonPropertyName("makerFee")]
         public decimal MakerFee { get; set; }
         /// <summary>
-        /// Taker fee
+        /// ["<c>takerFee</c>"] Taker fee
         /// </summary>
         [JsonPropertyName("takerFee")]
         public decimal TakerFee { get; set; }
         /// <summary>
-        /// Liquidation fee
+        /// ["<c>liquidationFee</c>"] Liquidation fee
         /// </summary>
         [JsonPropertyName("liquidationFee")]
         public decimal LiquidationFee { get; set; }
         /// <summary>
-        /// Market order maximum price deviation
+        /// ["<c>marketTakeBound</c>"] Market order maximum price deviation
         /// </summary>
         [JsonPropertyName("marketTakeBound")]
         public decimal MarketTakeBound { get; set; }
         /// <summary>
-        /// Handicap Precision Consolidation
+        /// ["<c>depthPrecisionMerge</c>"] Handicap Precision Consolidation
         /// </summary>
         [JsonPropertyName("depthPrecisionMerge")]
         public decimal DepthPrecisionMerge { get; set; }
         /// <summary>
-        /// Labels
+        /// ["<c>labels</c>"] Labels
         /// </summary>
         [JsonPropertyName("labels")]
         public string[] Labels { get; set; } = Array.Empty<string>();
         /// <summary>
-        /// Listing time
+        /// ["<c>onboardDate</c>"] Listing time
         /// </summary>
         [JsonPropertyName("onboardDate")]
         public DateTime ListTime { get; set; }
         /// <summary>
-        /// English name
+        /// ["<c>enName</c>"] English name
         /// </summary>
         [JsonPropertyName("enName")]
         public string EnglishName { get; set; } = string.Empty;
         /// <summary>
-        /// Chinese name
+        /// ["<c>cnName</c>"] Chinese name
         /// </summary>
         [JsonPropertyName("cnName")]
         public string ChineseName { get; set; } = string.Empty;
         /// <summary>
-        /// Min step price
+        /// ["<c>minStepPrice</c>"] Min step price
         /// </summary>
         [JsonPropertyName("minStepPrice")]
         public decimal MinStepPrice { get; set; }
         /// <summary>
-        /// Min price
+        /// ["<c>minPrice</c>"] Min price
         /// </summary>
         [JsonPropertyName("minPrice")]
         public decimal? MinPrice { get; set; }
         /// <summary>
-        /// Max price
+        /// ["<c>maxPrice</c>"] Max price
         /// </summary>
         [JsonPropertyName("maxPrice")]
         public decimal? MaxPrice { get; set; }
         /// <summary>
-        /// Delivery date
+        /// ["<c>deliveryDate</c>"] Delivery date
         /// </summary>
         [JsonPropertyName("deliveryDate")]
         public DateTime? DeliveryDate { get; set; }
         /// <summary>
-        /// Delivery price
+        /// ["<c>deliveryPrice</c>"] Delivery price
         /// </summary>
         [JsonPropertyName("deliveryPrice")]
         public decimal? DeliveryPrice { get; set; }
         /// <summary>
-        /// Delivery completion
+        /// ["<c>deliveryCompletion</c>"] Delivery completion
         /// </summary>
         [JsonPropertyName("deliveryCompletion")]
         public bool DeliveryCompletion { get; set; }
         /// <summary>
-        /// Chinese description
+        /// ["<c>cnDesc</c>"] Chinese description
         /// </summary>
         [JsonPropertyName("cnDesc")]
         public string? ChineseDescription { get; set; }
         /// <summary>
-        /// English description
+        /// ["<c>enDesc</c>"] English description
         /// </summary>
         [JsonPropertyName("enDesc")]
         public string? EnglishDescription { get; set; }
         /// <summary>
-        /// Chinese remark
+        /// ["<c>cnRemark</c>"] Chinese remark
         /// </summary>
         [JsonPropertyName("cnRemark")]
         public string? ChineseRemark { get; set; }
         /// <summary>
-        /// English remark
+        /// ["<c>enRemark</c>"] English remark
         /// </summary>
         [JsonPropertyName("enRemark")]
         public string? EnglishRemark { get; set; }
         /// <summary>
-        /// Plates
+        /// ["<c>plates</c>"] Plates
         /// </summary>
         [JsonPropertyName("plates")]
         public int[] Plates { get; set; } = Array.Empty<int>();
         /// <summary>
-        /// Fast track callback rate1
+        /// ["<c>fastTrackCallbackRate1</c>"] Fast track callback rate1
         /// </summary>
         [JsonPropertyName("fastTrackCallbackRate1")]
         public decimal? FastTrackCallbackRate1 { get; set; }
         /// <summary>
-        /// Fast track callback rate2
+        /// ["<c>fastTrackCallbackRate2</c>"] Fast track callback rate2
         /// </summary>
         [JsonPropertyName("fastTrackCallbackRate2")]
         public decimal? FastTrackCallbackRate2 { get; set; }
         /// <summary>
-        /// Min track callback rate
+        /// ["<c>minTrackCallbackRate</c>"] Min track callback rate
         /// </summary>
         [JsonPropertyName("minTrackCallbackRate")]
         public decimal? MinTrackCallbackRate { get; set; }
         /// <summary>
-        /// Max track callback rate
+        /// ["<c>maxTrackCallbackRate</c>"] Max track callback rate
         /// </summary>
         [JsonPropertyName("maxTrackCallbackRate")]
         public decimal? MaxTrackCallbackRate { get; set; }
         /// <summary>
-        /// Latest price deviation
+        /// ["<c>latestPriceDeviation</c>"] Latest price deviation
         /// </summary>
         [JsonPropertyName("latestPriceDeviation")]
         public decimal? LatestPriceDeviation { get; set; }

@@ -12,27 +12,27 @@ namespace XT.Net.Objects.Models
     public record XTFuturesTrade
     {
         /// <summary>
-        /// Volume
+        /// ["<c>a</c>"] Volume
         /// </summary>
         [JsonPropertyName("a")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Side
+        /// ["<c>m</c>"] Side
         /// </summary>
         [JsonPropertyName("m")]
         public OrderSide Side { get; set; }
         /// <summary>
-        /// Price
+        /// ["<c>p</c>"] Price
         /// </summary>
         [JsonPropertyName("p")]
         public decimal Price { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>s</c>"] Symbol
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }

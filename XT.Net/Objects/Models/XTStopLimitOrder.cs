@@ -12,72 +12,72 @@ namespace XT.Net.Objects.Models
     public record XTStopLimitOrder
     {
         /// <summary>
-        /// Created time
+        /// ["<c>createdTime</c>"] Created time
         /// </summary>
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Update time
+        /// ["<c>updatedTime</c>"] Update time
         /// </summary>
         [JsonPropertyName("updatedTime")]
         public DateTime UpdateTime { get; set; }
         /// <summary>
-        /// Entry price
+        /// ["<c>entryPrice</c>"] Entry price
         /// </summary>
         [JsonPropertyName("entryPrice")]
         public decimal? EntryPrice { get; set; }
         /// <summary>
-        /// Executed quantity
+        /// ["<c>executedQty</c>"] Executed quantity
         /// </summary>
         [JsonPropertyName("executedQty")]
         public decimal? QuantityFilled { get; set; }
         /// <summary>
-        /// Isolated margin
+        /// ["<c>isolatedMargin</c>"] Isolated margin
         /// </summary>
         [JsonPropertyName("isolatedMargin")]
         public decimal? IsolatedMargin { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>origQty</c>"] Quantity
         /// </summary>
         [JsonPropertyName("origQty")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Position side
+        /// ["<c>positionSide</c>"] Position side
         /// </summary>
         [JsonPropertyName("positionSide")]
         public PositionSide PositionSide { get; set; }
         /// <summary>
-        /// Position quantity
+        /// ["<c>positionSize</c>"] Position quantity
         /// </summary>
         [JsonPropertyName("positionSize")]
         public decimal? PositionQuantity { get; set; }
         /// <summary>
-        /// Order id
+        /// ["<c>profitId</c>"] Order id
         /// </summary>
         [JsonPropertyName("profitId")]
         public long OrderId { get; set; }
         /// <summary>
-        /// Trigger order stauts
+        /// ["<c>state</c>"] Trigger order stauts
         /// </summary>
         [JsonPropertyName("state")]
         public TriggerOrderStatus Status { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Trigger profit price
+        /// ["<c>triggerProfitPrice</c>"] Trigger profit price
         /// </summary>
         [JsonPropertyName("triggerProfitPrice")]
         public decimal TriggerProfitPrice { get; set; }
         /// <summary>
-        /// Trigger stop price
+        /// ["<c>triggerStopPrice</c>"] Trigger stop price
         /// </summary>
         [JsonPropertyName("triggerStopPrice")]
         public decimal TriggerStopPrice { get; set; }
         /// <summary>
-        /// Position type
+        /// ["<c>positionType</c>"] Position type
         /// </summary>
         [JsonPropertyName("positionType")]
         public PositionType PositionType { get; set; }

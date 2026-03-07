@@ -12,122 +12,122 @@ namespace XT.Net.Objects.Models
     public record XTOrder
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Order id
+        /// ["<c>orderId</c>"] Order id
         /// </summary>
         [JsonPropertyName("orderId")]
         public long OrderId { get; set; }
         /// <summary>
-        /// Client order id
+        /// ["<c>clientOrderId</c>"] Client order id
         /// </summary>
         [JsonPropertyName("clientOrderId")]
         public string? ClientOrderId { get; set; }
         /// <summary>
-        /// Base asset
+        /// ["<c>baseCurrency</c>"] Base asset
         /// </summary>
         [JsonPropertyName("baseCurrency")]
         public string BaseAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Quote asset
+        /// ["<c>quoteCurrency</c>"] Quote asset
         /// </summary>
         [JsonPropertyName("quoteCurrency")]
         public string QuoteAsset { get; set; } = string.Empty;
         /// <summary>
-        /// Order side
+        /// ["<c>side</c>"] Order side
         /// </summary>
         [JsonPropertyName("side")]
         public OrderSide OrderSide { get; set; }
         /// <summary>
-        /// Order type
+        /// ["<c>type</c>"] Order type
         /// </summary>
         [JsonPropertyName("type")]
         public OrderType OrderType { get; set; }
         /// <summary>
-        /// Time in force
+        /// ["<c>timeInForce</c>"] Time in force
         /// </summary>
         [JsonPropertyName("timeInForce")]
         public TimeInForce TimeInForce { get; set; }
         /// <summary>
-        /// Price
+        /// ["<c>price</c>"] Price
         /// </summary>
         [JsonPropertyName("price")]
         public decimal? Price { get; set; }
         /// <summary>
-        /// Original quantity
+        /// ["<c>origQty</c>"] Original quantity
         /// </summary>
         [JsonPropertyName("origQty")]
         public decimal? Quantity { get; set; }
         /// <summary>
-        /// Original quote quantity
+        /// ["<c>origQuoteQty</c>"] Original quote quantity
         /// </summary>
         [JsonPropertyName("origQuoteQty")]
         public decimal? QuoteQuantity { get; set; }
         /// <summary>
-        /// Quantity filled, in the placement asset
+        /// ["<c>executedQty</c>"] Quantity filled, in the placement asset
         /// </summary>
         [JsonPropertyName("executedQty")]
         public decimal? QuantityFilledPlacement { get; set; }
         /// <summary>
-        /// Quantity remaining to be filled, in the placement asset
+        /// ["<c>leavingQty</c>"] Quantity remaining to be filled, in the placement asset
         /// </summary>
         [JsonPropertyName("leavingQty")]
         public decimal? QuantityRemaining { get; set; }
         /// <summary>
-        /// Quantity filled
+        /// ["<c>tradeBase</c>"] Quantity filled
         /// </summary>
         [JsonPropertyName("tradeBase")]
         public decimal? QuantityFilled { get; set; }
         /// <summary>
-        /// Value filled
+        /// ["<c>tradeQuote</c>"] Value filled
         /// </summary>
         [JsonPropertyName("tradeQuote")]
         public decimal? QuoteQuantityFilled { get; set; }
         /// <summary>
-        /// Average price
+        /// ["<c>avgPrice</c>"] Average price
         /// </summary>
         [JsonPropertyName("avgPrice")]
         public decimal? AveragePrice { get; set; }
         /// <summary>
-        /// Fee paid
+        /// ["<c>fee</c>"] Fee paid
         /// </summary>
         [JsonPropertyName("fee")]
         public decimal? Fee { get; set; }
         /// <summary>
-        /// Fee asset
+        /// ["<c>feeCurrency</c>"] Fee asset
         /// </summary>
         [JsonPropertyName("feeCurrency")]
         public string? FeeAsset { get; set; }
         /// <summary>
-        /// Status of the order
+        /// ["<c>state</c>"] Status of the order
         /// </summary>
         [JsonPropertyName("state")]
         public OrderStatus OrderStatus { get; set; }
         /// <summary>
-        /// Fee deduction list (if set XT deduction fee and the deduction occurs, use this field to represent the trade fee. Otherwise, use the original fee and feeCurrency fields to represent the trade fee). 
+        /// ["<c>deductServices</c>"] Fee deduction list (if set XT deduction fee and the deduction occurs, use this field to represent the trade fee. Otherwise, use the original fee and feeCurrency fields to represent the trade fee). 
         /// </summary>
         [JsonPropertyName("deductServices")]
         public XTOrderFee[] Fees { get; set; } = Array.Empty<XTOrderFee>();
         /// <summary>
-        /// Timestamp
+        /// ["<c>time</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("time")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Ip
+        /// ["<c>ip</c>"] Ip
         /// </summary>
         [JsonPropertyName("ip")]
         public string Ip { get; set; } = string.Empty;
         /// <summary>
-        /// Updated time
+        /// ["<c>updatedTime</c>"] Updated time
         /// </summary>
         [JsonPropertyName("updatedTime")]
         public DateTime? UpdateTime { get; set; }
         /// <summary>
-        /// Closed
+        /// ["<c>closed</c>"] Closed
         /// </summary>
         [JsonPropertyName("closed")]
         public bool Closed { get; set; }
@@ -140,12 +140,12 @@ namespace XT.Net.Objects.Models
     public record XTOrderFee
     {
         /// <summary>
-        /// Fee
+        /// ["<c>fee</c>"] Fee
         /// </summary>
         [JsonPropertyName("fee")]
         public decimal Fee { get; set; }
         /// <summary>
-        /// Fee asset
+        /// ["<c>feeCurrency</c>"] Fee asset
         /// </summary>
         [JsonPropertyName("feeCurrency")]
         public string FeeAsset { get; set; } = string.Empty;

@@ -12,117 +12,117 @@ namespace XT.Net.Objects.Models
     public record XTFuturesOrder
     {
         /// <summary>
-        /// Client order id
+        /// ["<c>clientOrderId</c>"] Client order id
         /// </summary>
         [JsonPropertyName("clientOrderId")]
         public string? ClientOrderId { get; set; }
         /// <summary>
-        /// Average price
+        /// ["<c>avgPrice</c>"] Average price
         /// </summary>
         [JsonPropertyName("avgPrice")]
         public decimal AveragePrice { get; set; }
         /// <summary>
-        /// Close position flag when triggered
+        /// ["<c>closePosition</c>"] Close position flag when triggered
         /// </summary>
         [JsonPropertyName("closePosition")]
         public bool ClosePosition { get; set; }
         /// <summary>
-        /// Realized profit and loss
+        /// ["<c>closeProfit</c>"] Realized profit and loss
         /// </summary>
         [JsonPropertyName("closeProfit")]
         public decimal? RealizedPnl { get; set; }
         /// <summary>
-        /// Created time
+        /// ["<c>createdTime</c>"] Created time
         /// </summary>
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// Executed quantity
+        /// ["<c>executedQty</c>"] Executed quantity
         /// </summary>
         [JsonPropertyName("executedQty")]
         public decimal QuantityFilled { get; set; }
         /// <summary>
-        /// Is liquidation order
+        /// ["<c>forceClose</c>"] Is liquidation order
         /// </summary>
         [JsonPropertyName("forceClose")]
         public bool Liquidation { get; set; }
         /// <summary>
-        /// Margin frozen
+        /// ["<c>marginFrozen</c>"] Margin frozen
         /// </summary>
         [JsonPropertyName("marginFrozen")]
         public decimal MarginFrozen { get; set; }
         /// <summary>
-        /// Order id
+        /// ["<c>orderId</c>"] Order id
         /// </summary>
         [JsonPropertyName("orderId")]
         public long OrderId { get; set; }
         /// <summary>
-        /// Order side
+        /// ["<c>orderSide</c>"] Order side
         /// </summary>
         [JsonPropertyName("orderSide")]
         public OrderSide OrderSide { get; set; }
         /// <summary>
-        /// Order type
+        /// ["<c>orderType</c>"] Order type
         /// </summary>
         [JsonPropertyName("orderType")]
         public OrderType OrderType { get; set; }
         /// <summary>
-        /// Order quantity
+        /// ["<c>origQty</c>"] Order quantity
         /// </summary>
         [JsonPropertyName("origQty")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Position side
+        /// ["<c>positionSide</c>"] Position side
         /// </summary>
         [JsonPropertyName("positionSide")]
         public PositionSide PositionSide { get; set; }
         /// <summary>
-        /// Limit price
+        /// ["<c>price</c>"] Limit price
         /// </summary>
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
         /// <summary>
-        /// Triggering conditions ID
+        /// ["<c>sourceId</c>"] Triggering conditions ID
         /// </summary>
         [JsonPropertyName("sourceId")]
         public long? SourceId { get; set; }
         /// <summary>
-        /// Order status
+        /// ["<c>state</c>"] Order status
         /// </summary>
         [JsonPropertyName("state")]
         public OrderStatus Status { get; set; }
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Time in force
+        /// ["<c>timeInForce</c>"] Time in force
         /// </summary>
         [JsonPropertyName("timeInForce")]
         public TimeInForce TimeInForce { get; set; }
         /// <summary>
-        /// Trigger profit price
+        /// ["<c>triggerProfitPrice</c>"] Trigger profit price
         /// </summary>
         [JsonPropertyName("triggerProfitPrice")]
         public decimal? TriggerProfitPrice { get; set; }
         /// <summary>
-        /// Trigger stop price
+        /// ["<c>triggerStopPrice</c>"] Trigger stop price
         /// </summary>
         [JsonPropertyName("triggerStopPrice")]
         public decimal? TriggerStopPrice { get; set; }
         /// <summary>
-        /// Source type
+        /// ["<c>sourceType</c>"] Source type
         /// </summary>
         [JsonPropertyName("sourceType")]
         public SourceType? SourceType { get; set; }
         /// <summary>
-        /// Leverage
+        /// ["<c>leverage</c>"] Leverage
         /// </summary>
         [JsonPropertyName("leverage")]
         public decimal? Leverage { get; set; }
         /// <summary>
-        /// Position type
+        /// ["<c>positionType</c>"] Position type
         /// </summary>
         [JsonPropertyName("positionType")]
         public PositionType? PositionType { get; set; }

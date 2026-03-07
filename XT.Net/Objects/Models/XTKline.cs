@@ -11,37 +11,37 @@ namespace XT.Net.Objects.Models
     public record XTKline
     {
         /// <summary>
-        /// Open timestamp
+        /// ["<c>t</c>"] Open timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime OpenTime { get; set; }
         /// <summary>
-        /// Open price
+        /// ["<c>o</c>"] Open price
         /// </summary>
         [JsonPropertyName("o")]
         public decimal OpenPrice { get; set; }
         /// <summary>
-        /// Close price
+        /// ["<c>c</c>"] Close price
         /// </summary>
         [JsonPropertyName("c")]
         public decimal ClosePrice { get; set; }
         /// <summary>
-        /// High price
+        /// ["<c>h</c>"] High price
         /// </summary>
         [JsonPropertyName("h")]
         public decimal HighPrice { get; set; }
         /// <summary>
-        /// Low price
+        /// ["<c>l</c>"] Low price
         /// </summary>
         [JsonPropertyName("l")]
         public decimal LowPrice { get; set; }
         /// <summary>
-        /// Volume in base asset
+        /// ["<c>q</c>"] Volume in base asset
         /// </summary>
         [JsonPropertyName("q")]
         public decimal Volume { get; set; }
         /// <summary>
-        /// Volume in quote asset
+        /// ["<c>v</c>"] Volume in quote asset
         /// </summary>
         [JsonPropertyName("v")]
         public decimal QuoteVolume { get; set; }
@@ -54,7 +54,7 @@ namespace XT.Net.Objects.Models
     public record XTKlineUpdate: XTKline
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>s</c>"] Symbol
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;

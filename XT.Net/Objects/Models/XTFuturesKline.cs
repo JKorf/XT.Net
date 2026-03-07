@@ -11,42 +11,42 @@ namespace XT.Net.Objects.Models
     public record XTFuturesKline
     {
         /// <summary>
-        /// Volume
+        /// ["<c>a</c>"] Volume
         /// </summary>
         [JsonPropertyName("a")]
         public decimal Volume { get; set; }
         /// <summary>
-        /// Close price
+        /// ["<c>c</c>"] Close price
         /// </summary>
         [JsonPropertyName("c")]
         public decimal ClosePrice { get; set; }
         /// <summary>
-        /// High price
+        /// ["<c>h</c>"] High price
         /// </summary>
         [JsonPropertyName("h")]
         public decimal HighPrice { get; set; }
         /// <summary>
-        /// Low price
+        /// ["<c>l</c>"] Low price
         /// </summary>
         [JsonPropertyName("l")]
         public decimal LowPrice { get; set; }
         /// <summary>
-        /// Open price
+        /// ["<c>o</c>"] Open price
         /// </summary>
         [JsonPropertyName("o")]
         public decimal OpenPrice { get; set; }
         /// <summary>
-        /// Symbol name
+        /// ["<c>s</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime OpenTime { get; set; }
         /// <summary>
-        /// Turnover
+        /// ["<c>v</c>"] Turnover
         /// </summary>
         [JsonPropertyName("v")]
         public decimal Turnover { get; set; }

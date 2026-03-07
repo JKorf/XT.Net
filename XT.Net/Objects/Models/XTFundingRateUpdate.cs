@@ -11,17 +11,17 @@ namespace XT.Net.Objects.Models
     public record XTFundingRateUpdate
     {
         /// <summary>
-        /// Symbol name
+        /// ["<c>s</c>"] Symbol name
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Funding rate
+        /// ["<c>p</c>"] Funding rate
         /// </summary>
         [JsonPropertyName("p")]
         public decimal FundingRate { get; set; }
         /// <summary>
-        /// Timestamp
+        /// ["<c>t</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }

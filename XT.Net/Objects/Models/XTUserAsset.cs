@@ -10,42 +10,42 @@ namespace XT.Net.Objects.Models
     public record XTUserAsset
     {
         /// <summary>
-        /// Available balance
+        /// ["<c>availableBalance</c>"] Available balance
         /// </summary>
         [JsonPropertyName("availableBalance")]
         public decimal AvailableBalance { get; set; }
         /// <summary>
-        /// Asset
+        /// ["<c>coin</c>"] Asset
         /// </summary>
         [JsonPropertyName("coin")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Isolated margin
+        /// ["<c>isolatedMargin</c>"] Isolated margin
         /// </summary>
         [JsonPropertyName("isolatedMargin")]
         public decimal IsolatedMargin { get; set; }
         /// <summary>
-        /// Open order margin frozen
+        /// ["<c>openOrderMarginFrozen</c>"] Open order margin frozen
         /// </summary>
         [JsonPropertyName("openOrderMarginFrozen")]
         public decimal OpenOrderMarginFrozen { get; set; }
         /// <summary>
-        /// Crossed margin
+        /// ["<c>crossedMargin</c>"] Crossed margin
         /// </summary>
         [JsonPropertyName("crossedMargin")]
         public decimal CrossedMargin { get; set; }
         /// <summary>
-        /// Bonus
+        /// ["<c>bonus</c>"] Bonus
         /// </summary>
         [JsonPropertyName("bonus")]
         public decimal Bonus { get; set; }
         /// <summary>
-        /// Coupon
+        /// ["<c>coupon</c>"] Coupon
         /// </summary>
         [JsonPropertyName("coupon")]
         public decimal Coupon { get; set; }
         /// <summary>
-        /// Wallet balance
+        /// ["<c>walletBalance</c>"] Wallet balance
         /// </summary>
         [JsonPropertyName("walletBalance")]
         public decimal WalletBalance { get; set; }

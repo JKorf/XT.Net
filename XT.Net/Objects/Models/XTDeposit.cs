@@ -12,57 +12,57 @@ namespace XT.Net.Objects.Models
     public record XTDeposit
     {
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }
         /// <summary>
-        /// Asset
+        /// ["<c>currency</c>"] Asset
         /// </summary>
         [JsonPropertyName("currency")]
         public string Asset { get; set; } = string.Empty;
         /// <summary>
-        /// Network
+        /// ["<c>chain</c>"] Network
         /// </summary>
         [JsonPropertyName("chain")]
         public string Network { get; set; } = string.Empty;
         /// <summary>
-        /// Memo
+        /// ["<c>memo</c>"] Memo
         /// </summary>
         [JsonPropertyName("memo")]
         public string? Memo { get; set; }
         /// <summary>
-        /// Status
+        /// ["<c>status</c>"] Status
         /// </summary>
         [JsonPropertyName("status")]
         public DepositStatus Status { get; set; }
         /// <summary>
-        /// Quantity
+        /// ["<c>amount</c>"] Quantity
         /// </summary>
         [JsonPropertyName("amount")]
         public decimal Quantity { get; set; }
         /// <summary>
-        /// Confirmations
+        /// ["<c>confirmations</c>"] Confirmations
         /// </summary>
         [JsonPropertyName("confirmations")]
         public int? Confirmations { get; set; }
         /// <summary>
-        /// Transaction id
+        /// ["<c>transactionId</c>"] Transaction id
         /// </summary>
         [JsonPropertyName("transactionId")]
         public string TransactionId { get; set; } = string.Empty;
         /// <summary>
-        /// Address
+        /// ["<c>address</c>"] Address
         /// </summary>
         [JsonPropertyName("address")]
         public string Address { get; set; } = string.Empty;
         /// <summary>
-        /// From address
+        /// ["<c>fromAddr</c>"] From address
         /// </summary>
         [JsonPropertyName("fromAddr")]
         public string FromAddress { get; set; } = string.Empty;
         /// <summary>
-        /// Created time
+        /// ["<c>createdTime</c>"] Created time
         /// </summary>
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }

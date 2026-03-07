@@ -12,37 +12,37 @@ namespace XT.Net.Objects.Models
     public record XTFuturesAccountInfo
     {
         /// <summary>
-        /// Account id
+        /// ["<c>accountId</c>"] Account id
         /// </summary>
         [JsonPropertyName("accountId")]
         public long AccountId { get; set; }
         /// <summary>
-        /// Allow open position
+        /// ["<c>allowOpenPosition</c>"] Allow open position
         /// </summary>
         [JsonPropertyName("allowOpenPosition")]
         public bool AllowOpenPosition { get; set; }
         /// <summary>
-        /// Allow trade
+        /// ["<c>allowTrade</c>"] Allow trade
         /// </summary>
         [JsonPropertyName("allowTrade")]
         public bool AllowTrade { get; set; }
         /// <summary>
-        /// Allow transfer
+        /// ["<c>allowTransfer</c>"] Allow transfer
         /// </summary>
         [JsonPropertyName("allowTransfer")]
         public bool AllowTransfer { get; set; }
         /// <summary>
-        /// Open time
+        /// ["<c>openTime</c>"] Open time
         /// </summary>
         [JsonPropertyName("openTime")]
         public DateTime OpenTime { get; set; }
         /// <summary>
-        /// Status
+        /// ["<c>state</c>"] Status
         /// </summary>
         [JsonPropertyName("state")]
         public AccountStatus Status { get; set; }
         /// <summary>
-        /// User id
+        /// ["<c>userId</c>"] User id
         /// </summary>
         [JsonPropertyName("userId")]
         public long UserId { get; set; }

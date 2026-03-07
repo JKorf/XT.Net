@@ -10,12 +10,12 @@ namespace XT.Net.Objects.Models
     public record XTDepositAddress
     {
         /// <summary>
-        /// Address
+        /// ["<c>address</c>"] Address
         /// </summary>
         [JsonPropertyName("address")]
         public string Address { get; set; } = string.Empty;
         /// <summary>
-        /// Memo
+        /// ["<c>memo</c>"] Memo
         /// </summary>
         [JsonPropertyName("memo")]
         public string? Memo { get; set; }

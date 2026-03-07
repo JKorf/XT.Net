@@ -13,7 +13,7 @@ namespace XT.Net.Objects.Models
     public record XTSymbolFilter
     {
         /// <summary>
-        /// The type of this filter
+        /// ["<c>filterType</c>"] The type of this filter
         /// </summary>
         [JsonPropertyName("filterType")]
         public SymbolFilterType FilterType { get; set; }

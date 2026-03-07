@@ -10,7 +10,7 @@ namespace XT.Net.Objects.Models
     public record XTId
     {
         /// <summary>
-        /// Id
+        /// ["<c>id</c>"] Id
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }

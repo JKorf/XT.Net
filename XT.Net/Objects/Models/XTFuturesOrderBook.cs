@@ -11,29 +11,29 @@ namespace XT.Net.Objects.Models
     public record XTFuturesOrderBook
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>s</c>"] Symbol
         /// </summary>
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Date timestamp
+        /// ["<c>t</c>"] Date timestamp
         /// </summary>
         [JsonPropertyName("t")]
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// Last update id
+        /// ["<c>u</c>"] Last update id
         /// </summary>
         [JsonPropertyName("u")]
         public long UpdateId { get; set; }
 
         /// <summary>
-        /// Ask entries
+        /// ["<c>a</c>"] Ask entries
         /// </summary>
         [JsonPropertyName("a")]
         public XTOrderBookEntry[] Asks { get; set; } = [];
 
         /// <summary>
-        /// Bid entries
+        /// ["<c>b</c>"] Bid entries
         /// </summary>
         [JsonPropertyName("b")]
         public XTOrderBookEntry[] Bids { get; set; } = [];

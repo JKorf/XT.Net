@@ -10,12 +10,12 @@ namespace XT.Net.Objects.Models
     public record XTFeeRate
     {
         /// <summary>
-        /// Maker fee
+        /// ["<c>makerFee</c>"] Maker fee
         /// </summary>
         [JsonPropertyName("makerFee")]
         public decimal MakerFee { get; set; }
         /// <summary>
-        /// Taker fee
+        /// ["<c>takerFee</c>"] Taker fee
         /// </summary>
         [JsonPropertyName("takerFee")]
         public decimal TakerFee { get; set; }

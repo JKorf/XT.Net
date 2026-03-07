@@ -11,27 +11,27 @@ namespace XT.Net.Objects.Models
     public record XTNotification
     {
         /// <summary>
-        /// Symbol
+        /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// Position type
+        /// ["<c>positionType</c>"] Position type
         /// </summary>
         [JsonPropertyName("positionType")]
         public PositionType PositionType { get; set; }
         /// <summary>
-        /// Position side
+        /// ["<c>positionSide</c>"] Position side
         /// </summary>
         [JsonPropertyName("positionSide")]
         public PositionSide PositionSide { get; set; }
         /// <summary>
-        /// Position quantity
+        /// ["<c>positionSize</c>"] Position quantity
         /// </summary>
         [JsonPropertyName("positionSize")]
         public decimal PositionQuantity { get; set; }
         /// <summary>
-        /// Notify type
+        /// ["<c>notifyType</c>"] Notify type
         /// </summary>
         [JsonPropertyName("notifyType")]
         public NotificationType NotifyType { get; set; }
