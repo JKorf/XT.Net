@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum TrackRange
     {
         /// <summary>
-        /// Fixed
+        /// ["<c>FIXED</c>"] Fixed
         /// </summary>
         [Map("FIXED")]
         Fixed,
         /// <summary>
-        /// Proportion
+        /// ["<c>PROPORTION</c>"] Proportion
         /// </summary>
         [Map("PROPORTION")]
         Proportion

@@ -11,32 +11,32 @@ namespace XT.Net.Enums
     public enum OrderStatus
     {
         /// <summary>
-        /// New
+        /// ["<c>NEW</c>"] New
         /// </summary>
         [Map("NEW")]
         New,
         /// <summary>
-        /// Partially filled
+        /// ["<c>PARTIALLY_FILLED</c>"] Partially filled
         /// </summary>
         [Map("PARTIALLY_FILLED")]
         PartiallyFilled,
         /// <summary>
-        /// Filled
+        /// ["<c>FILLED</c>"] Filled
         /// </summary>
         [Map("FILLED")]
         Filled,
         /// <summary>
-        /// Canceled
+        /// ["<c>CANCELED</c>"] Canceled
         /// </summary>
         [Map("CANCELED")]
         Canceled,
         /// <summary>
-        /// Rejected
+        /// ["<c>REJECTED</c>"] Rejected
         /// </summary>
         [Map("REJECTED")]
         Rejected,
         /// <summary>
-        /// Expired
+        /// ["<c>EXPIRED</c>"] Expired
         /// </summary>
         [Map("EXPIRED")]
         Expired,

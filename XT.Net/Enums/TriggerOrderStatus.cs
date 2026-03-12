@@ -11,42 +11,42 @@ namespace XT.Net.Enums
     public enum TriggerOrderStatus
     {
         /// <summary>
-        /// Not triggered
+        /// ["<c>NOT_TRIGGERED</c>"] Not triggered
         /// </summary>
         [Map("NOT_TRIGGERED")]
         NotTriggered,
         /// <summary>
-        /// Triggering
+        /// ["<c>TRIGGERING</c>"] Triggering
         /// </summary>
         [Map("TRIGGERING")]
         Triggering,
         /// <summary>
-        /// Triggered
+        /// ["<c>TRIGGERED</c>"] Triggered
         /// </summary>
         [Map("TRIGGERED")]
         Triggered,
         /// <summary>
-        /// User revocation
+        /// ["<c>USER_REVOCATION</c>"] User revocation
         /// </summary>
         [Map("USER_REVOCATION")]
         UserRevocation,
         /// <summary>
-        /// Platform revocation
+        /// ["<c>PLATFORM_REVOCATION</c>"] Platform revocation
         /// </summary>
         [Map("PLATFORM_REVOCATION")]
         PlatformRevocation,
         /// <summary>
-        /// Expired
+        /// ["<c>EXPIRED</c>"] Expired
         /// </summary>
         [Map("EXPIRED")]
         Expired,
         /// <summary>
-        /// Unfinished
+        /// ["<c>UNFINISHED</c>"] Unfinished
         /// </summary>
         [Map("UNFINISHED")]
         Unfinished,
         /// <summary>
-        /// History
+        /// ["<c>HISTORY</c>"] History
         /// </summary>
         [Map("HISTORY")]
         History,

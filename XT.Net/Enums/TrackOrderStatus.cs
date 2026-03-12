@@ -11,42 +11,42 @@ namespace XT.Net.Enums
     public enum TrackOrderStatus
     {
         /// <summary>
-        /// Inactivated
+        /// ["<c>NOT_ACTIVATION</c>"] Inactivated
         /// </summary>
         [Map("NOT_ACTIVATION")]
         NotActivation,
         /// <summary>
-        /// Not triggered
+        /// ["<c>NOT_TRIGGERED</c>"] Not triggered
         /// </summary>
         [Map("NOT_TRIGGERED")]
         NotTriggered,
         /// <summary>
-        /// Triggering
+        /// ["<c>TRIGGERING</c>"] Triggering
         /// </summary>
         [Map("TRIGGERING")]
         Triggering,
         /// <summary>
-        /// Triggered
+        /// ["<c>TRIGGERED</c>"] Triggered
         /// </summary>
         [Map("TRIGGERED")]
         Triggered,
         /// <summary>
-        /// User revocation
+        /// ["<c>USER_REVOCATION</c>"] User revocation
         /// </summary>
         [Map("USER_REVOCATION")]
         UserRevocation,
         /// <summary>
-        /// Platform rejects
+        /// ["<c>PLATFORM_REVOCATION</c>"] Platform rejects
         /// </summary>
         [Map("PLATFORM_REVOCATION")]
         PlatformRevocation,
         /// <summary>
-        /// Expired
+        /// ["<c>EXPIRED</c>"] Expired
         /// </summary>
         [Map("EXPIRED")]
         Expired,
         /// <summary>
-        /// Delegation failed
+        /// ["<c>DELEGATION_FAILED</c>"] Delegation failed
         /// </summary>
         [Map("DELEGATION_FAILED")]
         DelegationFailed,

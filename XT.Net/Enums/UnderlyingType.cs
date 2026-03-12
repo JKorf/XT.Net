@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum UnderlyingType
     {
         /// <summary>
-        /// Usdt based
+        /// ["<c>U_BASED</c>"] Usdt based
         /// </summary>
         [Map("U_BASED", "2")]
         UsdtBased,
         /// <summary>
-        /// Coin based
+        /// ["<c>C_BASED</c>"] Coin based
         /// </summary>
         [Map("C_BASED", "COIN_BASED", "1")]
         CoinBased

@@ -11,32 +11,32 @@ namespace XT.Net.Enums
     public enum SymbolFilterType
     {
         /// <summary>
-        /// Price filter
+        /// ["<c>PRICE</c>"] Price filter
         /// </summary>
         [Map("PRICE")]
         Price,
         /// <summary>
-        /// Quantity filter
+        /// ["<c>QUANTITY</c>"] Quantity filter
         /// </summary>
         [Map("QUANTITY")]
         Quantity,
         /// <summary>
-        /// Quote quantity filter
+        /// ["<c>QUOTE_QTY</c>"] Quote quantity filter
         /// </summary>
         [Map("QUOTE_QTY")]
         QuoteQuantity,
         /// <summary>
-        /// Limit order protection
+        /// ["<c>PROTECTION_LIMIT</c>"] Limit order protection
         /// </summary>
         [Map("PROTECTION_LIMIT")]
         ProtectionLimit,
         /// <summary>
-        /// Market order protection
+        /// ["<c>PROTECTION_MARKET</c>"] Market order protection
         /// </summary>
         [Map("PROTECTION_MARKET")]
         ProtectionMarket,
         /// <summary>
-        /// Filter for when symbol comes online
+        /// ["<c>PROTECTION_ONLINE</c>"] Filter for when symbol comes online
         /// </summary>
         [Map("PROTECTION_ONLINE")]
         ProtectionOnline

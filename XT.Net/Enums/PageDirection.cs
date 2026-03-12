@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum PageDirection
     {
         /// <summary>
-        /// Previous
+        /// ["<c>PREV</c>"] Previous
         /// </summary>
         [Map("PREV")]
         Previous,
         /// <summary>
-        /// Next
+        /// ["<c>NEXT</c>"] Next
         /// </summary>
         [Map("NEXT")]
         Next

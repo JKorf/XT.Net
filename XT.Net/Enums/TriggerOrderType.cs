@@ -11,22 +11,22 @@ namespace XT.Net.Enums
     public enum TriggerOrderType
     {
         /// <summary>
-        /// Take profit
+        /// ["<c>TAKE_PROFIT</c>"] Take profit
         /// </summary>
         [Map("TAKE_PROFIT")]
         TakeProfitLimit,
         /// <summary>
-        /// Stop
+        /// ["<c>STOP</c>"] Stop
         /// </summary>
         [Map("STOP")]
         StopLimit,
         /// <summary>
-        /// Take profit market
+        /// ["<c>TAKE_PROFIT_MARKET</c>"] Take profit market
         /// </summary>
         [Map("TAKE_PROFIT_MARKET")]
         TakeProfitMarket,
         /// <summary>
-        /// Stop market
+        /// ["<c>STOP_MARKET</c>"] Stop market
         /// </summary>
         [Map("STOP_MARKET")]
         StopMarket,

@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum TradeRole
     {
         /// <summary>
-        /// Maker
+        /// ["<c>maker</c>"] Maker
         /// </summary>
         [Map("maker")]
         Maker,
         /// <summary>
-        /// Taker
+        /// ["<c>taker</c>"] Taker
         /// </summary>
         [Map("taker")]
         Taker

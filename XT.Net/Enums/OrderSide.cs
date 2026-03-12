@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum OrderSide
     {
         /// <summary>
-        /// Buy
+        /// ["<c>BUY</c>"] Buy
         /// </summary>
         [Map("BUY", "ASK")]
         Buy,
         /// <summary>
-        /// Sell
+        /// ["<c>SELL</c>"] Sell
         /// </summary>
         [Map("SELL", "BID")]
         Sell

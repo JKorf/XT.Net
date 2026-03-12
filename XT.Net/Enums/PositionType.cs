@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum PositionType
     {
         /// <summary>
-        /// Cross
+        /// ["<c>CROSSED</c>"] Cross
         /// </summary>
         [Map("CROSSED")]
         Cross,
         /// <summary>
-        /// Isolated
+        /// ["<c>ISOLATED</c>"] Isolated
         /// </summary>
         [Map("ISOLATED")]
         Isolated

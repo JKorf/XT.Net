@@ -11,42 +11,42 @@ namespace XT.Net.Enums
     public enum WithdrawalStatus
     {
         /// <summary>
-        /// Submited
+        /// ["<c>SUBMIT</c>"] Submited
         /// </summary>
         [Map("SUBMIT")]
         Submited,
         /// <summary>
-        /// In review
+        /// ["<c>REVIEW</c>"] In review
         /// </summary>
         [Map("REVIEW")]
         InReview,
         /// <summary>
-        /// Audited
+        /// ["<c>AUDITED</c>"] Audited
         /// </summary>
         [Map("AUDITED")]
         Audited,
         /// <summary>
-        /// Audited again
+        /// ["<c>AUDITED_AGAIN</c>"] Audited again
         /// </summary>
         [Map("AUDITED_AGAIN")]
         AuditedAgain,
         /// <summary>
-        /// Pending
+        /// ["<c>PENDING</c>"] Pending
         /// </summary>
         [Map("PENDING")]
         Pending,
         /// <summary>
-        /// Success
+        /// ["<c>SUCCESS</c>"] Success
         /// </summary>
         [Map("SUCCESS")]
         Success,
         /// <summary>
-        /// Fail
+        /// ["<c>FAIL</c>"] Fail
         /// </summary>
         [Map("FAIL")]
         Fail,
         /// <summary>
-        /// Canceled
+        /// ["<c>CANCEL</c>"] Canceled
         /// </summary>
         [Map("CANCEL")]
         Canceled,

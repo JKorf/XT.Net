@@ -11,17 +11,17 @@ namespace XT.Net.Enums
     public enum SourceType
     {
         /// <summary>
-        /// Normal order
+        /// ["<c>DEFAULT</c>"] Normal order
         /// </summary>
         [Map("DEFAULT")]
         Normal,
         /// <summary>
-        /// Trigger order
+        /// ["<c>ENTRUST</c>"] Trigger order
         /// </summary>
         [Map("ENTRUST")]
         TriggerOrder,
         /// <summary>
-        /// TP/SL order
+        /// ["<c>PROFIT</c>"] TP/SL order
         /// </summary>
         [Map("PROFIT")]
         TpSlOrder

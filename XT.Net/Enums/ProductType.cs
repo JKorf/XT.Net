@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum ProductType
     {
         /// <summary>
-        /// Perpetual
+        /// ["<c>perpetual</c>"] Perpetual
         /// </summary>
         [Map("perpetual", "PERPETUAL")]
         Perpetual,
         /// <summary>
-        /// Futures
+        /// ["<c>futures</c>"] Futures
         /// </summary>
         [Map("futures", "PREDICT")]
         Futures

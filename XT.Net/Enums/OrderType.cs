@@ -11,12 +11,12 @@ namespace XT.Net.Enums
     public enum OrderType
     {
         /// <summary>
-        /// Limit order
+        /// ["<c>LIMIT</c>"] Limit order
         /// </summary>
         [Map("LIMIT")]
         Limit,
         /// <summary>
-        /// Market order
+        /// ["<c>MARKET</c>"] Market order
         /// </summary>
         [Map("MARKET")]
         Market

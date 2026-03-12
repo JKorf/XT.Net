@@ -11,17 +11,17 @@ namespace XT.Net.Enums
     public enum SymbolStatus
     {
         /// <summary>
-        /// Online
+        /// ["<c>ONLINE</c>"] Online
         /// </summary>
         [Map("ONLINE", "0")]
         Online,
         /// <summary>
-        /// Offline
+        /// ["<c>OFFLINE</c>"] Offline
         /// </summary>
         [Map("OFFLINE", "1")]
         Offline,
         /// <summary>
-        /// Delisted
+        /// ["<c>DELISTED</c>"] Delisted
         /// </summary>
         [Map("DELISTED")]
         Delisted

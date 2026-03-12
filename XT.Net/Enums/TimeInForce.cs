@@ -11,22 +11,22 @@ namespace XT.Net.Enums
     public enum TimeInForce
     {
         /// <summary>
-        /// Good until canceled
+        /// ["<c>GTC</c>"] Good until canceled
         /// </summary>
         [Map("GTC")]
         GoodTillCanceled,
         /// <summary>
-        /// Immediate or cancel, cancel any part that can not be executed immediately
+        /// ["<c>IOC</c>"] Immediate or cancel, cancel any part that can not be executed immediately
         /// </summary>
         [Map("IOC")]
         ImmediateOrCancel,
         /// <summary>
-        /// Fill or kill, immediately fill the entire order or cancel it
+        /// ["<c>FOK</c>"] Fill or kill, immediately fill the entire order or cancel it
         /// </summary>
         [Map("FOK")]
         FillOrKill,
         /// <summary>
-        /// Post only
+        /// ["<c>GTX</c>"] Post only
         /// </summary>
         [Map("GTX")]
         PostOnly
