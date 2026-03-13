@@ -15,7 +15,7 @@ using CryptoExchange.Net.Objects.Options;
 namespace XT.Net.Clients
 {
     /// <inheritdoc cref="IXTRestClient" />
-    public class XTRestClient : BaseRestClient, IXTRestClient
+    public class XTRestClient : BaseRestClient<XTEnvironment, XTCredentials>, IXTRestClient
     {
         #region Api clients
                 
@@ -57,14 +57,6 @@ namespace XT.Net.Clients
 
         #endregion
 
-        /// <inheritdoc />
-        public void SetOptions(UpdateOptions options)
-        {
-            UsdtFuturesApi.SetOptions(options);
-            CoinFuturesApi.SetOptions(options);
-            SpotApi.SetOptions(options);
-        }
-
         /// <summary>
         /// Set the default options to be used when creating new clients
         /// </summary>
@@ -72,14 +64,6 @@ namespace XT.Net.Clients
         public static void SetDefaultOptions(Action<XTRestOptions> optionsDelegate)
         {
             XTRestOptions.Default = ApplyOptionsDelegate(optionsDelegate);
-        }
-
-        /// <inheritdoc />
-        public void SetApiCredentials(ApiCredentials credentials)
-        {
-            UsdtFuturesApi.SetApiCredentials(credentials);
-            CoinFuturesApi.SetApiCredentials(credentials);
-            SpotApi.SetApiCredentials(credentials);
         }
     }
 }

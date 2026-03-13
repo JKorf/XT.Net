@@ -38,7 +38,7 @@ namespace XT.Net.UnitTests
         {
             var client = new XTSocketClient(opts =>
             {
-                opts.ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456");
+                opts.ApiCredentials = new XTCredentials("123", "456");
             });
             var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Spot", "wss://stream.xt.com");
             await tester.ValidateAsync<XTTradeUpdate>((client, handler) => client.SpotApi.SubscribeToTradeUpdatesAsync("eth_usdt", handler), "Trades", nestedJsonProperty: "data");
@@ -58,7 +58,7 @@ namespace XT.Net.UnitTests
             var client = new XTSocketClient(Options.Create(new XTSocketOptions
             {
                 OutputOriginalData = true,
-                ApiCredentials = new CryptoExchange.Net.Authentication.ApiCredentials("123", "456")
+                ApiCredentials = new XTCredentials("123", "456")
             }), loggerFactory);
             var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Futures", "wss://stream.xt.com");
             await tester.ValidateAsync<XTFuturesTrade>((client, handler) => client.FuturesApi.SubscribeToTradeUpdatesAsync("eth_usdt", handler), "Trades", nestedJsonProperty: "data");

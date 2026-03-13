@@ -45,7 +45,7 @@ namespace XT.Net.Clients.FuturesApi
     }
 
     /// <inheritdoc cref="IXTRestClientFuturesApi" />
-    internal abstract partial class XTRestClientFuturesApi : RestApiClient, IXTRestClientFuturesApi
+    internal abstract partial class XTRestClientFuturesApi : RestApiClient<XTEnvironment, XTFuturesAuthenticationProvider, XTCredentials>, IXTRestClientFuturesApi
     {
         #region fields 
         internal XTRestClient _baseClient;
@@ -67,7 +67,7 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         #region constructor/destructor
-        internal XTRestClientFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions apiOptions)
+        internal XTRestClientFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions<XTCredentials> apiOptions)
             : base(logger, httpClient, baseAddress, options, apiOptions)
         {
             _baseClient = baseClient;
@@ -84,7 +84,7 @@ namespace XT.Net.Clients.FuturesApi
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
         /// <inheritdoc />
-        protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
+        protected override XTFuturesAuthenticationProvider CreateAuthenticationProvider(XTCredentials credentials)
             => new XTFuturesAuthenticationProvider(credentials);
 
         internal Task<WebCallResult> SendAsync(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)

@@ -5,7 +5,7 @@ namespace XT.Net.Objects.Options
     /// <summary>
     /// Options for the XTRestClient
     /// </summary>
-    public class XTRestOptions : RestExchangeOptions<XTEnvironment>
+    public class XTRestOptions : RestExchangeOptions<XTEnvironment, XTCredentials>
     {
         /// <summary>
         /// Default options for new clients
@@ -32,7 +32,7 @@ namespace XT.Net.Objects.Options
          /// <summary>
         /// Futures API options
         /// </summary>
-        public RestApiOptions FuturesOptions { get; private set; } = new RestApiOptions();
+        public RestApiOptions<XTCredentials> FuturesOptions { get; private set; } = new RestApiOptions<XTCredentials>();
 
          /// <summary>
         /// Spot API options

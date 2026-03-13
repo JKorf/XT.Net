@@ -9,13 +9,13 @@ using XT.Net.Clients.SpotApi;
 
 namespace XT.Net
 {
-    internal class XTSpotAuthenticationProvider : AuthenticationProvider
+    internal class XTSpotAuthenticationProvider : AuthenticationProvider<XTCredentials, HMACCredential>
     {
         private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
         public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.Hmac];
 
-        public XTSpotAuthenticationProvider(ApiCredentials credentials) : base(credentials)
+        public XTSpotAuthenticationProvider(XTCredentials credentials) : base(credentials)
         {
         }
 
@@ -27,7 +27,7 @@ namespace XT.Net
             var timestamp = GetMillisecondTimestamp(apiClient);
             request.Headers ??= new Dictionary<string, string>();
             request.Headers.Add("validate-algorithms", "HmacSHA256");
-            request.Headers.Add("validate-appkey", ApiKey);
+            request.Headers.Add("validate-appkey", Credential.PublicKey);
             request.Headers.Add("validate-recvwindow", ((int)((XTRestClientSpotApi)apiClient).ApiOptions.ReceiveWindow.TotalMilliseconds).ToString());
             request.Headers.Add("validate-timestamp", timestamp);
 

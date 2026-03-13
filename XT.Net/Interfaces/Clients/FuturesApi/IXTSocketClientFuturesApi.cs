@@ -13,7 +13,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     /// <summary>
     /// XT Futures streams
     /// </summary>
-    public interface IXTSocketClientFuturesApi : ISocketApiClient, IDisposable
+    public interface IXTSocketClientFuturesApi : ISocketApiClient<XTCredentials>, IDisposable
     {
         /// <summary>
         /// Subscribe to public trade updates

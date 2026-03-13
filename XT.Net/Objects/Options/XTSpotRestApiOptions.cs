@@ -6,7 +6,7 @@ namespace XT.Net.Objects.Options
     /// <summary>
     /// XT Spot Rest API options
     /// </summary>
-    public class XTSpotRestApiOptions : RestApiOptions
+    public class XTSpotRestApiOptions : RestApiOptions<XTCredentials>
     {
         /// <summary>
         /// The timespan for how long the server will regard a request as valid, it will reject the request if it's received after this time has passed

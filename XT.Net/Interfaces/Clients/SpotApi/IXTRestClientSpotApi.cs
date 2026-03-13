@@ -6,7 +6,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     /// <summary>
     /// XT Spot API endpoints
     /// </summary>
-    public interface IXTRestClientSpotApi : IRestApiClient, IDisposable
+    public interface IXTRestClientSpotApi : IRestApiClient<XTCredentials>, IDisposable
     {
         /// <summary>
         /// Endpoints related to account settings, info or actions

@@ -14,7 +14,7 @@ using XT.Net.Objects.Options;
 namespace XT.Net.Clients
 {
     /// <inheritdoc cref="IXTSocketClient" />
-    public class XTSocketClient : BaseSocketClient, IXTSocketClient
+    public class XTSocketClient : BaseSocketClient<XTEnvironment, XTCredentials>, IXTSocketClient
     {
         #region fields
         #endregion
@@ -54,13 +54,6 @@ namespace XT.Net.Clients
         }
         #endregion
 
-        /// <inheritdoc />
-        public void SetOptions(UpdateOptions options)
-        {
-            FuturesApi.SetOptions(options);
-            SpotApi.SetOptions(options);
-        }
-
         /// <summary>
         /// Set the default options to be used when creating new clients
         /// </summary>
@@ -70,14 +63,5 @@ namespace XT.Net.Clients
             XTSocketOptions.Default = ApplyOptionsDelegate(optionsDelegate);
         }
 
-        /// <inheritdoc />
-        public void SetApiCredentials(ApiCredentials credentials)
-        {
-            
-            FuturesApi.SetApiCredentials(credentials);
-
-            SpotApi.SetApiCredentials(credentials);
-
-        }
     }
 }

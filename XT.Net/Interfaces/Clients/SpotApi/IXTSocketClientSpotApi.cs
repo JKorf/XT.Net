@@ -13,7 +13,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     /// <summary>
     /// XT Spot streams
     /// </summary>
-    public interface IXTSocketClientSpotApi : ISocketApiClient, IDisposable
+    public interface IXTSocketClientSpotApi : ISocketApiClient<XTCredentials>, IDisposable
     {
         /// <summary>
         /// Subscribe to trade updates
