@@ -27,7 +27,7 @@ namespace XT.Net
             var timestamp = GetMillisecondTimestamp(apiClient);
             request.Headers ??= new Dictionary<string, string>();
             request.Headers.Add("validate-algorithms", "HmacSHA256");
-            request.Headers.Add("validate-appkey", Credential.PublicKey);
+            request.Headers.Add("validate-appkey", Credential.Key);
             request.Headers.Add("validate-recvwindow", ((int)((XTRestClientSpotApi)apiClient).ApiOptions.ReceiveWindow.TotalMilliseconds).ToString());
             request.Headers.Add("validate-timestamp", timestamp);
 

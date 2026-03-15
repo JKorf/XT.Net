@@ -25,7 +25,7 @@ namespace XT.Net
 
             var timestamp = GetMillisecondTimestamp(apiClient);
             request.Headers ??= new Dictionary<string, string>();
-            request.Headers.Add("validate-appkey", Credential.PublicKey);
+            request.Headers.Add("validate-appkey", Credential.Key);
             request.Headers.Add("validate-timestamp", timestamp);
 
             var body = request.BodyParameters?.Count > 0 ? GetSerializedBody(_serializer, request.BodyParameters) : string.Empty;
