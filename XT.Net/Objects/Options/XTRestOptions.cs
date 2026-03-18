@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 
 namespace XT.Net.Objects.Options
@@ -32,7 +33,7 @@ namespace XT.Net.Objects.Options
          /// <summary>
         /// Futures API options
         /// </summary>
-        public RestApiOptions<XTCredentials> FuturesOptions { get; private set; } = new RestApiOptions<XTCredentials>();
+        public RestApiOptions FuturesOptions { get; private set; } = new RestApiOptions();
 
          /// <summary>
         /// Spot API options

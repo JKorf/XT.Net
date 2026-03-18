@@ -67,7 +67,7 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         #region constructor/destructor
-        internal XTRestClientFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions<XTCredentials> apiOptions)
+        internal XTRestClientFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions apiOptions)
             : base(logger, httpClient, baseAddress, options, apiOptions)
         {
             _baseClient = baseClient;

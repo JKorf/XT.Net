@@ -8,13 +8,11 @@ using System.Linq;
 
 namespace XT.Net
 {
-    internal class XTFuturesAuthenticationProvider : AuthenticationProvider<XTCredentials, HMACCredential>
+    internal class XTFuturesAuthenticationProvider : AuthenticationProvider<XTCredentials, XTCredentials>
     {
         private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
-        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.HMAC];
-
-        public XTFuturesAuthenticationProvider(XTCredentials credentials) : base(credentials)
+        public XTFuturesAuthenticationProvider(XTCredentials credentials) : base(credentials, credentials)
         {
         }
 

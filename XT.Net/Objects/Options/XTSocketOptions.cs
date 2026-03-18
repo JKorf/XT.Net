@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 
 namespace XT.Net.Objects.Options
@@ -27,12 +28,12 @@ namespace XT.Net.Objects.Options
          /// <summary>
         /// Futures API options
         /// </summary>
-        public SocketApiOptions<XTCredentials> FuturesOptions { get; private set; } = new SocketApiOptions<XTCredentials>();
+        public SocketApiOptions FuturesOptions { get; private set; } = new SocketApiOptions();
 
          /// <summary>
         /// Spot API options
         /// </summary>
-        public SocketApiOptions<XTCredentials> SpotOptions { get; private set; } = new SocketApiOptions<XTCredentials>();
+        public SocketApiOptions SpotOptions { get; private set; } = new SocketApiOptions();
 
         internal XTSocketOptions Set(XTSocketOptions targetOptions)
         {

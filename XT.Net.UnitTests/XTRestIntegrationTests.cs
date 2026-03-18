@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Errors;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;

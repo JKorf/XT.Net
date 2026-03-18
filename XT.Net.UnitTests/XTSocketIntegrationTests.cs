@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 using XT.Net.Objects.Models;
+using CryptoExchange.Net.Authentication;
 
 namespace XT.Net.UnitTests
 {

@@ -7,6 +7,7 @@ using XT.Net.Objects.Models;
 using XT.Net.Enums;
 using System.Collections.Generic;
 using CryptoExchange.Net.Interfaces.Clients;
+using CryptoExchange.Net.Authentication;
 
 namespace XT.Net.Interfaces.Clients.SpotApi
 {

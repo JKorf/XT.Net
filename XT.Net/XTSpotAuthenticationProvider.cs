@@ -9,13 +9,11 @@ using XT.Net.Clients.SpotApi;
 
 namespace XT.Net
 {
-    internal class XTSpotAuthenticationProvider : AuthenticationProvider<XTCredentials, HMACCredential>
+    internal class XTSpotAuthenticationProvider : AuthenticationProvider<XTCredentials, XTCredentials>
     {
         private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
-        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.HMAC];
-
-        public XTSpotAuthenticationProvider(XTCredentials credentials) : base(credentials)
+        public XTSpotAuthenticationProvider(XTCredentials credentials) : base(credentials, credentials)
         {
         }
 
