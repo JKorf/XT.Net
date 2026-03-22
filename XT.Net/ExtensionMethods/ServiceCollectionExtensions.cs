@@ -109,8 +109,6 @@ namespace Microsoft.Extensions.DependencyInjection
             }).SetHandlerLifetime(Timeout.InfiniteTimeSpan);
             services.Add(new ServiceDescriptor(typeof(IXTSocketClient), x => { return new XTSocketClient(x.GetRequiredService<IOptions<XTSocketOptions>>(), x.GetRequiredService<ILoggerFactory>()); }, socketClientLifeTime ?? ServiceLifetime.Singleton));
 
-            services.AddTransient<ICryptoRestClient, CryptoRestClient>();
-            services.AddSingleton<ICryptoSocketClient, CryptoSocketClient>();
             services.AddTransient<IXTOrderBookFactory, XTOrderBookFactory>();
             services.AddTransient<IXTTrackerFactory, XTTrackerFactory>();
             services.AddTransient<ITrackerFactory, XTTrackerFactory>();
