@@ -14,7 +14,7 @@ namespace XT.Net
         public XTCredentials() { }
 
         /// <summary>
-        /// Create new credentials providing only credentials in HMAC format
+        /// Create new credentials providing credentials in HMAC format
         /// </summary>
         /// <param name="key">API key</param>
         /// <param name="secret">API secret</param>
