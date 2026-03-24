@@ -43,5 +43,8 @@ namespace XT.Net
             Secret = secret;
             return this;
         }
+
+        /// <inheritdoc />
+        public override ApiCredentials Copy() => new XTCredentials(this);
     }
 }
