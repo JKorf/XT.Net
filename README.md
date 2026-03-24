@@ -46,22 +46,40 @@ XT.Net is available on [GitHub packages](https://github.com/JKorf/XT.Net/pkgs/nu
 The NuGet package files are added along side the source with the latest GitHub release which can found [here](https://github.com/JKorf/XT.Net/releases).
 
 ## How to use
-* REST Endpoints
-	```csharp
-	// Get the ETH/USDT ticker via rest request
-	var restClient = new XTRestClient();
-	var tickerResult = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
-	var lastPrice = tickerResult.Data.Single().LastPrice;
-	```
-* Websocket streams
-	```csharp
-	// Subscribe to ETH/USDT ticker updates via the websocket API
-	var socketClient = new XTSocketClient();
-	var tickerSubscriptionResult = socketClient.SpotApi.SubscribeToTickerUpdatesAsync("eth_usdt", (update) => 
-	{
-	  var lastPrice = update.Data.LastPrice;
-	});
-	```
+*Basic request:* 
+```csharp
+// Get the ETH/USDT ticker via rest request
+var restClient = new XTRestClient();
+var tickerResult = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
+var lastPrice = tickerResult.Data.Single().LastPrice;
+```
+	
+*Place order:*
+```csharp
+var restClient = new XTRestClient(opts => {
+	opts.ApiCredentials = new XTCredentials("APIKEY", "APISECRET");
+});
+
+// Place Limit order to go long 0.1 for ETH at 2000
+var orderResult = await restClient.UsdtFuturesApi.Trading.PlaceOrderAsync(
+    "ETH_USDT",
+    OrderSide.Buy,
+    OrderType.Limit,
+    0.1m,
+    PositionSide.Long,
+    2000
+    );
+```
+
+*WebSocket subscription:* 
+```csharp
+// Subscribe to ETH/USDT ticker updates via the websocket API
+var socketClient = new XTSocketClient();
+var tickerSubscriptionResult = socketClient.SpotApi.SubscribeToTickerUpdatesAsync("eth_usdt", (update) => 
+{
+  var lastPrice = update.Data.LastPrice;
+});
+```
 
 For information on the clients, dependency injection, response processing and more see the [documentation](https://cryptoexchange.jkorf.dev?library=XT.Net), or have a look at the examples [here](https://github.com/JKorf/XT.Net/tree/main/Examples) or [here](https://github.com/JKorf/CryptoExchange.Net/tree/master/Examples).
 
