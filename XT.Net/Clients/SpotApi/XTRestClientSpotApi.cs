@@ -21,7 +21,7 @@ using System.Net.Http.Headers;
 namespace XT.Net.Clients.SpotApi
 {
     /// <inheritdoc cref="IXTRestClientSpotApi" />
-    internal partial class XTRestClientSpotApi : RestApiClient, IXTRestClientSpotApi
+    internal partial class XTRestClientSpotApi : RestApiClient<XTEnvironment, XTSpotAuthenticationProvider, XTCredentials>, IXTRestClientSpotApi
     {
         #region fields 
         internal new XTSpotRestApiOptions ApiOptions => (XTSpotRestApiOptions)base.ApiOptions;
@@ -56,7 +56,7 @@ namespace XT.Net.Clients.SpotApi
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
         /// <inheritdoc />
-        protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
+        protected override XTSpotAuthenticationProvider CreateAuthenticationProvider(XTCredentials credentials)
             => new XTSpotAuthenticationProvider(credentials);
 
         internal Task<WebCallResult> SendAsync(RequestDefinition definition, ParameterCollection? parameters, CancellationToken cancellationToken, int? weight = null)

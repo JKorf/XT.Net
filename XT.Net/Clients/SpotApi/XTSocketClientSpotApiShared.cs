@@ -225,7 +225,9 @@ namespace XT.Net.Clients.SpotApi
         {
             if (status == OrderStatus.New || status == OrderStatus.PartiallyFilled) return SharedOrderStatus.Open;
             if (status == OrderStatus.Canceled || status == OrderStatus.Rejected || status == OrderStatus.Expired) return SharedOrderStatus.Canceled;
-            return SharedOrderStatus.Filled;
+            if (status == OrderStatus.Filled) return SharedOrderStatus.Filled;
+
+            return SharedOrderStatus.Unknown;
         }
 
         private SharedOrderType ParseOrderType(OrderType orderType)

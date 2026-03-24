@@ -7,6 +7,7 @@ using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 using XT.Net.Objects.Models;
+using CryptoExchange.Net.Authentication;
 
 namespace XT.Net.UnitTests
 {
@@ -27,7 +28,7 @@ namespace XT.Net.UnitTests
             return new XTSocketClient(Options.Create(new XTSocketOptions
             {
                 OutputOriginalData = true,
-                ApiCredentials = Authenticated ? new CryptoExchange.Net.Authentication.ApiCredentials(key, sec) : null
+                ApiCredentials = Authenticated ? new XTCredentials(key, sec) : null
             }), loggerFactory);
         }
 
@@ -39,7 +40,7 @@ namespace XT.Net.UnitTests
             Authenticated = key != null && sec != null;
             return new XTRestClient(x =>
             {
-                x.ApiCredentials = Authenticated ? new CryptoExchange.Net.Authentication.ApiCredentials(key, sec) : null;
+                x.ApiCredentials = Authenticated ? new XTCredentials(key, sec) : null;
             });
         }
 

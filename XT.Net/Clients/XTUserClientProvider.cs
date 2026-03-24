@@ -49,7 +49,7 @@ namespace XT.Net.Clients
         }
 
         /// <inheritdoc />
-        public void InitializeUserClient(string userIdentifier, ApiCredentials credentials, XTEnvironment? environment = null)
+        public void InitializeUserClient(string userIdentifier, XTCredentials credentials, XTEnvironment? environment = null)
         {
             CreateRestClient(userIdentifier, credentials, environment);
             CreateSocketClient(userIdentifier, credentials, environment);
@@ -63,7 +63,7 @@ namespace XT.Net.Clients
         }
 
         /// <inheritdoc />
-        public IXTRestClient GetRestClient(string userIdentifier, ApiCredentials? credentials = null, XTEnvironment? environment = null)
+        public IXTRestClient GetRestClient(string userIdentifier, XTCredentials? credentials = null, XTEnvironment? environment = null)
         {
             if (!_restClients.TryGetValue(userIdentifier, out var client) || client.Disposed)
                 client = CreateRestClient(userIdentifier, credentials, environment);
@@ -72,7 +72,7 @@ namespace XT.Net.Clients
         }
 
         /// <inheritdoc />
-        public IXTSocketClient GetSocketClient(string userIdentifier, ApiCredentials? credentials = null, XTEnvironment? environment = null)
+        public IXTSocketClient GetSocketClient(string userIdentifier, XTCredentials? credentials = null, XTEnvironment? environment = null)
         {
             if (!_socketClients.TryGetValue(userIdentifier, out var client) || client.Disposed)
                 client = CreateSocketClient(userIdentifier, credentials, environment);
@@ -80,7 +80,7 @@ namespace XT.Net.Clients
             return client;
         }
 
-        private IXTRestClient CreateRestClient(string userIdentifier, ApiCredentials? credentials, XTEnvironment? environment)
+        private IXTRestClient CreateRestClient(string userIdentifier, XTCredentials? credentials, XTEnvironment? environment)
         {
             var clientRestOptions = SetRestEnvironment(environment);
             var client = new XTRestClient(_httpClient, _loggerFactory, clientRestOptions);
@@ -92,7 +92,7 @@ namespace XT.Net.Clients
             return client;
         }
 
-        private IXTSocketClient CreateSocketClient(string userIdentifier, ApiCredentials? credentials, XTEnvironment? environment)
+        private IXTSocketClient CreateSocketClient(string userIdentifier, XTCredentials? credentials, XTEnvironment? environment)
         {
             var clientSocketOptions = SetSocketEnvironment(environment);
             var client = new XTSocketClient(clientSocketOptions!, _loggerFactory);

@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Errors;
 using CryptoExchange.Net.Testing;
 using Microsoft.Extensions.Logging;
@@ -26,7 +27,7 @@ namespace XT.Net.UnitTests
             {
                 AutoTimestamp = false,
                 OutputOriginalData = true,
-                ApiCredentials = Authenticated ? new CryptoExchange.Net.Authentication.ApiCredentials(key, sec) : null
+                ApiCredentials = Authenticated ? new XTCredentials(key, sec) : null
             }));
         }
 

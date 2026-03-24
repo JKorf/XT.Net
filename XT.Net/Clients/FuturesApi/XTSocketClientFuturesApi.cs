@@ -32,7 +32,7 @@ namespace XT.Net.Clients.FuturesApi
     /// <summary>
     /// Client providing access to the XT Futures websocket Api
     /// </summary>
-    internal partial class XTSocketClientFuturesApi : SocketApiClient, IXTSocketClientFuturesApi
+    internal partial class XTSocketClientFuturesApi : SocketApiClient<XTEnvironment, XTFuturesAuthenticationProvider, XTCredentials>, IXTSocketClientFuturesApi
     {
         #region constructor/destructor
 
@@ -63,7 +63,7 @@ namespace XT.Net.Clients.FuturesApi
         public override ISocketMessageHandler CreateMessageConverter(WebSocketMessageType messageType) => new XTSocketMessageHandler();
 
         /// <inheritdoc />
-        protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
+        protected override XTFuturesAuthenticationProvider CreateAuthenticationProvider(XTCredentials credentials)
             => new XTFuturesAuthenticationProvider(credentials);
 
         /// <inheritdoc />

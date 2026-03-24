@@ -177,9 +177,7 @@ namespace XT.Net.Clients.SpotApi
                             x.Quantity,
                             x.Status == DepositStatus.Success,
                             x.CreateTime,
-                            x.Status == DepositStatus.Success ? SharedTransferStatus.Completed
-                            : x.Status == DepositStatus.Fail || x.Status == DepositStatus.Canceled ? SharedTransferStatus.Failed
-                            : SharedTransferStatus.InProgress)
+                            ParseTransferStatus(x.Status))
                         {
                             Confirmations = x.Confirmations,
                             Network = x.Network,
@@ -188,6 +186,25 @@ namespace XT.Net.Clients.SpotApi
                             Id = x.Id.ToString()
                         })
                     .ToArray(), nextPageRequest);
+        }
+
+        private SharedTransferStatus ParseTransferStatus(DepositStatus status)
+        {
+            if (status == DepositStatus.Success)
+                return SharedTransferStatus.Completed;
+
+            if (status == DepositStatus.Fail || status == DepositStatus.Canceled)
+                return SharedTransferStatus.Failed;
+
+            if (status == DepositStatus.Submited
+                || status == DepositStatus.Audited
+                || status == DepositStatus.Review
+                || status == DepositStatus.Pending)
+            {
+                return SharedTransferStatus.InProgress;
+            }
+
+            return SharedTransferStatus.Unknown;
         }
 
         #endregion
@@ -842,7 +859,9 @@ namespace XT.Net.Clients.SpotApi
         {
             if (status == OrderStatus.New || status == OrderStatus.PartiallyFilled) return SharedOrderStatus.Open;
             if (status == OrderStatus.Canceled || status == OrderStatus.Rejected || status == OrderStatus.Expired) return SharedOrderStatus.Canceled;
-            return SharedOrderStatus.Filled;
+            if (status == OrderStatus.Filled) return SharedOrderStatus.Filled;
+
+            return SharedOrderStatus.Unknown;
         }
 
         private SharedOrderType ParseOrderType(OrderType type, TimeInForce timeInForce)

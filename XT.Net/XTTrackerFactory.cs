@@ -131,7 +131,7 @@ namespace XT.Net
         }
 
         /// <inheritdoc />
-        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
+        public IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, XTCredentials credentials, SpotUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<IXTUserClientProvider>() ?? new XTUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);
@@ -160,7 +160,7 @@ namespace XT.Net
         }
 
         /// <inheritdoc />
-        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
+        public IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, XTCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null)
         {
             var clientProvider = _serviceProvider?.GetRequiredService<IXTUserClientProvider>() ?? new XTUserClientProvider();
             var restClient = clientProvider.GetRestClient(userIdentifier, credentials, environment);

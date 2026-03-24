@@ -32,7 +32,7 @@ namespace XT.Net.Clients.SpotApi
     /// <summary>
     /// Client providing access to the XT Spot websocket Api
     /// </summary>
-    internal partial class XTSocketClientSpotApi : SocketApiClient, IXTSocketClientSpotApi
+    internal partial class XTSocketClientSpotApi : SocketApiClient<XTEnvironment, XTSpotAuthenticationProvider, XTCredentials>, IXTSocketClientSpotApi
     {
         #region fields
         protected override ErrorMapping ErrorMapping => XTErrors.SpotSocketErrors;
@@ -68,7 +68,7 @@ namespace XT.Net.Clients.SpotApi
         public override ISocketMessageHandler CreateMessageConverter(WebSocketMessageType messageType) => new XTSocketMessageHandler();
 
         /// <inheritdoc />
-        protected override AuthenticationProvider CreateAuthenticationProvider(ApiCredentials credentials)
+        protected override XTSpotAuthenticationProvider CreateAuthenticationProvider(XTCredentials credentials)
             => new XTSpotAuthenticationProvider(credentials);
 
         /// <inheritdoc />

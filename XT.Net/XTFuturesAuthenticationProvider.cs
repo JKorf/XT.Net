@@ -8,13 +8,11 @@ using System.Linq;
 
 namespace XT.Net
 {
-    internal class XTFuturesAuthenticationProvider : AuthenticationProvider
+    internal class XTFuturesAuthenticationProvider : AuthenticationProvider<XTCredentials, XTCredentials>
     {
         private static readonly IMessageSerializer _serializer = new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
 
-        public override ApiCredentialsType[] SupportedCredentialTypes => [ApiCredentialsType.Hmac];
-
-        public XTFuturesAuthenticationProvider(ApiCredentials credentials) : base(credentials)
+        public XTFuturesAuthenticationProvider(XTCredentials credentials) : base(credentials, credentials)
         {
         }
 
@@ -25,7 +23,7 @@ namespace XT.Net
 
             var timestamp = GetMillisecondTimestamp(apiClient);
             request.Headers ??= new Dictionary<string, string>();
-            request.Headers.Add("validate-appkey", ApiKey);
+            request.Headers.Add("validate-appkey", Credential.Key);
             request.Headers.Add("validate-timestamp", timestamp);
 
             var body = request.BodyParameters?.Count > 0 ? GetSerializedBody(_serializer, request.BodyParameters) : string.Empty;

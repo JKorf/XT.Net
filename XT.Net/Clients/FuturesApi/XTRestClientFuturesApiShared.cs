@@ -806,7 +806,9 @@ namespace XT.Net.Clients.FuturesApi
         {
             if (status == OrderStatus.New || status == OrderStatus.PartiallyFilled) return SharedOrderStatus.Open;
             if (status == OrderStatus.Canceled || status == OrderStatus.Rejected || status == OrderStatus.Expired) return SharedOrderStatus.Canceled;
-            return SharedOrderStatus.Filled;
+            if (status == OrderStatus.Filled) return SharedOrderStatus.Filled;
+
+            return SharedOrderStatus.Unknown;
         }
 
         private SharedOrderType ParseOrderType(OrderType type, TimeInForce timeInForce)
@@ -969,12 +971,16 @@ namespace XT.Net.Clients.FuturesApi
             }
 
             if (data.Status == TriggerOrderStatus.NotTriggered
+                || data.Status == TriggerOrderStatus.Triggering
                 || data.Status == TriggerOrderStatus.Unfinished)
             {
                 return SharedTriggerOrderStatus.Active;
             }
 
-            return SharedTriggerOrderStatus.Triggered;
+            if (data.Status == TriggerOrderStatus.Triggered)
+                return SharedTriggerOrderStatus.Triggered;
+
+            return SharedTriggerOrderStatus.Unknown;
         }
 
         EndpointOptions<CancelOrderRequest> IFuturesTriggerOrderRestClient.CancelFuturesTriggerOrderOptions { get; } = new EndpointOptions<CancelOrderRequest>(true);

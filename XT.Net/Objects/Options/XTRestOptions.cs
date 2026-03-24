@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 
 namespace XT.Net.Objects.Options
@@ -5,7 +6,7 @@ namespace XT.Net.Objects.Options
     /// <summary>
     /// Options for the XTRestClient
     /// </summary>
-    public class XTRestOptions : RestExchangeOptions<XTEnvironment>
+    public class XTRestOptions : RestExchangeOptions<XTEnvironment, XTCredentials>
     {
         /// <summary>
         /// Default options for new clients

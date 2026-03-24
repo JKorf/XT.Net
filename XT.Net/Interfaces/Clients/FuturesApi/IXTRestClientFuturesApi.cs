@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Interfaces.Clients;
 using System;
 
@@ -6,7 +7,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     /// <summary>
     /// XT Futures API endpoints
     /// </summary>
-    public interface IXTRestClientFuturesApi : IRestApiClient, IDisposable
+    public interface IXTRestClientFuturesApi : IRestApiClient<XTCredentials>, IDisposable
     {
         /// <summary>
         /// Endpoints related to account settings, info or actions

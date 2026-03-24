@@ -7,13 +7,14 @@ using XT.Net.Objects.Models;
 using XT.Net.Enums;
 using System.Collections.Generic;
 using CryptoExchange.Net.Interfaces.Clients;
+using CryptoExchange.Net.Authentication;
 
 namespace XT.Net.Interfaces.Clients.SpotApi
 {
     /// <summary>
     /// XT Spot streams
     /// </summary>
-    public interface IXTSocketClientSpotApi : ISocketApiClient, IDisposable
+    public interface IXTSocketClientSpotApi : ISocketApiClient<XTCredentials>, IDisposable
     {
         /// <summary>
         /// Subscribe to trade updates

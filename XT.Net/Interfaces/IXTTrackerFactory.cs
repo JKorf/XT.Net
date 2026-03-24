@@ -17,7 +17,7 @@ namespace XT.Net.Interfaces
         /// <param name="config">Configuration</param>
         /// <param name="credentials">Credentials</param>
         /// <param name="environment">Environment</param>
-        IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, ApiCredentials credentials, SpotUserDataTrackerConfig? config = null, XTEnvironment? environment = null);
+        IUserSpotDataTracker CreateUserSpotDataTracker(string userIdentifier, XTCredentials credentials, SpotUserDataTrackerConfig? config = null, XTEnvironment? environment = null);
         /// <summary>
         /// Create a new spot user data tracker
         /// </summary>
@@ -31,7 +31,7 @@ namespace XT.Net.Interfaces
         /// <param name="config">Configuration</param>
         /// <param name="credentials">Credentials</param>
         /// <param name="environment">Environment</param>
-        IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, ApiCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null);
+        IUserFuturesDataTracker CreateUserUsdtFuturesDataTracker(string userIdentifier, XTCredentials credentials, FuturesUserDataTrackerConfig? config = null, XTEnvironment? environment = null);
         /// <summary>
         /// Create a new USDT futures user data tracker
         /// </summary>

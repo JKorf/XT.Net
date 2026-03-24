@@ -1,3 +1,4 @@
+using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Objects.Options;
 
 namespace XT.Net.Objects.Options
@@ -5,7 +6,7 @@ namespace XT.Net.Objects.Options
     /// <summary>
     /// Options for the XTSocketClient
     /// </summary>
-    public class XTSocketOptions : SocketExchangeOptions<XTEnvironment>
+    public class XTSocketOptions : SocketExchangeOptions<XTEnvironment, XTCredentials>
     {
         /// <summary>
         /// Default options for new clients
@@ -16,7 +17,6 @@ namespace XT.Net.Objects.Options
             SocketSubscriptionsCombineTarget = 10
         };
 
-
         /// <summary>
         /// ctor
         /// </summary>
@@ -25,8 +25,6 @@ namespace XT.Net.Objects.Options
             Default?.Set(this);
         }
 
-
-        
          /// <summary>
         /// Futures API options
         /// </summary>
@@ -37,15 +35,11 @@ namespace XT.Net.Objects.Options
         /// </summary>
         public SocketApiOptions SpotOptions { get; private set; } = new SocketApiOptions();
 
-
         internal XTSocketOptions Set(XTSocketOptions targetOptions)
         {
-            targetOptions = base.Set<XTSocketOptions>(targetOptions);
-            
+            targetOptions = base.Set<XTSocketOptions>(targetOptions);            
             targetOptions.FuturesOptions = FuturesOptions.Set(targetOptions.FuturesOptions);
-
             targetOptions.SpotOptions = SpotOptions.Set(targetOptions.SpotOptions);
-
             return targetOptions;
         }
     }
