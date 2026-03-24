@@ -44,7 +44,8 @@ namespace XT.Net.Clients.FuturesApi
             parameters.AddOptional("triggerProfitPrice", triggerProfitPrice);
             parameters.AddOptional("triggerStopPrice", triggerStopPrice);
             parameters.AddOptional("clientOrderId", clientOrderId);
-            parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
+            //parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
+            parameters.AddOptional("media", _baseClient.ClientOptions.BrokerId ?? "9231");
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v1/order/create", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<long?>(request, parameters, ct).ConfigureAwait(false);
             return result.As<long>(result.Data ?? 0);
@@ -58,8 +59,11 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<WebCallResult> PlaceMultipleOrdersAsync(IEnumerable<XTFuturesOrderRequest> orders, CancellationToken ct = default)
         {
             var parameters = new ParameterCollection();
-            foreach(var order in orders)
-                order.Media = LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange);
+            foreach (var order in orders)
+            {
+                //order.Media = LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange);
+                order.Media = _baseClient.ClientOptions.BrokerId ?? "9231";
+            }
 
             parameters.Add("list", orders.ToArray());
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/future/trade/v2/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));

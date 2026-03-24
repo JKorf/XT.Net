@@ -42,7 +42,8 @@ namespace XT.Net.Clients.SpotApi
             parameters.AddOptionalString("quoteQty", quoteQuantity);
             parameters.AddOptionalString("price", price);
             parameters.AddOptional("clientOrderId", clientOrderId);
-            parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
+            //parameters.AddOptional("media", LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange));
+            parameters.AddOptional("media", _baseClient.ClientOptions.BrokerId ?? "9231");
             var request = _definitions.GetOrCreate(HttpMethod.Post, "/v4/order", XTExchange.RateLimiter.XT, 1, true, limitGuard: new SingleLimitGuard(50, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTOrderId>(request, parameters, ct).ConfigureAwait(false);
             return result;
