@@ -13,7 +13,7 @@ namespace XT.Net.Enums
         /// <summary>
         /// ["<c>DEFAULT</c>"] Normal order
         /// </summary>
-        [Map("DEFAULT")]
+        [Map("DEFAULT", "default")]
         Normal,
         /// <summary>
         /// ["<c>ENTRUST</c>"] Trigger order
