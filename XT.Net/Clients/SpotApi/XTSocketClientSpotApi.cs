@@ -32,7 +32,7 @@ namespace XT.Net.Clients.SpotApi
     /// <summary>
     /// Client providing access to the XT Spot websocket Api
     /// </summary>
-    internal partial class XTSocketClientSpotApi : SocketApiClient<XTEnvironment, XTSpotAuthenticationProvider, XTCredentials>, IXTSocketClientSpotApi
+    internal partial class XTSocketClientSpotApi : XTSocketApiClient<XTSpotAuthenticationProvider>, IXTSocketClientSpotApi
     {
         #region fields
         protected override ErrorMapping ErrorMapping => XTErrors.SpotSocketErrors;
@@ -70,6 +70,29 @@ namespace XT.Net.Clients.SpotApi
         /// <inheritdoc />
         protected override XTSpotAuthenticationProvider CreateAuthenticationProvider(XTCredentials credentials)
             => new XTSpotAuthenticationProvider(credentials);
+
+        /// <inheritdoc />
+        protected override Task<CallResult> RevitalizeRequestAsync(Subscription subscription)
+        {
+            // Refresh the listen key before resubscribing on a reconnected socket.
+            if (subscription is not IXTAuthenticatedSubscription authSubscription || authSubscription.Token == null)
+                return Task.FromResult(CallResult.SuccessResult);
+
+            return RefreshSubscriptionListenKeyAsync(t => authSubscription.Token = t);
+        }
+
+        /// <inheritdoc />
+        protected override async Task<CallResult<string>> FetchListenKeyAsync()
+        {
+            using var restClient = new XTRestClient(opts =>
+            {
+                opts.ApiCredentials = ApiCredentials;
+                opts.Environment = ClientOptions.Environment;
+                opts.Proxy = ClientOptions.Proxy;
+                opts.RequestTimeout = ClientOptions.RequestTimeout;
+            });
+            return await restClient.SpotApi.Account.GetWebsocketTokenAsync().ConfigureAwait(false);
+        }
 
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(string symbol, Action<DataEvent<XTTradeUpdate>> onMessage, CancellationToken ct = default)
@@ -240,6 +263,16 @@ namespace XT.Net.Clients.SpotApi
         }
 
         /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(Action<DataEvent<XTBalanceUpdate>> onMessage, CancellationToken ct = default)
+        {
+            var token = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!token)
+                return new CallResult<UpdateSubscription>(token.Error!);
+
+            return await SubscribeToBalanceUpdatesAsync(token.Data, onMessage, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string token, Action<DataEvent<XTOrderUpdate>> onMessage, CancellationToken ct = default)
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTOrderUpdate>>((receiveTime, originalData, data) =>
@@ -265,6 +298,15 @@ namespace XT.Net.Clients.SpotApi
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);
         }
 
+        /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<XTOrderUpdate>> onMessage, CancellationToken ct = default)
+        {
+            var token = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!token)
+                return new CallResult<UpdateSubscription>(token.Error!);
+
+            return await SubscribeToOrderUpdatesAsync(token.Data, onMessage, ct).ConfigureAwait(false);
+        }
 
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string token, Action<DataEvent<XTUserTradeUpdate>> onMessage, CancellationToken ct = default)
@@ -290,7 +332,17 @@ namespace XT.Net.Clients.SpotApi
                 token);
             return await SubscribeAsync(BaseAddress.AppendPath("private"), subscription, ct).ConfigureAwait(false);
         }
-        
+
+        /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<XTUserTradeUpdate>> onMessage, CancellationToken ct = default)
+        {
+            var token = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!token)
+                return new CallResult<UpdateSubscription>(token.Error!);
+
+            return await SubscribeToUserTradeUpdatesAsync(token.Data, onMessage, ct).ConfigureAwait(false);
+        }
+
         /// <inheritdoc />
         public IXTSocketClientSpotApiShared SharedClient => this;
 

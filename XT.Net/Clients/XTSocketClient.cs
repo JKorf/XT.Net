@@ -48,7 +48,7 @@ namespace XT.Net.Clients
         public XTSocketClient(IOptions<XTSocketOptions> options, ILoggerFactory? loggerFactory = null) : base(loggerFactory, "XT")
         {
             Initialize(options.Value);
-                        
+
             FuturesApi = AddApiClient(new XTSocketClientFuturesApi(_logger, options.Value));
             SpotApi = AddApiClient(new XTSocketClientSpotApi(_logger, options.Value));
         }
