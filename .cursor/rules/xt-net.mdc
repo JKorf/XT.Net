@@ -1,0 +1,88 @@
+---
+description: Conventions for using the XT.Net library when working with the XT cryptocurrency exchange in C#/.NET. Apply when generating code that interacts with the XT API.
+globs:
+  - "**/*.cs"
+  - "**/*.csproj"
+alwaysApply: false
+---
+
+# XT.Net Conventions
+
+This codebase uses XT.Net for XT cryptocurrency exchange access. Do not write raw `HttpClient` calls to XT endpoints.
+
+## Client Setup Pattern
+
+```csharp
+using XT.Net;
+using XT.Net.Clients;
+
+var restClient = new XTRestClient(options =>
+{
+    options.ApiCredentials = new XTCredentials("API_KEY", "API_SECRET");
+});
+```
+
+For public market data only, no credentials are needed: `new XTRestClient()`.
+
+## Result Pattern
+
+All methods return `WebCallResult<T>` or `WebCallResult` for REST and `CallResult<T>` for WebSocket. Always check `.Success` before reading `.Data`.
+
+```csharp
+var ticker = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
+if (!ticker.Success) { Console.WriteLine(ticker.Error); return; }
+var first = ticker.Data.First();
+```
+
+## API Surface
+
+- `restClient.SpotApi.{ExchangeData|Account|Trading}`
+- `restClient.UsdtFuturesApi.{ExchangeData|Account|Trading}`
+- `restClient.CoinFuturesApi.{ExchangeData|Account|Trading}`
+- `socketClient.SpotApi`
+- `socketClient.FuturesApi`
+
+Do not generate `socketClient.UsdtFuturesApi` or `socketClient.CoinFuturesApi`; futures sockets are under `FuturesApi`.
+
+## WebSocket Pattern
+
+```csharp
+var socketClient = new XTSocketClient();
+var sub = await socketClient.SpotApi.SubscribeToTickerUpdatesAsync(
+    "eth_usdt",
+    update => Console.WriteLine(update.Data.LastPrice));
+if (!sub.Success) { Console.WriteLine(sub.Error); return; }
+
+await socketClient.UnsubscribeAsync(sub.Data);
+```
+
+Private spot streams need `restClient.SpotApi.Account.GetWebsocketTokenAsync()`. Private futures streams need `restClient.UsdtFuturesApi.Account.GetListenKeyAsync()`.
+
+## Multi-Exchange Code
+
+For exchange-agnostic code, use `CryptoExchange.Net.SharedApis`:
+
+```csharp
+using CryptoExchange.Net.SharedApis;
+
+var shared = new XTRestClient().SpotApi.SharedClient;
+var ticker = await shared.GetSpotTickerAsync(
+    new GetTickerRequest(new SharedSymbol(TradingMode.Spot, "BTC", "USDT")));
+```
+
+## Hard Rules
+
+- Never write raw `HttpClient` XT endpoint calls.
+- Never use `.Result` or `.Wait()`; use `await`.
+- Never instantiate clients per request; reuse or use DI.
+- Never skip checking `WebCallResult.Success`.
+- Always use `XTCredentials("key", "secret")`, not generic `ApiCredentials`.
+- Always store WebSocket subscriptions and unsubscribe on shutdown.
+- Always inspect `XT.Net/Interfaces/Clients/**` before generating methods not in the map.
+
+## Reference
+
+- Skill: `AGENTS.md` in the repository root has fuller examples.
+- `llms.txt` and `llms-full.txt` in the repository root provide AI context.
+- `docs/ai-api-map.md` maps user intents to actual XT.Net members.
+- Examples: `Examples/ai-friendly/`.
