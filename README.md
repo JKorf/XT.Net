@@ -1,6 +1,7 @@
 # ![XT.Net](https://raw.githubusercontent.com/JKorf/XT.Net/main/XT.Net/Icon/icon.png) XT.Net  
 
 [![.NET](https://img.shields.io/github/actions/workflow/status/JKorf/XT.Net/dotnet.yml?style=for-the-badge)](https://github.com/JKorf/XT.Net/actions/workflows/dotnet.yml) ![License](https://img.shields.io/github/license/JKorf/XT.Net?style=for-the-badge)
+![Since](https://img.shields.io/badge/since-2024-brightgreen?style=for-the-badge)
 
 XT.Net is a client library for accessing the [XT REST and Websocket API](https://doc.xt.com/). 
 
