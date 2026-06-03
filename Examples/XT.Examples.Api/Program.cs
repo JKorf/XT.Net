@@ -1,3 +1,4 @@
+using XT.Net;
 using XT.Net.Interfaces.Clients;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,13 +8,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add the XT services
-//builder.Services.AddXT();
+builder.Services.AddXT();
 
 // OR to provide API credentials for accessing private endpoints, or setting other options:
 
 //builder.Services.AddXT(options =>
 //{
-//    options.ApiCredentials = new ApiCredentials("<APIKEY>", "<APISECRET>");
+//    options.ApiCredentials = new XTCredentials("APIKEY", "APISECRET");
 //    options.Rest.RequestTimeout = TimeSpan.FromSeconds(5);
 //});
 
@@ -27,7 +28,9 @@ app.UseHttpsRedirection();
 app.MapGet("/{Symbol}", async ([FromServices] IXTRestClient client, string symbol) =>
 {
     var result = await client.SpotApi.ExchangeData.GetTickersAsync(symbol);
-    return result.Data.Single().LastPrice;
+    return result.Success
+        ? Results.Ok(result.Data.Single().LastPrice)
+        : Results.Problem(result.Error?.Message, statusCode: 502);
 })
 .WithOpenApi();
 
@@ -35,7 +38,9 @@ app.MapGet("/{Symbol}", async ([FromServices] IXTRestClient client, string symbo
 app.MapGet("/Balances", async ([FromServices] IXTRestClient client) =>
 {
     var result = await client.SpotApi.Account.GetBalancesAsync();
-    return (object)(result.Success ? result.Data : result.Error!);
+    return result.Success
+        ? Results.Ok(result.Data)
+        : Results.Problem(result.Error?.Message, statusCode: 502);
 })
 .WithOpenApi();
 
