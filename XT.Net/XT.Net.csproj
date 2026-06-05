@@ -7,12 +7,12 @@
   <PropertyGroup>
     <PackageId>XT.Net</PackageId>
     <Authors>JKorf</Authors>
-    <PackageVersion>3.9.2</PackageVersion>
-    <AssemblyVersion>3.9.2</AssemblyVersion>
-    <FileVersion>3.9.2</FileVersion>
+    <PackageVersion>3.10.0</PackageVersion>
+    <AssemblyVersion>3.10.0</AssemblyVersion>
+    <FileVersion>3.10.0</FileVersion>
     <Description>A high-performance .NET client library for the XT REST and WebSocket APIs, providing strongly typed models, automatic WebSocket reconnection, client-side rate limiting, local order book support, and seamless integration with other CryptoExchange.Net based clients.</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageTags>XT;XT.Net;XT.com;XT Client;XT API;CryptoCurrency;CryptoCurrency Exchange;CryptoExchange.Net</PackageTags>
+    <PackageTags>XT;XT.Net;XT.com;XT Client;XT API;CryptoCurrency;CryptoCurrency Exchange;CryptoExchange.Net;ccxt</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/JKorf/XT.Net.git</RepositoryUrl>
     <PackageProjectUrl>https://github.com/JKorf/XT.Net</PackageProjectUrl>
@@ -53,7 +53,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="CryptoExchange.Net" Version="11.1.0" />
+    <PackageReference Include="CryptoExchange.Net" Version="11.2.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.101">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

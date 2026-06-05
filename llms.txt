@@ -1,0 +1,51 @@
+# XT.Net
+
+> Strongly typed .NET client library for the XT REST and WebSocket APIs. Supports Spot, USDT-M Futures, Coin-M Futures, public market data, private account/trading endpoints, WebSocket streams, client-side rate limiting, local order books, dependency injection, native AOT, and CryptoExchange.Net SharedApis.
+
+XT.Net is part of the CryptoExchange.Net ecosystem. Current package version in source: 3.9.2. Targets `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, and `net10.0`.
+
+## Documentation
+
+- [README](https://github.com/JKorf/XT.Net/blob/main/README.md): Overview, installation, basic usage, supported functionality, release notes
+- [Documentation Site](https://cryptoexchange.jkorf.dev/XT.Net/): Full generated API reference and implementation docs
+- [Claude/Agent Skill](https://github.com/JKorf/XT.Net/blob/main/CLAUDE.md): Core XT.Net patterns, pitfalls, client setup, REST/WebSocket examples
+- [AI API Quick Map](https://github.com/JKorf/XT.Net/blob/main/docs/ai-api-map.md): Table-style intent-to-method map for XT REST, sockets, and SharedApis
+- [Full LLM Context](https://github.com/JKorf/XT.Net/blob/main/llms-full.txt): Detailed routing guide, examples, configuration, and anti-hallucination checks
+
+## Examples
+
+- [AI-friendly examples directory](https://github.com/JKorf/XT.Net/tree/main/Examples/ai-friendly): Compact, compilable examples optimized for AI assistants and quick onboarding
+- [Spot Quickstart](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/01-spot-quickstart.cs): Public ticker, authenticated balances, spot limit order, order status, cleanup
+- [Futures Trading](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/02-futures.cs): USDT-M leverage, market order, positions, close-all pattern
+- [WebSocket Streams](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/03-websocket.cs): Spot ticker/order book/trades and token/listen-key private stream patterns
+- [Multi-Exchange Pattern](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/04-multi-exchange.cs): SharedApis for exchange-agnostic REST and socket code
+- [Error Handling](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/05-error-handling.cs): `WebCallResult<T>`, retry decisions, symbol validation, order precision guidance
+
+## Core Routing
+
+- REST public spot: `new XTRestClient().SpotApi.ExchangeData`
+- REST spot account/trading: `client.SpotApi.Account`, `client.SpotApi.Trading`
+- REST USDT-M futures: `client.UsdtFuturesApi.ExchangeData`, `.Account`, `.Trading`
+- REST Coin-M futures: `client.CoinFuturesApi.ExchangeData`, `.Account`, `.Trading`
+- WebSocket spot: `new XTSocketClient().SpotApi`
+- WebSocket futures: `new XTSocketClient().FuturesApi`
+- Credentials: `new XTCredentials("API_KEY", "API_SECRET")`
+- DI: `services.AddXT(options => { ... })`
+- SharedApis: `client.SpotApi.SharedClient`, `client.UsdtFuturesApi.SharedClient`, `client.CoinFuturesApi.SharedClient`, `socketClient.SpotApi.SharedClient`, `socketClient.FuturesApi.SharedClient`
+
+## Critical Rules
+
+- Never use raw `HttpClient` for XT endpoint calls.
+- Always check `.Success` before reading `.Data`.
+- Use `XTCredentials`, not generic `ApiCredentials`.
+- Spot private socket streams require `GetWebsocketTokenAsync`.
+- Futures private socket streams require `GetListenKeyAsync`.
+- XT REST futures are split into `UsdtFuturesApi` and `CoinFuturesApi`; XT socket futures are under `FuturesApi`.
+- Inspect `XT.Net/Interfaces/Clients/**` before generating a method not present in the map.
+
+## Reference
+
+- [CryptoExchange.Net](https://github.com/JKorf/CryptoExchange.Net): Base abstractions used by XT.Net and other exchange libraries
+- [CryptoClients.Net](https://github.com/JKorf/CryptoClients.Net): Bundle package for unified access to all exchange libraries
+- [NuGet Package](https://www.nuget.org/packages/XT.Net): Latest stable release on NuGet
+- [GitHub Issues](https://github.com/JKorf/XT.Net/issues): Bug reports and feature requests
