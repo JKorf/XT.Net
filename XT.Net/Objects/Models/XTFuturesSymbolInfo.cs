@@ -70,7 +70,7 @@ namespace XT.Net.Objects.Models
         /// ["<c>index_price</c>"] Index price
         /// </summary>
         [JsonPropertyName("index_price")]
-        public decimal IndexPrice { get; set; }
+        public decimal? IndexPrice { get; set; }
         /// <summary>
         /// ["<c>last_price</c>"] Last price
         /// </summary>

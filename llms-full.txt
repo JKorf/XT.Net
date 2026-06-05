@@ -1,0 +1,379 @@
+# XT.Net Full LLM Context
+
+XT.Net is a strongly typed C#/.NET client library for the XT exchange REST and WebSocket APIs. It is part of the CryptoExchange.Net family and follows the same result, client lifetime, dependency injection, and SharedApis patterns as the other JKorf exchange clients.
+
+Current source package version: 3.9.2. Target frameworks: `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, `net10.0`. Native AOT compatibility is enabled for compatible target frameworks.
+
+Use this file when generating XT.Net code for AI assistants. If a method, enum, or client member is not listed here, inspect `XT.Net/Interfaces/Clients/**` and the concrete source before writing code.
+
+## Installation
+
+```bash
+dotnet add package XT.Net
+```
+
+## Namespaces
+
+```csharp
+using XT.Net;
+using XT.Net.Clients;
+using XT.Net.Enums;
+using CryptoExchange.Net.Objects;
+using CryptoExchange.Net.SharedApis;
+```
+
+## Client Roots
+
+```csharp
+var restClient = new XTRestClient();
+var socketClient = new XTSocketClient();
+```
+
+Authenticated clients use `XTCredentials`:
+
+```csharp
+var restClient = new XTRestClient(options =>
+{
+    options.ApiCredentials = new XTCredentials("API_KEY", "API_SECRET");
+});
+
+var socketClient = new XTSocketClient(options =>
+{
+    options.ApiCredentials = new XTCredentials("API_KEY", "API_SECRET");
+});
+```
+
+Do not use raw `HttpClient` or generic `ApiCredentials` for XT API calls.
+
+## Result Handling
+
+REST calls return `WebCallResult<T>` or `WebCallResult`. Socket subscription calls return `CallResult<UpdateSubscription>`. The payload is only valid when `.Success` is true.
+
+```csharp
+var result = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
+if (!result.Success)
+{
+    Console.WriteLine(result.Error);
+    return;
+}
+
+var ticker = result.Data.First();
+```
+
+Use `result.Error?.IsTransient == true` as a retry hint. Do not retry validation errors, missing permissions, bad signatures, invalid quantities, or insufficient balance indefinitely.
+
+## API Shape
+
+REST:
+
+```csharp
+restClient.SpotApi.ExchangeData
+restClient.SpotApi.Account
+restClient.SpotApi.Trading
+
+restClient.UsdtFuturesApi.ExchangeData
+restClient.UsdtFuturesApi.Account
+restClient.UsdtFuturesApi.Trading
+
+restClient.CoinFuturesApi.ExchangeData
+restClient.CoinFuturesApi.Account
+restClient.CoinFuturesApi.Trading
+```
+
+WebSocket:
+
+```csharp
+socketClient.SpotApi
+socketClient.FuturesApi
+```
+
+Important: there is no `socketClient.UsdtFuturesApi` or `socketClient.CoinFuturesApi`. Futures socket streams share `socketClient.FuturesApi`.
+
+## Environments
+
+Live is the default:
+
+```csharp
+var client = new XTRestClient(options =>
+{
+    options.Environment = XTEnvironment.Live;
+});
+```
+
+XT currently exposes `XTEnvironment.Live`. Custom endpoints are supported:
+
+```csharp
+var custom = XTEnvironment.CreateCustom(
+    name: "custom",
+    spotRestAddress: "https://example-spot",
+    usdtFuturesRestAddress: "https://example-usdt-futures",
+    coinFuturesRestAddress: "https://example-coin-futures",
+    spotSocketStreamsAddress: "wss://example-spot-ws",
+    futuresSocketStreamsAddress: "wss://example-futures-ws");
+```
+
+## Dependency Injection
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+using XT.Net;
+using XT.Net.Interfaces.Clients;
+
+services.AddXT(options =>
+{
+    options.ApiCredentials = new XTCredentials("API_KEY", "API_SECRET");
+});
+
+// Inject IXTRestClient and IXTSocketClient.
+```
+
+Configuration binding:
+
+```csharp
+services.AddXT(configuration.GetSection("XT"));
+```
+
+`ApiCredentials`, `Rest`, `Socket`, proxy settings, output-original-data settings, and environment names follow the CryptoExchange.Net options pattern. The environment name `live` and empty/null environment resolve to `XTEnvironment.Live`.
+
+## Spot REST Map
+
+Spot symbols use XT spot format in source examples, for example `eth_usdt`.
+
+| User intent | XT.Net member |
+|---|---|
+| Get server time | `client.SpotApi.ExchangeData.GetServerTimeAsync()` |
+| Get client IP | `client.SpotApi.ExchangeData.GetClientIpAsync()` |
+| Get symbols | `client.SpotApi.ExchangeData.GetSymbolsAsync()` |
+| Get one symbol | `client.SpotApi.ExchangeData.GetSymbolsAsync(symbol: "eth_usdt")` |
+| Get order book | `client.SpotApi.ExchangeData.GetOrderBookAsync("eth_usdt", limit: 100)` |
+| Get klines | `client.SpotApi.ExchangeData.GetKlinesAsync("eth_usdt", KlineInterval.OneMinute)` |
+| Get recent trades | `client.SpotApi.ExchangeData.GetRecentTradesAsync("eth_usdt")` |
+| Get trade history | `client.SpotApi.ExchangeData.GetTradeHistoryAsync("eth_usdt")` |
+| Get tickers | `client.SpotApi.ExchangeData.GetTickersAsync()` |
+| Get one ticker | `client.SpotApi.ExchangeData.GetTickersAsync("eth_usdt")` |
+| Get price tickers | `client.SpotApi.ExchangeData.GetPriceTickersAsync()` |
+| Get book tickers | `client.SpotApi.ExchangeData.GetBookTickersAsync()` |
+| Get 24h tickers | `client.SpotApi.ExchangeData.Get24HTickersAsync()` |
+| Get assets | `client.SpotApi.ExchangeData.GetAssetsAsync()` |
+| Get asset network info | `client.SpotApi.ExchangeData.GetAssetNetworksAsync()` |
+| Get one balance | `client.SpotApi.Account.GetBalanceAsync("usdt")` |
+| Get balances | `client.SpotApi.Account.GetBalancesAsync()` |
+| Get deposit address | `client.SpotApi.Account.GetDepositAddressAsync("usdt", "TRC20")` |
+| Get deposit history | `client.SpotApi.Account.GetDepositHistoryAsync("usdt", "TRC20")` |
+| Withdraw asset | `client.SpotApi.Account.WithdrawAsync(...)` |
+| Get withdrawal history | `client.SpotApi.Account.GetWithdrawalHistoryAsync("usdt", "TRC20")` |
+| Transfer between account types | `client.SpotApi.Account.TransferAsync(...)` |
+| Transfer to subaccount | `client.SpotApi.Account.SubAccountTransferAsync(...)` |
+| Get private spot websocket token | `client.SpotApi.Account.GetWebsocketTokenAsync()` |
+| Place spot order | `client.SpotApi.Trading.PlaceOrderAsync(...)` |
+| Query spot order | `client.SpotApi.Trading.GetOrderAsync(orderId)` |
+| Query by client order id | `client.SpotApi.Trading.GetOrderByClientOrderIdAsync(clientOrderId)` |
+| Cancel spot order | `client.SpotApi.Trading.CancelOrderAsync(orderId)` |
+| Get open spot orders | `client.SpotApi.Trading.GetOpenOrdersAsync(...)` |
+| Get closed spot orders | `client.SpotApi.Trading.GetClosedOrdersAsync(...)` |
+| Cancel all spot orders | `client.SpotApi.Trading.CancelAllOrdersAsync(BusinessType.Spot, symbol: "eth_usdt")` |
+| Edit spot order | `client.SpotApi.Trading.EditOrderAsync(orderId, quantity, price)` |
+| Get multiple orders | `client.SpotApi.Trading.GetOrdersAsync(orderIds)` |
+| Cancel multiple orders | `client.SpotApi.Trading.CancelOrdersAsync(orderIds)` |
+| Get user trades | `client.SpotApi.Trading.GetUserTradesAsync(...)` |
+
+## Spot Order Example
+
+```csharp
+var order = await restClient.SpotApi.Trading.PlaceOrderAsync(
+    symbol: "eth_usdt",
+    orderSide: OrderSide.Buy,
+    orderType: OrderType.Limit,
+    timeInForce: TimeInForce.GoodTillCanceled,
+    businessType: BusinessType.Spot,
+    quantity: 0.01m,
+    price: 2000m);
+
+if (!order.Success) { Console.WriteLine(order.Error); return; }
+```
+
+Market buy orders should use `quoteQuantity`; quantity is not supported for XT market buy per the method documentation.
+
+## Futures REST Map
+
+REST futures are split into USDT-M and Coin-M clients. The interfaces are the same shape, so replace `UsdtFuturesApi` with `CoinFuturesApi` for Coin-M futures.
+
+| User intent | XT.Net member |
+|---|---|
+| Get futures server time | `client.UsdtFuturesApi.ExchangeData.GetServerTimeAsync()` |
+| Get futures client IP | `client.UsdtFuturesApi.ExchangeData.GetClientIpAsync()` |
+| Get supported quote assets | `client.UsdtFuturesApi.ExchangeData.GetSymbolAssetsAsync()` |
+| Get one futures symbol | `client.UsdtFuturesApi.ExchangeData.GetSymbolAsync("ETH_USDT")` |
+| Get all futures symbols | `client.UsdtFuturesApi.ExchangeData.GetSymbolsAsync()` |
+| Get leverage brackets | `client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync("ETH_USDT")` |
+| Get futures ticker | `client.UsdtFuturesApi.ExchangeData.GetTickerAsync("ETH_USDT")` |
+| Get futures tickers | `client.UsdtFuturesApi.ExchangeData.GetTickersAsync()` |
+| Get futures recent trades | `client.UsdtFuturesApi.ExchangeData.GetRecentTradesAsync("ETH_USDT")` |
+| Get futures order book | `client.UsdtFuturesApi.ExchangeData.GetOrderBookAsync("ETH_USDT")` |
+| Get index price | `client.UsdtFuturesApi.ExchangeData.GetIndexPriceAsync("ETH_USDT")` |
+| Get mark price | `client.UsdtFuturesApi.ExchangeData.GetMarkPriceAsync("ETH_USDT")` |
+| Get futures klines | `client.UsdtFuturesApi.ExchangeData.GetKlinesAsync("ETH_USDT", FuturesKlineInterval.OneMinute)` |
+| Get market info | `client.UsdtFuturesApi.ExchangeData.GetMarketInfoAsync("ETH_USDT")` |
+| Get funding rate | `client.UsdtFuturesApi.ExchangeData.GetFundingRateAsync("ETH_USDT")` |
+| Get funding history | `client.UsdtFuturesApi.ExchangeData.GetFundingRateHistoryAsync("ETH_USDT")` |
+| Get open interest | `client.UsdtFuturesApi.ExchangeData.GetOpenInterestAsync("ETH_USDT")` |
+| Get futures balances | `client.UsdtFuturesApi.Account.GetBalancesAsync()` |
+| Get futures account info | `client.UsdtFuturesApi.Account.GetAccountInfoAsync()` |
+| Get one futures asset | `client.UsdtFuturesApi.Account.GetUserAssetAsync("USDT")` |
+| Get futures assets | `client.UsdtFuturesApi.Account.GetUserAssetsAsync()` |
+| Get account bills | `client.UsdtFuturesApi.Account.GetAccountBillsAsync()` |
+| Get funding fee history | `client.UsdtFuturesApi.Account.GetFundingFeeHistoryAsync()` |
+| Get fee rate | `client.UsdtFuturesApi.Account.GetFeeRateAsync()` |
+| Set leverage | `client.UsdtFuturesApi.Account.SetLeverageAsync("ETH_USDT", PositionSide.Long, 5)` |
+| Adjust margin | `client.UsdtFuturesApi.Account.AdjustMarginAsync(...)` |
+| Set position type | `client.UsdtFuturesApi.Account.SetPositionTypeAsync(...)` |
+| Get futures listen key | `client.UsdtFuturesApi.Account.GetListenKeyAsync()` |
+| Place futures order | `client.UsdtFuturesApi.Trading.PlaceOrderAsync(...)` |
+| Place batch futures orders | `client.UsdtFuturesApi.Trading.PlaceMultipleOrdersAsync(...)` |
+| Edit futures order | `client.UsdtFuturesApi.Trading.EditOrderAsync(...)` |
+| Get closed futures orders | `client.UsdtFuturesApi.Trading.GetClosedOrdersAsync(...)` |
+| Get futures user trades | `client.UsdtFuturesApi.Trading.GetUserTradesAsync(...)` |
+| Query futures order | `client.UsdtFuturesApi.Trading.GetOrderAsync(orderId)` |
+| Get futures orders | `client.UsdtFuturesApi.Trading.GetOrdersAsync(...)` |
+| Cancel futures order | `client.UsdtFuturesApi.Trading.CancelOrderAsync(orderId)` |
+| Cancel all futures orders | `client.UsdtFuturesApi.Trading.CancelAllOrdersAsync(symbol)` |
+| Get open positions | `client.UsdtFuturesApi.Trading.GetPositionsAsync(symbol)` |
+| Get position info | `client.UsdtFuturesApi.Trading.GetPositionsInfoAsync(symbol)` |
+| Close all positions | `client.UsdtFuturesApi.Trading.CloseAllPositionsAsync()` |
+| Place trigger order | `client.UsdtFuturesApi.Trading.PlaceTriggerOrderAsync(...)` |
+| Cancel trigger order | `client.UsdtFuturesApi.Trading.CancelTriggerOrderAsync(orderId)` |
+| Get trigger orders | `client.UsdtFuturesApi.Trading.GetTriggerOrdersAsync(...)` |
+| Place stop-limit TP/SL order | `client.UsdtFuturesApi.Trading.PlaceStopLimitOrderAsync(...)` |
+| Get stop-limit orders | `client.UsdtFuturesApi.Trading.GetStopLimitOrdersAsync(...)` |
+| Place track order | `client.UsdtFuturesApi.Trading.PlaceTrackOrderAsync(...)` |
+| Get track orders | `client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(...)` |
+
+## Futures Order Example
+
+```csharp
+await restClient.UsdtFuturesApi.Account.SetLeverageAsync("ETH_USDT", PositionSide.Long, 5);
+
+var order = await restClient.UsdtFuturesApi.Trading.PlaceOrderAsync(
+    symbol: "ETH_USDT",
+    orderSide: OrderSide.Buy,
+    orderType: OrderType.Market,
+    quantity: 0.01m,
+    positionSide: PositionSide.Long);
+
+if (!order.Success) { Console.WriteLine(order.Error); return; }
+```
+
+## WebSocket Map
+
+| User intent | XT.Net member |
+|---|---|
+| Subscribe spot trades | `socketClient.SpotApi.SubscribeToTradeUpdatesAsync("eth_usdt", handler)` |
+| Subscribe spot klines | `socketClient.SpotApi.SubscribeToKlineUpdatesAsync("eth_usdt", KlineInterval.OneMinute, handler)` |
+| Subscribe spot order book | `socketClient.SpotApi.SubscribeToOrderBookUpdatesAsync("eth_usdt", depth, handler)` |
+| Subscribe spot incremental order book | `socketClient.SpotApi.SubscribeToIncrementalOrderBookUpdatesAsync("eth_usdt", handler)` |
+| Subscribe spot ticker | `socketClient.SpotApi.SubscribeToTickerUpdatesAsync("eth_usdt", handler)` |
+| Subscribe spot balance updates | `socketClient.SpotApi.SubscribeToBalanceUpdatesAsync(token, handler)` |
+| Subscribe spot order updates | `socketClient.SpotApi.SubscribeToOrderUpdatesAsync(token, handler)` |
+| Subscribe spot user trade updates | `socketClient.SpotApi.SubscribeToUserTradeUpdatesAsync(token, handler)` |
+| Subscribe futures trades | `socketClient.FuturesApi.SubscribeToTradeUpdatesAsync("ETH_USDT", handler)` |
+| Subscribe futures klines | `socketClient.FuturesApi.SubscribeToKlineUpdatesAsync("ETH_USDT", KlineInterval.OneMinute, handler)` |
+| Subscribe futures ticker | `socketClient.FuturesApi.SubscribeToTickerUpdatesAsync("ETH_USDT", handler)` |
+| Subscribe futures aggregated ticker | `socketClient.FuturesApi.SubscribeToAggregatedTickerUpdatesAsync("ETH_USDT", handler)` |
+| Subscribe futures index price | `socketClient.FuturesApi.SubscribeToIndexPriceUpdatesAsync("ETH_USDT", handler)` |
+| Subscribe futures mark price | `socketClient.FuturesApi.SubscribeToMarkPriceUpdatesAsync("ETH_USDT", handler)` |
+| Subscribe futures incremental order book | `socketClient.FuturesApi.SubscribeToIncrementalOrderBookUpdatesAsync("ETH_USDT", updateInterval, handler)` |
+| Subscribe futures order book | `socketClient.FuturesApi.SubscribeToOrderBookUpdatesAsync("ETH_USDT", depth, updateInterval, handler)` |
+| Subscribe futures funding rate | `socketClient.FuturesApi.SubscribeToFundingRateUpdatesAsync("ETH_USDT", handler)` |
+| Subscribe futures balance updates | `socketClient.FuturesApi.SubscribeToBalancesUpdatesAsync(listenKey, handler)` |
+| Subscribe futures position updates | `socketClient.FuturesApi.SubscribeToPositionUpdatesAsync(listenKey, handler)` |
+| Subscribe futures order updates | `socketClient.FuturesApi.SubscribeToOrderUpdatesAsync(listenKey, handler)` |
+| Subscribe futures user trades | `socketClient.FuturesApi.SubscribeToUserTradeUpdatesAsync(listenKey, handler)` |
+| Subscribe futures notifications | `socketClient.FuturesApi.SubscribeToNotificationUpdatesAsync(listenKey, handler)` |
+
+Always keep the concrete `XTSocketClient` so you can call `await socketClient.UnsubscribeAsync(subscription.Data)`.
+
+## SharedApis
+
+Use SharedApis for exchange-agnostic code:
+
+```csharp
+ISpotTickerRestClient xtShared = new XTRestClient().SpotApi.SharedClient;
+var ticker = await xtShared.GetSpotTickerAsync(
+    new GetTickerRequest(new SharedSymbol(TradingMode.Spot, "BTC", "USDT")));
+```
+
+Shared XT REST clients:
+
+```csharp
+new XTRestClient().SpotApi.SharedClient
+new XTRestClient().UsdtFuturesApi.SharedClient
+new XTRestClient().CoinFuturesApi.SharedClient
+```
+
+Shared XT socket clients:
+
+```csharp
+new XTSocketClient().SpotApi.SharedClient
+new XTSocketClient().FuturesApi.SharedClient
+```
+
+Spot REST shared interfaces include: `IAssetsRestClient`, `IBalanceRestClient`, `IDepositRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IWithdrawalRestClient`, `IWithdrawRestClient`, `ISpotTickerRestClient`, `ISpotSymbolRestClient`, `ISpotOrderRestClient`, `IFeeRestClient`, `IBookTickerRestClient`, and `ITransferRestClient`.
+
+Futures REST shared interfaces include: `IBalanceRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IFundingRateRestClient`, `IFuturesSymbolRestClient`, `IFuturesTickerRestClient`, `ILeverageRestClient`, `IOpenInterestRestClient`, `IFuturesOrderRestClient`, `IFeeRestClient`, `IFuturesTriggerOrderRestClient`, `IFuturesTpSlRestClient`, and `IBookTickerRestClient`.
+
+Socket shared interfaces include spot/futures ticker, trade, kline, order book, balance, order, user trade, and futures position subscriptions.
+
+## Symbol and Enum Notes
+
+- Spot source examples use `eth_usdt`.
+- Futures source examples use `ETH_USDT` in trading method docs and `eth_usdt` in some exchange-data docs. Prefer checking symbol metadata before trading.
+- `OrderSide`: `Buy`, `Sell`.
+- `OrderType`: `Limit`, `Market`.
+- `TimeInForce`: `GoodTillCanceled`, `ImmediateOrCancel`, `FillOrKill`, `PostOnly`.
+- `BusinessType`: `Spot`, `Leverage`, `Finance`, `UsdtFutures`, `CoinFutures`.
+- `PositionSide`: `Long`, `Short`.
+- Spot kline interval enum: `KlineInterval`.
+- Futures REST kline interval enum: `FuturesKlineInterval`.
+- Futures socket kline subscriptions currently use `KlineInterval` in the interface.
+
+## Error Handling Pattern
+
+```csharp
+async Task<WebCallResult<T>> WithRetry<T>(Func<Task<WebCallResult<T>>> call, int maxAttempts = 3)
+{
+    WebCallResult<T> last = default!;
+    for (var attempt = 1; attempt <= maxAttempts; attempt++)
+    {
+        last = await call();
+        if (last.Success)
+            return last;
+
+        if (last.Error?.IsTransient != true)
+            return last;
+
+        await Task.Delay(TimeSpan.FromMilliseconds(250 * Math.Pow(2, attempt)));
+    }
+
+    return last;
+}
+```
+
+## Anti-Hallucination Checklist
+
+- Check `XT.Net/Interfaces/Clients/SpotApi/**` for spot method names and parameter order.
+- Check `XT.Net/Interfaces/Clients/FuturesApi/**` for futures method names and parameter order.
+- Check `XT.Net/Enums/**` before using enum values.
+- Do not invent testnet environment names. Source exposes `XTEnvironment.Live` and `CreateCustom`.
+- Do not invent `GeneralApi`, `MarginApi`, `WalletApi`, `SubAccountApi`, `UsdFuturesSocketApi`, or `CoinFuturesSocketApi`.
+- Do not assume Binance-style symbol strings, endpoint names, or futures split on sockets.
+- Do not assume private WebSocket streams work from credentials alone; use token/listen key methods.
+- Keep examples compilable. The unit test `XT.Net.UnitTests.Documentation.AiExampleCompileTests` builds every `Examples/ai-friendly/*.cs` file.
+
+## Files for AI Tools
+
+- `CLAUDE.md`: skill-style concise instructions.
+- `AGENTS.md`: agent-facing pointer and hard rules.
+- `.github/copilot-instructions.md`: GitHub Copilot rules; points to `CLAUDE.md`, `llms.txt`, and `llms-full.txt`.
+- `.cursor/rules/xt-net.mdc`: Cursor rule file; points to `CLAUDE.md`, `llms.txt`, and `llms-full.txt`.
+- `docs/ai-api-map.md`: table-style intent-to-method map.
+- `Examples/ai-friendly`: compilable single-file examples.
