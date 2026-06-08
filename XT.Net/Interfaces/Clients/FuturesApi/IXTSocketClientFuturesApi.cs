@@ -310,6 +310,21 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         Task<CallResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
+        /// Subscribe to user balance updates. The listen key is requested internally using the configured API
+        /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2balance" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user balance
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
         /// Subscribe to user position updates
         /// <para>
         /// Docs:<br />
@@ -323,6 +338,21 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="ct">Cancellation token for closing this subscription</param>
         /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
+        /// Subscribe to user position updates. The listen key is requested internally using the configured API
+        /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2position" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user position
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
         /// Subscribe to user order updates
@@ -340,6 +370,21 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default);
 
         /// <summary>
+        /// Subscribe to user order updates. The listen key is requested internally using the configured API
+        /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2order" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user order
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
         /// Subscribe to user trade updates
         /// <para>
         /// Docs:<br />
@@ -355,6 +400,21 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
+        /// Subscribe to user trade updates. The listen key is requested internally using the configured API
+        /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2trade" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user trade
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
         /// Subscribe to user notifications
         /// <para>
         /// Docs:<br />
@@ -368,6 +428,21 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="ct">Cancellation token for closing this subscription</param>
         /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         Task<CallResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(string listenKey, Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
+        /// Subscribe to user notifications. The listen key is requested internally using the configured API
+        /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#futures_user_websocket_v2notify" /><br />
+        /// Endpoint:<br />
+        /// SUB /ws/user notify
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default);
 
         /// <summary>
         /// Get the shared socket requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.

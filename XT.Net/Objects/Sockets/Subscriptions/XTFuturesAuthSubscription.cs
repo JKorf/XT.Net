@@ -10,13 +10,15 @@ using XT.Net.Objects.Internal;
 
 namespace XT.Net.Objects.Sockets.Subscriptions
 {
-    /// <inheritdoc />
-    internal class XTFuturesAuthSubscription<T> : Subscription
+    /// <inheritdoc cref="Subscription" />
+    internal class XTFuturesAuthSubscription<T> : Subscription, IXTAuthenticatedSubscription
     {
         private readonly SocketApiClient _client;
         private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
-        private readonly string _listenKey;
         private readonly string _topic;
+
+        /// <inheritdoc />
+        public string? Token { get; set; }
 
         /// <summary>
         /// ctor
@@ -25,7 +27,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         {
             _client = client;
             _handler = handler;
-            _listenKey = listenKey;
+            Token = listenKey;
             _topic = topic;
 
             MessageRouter = MessageRouter.CreateWithoutTopicFilter<XTSocketUpdate<T>>(topic, DoHandleMessage);
@@ -38,7 +40,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
-                Parameters = [_topic + "@" + _listenKey],
+                Parameters = [_topic + "@" + Token],
             }, _topic);
         }
 
@@ -49,7 +51,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",
-                Parameters = [_topic + "@" + _listenKey],
+                Parameters = [_topic + "@" + Token],
             }, _topic);
         }
 

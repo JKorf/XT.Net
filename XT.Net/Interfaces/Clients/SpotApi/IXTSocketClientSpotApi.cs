@@ -186,6 +186,21 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(string token, Action<DataEvent<XTBalanceUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
+        /// Subscribe to user balance updates. The websocket token is requested internally using the configured API credentials,
+        /// cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_privatebalanceChange" /><br />
+        /// Endpoint:<br />
+        /// SUB /private balance
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(Action<DataEvent<XTBalanceUpdate>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
         /// Subscribe to user order updates
         /// <para>
         /// Docs:<br />
@@ -201,6 +216,21 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string token, Action<DataEvent<XTOrderUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
+        /// Subscribe to user order updates. The websocket token is requested internally using the configured API credentials,
+        /// cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_privateorderChange" /><br />
+        /// Endpoint:<br />
+        /// SUB /private order
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<XTOrderUpdate>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
         /// Subscribe to user trade update
         /// <para>
         /// Docs:<br />
@@ -214,6 +244,21 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="ct">Cancellation token for closing this subscription</param>
         /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
         Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string token, Action<DataEvent<XTUserTradeUpdate>> onMessage, CancellationToken ct = default);
+
+        /// <summary>
+        /// Subscribe to user trade updates. The websocket token is requested internally using the configured API credentials,
+        /// cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/#websocket_privateorderDeal" /><br />
+        /// Endpoint:<br />
+        /// SUB /private trade
+        /// </para>
+        /// </summary>
+        /// <param name="onMessage">The event handler for the received data</param>
+        /// <param name="ct">Cancellation token for closing this subscription</param>
+        /// <returns>A stream subscription. This stream subscription can be used to be notified when the socket is disconnected/reconnected</returns>
+        Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<XTUserTradeUpdate>> onMessage, CancellationToken ct = default);
 
         /// <summary>
         /// Get the shared socket requests client. This interface is shared with other exchanges to allow for a common implementation for different exchanges.

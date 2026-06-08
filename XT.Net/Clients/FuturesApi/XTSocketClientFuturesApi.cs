@@ -32,7 +32,7 @@ namespace XT.Net.Clients.FuturesApi
     /// <summary>
     /// Client providing access to the XT Futures websocket Api
     /// </summary>
-    internal partial class XTSocketClientFuturesApi : SocketApiClient<XTEnvironment, XTFuturesAuthenticationProvider, XTCredentials>, IXTSocketClientFuturesApi
+    internal partial class XTSocketClientFuturesApi : XTSocketApiClient<XTFuturesAuthenticationProvider>, IXTSocketClientFuturesApi
     {
         #region constructor/destructor
 
@@ -65,6 +65,29 @@ namespace XT.Net.Clients.FuturesApi
         /// <inheritdoc />
         protected override XTFuturesAuthenticationProvider CreateAuthenticationProvider(XTCredentials credentials)
             => new XTFuturesAuthenticationProvider(credentials);
+
+        /// <inheritdoc />
+        protected override Task<CallResult> RevitalizeRequestAsync(Subscription subscription)
+        {
+            // Refresh the listen key before resubscribing on a reconnected socket.
+            if (subscription is not IXTAuthenticatedSubscription authSubscription)
+                return Task.FromResult(CallResult.SuccessResult);
+
+            return RefreshSubscriptionListenKeyAsync(t => authSubscription.Token = t);
+        }
+
+        /// <inheritdoc />
+        protected override async Task<CallResult<string>> FetchListenKeyAsync()
+        {
+            using var restClient = new XTRestClient(opts =>
+            {
+                opts.ApiCredentials = ApiCredentials;
+                opts.Environment = ClientOptions.Environment;
+                opts.Proxy = ClientOptions.Proxy;
+                opts.RequestTimeout = ClientOptions.RequestTimeout;
+            });
+            return await restClient.UsdtFuturesApi.Account.GetListenKeyAsync().ConfigureAwait(false);
+        }
 
         /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(string symbol, Action<DataEvent<XTFuturesTrade>> onMessage, CancellationToken ct = default)
@@ -348,6 +371,16 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default)
+        {
+            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!listenKey)
+                return new CallResult<UpdateSubscription>(listenKey.Error!);
+
+            return await SubscribeToBalancesUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default)
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTFuturesPositionUpdate>>((receiveTime, originalData, data) =>
@@ -368,6 +401,16 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default)
+        {
+            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!listenKey)
+                return new CallResult<UpdateSubscription>(listenKey.Error!);
+
+            return await SubscribeToPositionUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default)
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTFuturesOrder>>((receiveTime, originalData, data) =>
@@ -385,6 +428,16 @@ namespace XT.Net.Clients.FuturesApi
                 listenKey,
                 internalHandler);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default)
+        {
+            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!listenKey)
+                return new CallResult<UpdateSubscription>(listenKey.Error!);
+
+            return await SubscribeToOrderUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -411,6 +464,16 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default)
+        {
+            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!listenKey)
+                return new CallResult<UpdateSubscription>(listenKey.Error!);
+
+            return await SubscribeToUserTradeUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
         public async Task<CallResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(string listenKey, Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default)
         {
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTNotification>>((receiveTime, originalData, data) =>
@@ -428,6 +491,16 @@ namespace XT.Net.Clients.FuturesApi
                 listenKey,
                 internalHandler);
             return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+        }
+
+        /// <inheritdoc />
+        public async Task<CallResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default)
+        {
+            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
+            if (!listenKey)
+                return new CallResult<UpdateSubscription>(listenKey.Error!);
+
+            return await SubscribeToNotificationUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
