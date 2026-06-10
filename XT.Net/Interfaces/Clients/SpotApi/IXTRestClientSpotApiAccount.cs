@@ -23,7 +23,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="asset">["<c>currency</c>"] Asset name</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTBalance>> GetBalanceAsync(string asset, CancellationToken ct = default);
+        Task<HttpResult<XTBalance>> GetBalanceAsync(string asset, CancellationToken ct = default);
 
         /// <summary>
         /// Get balances
@@ -36,7 +36,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="assets">["<c>currencies</c>"] Filter by assets</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTBalances>> GetBalancesAsync(string? assets = null, CancellationToken ct = default);
+        Task<HttpResult<XTBalances>> GetBalancesAsync(string? assets = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get deposit address for an asset
@@ -50,7 +50,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="asset">["<c>currency</c>"] Asset name</param>
         /// <param name="network">["<c>chain</c>"] Network</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTDepositAddress>> GetDepositAddressAsync(string asset, string network, CancellationToken ct = default);
+        Task<HttpResult<XTDepositAddress>> GetDepositAddressAsync(string asset, string network, CancellationToken ct = default);
 
         /// <summary>
         /// Get deposit history
@@ -70,7 +70,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTDeposit>>> GetDepositHistoryAsync(string asset, string network, DepositStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTDeposit>>> GetDepositHistoryAsync(string asset, string network, DepositStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Withdraw an asset
@@ -87,7 +87,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="address">["<c>address</c>"] Address to withdraw to</param>
         /// <param name="memo">["<c>memo</c>"] Address memo</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTId>> WithdrawAsync(string asset, string network, string address, decimal quantity, string? memo = null, CancellationToken ct = default);
+        Task<HttpResult<XTId>> WithdrawAsync(string asset, string network, string address, decimal quantity, string? memo = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get withdrawal history
@@ -107,7 +107,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTWithdrawal>>> GetWithdrawalHistoryAsync(string asset, string network, WithdrawalStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTWithdrawal>>> GetWithdrawalHistoryAsync(string asset, string network, WithdrawalStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Transfer assets
@@ -125,7 +125,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="clientId">["<c>bizId</c>"] Unique id</param>
         /// <param name="symbol">["<c>symbol</c>"] Isolated margin symbol, required when one of the accounts is Leverage</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<long>> TransferAsync(string asset, BusinessType from, BusinessType to, decimal quantity, string clientId, string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<long>> TransferAsync(string asset, BusinessType from, BusinessType to, decimal quantity, string clientId, string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Transfer assets for sub accounts
@@ -145,7 +145,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="fromAccountId">["<c>fromAccountId</c>"] From sub account id</param>
         /// <param name="symbol">["<c>symbol</c>"] Isolated margin symbol, required when one of the accounts is Leverage</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<long>> SubAccountTransferAsync(string asset, BusinessType from, BusinessType to, decimal quantity, string clientId, long toAccountId, long? fromAccountId = null, string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<long>> SubAccountTransferAsync(string asset, BusinessType from, BusinessType to, decimal quantity, string clientId, long toAccountId, long? fromAccountId = null, string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get a websocket token, required for listening to private websocket streams
@@ -156,6 +156,6 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="ct"></param>
         /// <returns></returns>
-        Task<WebCallResult<string>> GetWebsocketTokenAsync(CancellationToken ct = default);
+        Task<HttpResult<string>> GetWebsocketTokenAsync(CancellationToken ct = default);
     }
 }

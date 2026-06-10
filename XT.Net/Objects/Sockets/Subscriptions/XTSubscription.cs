@@ -37,10 +37,20 @@ namespace XT.Net.Objects.Sockets.Subscriptions
 
             IndividualSubscriptionCount = symbols?.Length ?? 1;
 
-            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<XTSocketUpdate<T>>(
-                                topic,
-                                listenerIdentifiers == null ? symbols?.ToArray() : listenerIdentifiers.Select(x => x.Split('@')[1]).ToArray(), // When Matcher is removed this can be simplified
-                                DoHandleMessage);
+            var topicFilters = listenerIdentifiers == null ? symbols?.ToArray() : listenerIdentifiers.Select(x => x.Split('@')[1]).ToArray();
+            if (topicFilters != null)
+            {
+                MessageRouter = MessageRouter.CreateForEvent<XTSocketUpdate<T>>(
+                                    topic,
+                                    topicFilters,
+                                    DoHandleMessage);
+            }
+            else
+            {
+                MessageRouter = MessageRouter.CreateForEvent<XTSocketUpdate<T>>(
+                                    topic,
+                                    DoHandleMessage);
+            }
         }
 
         /// <inheritdoc />
@@ -71,7 +81,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketUpdate<T> message)
         {
             _handler.Invoke(receiveTime, originalData, message);
-            return CallResult.SuccessResult;
+            return CallResult.Ok();
         }
     }
 }

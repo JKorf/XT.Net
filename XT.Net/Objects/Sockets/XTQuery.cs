@@ -20,25 +20,25 @@ namespace XT.Net.Objects.Sockets
             _client = client;
             var routes = new List<MessageRoute>();
 
-            routes.Add(MessageRoute<XTSocketResponse>.CreateWithoutTopicFilter(request.Id, HandleMessage));
+            routes.Add(MessageRoute.CreateForQuery<XTSocketResponse>(request.Id, HandleMessage));
 
             if (listenKeyTopic != null)
-                routes.Add(MessageRoute<string>.CreateWithoutTopicFilter($"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
+                routes.Add(MessageRoute.CreateForQuery<string>($"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
             
             MessageRouter = MessageRouter.Create(routes.ToArray());
         }
 
         public CallResult<string> HandleListenKeyError(SocketConnection connection, DateTime receiveTime, string? originalData, string message)
         {
-            return new CallResult<string>(new ServerError(new ErrorInfo(ErrorType.Unauthorized, "Invalid listen key")));
+            return CallResult.Fail<string>(new ServerError(new ErrorInfo(ErrorType.Unauthorized, "Invalid listen key")));
         }
 
         public CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketResponse message)
         {
             if (message.Code != 0)
-                return new CallResult<XTSocketResponse>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message)));
+                return CallResult.Fail<XTSocketResponse>(new ServerError(message.Code, _client.GetErrorInfo(message.Code, message.Message)));
 
-            return new CallResult<XTSocketResponse>(message, originalData, null);
+            return CallResult.Ok<XTSocketResponse>(message, originalData);
         }
     }
 }

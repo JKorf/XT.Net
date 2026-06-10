@@ -28,7 +28,7 @@ namespace XT.Net.Clients
 
         /// <inheritdoc />
         protected XTSocketApiClient(ILogger logger, string baseAddress, XTSocketOptions options, SocketApiOptions apiOptions)
-            : base(logger, baseAddress, options, apiOptions)
+            : base(logger, XTExchange.Metadata.Id, baseAddress, options, apiOptions)
         {
         }
 
@@ -40,11 +40,11 @@ namespace XT.Net.Clients
         protected async Task<CallResult> RefreshSubscriptionListenKeyAsync(Action<string> assignListenKey)
         {
             var listenKey = await GetListenKeyAsync(forceRefresh: true).ConfigureAwait(false);
-            if (!listenKey)
-                return listenKey.AsDataless();
+            if (!listenKey.Success)
+                return listenKey;
 
             assignListenKey(listenKey.Data);
-            return CallResult.SuccessResult;
+            return CallResult.Ok();
         }
 
         /// <summary>
@@ -56,19 +56,19 @@ namespace XT.Net.Clients
         protected async Task<CallResult<string>> GetListenKeyAsync(bool forceRefresh = false)
         {
             if (ApiCredentials == null)
-                return new CallResult<string>(new NoApiCredentialsError());
+                return CallResult.Fail<string>(new NoApiCredentialsError());
 
             var cacheKey = ApiCredentials.Key;
             if (!forceRefresh
                 && _listenKeyCache.TryGetValue(cacheKey, out var cached)
                 && cached.Expire > DateTime.UtcNow)
             {
-                return new CallResult<string>(cached.ListenKey);
+                return CallResult.Ok(cached.ListenKey);
             }
 
             _logger.LogDebug("[Sckt] Requesting fresh XT listen key for {Client} (forceRefresh={ForceRefresh})", GetType().Name, forceRefresh);
             var result = await FetchListenKeyAsync().ConfigureAwait(false);
-            if (result)
+            if (result.Success)
                 _listenKeyCache[cacheKey] = new CachedListenKey { ListenKey = result.Data, Expire = DateTime.UtcNow + _listenKeyLifetime - _listenKeyRefreshSkew };
             else
                 _logger.LogWarning("[Sckt] Failed to retrieve XT listen key for {Client}: {Error}", GetType().Name, result.Error);

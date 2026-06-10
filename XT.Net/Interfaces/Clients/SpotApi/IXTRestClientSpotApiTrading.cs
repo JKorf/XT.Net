@@ -32,7 +32,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="price">["<c>price</c>"] Price</param>
         /// <param name="clientOrderId">["<c>clientOrderId</c>"] Client order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTOrderId>> PlaceOrderAsync(string symbol, OrderSide orderSide, OrderType orderType, TimeInForce timeInForce, BusinessType businessType, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, CancellationToken ct = default);
+        Task<HttpResult<XTOrderId>> PlaceOrderAsync(string symbol, OrderSide orderSide, OrderType orderType, TimeInForce timeInForce, BusinessType businessType, decimal? quantity = null, decimal? quoteQuantity = null, decimal? price = null, string? clientOrderId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get order info
@@ -45,7 +45,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="orderId">Id of the order</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTOrder>> GetOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult<XTOrder>> GetOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Get order info by client order id
@@ -58,7 +58,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="clientOrderId">["<c>clientOrderId</c>"] Client order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTOrder>> GetOrderByClientOrderIdAsync(string clientOrderId, CancellationToken ct = default);
+        Task<HttpResult<XTOrder>> GetOrderByClientOrderIdAsync(string clientOrderId, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel an order
@@ -71,7 +71,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="orderId">Id of the order</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTCancelId>> CancelOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult<XTCancelId>> CancelOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Get open orders
@@ -86,7 +86,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="businessType">["<c>bizType</c>"] Filter by business type</param>
         /// <param name="orderSide">["<c>side</c>"] Filter by order side</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTOrder[]>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default);
+        Task<HttpResult<XTOrder[]>> GetOpenOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get closed orders
@@ -109,7 +109,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTOrder>>> GetClosedOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, OrderType? orderType = null, OrderStatus? orderStatus = null, bool? hideCanceled = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTOrder>>> GetClosedOrdersAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, OrderType? orderType = null, OrderStatus? orderStatus = null, bool? hideCanceled = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel all orders matching the parameters
@@ -124,7 +124,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `eth_usdt`</param>
         /// <param name="orderSide">["<c>side</c>"] Filter by order side</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelAllOrdersAsync(BusinessType businessType, string? symbol = null, OrderSide? orderSide = null, CancellationToken ct = default);
+        Task<HttpResult> CancelAllOrdersAsync(BusinessType businessType, string? symbol = null, OrderSide? orderSide = null, CancellationToken ct = default);
 
         /// <summary>
         /// Edit an active order
@@ -139,7 +139,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="price">["<c>price</c>"] New price</param>
         /// <param name="quantity">["<c>quantity</c>"] New quantity</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTEditId>> EditOrderAsync(long orderId, decimal quantity, decimal price, CancellationToken ct = default);
+        Task<HttpResult<XTEditId>> EditOrderAsync(long orderId, decimal quantity, decimal price, CancellationToken ct = default);
 
         /// <summary>
         /// Get multiple orders
@@ -152,7 +152,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="orderIds">["<c>orderIds</c>"] Ids of the orders</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTOrder[]>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default);
+        Task<HttpResult<XTOrder[]>> GetOrdersAsync(IEnumerable<long> orderIds, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel multiple orders
@@ -164,7 +164,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="orderIds">["<c>orderIds</c>"] Ids of orders to cancel</param>
         /// <param name="clientBatchId">["<c>clientBatchId</c>"] Client batch id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelOrdersAsync(IEnumerable<long> orderIds, string? clientBatchId = null, CancellationToken ct = default);
+        Task<HttpResult> CancelOrdersAsync(IEnumerable<long> orderIds, string? clientBatchId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get user trades
@@ -186,7 +186,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTUserTrade>>> GetUserTradesAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, OrderType? orderType = null, long? orderId = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTUserTrade>>> GetUserTradesAsync(string? symbol = null, BusinessType? businessType = null, OrderSide? orderSide = null, OrderType? orderType = null, long? orderId = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
     }
 }

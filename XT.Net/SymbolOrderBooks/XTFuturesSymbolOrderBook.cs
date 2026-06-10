@@ -70,19 +70,19 @@ namespace XT.Net.SymbolOrderBooks
         /// <inheritdoc />
         protected override async Task<CallResult<UpdateSubscription>> DoStartAsync(CancellationToken ct)
         {
-            CallResult<UpdateSubscription> subResult;
+            WebSocketResult<UpdateSubscription> subResult;
             if (Levels == null)
                 subResult = await _socketClient.FuturesApi.SubscribeToIncrementalOrderBookUpdatesAsync(Symbol, 100, HandleUpdate).ConfigureAwait(false);
             else
                 subResult = await _socketClient.FuturesApi.SubscribeToOrderBookUpdatesAsync(Symbol, Levels.Value, 100, HandleUpdate).ConfigureAwait(false);
 
-            if (!subResult)
-                return new CallResult<UpdateSubscription>(subResult.Error!);
+            if (!subResult.Success)
+                return CallResult.Fail<UpdateSubscription>(subResult.Error!);
 
             if (ct.IsCancellationRequested)
             {
                 await subResult.Data.CloseAsync().ConfigureAwait(false);
-                return subResult.AsError<UpdateSubscription>(new CancellationRequestedError());
+                return CallResult.Fail<UpdateSubscription>(new CancellationRequestedError());
             }
 
             Status = OrderBookStatus.Syncing;
@@ -91,11 +91,11 @@ namespace XT.Net.SymbolOrderBooks
                 // Wait up to 500ms until the first update has been received
                 await WaitUntilFirstUpdateBufferedAsync(TimeSpan.FromMilliseconds(250), TimeSpan.FromMilliseconds(500), ct).ConfigureAwait(false);
                 var bookResult = await GetOrderBookAsync().ConfigureAwait(false);
-                if (!bookResult)
+                if (!bookResult.Success)
                 {
                     _logger.Log(Microsoft.Extensions.Logging.LogLevel.Debug, $"{Api} order book {Symbol} failed to retrieve initial order book");
                     await _socketClient.UnsubscribeAsync(subResult.Data).ConfigureAwait(false);
-                    return new CallResult<UpdateSubscription>(bookResult.Error!);
+                    return CallResult.Fail<UpdateSubscription>(bookResult.Error!);
                 }
 
                 SetSnapshot(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
@@ -103,20 +103,20 @@ namespace XT.Net.SymbolOrderBooks
             else
             {
                 var setResult = await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
-                if (!setResult)
+                if (!setResult.Success)
                     await subResult.Data.CloseAsync().ConfigureAwait(false);
 
-                return setResult ? subResult : new CallResult<UpdateSubscription>(setResult.Error!);
+                return setResult.Success ? CallResult.Ok(subResult.Data) : CallResult.Fail<UpdateSubscription>(setResult.Error!);
             }
 
-            return new CallResult<UpdateSubscription>(subResult.Data);
+            return CallResult.Ok(subResult.Data);
         }
 
         /// <summary>
         /// Get the order book snapshot
         /// </summary>
         /// <returns></returns>
-        protected abstract Task<WebCallResult<XTFuturesOrderBook>> GetOrderBookAsync();
+        protected abstract Task<HttpResult<XTFuturesOrderBook>> GetOrderBookAsync();
 
         private void HandleUpdate(DataEvent<XTFuturesIncrementalOrderBookUpdate> data)
         {
@@ -134,7 +134,7 @@ namespace XT.Net.SymbolOrderBooks
         }
 
         /// <inheritdoc />
-        protected override async Task<CallResult<bool>> DoResyncAsync(CancellationToken ct)
+        protected override async Task<CallResult> DoResyncAsync(CancellationToken ct)
         {
             if (Levels != null)
                 return await WaitForSetOrderBookAsync(_initialDataTimeout, ct).ConfigureAwait(false);
@@ -142,11 +142,11 @@ namespace XT.Net.SymbolOrderBooks
             // Wait up to 500ms until the first update has been received
             await WaitUntilFirstUpdateBufferedAsync(TimeSpan.FromMilliseconds(250), TimeSpan.FromMilliseconds(500), ct).ConfigureAwait(false);
             var bookResult = await GetOrderBookAsync().ConfigureAwait(false);
-            if (!bookResult)
-                return new CallResult<bool>(bookResult.Error!);
+            if (!bookResult.Success)
+                return CallResult.Fail(bookResult.Error!);
 
             SetSnapshot(bookResult.Data.UpdateId, bookResult.Data.Bids, bookResult.Data.Asks);
-            return new CallResult<bool>(true);
+            return CallResult.Ok();
         }
 
         /// <inheritdoc />
@@ -176,7 +176,7 @@ namespace XT.Net.SymbolOrderBooks
         }
 
         /// <inheritdoc />
-        protected override Task<WebCallResult<XTFuturesOrderBook>> GetOrderBookAsync()
+        protected override Task<HttpResult<XTFuturesOrderBook>> GetOrderBookAsync()
         {
             return _restClient.UsdtFuturesApi.ExchangeData.GetOrderBookAsync(Symbol, 1000);
         }
@@ -196,7 +196,7 @@ namespace XT.Net.SymbolOrderBooks
         }
 
         /// <inheritdoc />
-        protected override Task<WebCallResult<XTFuturesOrderBook>> GetOrderBookAsync()
+        protected override Task<HttpResult<XTFuturesOrderBook>> GetOrderBookAsync()
         {
             return _restClient.CoinFuturesApi.ExchangeData.GetOrderBookAsync(Symbol, 1000);
         }

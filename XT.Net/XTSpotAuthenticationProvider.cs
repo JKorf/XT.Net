@@ -19,7 +19,7 @@ namespace XT.Net
 
         public override void ProcessRequest(RestApiClient apiClient, RestRequestConfiguration request)
         {
-            if (!request.Authenticated)
+            if (!request.RequestDefinition.Authenticated)
                 return;
 
             var timestamp = GetMillisecondTimestamp(apiClient);
@@ -31,7 +31,7 @@ namespace XT.Net
 
             var body = request.BodyParameters?.Count > 0 ? GetSerializedBody(_serializer, request.BodyParameters) : string.Empty;
             var queryString = request.GetQueryString(false);
-            var signStr = $"{string.Join("&", request.Headers.Select(x => x.Key + "=" + x.Value))}#{request.Method}#{request.Path}";
+            var signStr = $"{string.Join("&", request.Headers.Select(x => x.Key + "=" + x.Value))}#{request.RequestDefinition.Method}#{request.RequestDefinition.Path}";
             if (!string.IsNullOrEmpty(queryString))
                 signStr += $"#{queryString}";
             if (!string.IsNullOrEmpty(body))

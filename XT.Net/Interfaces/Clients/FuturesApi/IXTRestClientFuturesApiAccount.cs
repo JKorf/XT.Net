@@ -24,7 +24,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="accountId">["<c>queryAccountId</c>"] Account id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTFuturesBalance[]>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default);
+        Task<HttpResult<XTFuturesBalance[]>> GetBalancesAsync(string? accountId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get account info
@@ -36,7 +36,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTFuturesAccountInfo>> GetAccountInfoAsync(CancellationToken ct = default);
+        Task<HttpResult<XTFuturesAccountInfo>> GetAccountInfoAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get user asset
@@ -50,7 +50,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="asset">["<c>coin</c>"] Asset name</param>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<XTUserAsset>> GetUserAssetAsync(string asset, CancellationToken ct = default);
+        Task<HttpResult<XTUserAsset>> GetUserAssetAsync(string asset, CancellationToken ct = default);
 
         /// <summary>
         /// Get user assets
@@ -62,7 +62,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTUserAsset[]>> GetUserAssetsAsync(CancellationToken ct = default);
+        Task<HttpResult<XTUserAsset[]>> GetUserAssetsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get account bills
@@ -80,7 +80,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTAccountBill>>> GetAccountBillsAsync(string? symbol = null,
+        Task<HttpResult<XTPage<XTAccountBill>>> GetAccountBillsAsync(string? symbol = null,
             long? id = null,
             PageDirection? direction = null,
             DateTime? startTime = null,
@@ -103,7 +103,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTFundingFee>>> GetFundingFeeHistoryAsync(string? symbol = null, string? id = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTFundingFee>>> GetFundingFeeHistoryAsync(string? symbol = null, string? id = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get user trading fees
@@ -115,7 +115,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTFeeRate>> GetFeeRateAsync(CancellationToken ct = default);
+        Task<HttpResult<XTFeeRate>> GetFeeRateAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Set leverage
@@ -130,7 +130,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="positionSide">["<c>positionSide</c>"] Position side</param>
         /// <param name="leverage">["<c>leverage</c>"] Leverage</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> SetLeverageAsync(string symbol, PositionSide positionSide, int leverage, CancellationToken ct = default);
+        Task<HttpResult> SetLeverageAsync(string symbol, PositionSide positionSide, int leverage, CancellationToken ct = default);
 
         /// <summary>
         /// Adjust margin
@@ -146,7 +146,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="positionSide">["<c>positionSide</c>"] Position side</param>
         /// <param name="type">["<c>type</c>"] Adjust type</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> AdjustMarginAsync(string symbol, decimal marginChange, PositionSide positionSide, AdjustSide type, CancellationToken ct = default);
+        Task<HttpResult> AdjustMarginAsync(string symbol, decimal marginChange, PositionSide positionSide, AdjustSide type, CancellationToken ct = default);
 
         /// <summary>
         /// Get auto deleverage info
@@ -158,7 +158,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTAdlInfo[]>> GetAdlInfoAsync(CancellationToken ct = default);
+        Task<HttpResult<XTAdlInfo[]>> GetAdlInfoAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Set position type
@@ -173,7 +173,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="positionSide">["<c>positionSide</c>"] Position side</param>
         /// <param name="positionType">["<c>positionType</c>"] Position margin type</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> SetPositionTypeAsync(string symbol, PositionSide positionSide, PositionType positionType, CancellationToken ct = default);
+        Task<HttpResult> SetPositionTypeAsync(string symbol, PositionSide positionSide, PositionType positionType, CancellationToken ct = default);
 
         /// <summary>
         /// Get listen key for starting the user websocket connection
@@ -185,6 +185,6 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<string>> GetListenKeyAsync(CancellationToken ct = default);
+        Task<HttpResult<string>> GetListenKeyAsync(CancellationToken ct = default);
     }
 }

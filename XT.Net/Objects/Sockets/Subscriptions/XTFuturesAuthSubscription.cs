@@ -30,7 +30,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             Token = listenKey;
             _topic = topic;
 
-            MessageRouter = MessageRouter.CreateWithoutTopicFilter<XTSocketUpdate<T>>(topic, DoHandleMessage);
+            MessageRouter = MessageRouter.CreateForEvent<XTSocketUpdate<T>>(topic, DoHandleMessage);
         }
 
         /// <inheritdoc />
@@ -59,7 +59,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketUpdate<T> message)
         {
             _handler.Invoke(receiveTime, originalData, message);
-            return CallResult.SuccessResult;
+            return CallResult.Ok();
         }
     }
 }
