@@ -26,8 +26,8 @@ namespace XT.Net.Clients.FuturesApi
     internal class XTRestClientUsdtFuturesApi : XTRestClientFuturesApi
     {
         #region constructor/destructor
-        internal XTRestClientUsdtFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, XTRestOptions options)
-            : base(logger, baseClient, httpClient, options.Environment.UsdtFuturesRestClientAddress, options, options.FuturesOptions)
+        internal XTRestClientUsdtFuturesApi(ILoggerFactory? loggerFactory, XTRestClient baseClient, HttpClient? httpClient, XTRestOptions options)
+            : base(loggerFactory, baseClient, httpClient, options.Environment.UsdtFuturesRestClientAddress, options, options.FuturesOptions)
         {
         }
         #endregion
@@ -37,8 +37,8 @@ namespace XT.Net.Clients.FuturesApi
     internal class XTRestClientCoinFuturesApi : XTRestClientFuturesApi
     {
         #region constructor/destructor
-        internal XTRestClientCoinFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, XTRestOptions options)
-            : base(logger, baseClient, httpClient, options.Environment.CoinFuturesRestClientAddress, options, options.FuturesOptions)
+        internal XTRestClientCoinFuturesApi(ILoggerFactory? loggerFactory, XTRestClient baseClient, HttpClient? httpClient, XTRestOptions options)
+            : base(loggerFactory, baseClient, httpClient, options.Environment.CoinFuturesRestClientAddress, options, options.FuturesOptions)
         {
         }
         #endregion
@@ -67,14 +67,14 @@ namespace XT.Net.Clients.FuturesApi
         #endregion
 
         #region constructor/destructor
-        internal XTRestClientFuturesApi(ILogger logger, XTRestClient baseClient, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions apiOptions)
-            : base(logger, XTExchange.Metadata.Id, httpClient, baseAddress, options, apiOptions)
+        internal XTRestClientFuturesApi(ILoggerFactory? loggerFactory, XTRestClient baseClient, HttpClient? httpClient, string baseAddress, XTRestOptions options, RestApiOptions apiOptions)
+            : base(loggerFactory, XTExchange.Metadata.Id, httpClient, baseAddress, options, apiOptions)
         {
             _baseClient = baseClient;
 
             Account = new XTRestClientFuturesApiAccount(this);
-            ExchangeData = new XTRestClientFuturesApiExchangeData(logger, this);
-            Trading = new XTRestClientFuturesApiTrading(logger, this);
+            ExchangeData = new XTRestClientFuturesApiExchangeData(_logger, this);
+            Trading = new XTRestClientFuturesApiTrading(_logger, this);
 
             RequestBodyEmptyContent = "";
         }

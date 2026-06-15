@@ -43,8 +43,8 @@ namespace XT.Net.Clients.SpotApi
         /// <summary>
         /// ctor
         /// </summary>
-        internal XTSocketClientSpotApi(ILogger logger, XTSocketOptions options) :
-            base(logger, options.Environment.SpotSocketClientAddress!, options, options.SpotOptions)
+        internal XTSocketClientSpotApi(ILoggerFactory? loggerFactory, XTSocketOptions options) :
+            base(loggerFactory, options.Environment.SpotSocketClientAddress!, options, options.SpotOptions)
         {
             RegisterPeriodicQuery(
                 "Ping",

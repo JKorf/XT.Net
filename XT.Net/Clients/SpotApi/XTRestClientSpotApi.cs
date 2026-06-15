@@ -43,12 +43,12 @@ namespace XT.Net.Clients.SpotApi
         #endregion
 
         #region constructor/destructor
-        internal XTRestClientSpotApi(ILogger logger, HttpClient? httpClient, XTRestOptions options)
-            : base(logger, XTExchange.Metadata.Id, httpClient, options.Environment.SpotRestClientAddress, options, options.SpotOptions)
+        internal XTRestClientSpotApi(ILoggerFactory? loggerFactory, HttpClient? httpClient, XTRestOptions options)
+            : base(loggerFactory, XTExchange.Metadata.Id, httpClient, options.Environment.SpotRestClientAddress, options, options.SpotOptions)
         {
             Account = new XTRestClientSpotApiAccount(this);
-            ExchangeData = new XTRestClientSpotApiExchangeData(logger, this);
-            Trading = new XTRestClientSpotApiTrading(logger, this);
+            ExchangeData = new XTRestClientSpotApiExchangeData(_logger, this);
+            Trading = new XTRestClientSpotApiTrading(_logger, this);
         }
         #endregion
 

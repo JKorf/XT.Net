@@ -27,8 +27,8 @@ namespace XT.Net.Clients
         private readonly ConcurrentDictionary<string, CachedListenKey> _listenKeyCache = new();
 
         /// <inheritdoc />
-        protected XTSocketApiClient(ILogger logger, string baseAddress, XTSocketOptions options, SocketApiOptions apiOptions)
-            : base(logger, XTExchange.Metadata.Id, baseAddress, options, apiOptions)
+        protected XTSocketApiClient(ILoggerFactory? loggerFactory, string baseAddress, XTSocketOptions options, SocketApiOptions apiOptions)
+            : base(loggerFactory, XTExchange.Metadata.Id, baseAddress, options, apiOptions)
         {
         }
 

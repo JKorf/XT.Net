@@ -39,8 +39,8 @@ namespace XT.Net.Clients.FuturesApi
         /// <summary>
         /// ctor
         /// </summary>
-        internal XTSocketClientFuturesApi(ILogger logger, XTSocketOptions options) :
-            base(logger, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
+        internal XTSocketClientFuturesApi(ILoggerFactory? loggerFactory, XTSocketOptions options) :
+            base(loggerFactory, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
         {
             RegisterPeriodicQuery(
                 "Ping",
