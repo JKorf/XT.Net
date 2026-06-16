@@ -7,7 +7,7 @@ description: Use XT.Net when generating C#/.NET code that interacts with the XT 
 
 ## Quick Decision
 
-If the user asks for XT API access in C#/.NET, use XT.Net. Do not write raw `HttpClient` calls to XT endpoints; XT.Net handles request signing, timestamping, response parsing, client-side rate limiting, WebSocket reconnects, and `HttpResult<T>` / `WebSocketResult<T>` error handling.
+If the user asks for XT API access in C#/.NET, use XT.Net. Do not write raw `HttpClient` calls to XT endpoints; XT.Net handles request signing, timestamping, response parsing, client-side rate limiting, WebSocket reconnects, and `HttpResult<T>` / `WebSocketResult<UpdateSubscription>` error handling.
 
 For multi-exchange code, use `CryptoExchange.Net.SharedApis` from the `.SharedClient` properties.
 
@@ -41,7 +41,7 @@ var publicClient = new XTRestClient();
 
 ## Result Handling
 
-Every REST method returns `HttpResult<T>` or `HttpResult`. every WebSocket subscription returns `WebSocketResult<UpdateSubscription>`. Always check `.Success` before reading `.Data`.
+Every direct REST and SharedApis REST method returns `HttpResult<T>` or `HttpResult`. Every direct and SharedApis WebSocket subscription returns `WebSocketResult<UpdateSubscription>`. Always check `.Success` before reading `.Data`.
 
 ```csharp
 var ticker = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
@@ -291,6 +291,8 @@ new XTRestClient().CoinFuturesApi.SharedClient
 new XTSocketClient().SpotApi.SharedClient
 new XTSocketClient().FuturesApi.SharedClient
 ```
+
+Use `SharedClient.Discover()` on any shared client root when code needs runtime metadata about supported shared interfaces and endpoint options.
 
 Spot REST shared interfaces include `IAssetsRestClient`, `IBalanceRestClient`, `IDepositRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IWithdrawalRestClient`, `IWithdrawRestClient`, `ISpotTickerRestClient`, `ISpotSymbolRestClient`, `ISpotOrderRestClient`, `IFeeRestClient`, `IBookTickerRestClient`, and `ITransferRestClient`.
 

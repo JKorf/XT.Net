@@ -17,6 +17,8 @@ var client = new XTRestClient(options =>
 });
 
 // ---- 1. THE BASIC PATTERN ----
+// Direct and SharedApis REST methods return HttpResult<T> or HttpResult.
+// Direct and SharedApis WebSocket subscriptions return WebSocketResult<UpdateSubscription>.
 // .Success is true/false. .Data is valid only when .Success is true.
 // .Error contains structured error info when .Success is false.
 // .Error.IsTransient hints whether a retry might succeed.
