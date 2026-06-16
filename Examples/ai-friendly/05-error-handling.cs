@@ -1,6 +1,6 @@
 // 05-error-handling.cs
 //
-// Demonstrates: WebCallResult patterns, retry logic, common XT.Net error scenarios,
+// Demonstrates: HttpResult patterns, retry logic, common XT.Net error scenarios,
 // and symbol validation before order placement.
 //
 // Setup:
@@ -39,11 +39,11 @@ else
 // Retry only on transient errors such as network issues, rate limits, or server overload.
 // Do not retry validation errors, bad credentials, or insufficient balance.
 
-async Task<WebCallResult<T>> WithRetry<T>(
-    Func<Task<WebCallResult<T>>> call,
+async Task<HttpResult<T>> WithRetry<T>(
+    Func<Task<HttpResult<T>>> call,
     int maxAttempts = 3)
 {
-    WebCallResult<T> last = default!;
+    HttpResult<T> last = default!;
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
         last = await call();

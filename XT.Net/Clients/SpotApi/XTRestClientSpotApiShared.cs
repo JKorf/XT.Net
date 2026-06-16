@@ -133,7 +133,7 @@ namespace XT.Net.Clients.SpotApi
             },
             RequiredExchangeParameters = new List<ParameterDescription>
             {
-                new ParameterDescription("Network", typeof(string), "Network filter for the deposits", "Ethereum")
+                new ParameterDescription(["Network", "chain"], typeof(string), "Network filter for the deposits", "Ethereum")
             }
         };
 
@@ -150,7 +150,7 @@ namespace XT.Net.Clients.SpotApi
             // Get data
             var result = await Account.GetDepositHistoryAsync(
                 request.Asset!,
-                ExchangeParameters.GetValue<string>(request.ExchangeParameters, Exchange, "Network")!,
+                request.GetParamValue<string>(Exchange, "Network", "chain")!,
                 startTime: pageParams.StartTime,
                 endTime: pageParams.EndTime,
                 limit: pageParams.Limit,
@@ -347,7 +347,7 @@ namespace XT.Net.Clients.SpotApi
             },
             RequiredExchangeParameters = new List<ParameterDescription>
             {
-                new ParameterDescription("Network", typeof(string), "Network filter for the withdrawals", "Ethereum")
+                new ParameterDescription(["Network", "chain"], typeof(string), "Network filter for the withdrawals", "Ethereum")
             }
         };
         async Task<HttpResult<SharedWithdrawal[]>> IWithdrawalRestClient.GetWithdrawalsAsync(GetWithdrawalsRequest request, PageRequest? pageRequest, CancellationToken ct)
@@ -363,7 +363,7 @@ namespace XT.Net.Clients.SpotApi
             // Get data
             var result = await Account.GetWithdrawalHistoryAsync(
                 request.Asset!,
-                ExchangeParameters.GetValue<string>(request.ExchangeParameters, Exchange, "Network")!,
+                request.GetParamValue<string>(Exchange, "Network", "chain")!,
                 startTime: pageParams.StartTime,
                 endTime: pageParams.EndTime,
                 limit: pageParams.Limit,

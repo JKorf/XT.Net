@@ -47,7 +47,7 @@ Do not use raw `HttpClient` or generic `ApiCredentials` for XT API calls.
 
 ## Result Handling
 
-REST calls return `WebCallResult<T>` or `WebCallResult`. Socket subscription calls return `CallResult<UpdateSubscription>`. The payload is only valid when `.Success` is true.
+REST calls return `HttpResult<T>` or `HttpResult`. Socket subscription calls return `WebSocketResult<UpdateSubscription>`. The payload is only valid when `.Success` is true.
 
 ```csharp
 var result = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
@@ -339,9 +339,9 @@ Socket shared interfaces include spot/futures ticker, trade, kline, order book, 
 ## Error Handling Pattern
 
 ```csharp
-async Task<WebCallResult<T>> WithRetry<T>(Func<Task<WebCallResult<T>>> call, int maxAttempts = 3)
+async Task<HttpResult<T>> WithRetry<T>(Func<Task<HttpResult<T>>> call, int maxAttempts = 3)
 {
-    WebCallResult<T> last = default!;
+    HttpResult<T> last = default!;
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
         last = await call();

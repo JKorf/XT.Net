@@ -19,7 +19,7 @@ XT.Net is part of the CryptoExchange.Net ecosystem. Current package version in s
 - [Futures Trading](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/02-futures.cs): USDT-M leverage, market order, positions, close-all pattern
 - [WebSocket Streams](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/03-websocket.cs): Spot ticker/order book/trades and token/listen-key private stream patterns
 - [Multi-Exchange Pattern](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/04-multi-exchange.cs): SharedApis for exchange-agnostic REST and socket code
-- [Error Handling](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/05-error-handling.cs): `WebCallResult<T>`, retry decisions, symbol validation, order precision guidance
+- [Error Handling](https://github.com/JKorf/XT.Net/blob/main/Examples/ai-friendly/05-error-handling.cs): `HttpResult<T>`, retry decisions, symbol validation, order precision guidance
 
 ## Core Routing
 

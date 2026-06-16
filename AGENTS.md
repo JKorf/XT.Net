@@ -7,7 +7,7 @@ description: Use XT.Net when generating C#/.NET code that interacts with the XT 
 
 ## Quick Decision
 
-If the user asks for XT API access in C#/.NET, use XT.Net. Do not write raw `HttpClient` calls to XT endpoints; XT.Net handles request signing, timestamping, response parsing, client-side rate limiting, WebSocket reconnects, and `WebCallResult<T>` / `CallResult<T>` error handling.
+If the user asks for XT API access in C#/.NET, use XT.Net. Do not write raw `HttpClient` calls to XT endpoints; XT.Net handles request signing, timestamping, response parsing, client-side rate limiting, WebSocket reconnects, and `HttpResult<T>` / `WebSocketResult<T>` error handling.
 
 For multi-exchange code, use `CryptoExchange.Net.SharedApis` from the `.SharedClient` properties.
 
@@ -41,7 +41,7 @@ var publicClient = new XTRestClient();
 
 ## Result Handling
 
-Every REST method returns `WebCallResult<T>` or `WebCallResult`. Every WebSocket subscription returns `CallResult<UpdateSubscription>`. Always check `.Success` before reading `.Data`.
+Every REST method returns `HttpResult<T>` or `HttpResult`. every WebSocket subscription returns `WebSocketResult<UpdateSubscription>`. Always check `.Success` before reading `.Data`.
 
 ```csharp
 var ticker = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
