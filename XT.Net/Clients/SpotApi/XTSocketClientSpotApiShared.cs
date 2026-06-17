@@ -25,13 +25,7 @@ namespace XT.Net.Clients.SpotApi
         public SharedClientInfo Discover() => SharedUtils.GetClientInfo(this);
 
         #region Balance client
-        SubscribeBalanceOptions IBalanceSocketClient.SubscribeBalanceOptions { get; } = new SubscribeBalanceOptions(_exchangeName, false)
-        {
-            RequiredOptionalParameters = new List<ParameterDescription>
-            {
-                new ParameterDescription(nameof(SubscribeBalancesRequest.ListenKey), typeof(List<string>), "The listen key", "ey123")
-            }
-        };
+        SubscribeBalanceOptions IBalanceSocketClient.SubscribeBalanceOptions { get; } = new SubscribeBalanceOptions(_exchangeName, true);
         async Task<WebSocketResult<UpdateSubscription>> IBalanceSocketClient.SubscribeToBalanceUpdatesAsync(SubscribeBalancesRequest request, Action<DataEvent<SharedBalance[]>> handler, CancellationToken ct)
         {
             var validationError = SharedClient.SubscribeBalanceOptions.ValidateRequest(request, this);
@@ -39,7 +33,6 @@ namespace XT.Net.Clients.SpotApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 
             var result = await SubscribeToBalanceUpdatesAsync(
-                request.ListenKey!,
                 update => handler(update.ToType<SharedBalance[]>([new SharedBalance(update.Data.Asset, update.Data.Total - update.Data.Frozen, update.Data.Total)])),
                 ct: ct).ConfigureAwait(false);
             return result;
@@ -144,13 +137,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region User Trade client
 
-        SubscribeUserTradeOptions IUserTradeSocketClient.SubscribeUserTradeOptions { get; } = new SubscribeUserTradeOptions(_exchangeName, false)
-        {
-            RequiredOptionalParameters = new List<ParameterDescription>
-            {
-                new ParameterDescription(nameof(SubscribeBalancesRequest.ListenKey), typeof(List<string>), "The listen key", "ey123")
-            }
-        };
+        SubscribeUserTradeOptions IUserTradeSocketClient.SubscribeUserTradeOptions { get; } = new SubscribeUserTradeOptions(_exchangeName, true);
         async Task<WebSocketResult<UpdateSubscription>> IUserTradeSocketClient.SubscribeToUserTradeUpdatesAsync(SubscribeUserTradeRequest request, Action<DataEvent<SharedUserTrade[]>> handler, CancellationToken ct)
         {
             var validationError = SharedClient.SubscribeUserTradeOptions.ValidateRequest(request, this);
@@ -158,7 +145,6 @@ namespace XT.Net.Clients.SpotApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 
             var result = await SubscribeToUserTradeUpdatesAsync(
-                request.ListenKey!,
                 update => handler(update.ToType<SharedUserTrade[]>( 
                     [new SharedUserTrade(
                         ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),
@@ -180,13 +166,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region Spot Order client
 
-        SubscribeSpotOrderOptions ISpotOrderSocketClient.SubscribeSpotOrderOptions { get; } = new SubscribeSpotOrderOptions(_exchangeName, false)
-        {
-            RequiredOptionalParameters = new List<ParameterDescription>
-            {
-                new ParameterDescription(nameof(SubscribeBalancesRequest.ListenKey), typeof(List<string>), "The listen key", "ey123")
-            }
-        };
+        SubscribeSpotOrderOptions ISpotOrderSocketClient.SubscribeSpotOrderOptions { get; } = new SubscribeSpotOrderOptions(_exchangeName, true);
         async Task<WebSocketResult<UpdateSubscription>> ISpotOrderSocketClient.SubscribeToSpotOrderUpdatesAsync(SubscribeSpotOrderRequest request, Action<DataEvent<SharedSpotOrder[]>> handler, CancellationToken ct)
         {
             var validationError = SharedClient.SubscribeSpotOrderOptions.ValidateRequest(request, this);
@@ -194,7 +174,6 @@ namespace XT.Net.Clients.SpotApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 
             var result = await SubscribeToOrderUpdatesAsync(
-                request.ListenKey!,
                 update => handler(update.ToType<SharedSpotOrder[]>([
                     new SharedSpotOrder(
                         ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),

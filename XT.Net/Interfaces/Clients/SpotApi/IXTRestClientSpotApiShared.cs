@@ -10,7 +10,6 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         IBalanceRestClient,
         IDepositRestClient,
         IKlineRestClient,
-        IListenKeyRestClient,
         IOrderBookRestClient,
         IRecentTradeRestClient,
         IWithdrawalRestClient,

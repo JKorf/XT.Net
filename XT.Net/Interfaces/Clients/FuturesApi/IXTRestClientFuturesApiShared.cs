@@ -8,7 +8,6 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     public interface IXTRestClientFuturesApiShared :
         IBalanceRestClient,
         IKlineRestClient,
-        IListenKeyRestClient,
         IOrderBookRestClient,
         IRecentTradeRestClient,
         IFundingRateRestClient,
