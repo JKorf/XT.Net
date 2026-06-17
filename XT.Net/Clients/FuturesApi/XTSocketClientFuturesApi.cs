@@ -11,7 +11,9 @@ using CryptoExchange.Net.Objects.Sockets;
 using CryptoExchange.Net.SharedApis;
 using CryptoExchange.Net.Sockets;
 using CryptoExchange.Net.Sockets.Default;
+using CryptoExchange.Net.TokenManagement;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,16 +34,39 @@ namespace XT.Net.Clients.FuturesApi
     /// <summary>
     /// Client providing access to the XT Futures websocket Api
     /// </summary>
-    internal partial class XTSocketClientFuturesApi : XTSocketApiClient<XTFuturesAuthenticationProvider>, IXTSocketClientFuturesApi
+    internal partial class XTSocketClientFuturesApi : SocketApiClient<XTEnvironment, XTFuturesAuthenticationProvider, XTCredentials>, IXTSocketClientFuturesApi
     {
+        private readonly ILoggerFactory? _loggerFactory;
+        private XTRestClient? _tokenClient;
+        internal TokenManager TokenManager { get; }
+        private XTRestClient TokenClient
+        {
+            get
+            {
+                if (_tokenClient == null)
+                {
+                    _tokenClient = new XTRestClient(null, _loggerFactory, Options.Create(new XTRestOptions
+                    {
+                        ApiCredentials = ApiCredentials,
+                        Environment = ClientOptions.Environment,
+                        Proxy = ClientOptions.Proxy,
+                        OutputOriginalData = ClientOptions.OutputOriginalData
+                    }));
+                }
+
+                return _tokenClient;
+            }
+        }
         #region constructor/destructor
 
         /// <summary>
         /// ctor
         /// </summary>
         internal XTSocketClientFuturesApi(ILoggerFactory? loggerFactory, XTSocketOptions options) :
-            base(loggerFactory, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
+            base(loggerFactory, XTExchange.Metadata.Id, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
         {
+            _loggerFactory = loggerFactory;
+
             RegisterPeriodicQuery(
                 "Ping",
                 TimeSpan.FromSeconds(20),
@@ -55,6 +80,13 @@ namespace XT.Net.Clients.FuturesApi
                         _ = connection.TriggerReconnectAsync();
                     }
                 });
+
+            TokenManager = new TokenManager(
+                XTExchange.Metadata.Id,
+                loggerFactory,
+                TimeSpan.FromMinutes(30),
+                TimeSpan.FromMinutes(60),
+                startToken: StartListenKeyAsync);
         }
         #endregion
 
@@ -65,33 +97,6 @@ namespace XT.Net.Clients.FuturesApi
         /// <inheritdoc />
         protected override XTFuturesAuthenticationProvider CreateAuthenticationProvider(XTCredentials credentials)
             => new XTFuturesAuthenticationProvider(credentials);
-
-        /// <inheritdoc />
-        protected override Task<CallResult> RevitalizeRequestAsync(Subscription subscription)
-        {
-            // Refresh the listen key before resubscribing on a reconnected socket.
-            if (subscription is not IXTAuthenticatedSubscription authSubscription)
-                return Task.FromResult(CallResult.Ok());
-
-            return RefreshSubscriptionListenKeyAsync(t => authSubscription.Token = t);
-        }
-
-        /// <inheritdoc />
-        protected override async Task<CallResult<string>> FetchListenKeyAsync()
-        {
-            using var restClient = new XTRestClient(opts =>
-            {
-                opts.ApiCredentials = ApiCredentials;
-                opts.Environment = ClientOptions.Environment;
-                opts.Proxy = ClientOptions.Proxy;
-                opts.RequestTimeout = ClientOptions.RequestTimeout;
-            });
-            var result = await restClient.UsdtFuturesApi.Account.GetListenKeyAsync().ConfigureAwait(false);
-            if (!result.Success)
-                return CallResult.Fail<string>(result.Error);
-
-            return CallResult.Ok(result.Data);
-        }
 
         /// <inheritdoc />
         public async Task<WebSocketResult<UpdateSubscription>> SubscribeToTradeUpdatesAsync(string symbol, Action<DataEvent<XTFuturesTrade>> onMessage, CancellationToken ct = default)
@@ -355,8 +360,29 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default)
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default)
+            => SubscribeToBalancesUpdatesAsync(null, onMessage, ct);
+
+        /// <inheritdoc />
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(string? listenKey, Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default)
         {
+            if (listenKey == null && !Authenticated)
+                return WebSocketResult.Fail<UpdateSubscription>(Exchange, new NoApiCredentialsError());
+
+            TokenLease? lease = null;
+            if (listenKey == null)
+            {
+                var leaseResult = await TokenManager.AcquireAsync(new TokenScope(
+                    XTExchange.Metadata.Id,
+                    EnvironmentName,
+                    "Futures",
+                    ApiCredentials!.Key), ct).ConfigureAwait(false);
+                if (!leaseResult.Success)
+                    return WebSocketResult.Fail<UpdateSubscription>(Exchange, leaseResult.Error);
+
+                lease = leaseResult.Data;
+            }
+
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTFuturesBalanceUpdate>>((receiveTime, originalData, data) =>
             {
                 onMessage(
@@ -370,23 +396,41 @@ namespace XT.Net.Clients.FuturesApi
                 this,
                 "balance",
                 listenKey,
-                internalHandler);
-            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+                internalHandler)
+            {
+                TokenLease = lease
+            };
+            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+            if (!result.Success && lease != null)
+                await lease.ReleaseAsync().ConfigureAwait(false);
+
+            return result;
         }
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToBalancesUpdatesAsync(Action<DataEvent<XTFuturesBalanceUpdate>> onMessage, CancellationToken ct = default)
-        {
-            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
-            if (!listenKey.Success)
-                return WebSocketResult.Fail<UpdateSubscription>(Exchange, listenKey.Error!);
-
-            return await SubscribeToBalancesUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
-        }
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default)
+            => SubscribeToPositionUpdatesAsync(null, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(string? listenKey, Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default)
         {
+            if (listenKey == null && !Authenticated)
+                return WebSocketResult.Fail<UpdateSubscription>(Exchange, new NoApiCredentialsError());
+
+            TokenLease? lease = null;
+            if (listenKey == null)
+            {
+                var leaseResult = await TokenManager.AcquireAsync(new TokenScope(
+                    XTExchange.Metadata.Id,
+                    EnvironmentName,
+                    "Futures",
+                    ApiCredentials!.Key), ct).ConfigureAwait(false);
+                if (!leaseResult.Success)
+                    return WebSocketResult.Fail<UpdateSubscription>(Exchange, leaseResult.Error);
+
+                lease = leaseResult.Data;
+            }
+
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTFuturesPositionUpdate>>((receiveTime, originalData, data) =>
             {
                 onMessage(
@@ -400,23 +444,41 @@ namespace XT.Net.Clients.FuturesApi
                 this,
                 "position",
                 listenKey,
-                internalHandler);
-            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+                internalHandler)
+            {
+                TokenLease = lease
+            };
+            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+            if (!result.Success && lease != null)
+                await lease.ReleaseAsync().ConfigureAwait(false);
+
+            return result;
         }
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(Action<DataEvent<XTFuturesPositionUpdate>> onMessage, CancellationToken ct = default)
-        {
-            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
-            if (!listenKey.Success)
-                return WebSocketResult.Fail<UpdateSubscription>(Exchange, listenKey.Error!);
-
-            return await SubscribeToPositionUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
-        }
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default)
+            => SubscribeToOrderUpdatesAsync(null, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(string? listenKey, Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default)
         {
+            if (listenKey == null && !Authenticated)
+                return WebSocketResult.Fail<UpdateSubscription>(Exchange, new NoApiCredentialsError());
+
+            TokenLease? lease = null;
+            if (listenKey == null)
+            {
+                var leaseResult = await TokenManager.AcquireAsync(new TokenScope(
+                    XTExchange.Metadata.Id,
+                    EnvironmentName,
+                    "Futures",
+                    ApiCredentials!.Key), ct).ConfigureAwait(false);
+                if (!leaseResult.Success)
+                    return WebSocketResult.Fail<UpdateSubscription>(Exchange, leaseResult.Error);
+
+                lease = leaseResult.Data;
+            }
+
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTFuturesOrder>>((receiveTime, originalData, data) =>
             {
                 onMessage(
@@ -430,23 +492,41 @@ namespace XT.Net.Clients.FuturesApi
                 this,
                 "order",
                 listenKey,
-                internalHandler);
-            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+                internalHandler)
+            {
+                TokenLease = lease
+            };
+            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+            if (!result.Success && lease != null)
+                await lease.ReleaseAsync().ConfigureAwait(false);
+
+            return result;
         }
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToOrderUpdatesAsync(Action<DataEvent<XTFuturesOrder>> onMessage, CancellationToken ct = default)
-        {
-            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
-            if (!listenKey.Success)
-                return WebSocketResult.Fail<UpdateSubscription>(Exchange, listenKey.Error!);
-
-            return await SubscribeToOrderUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
-        }
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default)
+            => SubscribeToUserTradeUpdatesAsync(null, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string listenKey, Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(string? listenKey, Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default)
         {
+            if (listenKey == null && !Authenticated)
+                return WebSocketResult.Fail<UpdateSubscription>(Exchange, new NoApiCredentialsError());
+
+            TokenLease? lease = null;
+            if (listenKey == null)
+            {
+                var leaseResult = await TokenManager.AcquireAsync(new TokenScope(
+                    XTExchange.Metadata.Id,
+                    EnvironmentName,
+                    "Futures",
+                    ApiCredentials!.Key), ct).ConfigureAwait(false);
+                if (!leaseResult.Success)
+                    return WebSocketResult.Fail<UpdateSubscription>(Exchange, leaseResult.Error);
+
+                lease = leaseResult.Data;
+            }
+
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTFuturesUserTradeUpdate>>((receiveTime, originalData, data) =>
             {
                 UpdateTimeOffset(data.Data.Timestamp);
@@ -463,23 +543,41 @@ namespace XT.Net.Clients.FuturesApi
                 this,
                 "trade",
                 listenKey,
-                internalHandler);
-            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+                internalHandler)
+            {
+                TokenLease = lease
+            };
+            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+            if (!result.Success && lease != null)
+                await lease.ReleaseAsync().ConfigureAwait(false);
+
+            return result;
         }
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(Action<DataEvent<XTFuturesUserTradeUpdate>> onMessage, CancellationToken ct = default)
-        {
-            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
-            if (!listenKey.Success)
-                return WebSocketResult.Fail<UpdateSubscription>(Exchange, listenKey.Error!);
-
-            return await SubscribeToUserTradeUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
-        }
+        public Task<WebSocketResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default)
+            => SubscribeToNotificationUpdatesAsync(null, onMessage, ct);
 
         /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(string listenKey, Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default)
+        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(string? listenKey, Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default)
         {
+            if (listenKey == null && !Authenticated)
+                return WebSocketResult.Fail<UpdateSubscription>(Exchange, new NoApiCredentialsError());
+
+            TokenLease? lease = null;
+            if (listenKey == null)
+            {
+                var leaseResult = await TokenManager.AcquireAsync(new TokenScope(
+                    XTExchange.Metadata.Id,
+                    EnvironmentName,
+                    "Futures",
+                    ApiCredentials!.Key), ct).ConfigureAwait(false);
+                if (!leaseResult.Success)
+                    return WebSocketResult.Fail<UpdateSubscription>(Exchange, leaseResult.Error);
+
+                lease = leaseResult.Data;
+            }
+
             var internalHandler = new Action<DateTime, string?, XTSocketUpdate<XTNotification>>((receiveTime, originalData, data) =>
             {
                 onMessage(
@@ -493,18 +591,15 @@ namespace XT.Net.Clients.FuturesApi
                 this,
                 "notify",
                 listenKey,
-                internalHandler);
-            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
-        }
+                internalHandler)
+            {
+                TokenLease = lease
+            };
+            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
+            if (!result.Success && lease != null)
+                await lease.ReleaseAsync().ConfigureAwait(false);
 
-        /// <inheritdoc />
-        public async Task<WebSocketResult<UpdateSubscription>> SubscribeToNotificationUpdatesAsync(Action<DataEvent<XTNotification>> onMessage, CancellationToken ct = default)
-        {
-            var listenKey = await GetListenKeyAsync().ConfigureAwait(false);
-            if (!listenKey.Success)
-                return WebSocketResult.Fail<UpdateSubscription>(Exchange, listenKey.Error!);
-
-            return await SubscribeToNotificationUpdatesAsync(listenKey.Data, onMessage, ct).ConfigureAwait(false);
+            return result;
         }
 
         /// <inheritdoc />
@@ -513,5 +608,29 @@ namespace XT.Net.Clients.FuturesApi
         /// <inheritdoc />
         public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverDate = null)
             => XTExchange.FormatSymbol(baseAsset, quoteAsset, tradingMode, deliverDate);
+
+
+        protected override async Task<CallResult> RevitalizeRequestAsync(Subscription subscription)
+        {
+            if (subscription.TokenLease == null)
+                return CallResult.Ok(); // Not an authenticated subscription, no need to revitalize
+
+            var scope = new TokenScope(
+                    XTExchange.Metadata.Id,
+                    EnvironmentName,
+                    "Futures",
+                    ApiCredentials!.Key);
+
+            return await TokenManager.AcquireAndReplaceAsync(subscription, scope).ConfigureAwait(false);
+        }
+
+        private async Task<CallResult<string>> StartListenKeyAsync(TokenScope tokenScope, CancellationToken ct)
+        {
+            var result = await TokenClient.UsdtFuturesApi.Account.GetListenKeyAsync(ct).ConfigureAwait(false);
+            if (!result.Success)
+                return CallResult.Fail<string>(result.Error);
+
+            return CallResult.Ok(result.Data);
+        }
     }
 }

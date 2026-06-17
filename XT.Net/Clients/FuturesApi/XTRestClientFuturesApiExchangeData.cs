@@ -29,7 +29,7 @@ namespace XT.Net.Clients.FuturesApi
         /// <inheritdoc />
         public async Task<HttpResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default)
         {
-            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/v4/public/time", XTExchange.RateLimiter.XT, 1, false);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.ClientOptions.Environment.SpotRestClientAddress, "/v4/public/time", XTExchange.RateLimiter.XT, 1, false);
             var result = await _baseClient.SendRawAsync<XTRestResponse<XTServerTime>>(request, null, ct).ConfigureAwait(false);
             if (!result.Success)
                 return HttpResult.Fail<DateTime>(result);

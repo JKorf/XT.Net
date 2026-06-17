@@ -147,7 +147,7 @@ namespace XT.Net.Clients.SpotApi
 
         #endregion
 
-        #region Transfer
+        #region Sub Account Transfer
 
         /// <inheritdoc />
         public async Task<HttpResult<long>> SubAccountTransferAsync(string asset, BusinessType from, BusinessType to, decimal quantity, string clientId, long toAccountId, long? fromAccountId = null, string? symbol = null, CancellationToken ct = default)

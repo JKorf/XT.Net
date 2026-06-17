@@ -11,23 +11,21 @@ using XT.Net.Objects.Internal;
 namespace XT.Net.Objects.Sockets.Subscriptions
 {
     /// <inheritdoc cref="Subscription" />
-    internal class XTFuturesAuthSubscription<T> : Subscription, IXTAuthenticatedSubscription
+    internal class XTFuturesAuthSubscription<T> : Subscription
     {
         private readonly SocketApiClient _client;
         private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
         private readonly string _topic;
-
-        /// <inheritdoc />
-        public string? Token { get; set; }
+        private readonly string? _listenKey;
 
         /// <summary>
         /// ctor
         /// </summary>
-        public XTFuturesAuthSubscription(ILogger logger, SocketApiClient client, string topic, string listenKey, Action<DateTime, string?, XTSocketUpdate<T>> handler) : base(logger, false)
+        public XTFuturesAuthSubscription(ILogger logger, SocketApiClient client, string topic, string? listenKey, Action<DateTime, string?, XTSocketUpdate<T>> handler) : base(logger, false)
         {
             _client = client;
             _handler = handler;
-            Token = listenKey;
+            _listenKey = listenKey;
             _topic = topic;
 
             MessageRouter = MessageRouter.CreateForEvent<XTSocketUpdate<T>>(topic, DoHandleMessage);
@@ -40,7 +38,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
-                Parameters = [_topic + "@" + Token],
+                Parameters = [_topic + "@" + (_listenKey ?? TokenLease!.Token.Token)],
             }, _topic);
         }
 
@@ -51,7 +49,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
             {
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",
-                Parameters = [_topic + "@" + Token],
+                Parameters = [_topic + "@" + (_listenKey ?? TokenLease!.Token.Token)],
             }, _topic);
         }
 

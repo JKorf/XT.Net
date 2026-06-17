@@ -12,16 +12,14 @@ using XT.Net.Objects.Internal;
 namespace XT.Net.Objects.Sockets.Subscriptions
 {
     /// <inheritdoc cref="Subscription" />
-    internal class XTSubscription<T> : Subscription, IXTAuthenticatedSubscription
+    internal class XTSubscription<T> : Subscription
     {
         private readonly SocketApiClient _client;
         private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
         private readonly string _topic;
         private readonly string[] _topics;
         private readonly string[]? _symbols;
-
-        /// <inheritdoc />
-        public string? Token { get; set; }
+        private readonly string? _token;
 
         /// <summary>
         /// ctor
@@ -30,7 +28,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         {
             _client = client;
             _handler = handler;
-            Token = token;
+            _token = token;
             _topic = topic;
             _topics = symbols == null ? [topic] : symbols!.Select(x => $"{topic}@{x}").ToArray();
             _symbols = symbols;
@@ -61,7 +59,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
                 Parameters = _topics,
-                ListenKey = Token
+                ListenKey = _token ?? TokenLease?.Token.Token
             }, null);
         }
 
@@ -73,7 +71,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",
                 Parameters = _topics,
-                ListenKey = Token,
+                ListenKey = _token ?? TokenLease?.Token.Token
             }, null);
         }
 
