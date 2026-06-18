@@ -26,7 +26,7 @@ namespace XT.Net
             request.Headers.Add("validate-appkey", Credential.Key);
             request.Headers.Add("validate-timestamp", timestamp);
 
-            var body = request.BodyParameters?.Count > 0 ? GetSerializedBody(_serializer, request.BodyParameters) : string.Empty;
+            var body = (request.BodyParameters != null && !request.BodyParameters.Empty) ? GetSerializedBody(_serializer, request.BodyParameters) : string.Empty;
             var queryString = request.GetQueryString(false);
             var signStr = $"{string.Join("&", request.Headers.Select(x => x.Key + "=" + x.Value))}#{request.RequestDefinition.Path}";
             if (!string.IsNullOrEmpty(queryString))
