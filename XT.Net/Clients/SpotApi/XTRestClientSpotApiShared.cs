@@ -9,6 +9,7 @@ using CryptoExchange.Net.Objects;
 using XT.Net.Enums;
 using CryptoExchange.Net;
 using CryptoExchange.Net.Objects.Errors;
+using XT.Net.Objects.Models;
 
 namespace XT.Net.Clients.SpotApi
 {
@@ -344,7 +345,13 @@ namespace XT.Net.Clients.SpotApi
 
             return HttpResult.Ok(result, ExchangeHelpers.ApplyFilter(result.Data.Data, x => x.CreateTime, request.StartTime, request.EndTime, direction)
                     .Select(x => 
-                        new SharedWithdrawal(x.Asset, x.Address, x.Quantity, x.Status == WithdrawalStatus.Success, x.CreateTime)
+                        new SharedWithdrawal(
+                            x.Asset, 
+                            x.Address,
+                            x.Quantity,
+                            x.Status == WithdrawalStatus.Success,
+                            x.CreateTime,
+                            GetWithdrawalStatus(x))
                         {
                             Confirmations = x.Confirmations,
                             Network = x.Network,
@@ -356,6 +363,25 @@ namespace XT.Net.Clients.SpotApi
                     .ToArray(), nextPageRequest);
         }
 
+        private SharedTransferStatus GetWithdrawalStatus(XTWithdrawal x)
+        {
+            if (x.Status == WithdrawalStatus.Canceled || x.Status == WithdrawalStatus.Fail)
+                return SharedTransferStatus.Failed;
+
+            if (x.Status == WithdrawalStatus.Success)
+                return SharedTransferStatus.Completed;
+
+            if (x.Status == WithdrawalStatus.Audited
+                || x.Status == WithdrawalStatus.AuditedAgain
+                || x.Status == WithdrawalStatus.InReview
+                || x.Status == WithdrawalStatus.Pending
+                || x.Status == WithdrawalStatus.Submited)
+            {
+                return SharedTransferStatus.InProgress;
+            }
+
+            return SharedTransferStatus.Unknown;
+        }
         #endregion
 
         #region Withdraw client
