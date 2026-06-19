@@ -70,7 +70,7 @@ namespace XT.Net.Clients.FuturesApi
         protected override Task<CallResult> RevitalizeRequestAsync(Subscription subscription)
         {
             // Refresh the listen key before resubscribing on a reconnected socket.
-            if (subscription is not IXTAuthenticatedSubscription authSubscription)
+            if (subscription is not IXTAuthenticatedSubscription authSubscription || authSubscription.Token == null)
                 return Task.FromResult(CallResult.SuccessResult);
 
             return RefreshSubscriptionListenKeyAsync(t => authSubscription.Token = t);
