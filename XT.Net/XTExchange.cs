@@ -25,7 +25,8 @@ namespace XT.Net
                 "https://www.xt.com",
                 ["https://doc.xt.com/"],
                 PlatformType.CryptoCurrencyExchange,
-                CentralizationType.Centralized
+                CentralizationType.Centralized,
+                XTEnvironment.All
                 );
 
         /// <summary>

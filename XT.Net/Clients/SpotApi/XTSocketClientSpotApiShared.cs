@@ -22,7 +22,7 @@ namespace XT.Net.Clients.SpotApi
 
         public void SetDefaultExchangeParameter(string key, object value) => ExchangeParameters.SetStaticParameter(Exchange, key, value);
         public void ResetDefaultExchangeParameters() => ExchangeParameters.ResetStaticParameters();
-        public SharedClientInfo Discover() => SharedUtils.GetClientInfo(this);
+        public SharedClientInfo Discover() => SharedUtils.GetClientInfo(XTExchange.Metadata, this);
 
         #region Balance client
         SubscribeBalanceOptions IBalanceSocketClient.SubscribeBalanceOptions { get; } = new SubscribeBalanceOptions(_exchangeName, true);
@@ -59,7 +59,15 @@ namespace XT.Net.Clients.SpotApi
                     return;
 
                 handler(update.ToType(
-                    new SharedKline(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol, update.Data.OpenTime, update.Data.ClosePrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.OpenPrice, update.Data.Volume)));
+                    new SharedKline(
+                        ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
+                        update.Data.Symbol, 
+                        update.Data.OpenTime, 
+                        update.Data.ClosePrice, 
+                        update.Data.HighPrice,
+                        update.Data.LowPrice,
+                        update.Data.OpenPrice,
+                        update.Data.Volume)));
             }, ct).ConfigureAwait(false);
 
             return result;
@@ -99,7 +107,15 @@ namespace XT.Net.Clients.SpotApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
-            var result = await SubscribeToTickerUpdatesAsync(symbols, update => handler(update.ToType(new SharedSpotTicker(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol, update.Data.LastPrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.Volume, update.Data.ChangePercentage * 100)
+            var result = await SubscribeToTickerUpdatesAsync(symbols, update => handler(update.ToType(
+                new SharedSpotTicker(
+                    ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
+                    update.Data.Symbol,
+                    update.Data.LastPrice,
+                    update.Data.HighPrice,
+                    update.Data.LowPrice,
+                    update.Data.Volume, 
+                    update.Data.ChangePercentage * 100)
             {
                 QuoteVolume = update.Data.QuoteVolume
             })), ct).ConfigureAwait(false);
@@ -124,7 +140,12 @@ namespace XT.Net.Clients.SpotApi
                 update =>
                 {
                     handler(update.ToType<SharedTrade[]>([
-                        new SharedTrade(ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol), update.Data.Symbol,update.Data.Quantity, update.Data.Price, update.Data.Timestamp)
+                        new SharedTrade(
+                            ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
+                            update.Data.Symbol,
+                            update.Data.Quantity, 
+                            update.Data.Price, 
+                            update.Data.Timestamp)
                     {
                         Side = update.Data.BuyerIsMaker ? SharedOrderSide.Sell : SharedOrderSide.Buy,
                     }]));
@@ -147,7 +168,7 @@ namespace XT.Net.Clients.SpotApi
             var result = await SubscribeToUserTradeUpdatesAsync(
                 update => handler(update.ToType<SharedUserTrade[]>( 
                     [new SharedUserTrade(
-                        ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),
+                        ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
                         update.Data.Symbol,
                         update.Data.OrderId.ToString(),
                         update.Data.Id.ToString(),
@@ -176,7 +197,7 @@ namespace XT.Net.Clients.SpotApi
             var result = await SubscribeToOrderUpdatesAsync(
                 update => handler(update.ToType<SharedSpotOrder[]>([
                     new SharedSpotOrder(
-                        ExchangeSymbolCache.ParseSymbol(_topicId, update.Data.Symbol),
+                        ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
                         update.Data.Symbol,
                         update.Data.OrderId.ToString(),
                         ParseOrderType(update.Data.OrderType),
