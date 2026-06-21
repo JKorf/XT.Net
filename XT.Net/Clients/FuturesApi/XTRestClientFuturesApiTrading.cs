@@ -180,11 +180,11 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Open Orders
 
         /// <inheritdoc />
-        public async Task<WebCallResult<XTFuturesOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default)
+        public async Task<HttpResult<XTFuturesOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default)
         {
-            var parameters = new ParameterCollection();
-            parameters.AddOptional("symbol", symbol?.ToLowerInvariant());
-            var request = _definitions.GetOrCreate(HttpMethod.Get, "/future/trade/v1/order/list-open-order", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            var parameters = new Parameters(XTExchange._parameterSerializationSettings);
+            parameters.Add("symbol", symbol?.ToLowerInvariant());
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/future/trade/v1/order/list-open-order", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTFuturesOrder[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
