@@ -140,7 +140,19 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="pageSize">["<c>size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
         Task<HttpResult<XTDataPage<XTFuturesOrder>>> GetOrdersAsync(string? symbol = null, OrderStatus? status = null, string? clientOrderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
-        
+
+        /// <summary>
+        /// Get open orders (orders in the NEW or PARTIALLY_FILLED state) across all markets, or a single market when a symbol is specified
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/ListOpenOrder" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/order/list-open-order
+        /// </para>
+        /// </summary>
+        /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `ETH_USDT`. When omitted, open orders for all symbols are returned</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<HttpResult<XTFuturesOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
         /// <summary>
         /// Cancel an order
         /// <para>
