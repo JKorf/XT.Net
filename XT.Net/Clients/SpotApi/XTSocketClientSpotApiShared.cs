@@ -33,7 +33,8 @@ namespace XT.Net.Clients.SpotApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 
             var result = await SubscribeToBalanceUpdatesAsync(
-                update => handler(update.ToType<SharedBalance[]>([new SharedBalance(update.Data.Asset, update.Data.Total - update.Data.Frozen, update.Data.Total)])),
+                update => handler(update.ToType<SharedBalance[]>([
+                    new SharedBalance(SupportedTradingModes, update.Data.Asset, update.Data.Total - update.Data.Frozen, update.Data.Total)])),
                 ct: ct).ConfigureAwait(false);
             return result;
         }

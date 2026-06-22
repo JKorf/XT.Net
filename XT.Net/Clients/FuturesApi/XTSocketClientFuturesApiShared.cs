@@ -33,7 +33,8 @@ namespace XT.Net.Clients.FuturesApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 
             var result = await SubscribeToBalancesUpdatesAsync(
-                update => handler(update.ToType<SharedBalance[]>([new SharedBalance(update.Data.Asset, update.Data.AvailableBalance, update.Data.WalletBalance)])),
+                update => handler(update.ToType<SharedBalance[]>([
+                    new SharedBalance(SupportedTradingModes, update.Data.Asset, update.Data.AvailableBalance, update.Data.WalletBalance)])),
                 ct: ct).ConfigureAwait(false);
 
             return result;

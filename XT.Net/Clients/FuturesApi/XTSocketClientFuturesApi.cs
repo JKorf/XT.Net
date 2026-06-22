@@ -400,11 +400,7 @@ namespace XT.Net.Clients.FuturesApi
             {
                 TokenLease = lease
             };
-            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
-            if (!result.Success && lease != null)
-                await lease.ReleaseAsync().ConfigureAwait(false);
-
-            return result;
+            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -448,11 +444,7 @@ namespace XT.Net.Clients.FuturesApi
             {
                 TokenLease = lease
             };
-            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
-            if (!result.Success && lease != null)
-                await lease.ReleaseAsync().ConfigureAwait(false);
-
-            return result;
+            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -496,11 +488,7 @@ namespace XT.Net.Clients.FuturesApi
             {
                 TokenLease = lease
             };
-            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
-            if (!result.Success && lease != null)
-                await lease.ReleaseAsync().ConfigureAwait(false);
-
-            return result;
+            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -547,11 +535,7 @@ namespace XT.Net.Clients.FuturesApi
             {
                 TokenLease = lease
             };
-            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
-            if (!result.Success && lease != null)
-                await lease.ReleaseAsync().ConfigureAwait(false);
-
-            return result;
+            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -595,11 +579,7 @@ namespace XT.Net.Clients.FuturesApi
             {
                 TokenLease = lease
             };
-            var result = await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
-            if (!result.Success && lease != null)
-                await lease.ReleaseAsync().ConfigureAwait(false);
-
-            return result;
+            return await SubscribeAsync(BaseAddress.AppendPath("ws/user"), subscription, ct).ConfigureAwait(false);
         }
 
         /// <inheritdoc />

@@ -95,7 +95,8 @@ namespace XT.Net.Clients.SpotApi
             if (!result.Success)
                 return HttpResult.Fail<SharedBalance[]>(result);
 
-            return HttpResult.Ok(result, result.Data.Assets.Select(x => new SharedBalance(x.Asset, x.QuantityAvailable, x.QuantityTotal)).ToArray());
+            return HttpResult.Ok(result, result.Data.Assets.Select(x =>
+                new SharedBalance(SupportedTradingModes, x.Asset, x.QuantityAvailable, x.QuantityTotal)).ToArray());
         }
 
         #endregion
