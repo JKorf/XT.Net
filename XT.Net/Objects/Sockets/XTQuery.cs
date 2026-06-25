@@ -23,14 +23,14 @@ namespace XT.Net.Objects.Sockets
             routes.Add(MessageRoute.CreateForQuery<XTSocketResponse>(request.Id, HandleMessage));
 
             if (listenKeyTopic != null)
-                routes.Add(MessageRoute.CreateForQuery<string>($"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
+                routes.Add(MessageRoute.CreateForQuery<string, XTSocketResponse>($"{listenKeyTopic}@invalid_listen_key", HandleListenKeyError));
             
             MessageRouter = MessageRouter.Create(routes.ToArray());
         }
 
-        public CallResult<string> HandleListenKeyError(SocketConnection connection, DateTime receiveTime, string? originalData, string message)
+        public CallResult<XTSocketResponse> HandleListenKeyError(SocketConnection connection, DateTime receiveTime, string? originalData, string message)
         {
-            return CallResult.Fail<string>(new ServerError(new ErrorInfo(ErrorType.Unauthorized, "Invalid listen key")));
+            return CallResult.Fail<XTSocketResponse>(new ServerError(new ErrorInfo(ErrorType.Unauthorized, "Invalid listen key")));
         }
 
         public CallResult<XTSocketResponse> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketResponse message)
