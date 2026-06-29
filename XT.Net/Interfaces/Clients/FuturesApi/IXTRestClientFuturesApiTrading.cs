@@ -33,7 +33,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="triggerStopPrice">["<c>triggerStopPrice</c>"] Trigger stop price</param>
         /// <param name="clientOrderId">["<c>clientOrderId</c>"] Client order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<long>> PlaceOrderAsync(string symbol, OrderSide orderSide, OrderType orderType, decimal quantity, PositionSide positionSide, decimal? price = null, TimeInForce? timeInForce = null, decimal? triggerProfitPrice = null, decimal? triggerStopPrice = null, string? clientOrderId = null, CancellationToken ct = default);
+        Task<HttpResult<long>> PlaceOrderAsync(string symbol, OrderSide orderSide, OrderType orderType, decimal quantity, PositionSide positionSide, decimal? price = null, TimeInForce? timeInForce = null, decimal? triggerProfitPrice = null, decimal? triggerStopPrice = null, string? clientOrderId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Place multiple new orders in a single call
@@ -46,7 +46,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orders">["<c>list</c>"] Order requests</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> PlaceMultipleOrdersAsync(IEnumerable<XTFuturesOrderRequest> orders, CancellationToken ct = default);
+        Task<HttpResult> PlaceMultipleOrdersAsync(IEnumerable<XTFuturesOrderRequest> orders, CancellationToken ct = default);
 
         /// <summary>
         /// Edit an existing order
@@ -71,7 +71,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="stopPrice">["<c>stopDelegatePrice</c>"] Stop loss order price</param>
         /// <param name="followUpOrder">["<c>followUpOrder</c>"] If true, it indicates chase order</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> EditOrderAsync(long orderId, decimal price, decimal quantity, decimal? triggerProfitPrice = null, decimal? triggerStopPrice = null, PriceType? triggerPriceType = null, OrderType? profitOrderType = null, TimeInForce? profitTimeInForce = null, decimal? profitPrice = null, OrderType? lossOrderType = null, TimeInForce? lossTimeInForce = null, string? stopPrice = null, bool? followUpOrder = null, CancellationToken ct = default);
+        Task<HttpResult> EditOrderAsync(long orderId, decimal price, decimal quantity, decimal? triggerProfitPrice = null, decimal? triggerStopPrice = null, PriceType? triggerPriceType = null, OrderType? profitOrderType = null, TimeInForce? profitTimeInForce = null, decimal? profitPrice = null, OrderType? lossOrderType = null, TimeInForce? lossTimeInForce = null, string? stopPrice = null, bool? followUpOrder = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get closed orders
@@ -89,7 +89,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTFuturesOrder>>> GetClosedOrdersAsync(string? symbol = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTFuturesOrder>>> GetClosedOrdersAsync(string? symbol = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get user trades
@@ -107,7 +107,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="page">["<c>page</c>"] Page</param>
         /// <param name="pageSize">["<c>size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTDataPage<XTFuturesUserTrade>>> GetUserTradesAsync(string? symbol = null, long? orderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<HttpResult<XTDataPage<XTFuturesUserTrade>>> GetUserTradesAsync(string? symbol = null, long? orderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get order by id
@@ -120,7 +120,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orderId">["<c>orderId</c>"] Order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTFuturesOrder>> GetOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult<XTFuturesOrder>> GetOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Get orders
@@ -139,7 +139,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="page">["<c>page</c>"] Page</param>
         /// <param name="pageSize">["<c>size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTDataPage<XTFuturesOrder>>> GetOrdersAsync(string? symbol = null, OrderStatus? status = null, string? clientOrderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<HttpResult<XTDataPage<XTFuturesOrder>>> GetOrdersAsync(string? symbol = null, OrderStatus? status = null, string? clientOrderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get open orders (orders in the NEW or PARTIALLY_FILLED state) across all markets, or a single market when a symbol is specified
@@ -152,8 +152,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `ETH_USDT`. When omitted, open orders for all symbols are returned</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTFuturesOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
-
+        Task<HttpResult<XTFuturesOrder[]>> GetOpenOrdersAsync(string? symbol = null, CancellationToken ct = default);
         /// <summary>
         /// Cancel an order
         /// <para>
@@ -165,7 +164,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orderId">["<c>orderId</c>"] Order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult> CancelOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel all open orders
@@ -178,7 +177,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelAllOrdersAsync(string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult> CancelAllOrdersAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get open positions
@@ -191,7 +190,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<XTPosition[]>> GetPositionsAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get position info
@@ -204,7 +203,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPositionInfo[]>> GetPositionsInfoAsync(string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<XTPositionInfo[]>> GetPositionsInfoAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Close all open positions
@@ -216,7 +215,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CloseAllPositionsAsync(CancellationToken ct = default);
+        Task<HttpResult> CloseAllPositionsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get margin call info
@@ -229,7 +228,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTMarginCallInfo[]>> GetMarginCallInfoAsync(string? symbol = null, CancellationToken ct = default);
+        Task<HttpResult<XTMarginCallInfo[]>> GetMarginCallInfoAsync(string? symbol = null, CancellationToken ct = default);
 
         /// <summary>
         /// Place a new trigger order
@@ -251,7 +250,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="orderPrice">["<c>price</c>"] Order price</param>
         /// <param name="clientOrderId">["<c>clientOrderId</c>"] Client order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<long>> PlaceTriggerOrderAsync(string symbol, OrderSide orderSide, TriggerOrderType tpSlOrderType, decimal quantity, decimal stopPrice, TimeInForce timeInForce, PriceType triggerPriceType, PositionSide positionSide, decimal? orderPrice = null, string? clientOrderId = null, CancellationToken ct = default);
+        Task<HttpResult<long>> PlaceTriggerOrderAsync(string symbol, OrderSide orderSide, TriggerOrderType tpSlOrderType, decimal quantity, decimal stopPrice, TimeInForce timeInForce, PriceType triggerPriceType, PositionSide positionSide, decimal? orderPrice = null, string? clientOrderId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel a trigger order
@@ -264,7 +263,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="triggerOrderId">["<c>entrustId</c>"] Trigger order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelTriggerOrderAsync(long triggerOrderId, CancellationToken ct = default);
+        Task<HttpResult> CancelTriggerOrderAsync(long triggerOrderId, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel all trigger orders for a symbol
@@ -277,7 +276,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelAllTriggerOrdersAsync(string symbol, CancellationToken ct = default);
+        Task<HttpResult> CancelAllTriggerOrdersAsync(string symbol, CancellationToken ct = default);
 
         /// <summary>
         /// Get trigger orders
@@ -295,7 +294,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="page">["<c>page</c>"] Page</param>
         /// <param name="pageSize">["<c>size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTDataPage<XTTriggerOrder>>> GetTriggerOrdersAsync(string? symbol = null, TriggerOrderStatus? status = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<HttpResult<XTDataPage<XTTriggerOrder>>> GetTriggerOrdersAsync(string? symbol = null, TriggerOrderStatus? status = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get trigger order
@@ -308,7 +307,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orderId">["<c>entrustId</c>"] Trigger order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTTriggerOrder>> GetTriggerOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult<XTTriggerOrder>> GetTriggerOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Get closed trigger orders
@@ -326,7 +325,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTTriggerOrder>>> GetClosedTriggerOrdersAsync(string? symbol = null, long? orderId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTTriggerOrder>>> GetClosedTriggerOrdersAsync(string? symbol = null, long? orderId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Place a new stop limit order
@@ -344,7 +343,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="expireTime">["<c>expireTime</c>"] Expire time</param>
         /// <param name="positionSide">["<c>positionSide</c>"] Position side</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<long>> PlaceStopLimitOrderAsync(string symbol, decimal quantity, decimal triggerProfitPrice, decimal triggerStopPrice, DateTime expireTime, PositionSide positionSide, CancellationToken ct = default);
+        Task<HttpResult<long>> PlaceStopLimitOrderAsync(string symbol, decimal quantity, decimal triggerProfitPrice, decimal triggerStopPrice, DateTime expireTime, PositionSide positionSide, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel a stop limit order
@@ -357,7 +356,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orderId">["<c>profitId</c>"] Stop limit order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelStopLimitOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult> CancelStopLimitOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel all stop limit orders for a symbol
@@ -370,7 +369,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelAllStopLimitOrdersAsync(string symbol, CancellationToken ct = default);
+        Task<HttpResult> CancelAllStopLimitOrdersAsync(string symbol, CancellationToken ct = default);
 
         /// <summary>
         /// Get trigger orders
@@ -388,7 +387,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="page">["<c>page</c>"] Page</param>
         /// <param name="pageSize">["<c>size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTDataPage<XTStopLimitOrder>>> GetStopLimitOrdersAsync(string? symbol = null, TriggerOrderStatus? status = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<HttpResult<XTDataPage<XTStopLimitOrder>>> GetStopLimitOrdersAsync(string? symbol = null, TriggerOrderStatus? status = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get stop limit order
@@ -401,7 +400,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orderId">["<c>profitId</c>"] Stop limit order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTStopLimitOrder>> GetStopLimitOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult<XTStopLimitOrder>> GetStopLimitOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Edit a stop limit order
@@ -416,7 +415,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="triggerProfitPrice">["<c>triggerProfitPrice</c>"] Trigger profit price</param>
         /// <param name="triggerStopPrice">["<c>triggerStopPrice</c>"] Trigger stop price</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> EditStopLimitOrderAsync(long orderId, decimal? triggerProfitPrice = null, decimal? triggerStopPrice = null, CancellationToken ct = default);
+        Task<HttpResult> EditStopLimitOrderAsync(long orderId, decimal? triggerProfitPrice = null, decimal? triggerStopPrice = null, CancellationToken ct = default);
 
         /// <summary>
         /// 
@@ -441,7 +440,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="clientOrderId">["<c>clientOrderId</c>"] Client order id</param>
         /// <param name="expireTime">["<c>expireTime</c>"] Expire time</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<long>> PlaceTrackOrderAsync(string symbol, OrderSide orderSide, PositionSide positionSide, PositionType positionType, decimal quantity, TrackRange trackRange, decimal callbackValue, PriceType triggerPriceType, decimal? activationPrice = null, string? clientMedia = null, string? clientMediaChannel = null, string? clientOrderId = null, DateTime? expireTime = null, CancellationToken ct = default);
+        Task<HttpResult<long>> PlaceTrackOrderAsync(string symbol, OrderSide orderSide, PositionSide positionSide, PositionType positionType, decimal quantity, TrackRange trackRange, decimal callbackValue, PriceType triggerPriceType, decimal? activationPrice = null, string? clientMedia = null, string? clientMediaChannel = null, string? clientOrderId = null, DateTime? expireTime = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel a track order
@@ -454,7 +453,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orderId">["<c>trackId</c>"] Track order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelTrackOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult> CancelTrackOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Get trigger order
@@ -467,7 +466,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="orderId">["<c>trackId</c>"] Track order id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTTrackOrder>> GetTrackOrderAsync(long orderId, CancellationToken ct = default);
+        Task<HttpResult<XTTrackOrder>> GetTrackOrderAsync(long orderId, CancellationToken ct = default);
 
         /// <summary>
         /// Get open track orders
@@ -484,7 +483,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="page">["<c>page</c>"] Page</param>
         /// <param name="pageSize">["<c>pageSize</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTDataPage<XTTrackOrder>>> GetOpenTrackOrdersAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<HttpResult<XTDataPage<XTTrackOrder>>> GetOpenTrackOrdersAsync(string? symbol = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
 
         /// <summary>
         /// Cancel all track orders for a symbol
@@ -497,7 +496,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETH_USDT`</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult> CancelAllTrackOrdersAsync(string symbol, CancellationToken ct = default);
+        Task<HttpResult> CancelAllTrackOrdersAsync(string symbol, CancellationToken ct = default);
 
         /// <summary>
         /// Get closed track orders
@@ -516,6 +515,6 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="page">["<c>page</c>"] Page</param>
         /// <param name="pageSize">["<c>size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTTrackOrder>>> GetClosedTrackOrdersAsync(string? symbol = null, TrackOrderStatus? status = null, long? orderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTTrackOrder>>> GetClosedTrackOrdersAsync(string? symbol = null, TrackOrderStatus? status = null, long? orderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
     }
 }

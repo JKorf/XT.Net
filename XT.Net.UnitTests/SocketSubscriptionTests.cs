@@ -27,7 +27,7 @@ namespace XT.Net.UnitTests
 
             }), logger);
 
-            var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Spot", "wss://stream.xt.com");
+            var tester = new SocketSubscriptionValidator<XTSocketClient>(client, "Subscriptions/Spot", "wss://stream.xt.com/public");
             await tester.ValidateConcurrentAsync<XTKlineUpdate>(
                 (client, handler) => client.SpotApi.SubscribeToKlineUpdatesAsync("eth_usdt", Enums.KlineInterval.FiveMinutes, handler),
                 (client, handler) => client.SpotApi.SubscribeToKlineUpdatesAsync("eth_usdt", Enums.KlineInterval.OneHour, handler),

@@ -24,7 +24,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         /// <returns></returns>
-        Task<WebCallResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default);
+        Task<HttpResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get your client IP
@@ -36,7 +36,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTClientIp>> GetClientIpAsync(CancellationToken ct = default);
+        Task<HttpResult<XTClientIp>> GetClientIpAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get symbol information
@@ -51,7 +51,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbols">["<c>symbols</c>"] Filter by symbols</param>
         /// <param name="version">["<c>version</c>"] Version number from a previous request. When the result has not been changed since this version number there will be no response</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTSymbols>> GetSymbolsAsync(string? symbol = null, IEnumerable<string>? symbols = null, string? version = null, CancellationToken ct = default);
+        Task<HttpResult<XTSymbols>> GetSymbolsAsync(string? symbol = null, IEnumerable<string>? symbols = null, string? version = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get the order book
@@ -65,7 +65,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="limit">["<c>limit</c>"] Number of rows of the book to return, max 1000</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTOrderBook>> GetOrderBookAsync(string symbol, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTOrderBook>> GetOrderBookAsync(string symbol, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get klines
@@ -82,7 +82,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTKline[]>> GetKlinesAsync(string symbol, KlineInterval interval, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get recent trades
@@ -96,7 +96,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `eth_usdt`</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTTrade[]>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTTrade[]>> GetRecentTradesAsync(string symbol, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get trade history
@@ -112,7 +112,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="direction">["<c>direction</c>"] Page direction</param>
         /// <param name="fromId">["<c>fromId</c>"] From id</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPage<XTTrade>>> GetTradeHistoryAsync(string symbol, int? limit = null, PageDirection? direction = null, long? fromId = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTTrade>>> GetTradeHistoryAsync(string symbol, int? limit = null, PageDirection? direction = null, long? fromId = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get tickers
@@ -126,7 +126,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">["<c>symbols</c>"] Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTTicker[]>> GetTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<HttpResult<XTTicker[]>> GetTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get price tickers
@@ -140,7 +140,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">["<c>symbols</c>"] Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTPriceTicker[]>> GetPriceTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<HttpResult<XTPriceTicker[]>> GetPriceTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get best orderbook offers
@@ -154,7 +154,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">["<c>symbols</c>"] Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTBookTicker[]>> GetBookTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<HttpResult<XTBookTicker[]>> GetBookTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get 24h price stats
@@ -168,7 +168,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `eth_usdt`</param>
         /// <param name="symbols">["<c>symbols</c>"] Filter by symbols</param>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XT24HTicker[]>> Get24HTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
+        Task<HttpResult<XT24HTicker[]>> Get24HTickersAsync(string? symbol = null, IEnumerable<string>? symbols = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get assets
@@ -180,7 +180,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTAssets>> GetAssetsAsync(CancellationToken ct = default);
+        Task<HttpResult<XTAssets>> GetAssetsAsync(CancellationToken ct = default);
 
         /// <summary>
         /// Get assets network info
@@ -192,7 +192,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </para>
         /// </summary>
         /// <param name="ct">Cancellation token</param>
-        Task<WebCallResult<XTAssetNetworks[]>> GetAssetNetworksAsync(CancellationToken ct = default);
+        Task<HttpResult<XTAssetNetworks[]>> GetAssetNetworksAsync(CancellationToken ct = default);
 
     }
 }

@@ -2,7 +2,7 @@
 
 XT.Net is a strongly typed C#/.NET client library for the XT exchange REST and WebSocket APIs. It is part of the CryptoExchange.Net family and follows the same result, client lifetime, dependency injection, and SharedApis patterns as the other JKorf exchange clients.
 
-Current source package version: 3.9.2. Target frameworks: `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, `net10.0`. Native AOT compatibility is enabled for compatible target frameworks.
+Current source package version: 3.11.0. CryptoExchange.Net dependency on this branch: 12.0.0-beta1. Target frameworks: `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, `net10.0`. Native AOT compatibility is enabled for compatible target frameworks.
 
 Use this file when generating XT.Net code for AI assistants. If a method, enum, or client member is not listed here, inspect `XT.Net/Interfaces/Clients/**` and the concrete source before writing code.
 
@@ -47,7 +47,7 @@ Do not use raw `HttpClient` or generic `ApiCredentials` for XT API calls.
 
 ## Result Handling
 
-REST calls return `WebCallResult<T>` or `WebCallResult`. Socket subscription calls return `CallResult<UpdateSubscription>`. The payload is only valid when `.Success` is true.
+Direct REST and SharedApis REST calls return `HttpResult<T>` or `HttpResult`. Direct and SharedApis socket subscription calls return `WebSocketResult<UpdateSubscription>`. SharedApis helper methods that do not perform HTTP/socket I/O can return `ExchangeCallResult<T>`. The payload is only valid when `.Success` is true.
 
 ```csharp
 var result = await restClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
@@ -317,6 +317,8 @@ new XTSocketClient().SpotApi.SharedClient
 new XTSocketClient().FuturesApi.SharedClient
 ```
 
+Use `SharedClient.Discover()` on any shared client root when tooling or exchange-agnostic code needs runtime metadata about implemented shared interfaces and endpoint options.
+
 Spot REST shared interfaces include: `IAssetsRestClient`, `IBalanceRestClient`, `IDepositRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IWithdrawalRestClient`, `IWithdrawRestClient`, `ISpotTickerRestClient`, `ISpotSymbolRestClient`, `ISpotOrderRestClient`, `IFeeRestClient`, `IBookTickerRestClient`, and `ITransferRestClient`.
 
 Futures REST shared interfaces include: `IBalanceRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IFundingRateRestClient`, `IFuturesSymbolRestClient`, `IFuturesTickerRestClient`, `ILeverageRestClient`, `IOpenInterestRestClient`, `IFuturesOrderRestClient`, `IFeeRestClient`, `IFuturesTriggerOrderRestClient`, `IFuturesTpSlRestClient`, and `IBookTickerRestClient`.
@@ -339,9 +341,9 @@ Socket shared interfaces include spot/futures ticker, trade, kline, order book, 
 ## Error Handling Pattern
 
 ```csharp
-async Task<WebCallResult<T>> WithRetry<T>(Func<Task<WebCallResult<T>>> call, int maxAttempts = 3)
+async Task<HttpResult<T>> WithRetry<T>(Func<Task<HttpResult<T>>> call, int maxAttempts = 3)
 {
-    WebCallResult<T> last = default!;
+    HttpResult<T> last = default!;
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
         last = await call();
@@ -367,6 +369,7 @@ async Task<WebCallResult<T>> WithRetry<T>(Func<Task<WebCallResult<T>>> call, int
 - Do not invent `GeneralApi`, `MarginApi`, `WalletApi`, `SubAccountApi`, `UsdFuturesSocketApi`, or `CoinFuturesSocketApi`.
 - Do not assume Binance-style symbol strings, endpoint names, or futures split on sockets.
 - Do not assume private WebSocket streams work from credentials alone; use token/listen key methods.
+- For shared clients, use `Discover()` instead of hard-coding supported interfaces when runtime capability discovery is needed.
 - Keep examples compilable. The unit test `XT.Net.UnitTests.Documentation.AiExampleCompileTests` builds every `Examples/ai-friendly/*.cs` file.
 
 ## Files for AI Tools

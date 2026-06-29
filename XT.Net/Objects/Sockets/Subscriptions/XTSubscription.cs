@@ -12,16 +12,14 @@ using XT.Net.Objects.Internal;
 namespace XT.Net.Objects.Sockets.Subscriptions
 {
     /// <inheritdoc cref="Subscription" />
-    internal class XTSubscription<T> : Subscription, IXTAuthenticatedSubscription
+    internal class XTSubscription<T> : Subscription
     {
         private readonly SocketApiClient _client;
         private readonly Action<DateTime, string?, XTSocketUpdate<T>> _handler;
         private readonly string _topic;
         private readonly string[] _topics;
         private readonly string[]? _symbols;
-
-        /// <inheritdoc />
-        public string? Token { get; set; }
+        private readonly string? _token;
 
         /// <summary>
         /// ctor
@@ -30,17 +28,27 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         {
             _client = client;
             _handler = handler;
-            Token = token;
+            _token = token;
             _topic = topic;
             _topics = symbols == null ? [topic] : symbols!.Select(x => $"{topic}@{x}").ToArray();
             _symbols = symbols;
 
             IndividualSubscriptionCount = symbols?.Length ?? 1;
 
-            MessageRouter = MessageRouter.CreateWithOptionalTopicFilters<XTSocketUpdate<T>>(
-                                topic,
-                                listenerIdentifiers == null ? symbols?.ToArray() : listenerIdentifiers.Select(x => x.Split('@')[1]).ToArray(), // When Matcher is removed this can be simplified
-                                DoHandleMessage);
+            var topicFilters = listenerIdentifiers == null ? symbols?.ToArray() : listenerIdentifiers.Select(x => x.Split('@')[1]).ToArray();
+            if (topicFilters != null)
+            {
+                MessageRouter = MessageRouter.CreateForEvent<XTSocketUpdate<T>>(
+                                    topic,
+                                    topicFilters,
+                                    DoHandleMessage);
+            }
+            else
+            {
+                MessageRouter = MessageRouter.CreateForEvent<XTSocketUpdate<T>>(
+                                    topic,
+                                    DoHandleMessage);
+            }
         }
 
         /// <inheritdoc />
@@ -51,7 +59,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "subscribe",
                 Parameters = _topics,
-                ListenKey = Token
+                ListenKey = _token ?? TokenLease?.Token.Token
             }, null);
         }
 
@@ -63,7 +71,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
                 Id = ExchangeHelpers.NextId().ToString(),
                 Method = "unsubscribe",
                 Parameters = _topics,
-                ListenKey = Token,
+                ListenKey = _token ?? TokenLease?.Token.Token
             }, null);
         }
 
@@ -71,7 +79,7 @@ namespace XT.Net.Objects.Sockets.Subscriptions
         public CallResult DoHandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, XTSocketUpdate<T> message)
         {
             _handler.Invoke(receiveTime, originalData, message);
-            return CallResult.SuccessResult;
+            return CallResult.Ok();
         }
     }
 }

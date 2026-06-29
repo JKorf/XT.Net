@@ -1,6 +1,6 @@
 // 05-error-handling.cs
 //
-// Demonstrates: WebCallResult patterns, retry logic, common XT.Net error scenarios,
+// Demonstrates: HttpResult patterns, retry logic, common XT.Net error scenarios,
 // and symbol validation before order placement.
 //
 // Setup:
@@ -17,6 +17,8 @@ var client = new XTRestClient(options =>
 });
 
 // ---- 1. THE BASIC PATTERN ----
+// Direct and SharedApis REST methods return HttpResult<T> or HttpResult.
+// Direct and SharedApis WebSocket subscriptions return WebSocketResult<UpdateSubscription>.
 // .Success is true/false. .Data is valid only when .Success is true.
 // .Error contains structured error info when .Success is false.
 // .Error.IsTransient hints whether a retry might succeed.
@@ -39,11 +41,11 @@ else
 // Retry only on transient errors such as network issues, rate limits, or server overload.
 // Do not retry validation errors, bad credentials, or insufficient balance.
 
-async Task<WebCallResult<T>> WithRetry<T>(
-    Func<Task<WebCallResult<T>>> call,
+async Task<HttpResult<T>> WithRetry<T>(
+    Func<Task<HttpResult<T>>> call,
     int maxAttempts = 3)
 {
-    WebCallResult<T> last = default!;
+    HttpResult<T> last = default!;
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
         last = await call();

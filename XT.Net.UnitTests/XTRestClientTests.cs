@@ -1,6 +1,7 @@
 using CryptoExchange.Net.Authentication;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Converters.SystemTextJson;
+using CryptoExchange.Net.Objects;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -27,12 +28,11 @@ namespace XT.Net.UnitTests
                     return headers["validate-signature"].ToString();
                 },
                 "642fdbb36aae8a672c52c35c621ef1b9f50edbd37a44784a0d264a54ad87ff53",
-                new Dictionary<string, object>
+                new Parameters(XTExchange._parameterSerializationSettings)
                 {
                     { "symbol", "LTCBTC" },
                 },
                 DateTimeConverter.ParseFromDouble(1499827320559),
-                true,
                 false);
         }
 

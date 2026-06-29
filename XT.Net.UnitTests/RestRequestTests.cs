@@ -150,7 +150,7 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(), "GetOpenTrackOrders", nestedJsonProperty: "result");
         }
 
-        private bool IsAuthenticated(WebCallResult result)
+        private bool IsAuthenticated(IHttpResult result)
         {
             return result.RequestHeaders.Any(x => x.Key == "validate-signature");
         }

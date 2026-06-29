@@ -11,12 +11,7 @@ namespace XT.Net.Objects.Sockets
         public XTPingQuery() : base("ping", false, 0)
         {
             RequestTimeout = TimeSpan.FromSeconds(5);
-            MessageRouter = MessageRouter.CreateWithoutHandler<string>("pong");
-        }
-
-        public CallResult<string> HandleMessage(SocketConnection connection, DateTime receiveTime, string? originalData, string message)
-        {
-            return new CallResult<string>(message, originalData, null);
+            MessageRouter = MessageRouter.CreateVoid<string>("pong");
         }
     }
 }

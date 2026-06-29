@@ -49,8 +49,8 @@ namespace XT.Net.Clients
         {
             Initialize(options.Value);
 
-            FuturesApi = AddApiClient(new XTSocketClientFuturesApi(_logger, options.Value));
-            SpotApi = AddApiClient(new XTSocketClientSpotApi(_logger, options.Value));
+            FuturesApi = AddApiClient(new XTSocketClientFuturesApi(loggerFactory, options.Value));
+            SpotApi = AddApiClient(new XTSocketClientSpotApi(loggerFactory, options.Value));
         }
         #endregion
 

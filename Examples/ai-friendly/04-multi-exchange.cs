@@ -15,6 +15,7 @@ using XT.Net.Clients;
 // ---- THE PATTERN ----
 // Each exchange client exposes a `.SharedClient` property on supported API surfaces.
 // Shared clients implement interfaces like ISpotTickerRestClient and IOrderBookSocketClient.
+// Use SharedClient.Discover() when you need runtime capability metadata.
 
 ISpotTickerRestClient xtShared = new XTRestClient().SpotApi.SharedClient;
 
@@ -51,6 +52,7 @@ async Task PrintTicker(ISpotTickerRestClient client, SharedSymbol symbol)
 //   new XTSocketClient().FuturesApi.SharedClient
 
 // ---- WEBSOCKET EXAMPLE - SHARED SUBSCRIPTION ----
+// Shared socket subscriptions return WebSocketResult<UpdateSubscription>.
 var xtSocket = new XTSocketClient();
 ITickerSocketClient tickerSocket = xtSocket.SpotApi.SharedClient;
 

@@ -17,7 +17,7 @@ The repository unit test `XT.Net.UnitTests.Documentation.AiExampleCompileTests` 
 | `02-futures.cs` | USDT-M futures leverage, market order, positions, close-all pattern |
 | `03-websocket.cs` | Spot and futures public streams plus private token/listen-key patterns |
 | `04-multi-exchange.cs` | CryptoExchange.Net SharedApis for exchange-agnostic code |
-| `05-error-handling.cs` | `WebCallResult<T>` handling, retry decisions, symbol validation |
+| `05-error-handling.cs` | `HttpResult<T>` handling, retry decisions, symbol validation |
 
 ## Running
 

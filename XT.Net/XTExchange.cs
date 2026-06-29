@@ -25,7 +25,8 @@ namespace XT.Net
                 "https://www.xt.com",
                 ["https://doc.xt.com/"],
                 PlatformType.CryptoCurrencyExchange,
-                CentralizationType.Centralized
+                CentralizationType.Centralized,
+                XTEnvironment.All
                 );
 
         /// <summary>
@@ -61,6 +62,11 @@ namespace XT.Net
         public static ExchangeType Type { get; } = ExchangeType.CEX;
 
         internal static JsonSerializerContext _serializerContext = JsonSerializerContextCache.GetOrCreate<XTSourceGenerationContext>();
+        internal static ParameterSerializationSettings _parameterSerializationSettings = new ParameterSerializationSettings
+        {
+            Decimal = DecimalSerialization.Number,
+            DateTimes = DateTimeSerialization.MillisecondsNumber
+        };
 
         /// <summary>
         /// Aliases for XT assets
@@ -95,7 +101,7 @@ namespace XT.Net
         /// <summary>
         /// Rate limiter configuration for the XT API
         /// </summary>
-        public static XTRateLimiters RateLimiter { get; } = new XTRateLimiters();
+        public static XTRateLimiters RateLimiter { get; set; } = new XTRateLimiters();
     }
 
     /// <summary>
@@ -114,13 +120,19 @@ namespace XT.Net
         public event Action<RateLimitUpdateEvent> RateLimitUpdated;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        internal XTRateLimiters()
+        /// <summary>
+        /// ctor
+        /// </summary>
+        public XTRateLimiters()
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
             Initialize();
         }
 
-        private void Initialize()
+        /// <summary>
+        /// Initialize the rate limits
+        /// </summary>
+        protected virtual void Initialize()
         {
             XT = new RateLimitGate("XT");
             RestFutures = new RateLimitGate("Rest Futures")
