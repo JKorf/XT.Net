@@ -496,18 +496,11 @@ namespace XT.Net.Clients.FuturesApi
                 return HttpResult.Fail<SharedFuturesOrder[]>(Exchange, validationError);
 
             var symbol = request.Symbol?.GetSymbol(FormatSymbol);
-            var ordersNew = Trading.GetOrdersAsync(symbol, status: OrderStatus.New, ct: ct);
-            var ordersPartialFilled = Trading.GetOrdersAsync(symbol, status: OrderStatus.New, ct: ct);
-            await Task.WhenAll(ordersNew, ordersPartialFilled).ConfigureAwait(false);
-            if (!ordersNew.Result.Success)
-                return HttpResult.Fail<SharedFuturesOrder[]>(ordersNew.Result);
-            if (!ordersPartialFilled.Result.Success)
-                return HttpResult.Fail<SharedFuturesOrder[]>(ordersPartialFilled.Result);
+            var orders = await Trading.GetOpenOrdersAsync(symbol, ct: ct).ConfigureAwait(false);
+            if (!orders.Success)
+                return HttpResult.Fail<SharedFuturesOrder[]>(orders);
 
-            var data = ordersNew.Result.Data.Data.ToList();
-            data.AddRange(ordersPartialFilled.Result.Data.Data.Where(x => !data.Any(x => x.OrderId == x.OrderId)));
-
-            return HttpResult.Ok(ordersNew.Result, data.Select(x => new SharedFuturesOrder(
+            return HttpResult.Ok(orders, orders.Data.Select(x => new SharedFuturesOrder(
                 ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, x.Symbol),
                 x.Symbol,
                 x.OrderId.ToString(),
