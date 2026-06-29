@@ -39,7 +39,6 @@ namespace XT.Net.Clients.SpotApi
             parameters.Add("timeInForce", timeInForce);
             parameters.Add("bizType", businessType);
             parameters.Add("quantity", quantity);
-#warning these were added as string, check if number is valid
             parameters.Add("quoteQty", quoteQuantity);
             parameters.Add("price", price);
             parameters.Add("clientOrderId", clientOrderId);
