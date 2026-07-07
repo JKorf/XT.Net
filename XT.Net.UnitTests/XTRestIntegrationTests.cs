@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using XT.Net.Clients;
 using XT.Net.Objects.Options;
@@ -47,95 +48,153 @@ namespace XT.Net.UnitTests
         [Test]
         public async Task TestSpotAccountData()
         {
-            await RunAndCheckResult(client => client.SpotApi.Account.GetBalanceAsync("usdt", default), true);
-            await RunAndCheckResult(client => client.SpotApi.Account.GetBalancesAsync(default, default), true);
-            await RunAndCheckResult(client => client.SpotApi.Account.GetDepositHistoryAsync("USDT", "BNB Smart Chain", default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.SpotApi.Account.GetWithdrawalHistoryAsync("USDT", "BNB Smart Chain", default, default, default, default, default, default, default), true);
+            var warnings = new List<Exception>();
+            await RunAndCheckResult(warnings, client => client.SpotApi.Account.GetBalanceAsync("usdt", default), true, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.Account.GetBalancesAsync(default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.Account.GetDepositHistoryAsync("USDT", "BNB Smart Chain", default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.Account.GetWithdrawalHistoryAsync("USDT", "BNB Smart Chain", default, default, default, default, default, default, default), true, "result");
+            foreach (var warning in warnings)
+                Assert.Warn(warning.Message);
         }
 
         [Test]
         public async Task TestSpotExchangeData()
         {
+            var warnings = new List<Exception>();
             await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetServerTimeAsync(default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetClientIpAsync(default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetSymbolsAsync(default, default, default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetOrderBookAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetKlinesAsync("eth_usdt", Enums.KlineInterval.OneDay, default, default, default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetRecentTradesAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetTradeHistoryAsync("eth_usdt", default, default, default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetTickersAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetPriceTickersAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetBookTickersAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.Get24HTickersAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetAssetsAsync(default), false);
-            await RunAndCheckResult(client => client.SpotApi.ExchangeData.GetAssetNetworksAsync(default), false);
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetClientIpAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetSymbolsAsync(default, default, default, default), false, "result", [
+                "chainRelation" // Unknown 
+                ]);
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetOrderBookAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetKlinesAsync("eth_usdt", Enums.KlineInterval.OneDay, default, default, default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetRecentTradesAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetTradeHistoryAsync("eth_usdt", default, default, default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetTickersAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetPriceTickersAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetBookTickersAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.Get24HTickersAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetAssetsAsync(default), false, "result", ignoreProperties: [
+                "chainRelation",
+                "plates",
+                "nominalValue"
+                ]);
+            await RunAndCheckResult(warnings, client => client.SpotApi.ExchangeData.GetAssetNetworksAsync(default), false, "result");
+            foreach (var warning in warnings)
+                Assert.Warn(warning.Message);
         }
 
         [Test]
         public async Task TestSpotTradingData()
         {
-            await RunAndCheckResult(client => client.SpotApi.Trading.GetOpenOrdersAsync(default, default, default, default), true);
-            await RunAndCheckResult(client => client.SpotApi.Trading.GetClosedOrdersAsync(default, default, default, default, default, default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.SpotApi.Trading.GetUserTradesAsync(default, default, default, default, default, default, default, default, default, default, default), true);
+            var warnings = new List<Exception>();
+            await RunAndCheckResult(warnings, client => client.SpotApi.Trading.GetOpenOrdersAsync(default, default, default, default), true, "result", ignoreProperties: [
+                "level",
+                "highOrderType",
+                "highPrice",
+                "highTriggerPrice",
+                "lowOrderType",
+                "lowPrice",
+                "lowTriggerPrice",
+                ]);
+            await RunAndCheckResult(warnings, client => client.SpotApi.Trading.GetClosedOrdersAsync(default, default, default, default, default, default, default, default, default, default, default, default), true, "result", ignoreProperties: [
+                "level",
+                "highOrderType",
+                "highPrice",
+                "highTriggerPrice",
+                "lowOrderType",
+                "lowPrice",
+                "lowTriggerPrice",
+                ]);
+            await RunAndCheckResult(warnings, client => client.SpotApi.Trading.GetUserTradesAsync(default, default, default, default, default, default, default, default, default, default, default), true, "result");
+            foreach (var warning in warnings)
+                Assert.Warn(warning.Message);
         }
 
         [Test]
         public async Task TestFuturesAccountData()
         {
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetBalancesAsync(default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetAccountInfoAsync(default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetUserAssetAsync("usdt", default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetUserAssetsAsync(default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetAccountBillsAsync(default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetFundingFeeHistoryAsync(default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetFeeRateAsync(default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Account.GetAdlInfoAsync(default), true);
+            var warnings = new List<Exception>();
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetBalancesAsync(default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetAccountInfoAsync(default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetUserAssetAsync("usdt", default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetUserAssetsAsync(default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetAccountBillsAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetFundingFeeHistoryAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetFeeRateAsync(default), true, "result", ignoreProperties: [
+                "ubasedTotalTradeVolume" // only different capitalization but already covered
+                ]);
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Account.GetAdlInfoAsync(default), true, "result");
+            foreach (var warning in warnings)
+                Assert.Warn(warning.Message);
         }
 
         [Test]
         public async Task TestFuturesExchangeData()
         {
+            var warnings = new List<Exception>();
             await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetServerTimeAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetClientIpAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetSymbolAssetsAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetSymbolAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetSymbolsAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetTickerAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetTickersAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetRecentTradesAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetOrderBookAsync("eth_usdt", default, default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetIndexPriceAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetIndexPricesAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetMarkPriceAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetMarkPricesAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetKlinesAsync("eth_usdt", Enums.FuturesKlineInterval.OneDay, default, default, default, default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetMarketInfoAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetMarketInfosAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetFundingRateAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetBookTickerAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetBookTickersAsync(default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetFundingRateHistoryAsync("eth_usdt", default, default, default, default), false);
-            //await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("eth_usdt", default, default, default, default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetOpenInterestAsync("eth_usdt", default), false);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.ExchangeData.GetSymbolInfoAsync(default), false);
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetClientIpAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetSymbolAssetsAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetSymbolAsync("eth_usdt", default), false, "result", ignoreProperties: [
+                "preMarket", // Unknown field type
+                "preMarketPhase", // Unknown field type
+                "preMarketPhaseDesc", // Unknown field type
+                "preMarketNoMarketOrderUntil", // Unknown field type
+                "noMarketOrderMinutes", // Unknown field type
+                "preMarketEnabled", // Unknown field type
+                ]);
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetSymbolsAsync(default), false, "result", ignoreProperties: [
+                "preMarket", // Unknown field type
+                "preMarketPhase", // Unknown field type
+                "preMarketPhaseDesc", // Unknown field type
+                "preMarketNoMarketOrderUntil", // Unknown field type
+                "noMarketOrderMinutes", // Unknown field type
+                "preMarketEnabled", // Unknown field type
+                ]);
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetTickerAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetTickersAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetRecentTradesAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetOrderBookAsync("eth_usdt", default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetIndexPriceAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetIndexPricesAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetMarkPriceAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetMarkPricesAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetKlinesAsync("eth_usdt", Enums.FuturesKlineInterval.OneDay, default, default, default, default), false, "result", ignoreProperties: [
+                "p" // Same as s
+                ]);
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetMarketInfoAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetMarketInfosAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetFundingRateAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetBookTickerAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetBookTickersAsync(default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetFundingRateHistoryAsync("eth_usdt", default, default, default, default), false, "result");
+            //await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetRiskBalanceAsync("eth_usdt", default, default, default, default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetOpenInterestAsync("eth_usdt", default), false, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetSymbolInfoAsync(default), false);
+            foreach (var warning in warnings)
+                Assert.Warn(warning.Message);
         }
 
         [Test]
         public async Task TestFuturesTradingData()
         {
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetClosedOrdersAsync(default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetUserTradesAsync(default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetOrdersAsync(default, default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetPositionsAsync(default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetPositionsInfoAsync(default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetMarginCallInfoAsync(default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetTriggerOrdersAsync(default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetClosedTriggerOrdersAsync(default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetStopLimitOrdersAsync(default, default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(default, default, default, default, default, default), true);
-            await RunAndCheckResult(client => client.UsdtFuturesApi.Trading.GetClosedTrackOrdersAsync(default, default, default, default, default, default, default, default), true);
+            var warnings = new List<Exception>();
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetClosedOrdersAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetUserTradesAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetOrdersAsync(default, default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetPositionsAsync(default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetPositionsInfoAsync(default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetMarginCallInfoAsync(default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetTriggerOrdersAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetClosedTriggerOrdersAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetStopLimitOrdersAsync(default, default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(default, default, default, default, default, default), true, "result");
+            await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.Trading.GetClosedTrackOrdersAsync(default, default, default, default, default, default, default, default), true, "result");
+            foreach (var warning in warnings)
+                Assert.Warn(warning.Message);
         }
 
         [Test]
