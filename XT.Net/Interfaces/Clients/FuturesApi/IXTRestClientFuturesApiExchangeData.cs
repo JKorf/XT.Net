@@ -16,7 +16,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get server time
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market1serverInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetServerTime" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/time
         /// </para>
@@ -29,7 +29,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get client IP
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesclientInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-trading-pair-currency" /><br />
         /// Endpoint:<br />
         /// GET /future/public/client
         /// </para>
@@ -42,7 +42,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get supported assets as quote asset in symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesclientInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/GetClientIp" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/symbol/coins
         /// </para>
@@ -55,7 +55,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get info on a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetSymbols" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-configuration-information-for-single-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/symbol/detail
         /// </para>
@@ -68,7 +68,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get futures symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetSymbols" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-configuration-information-for-listed-and-tradeable-symbols" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v3/public/symbol/list
         /// </para>
@@ -80,7 +80,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get leverage brackets for a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetLeverageBracket" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/see-leverage-stratification-of-single-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/leverage/bracket/detail
         /// </para>
@@ -93,7 +93,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get leverage brackets for all symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetLeverageBrackets" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/see-leverage-stratification-of-single-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/leverage/bracket/list
         /// </para>
@@ -105,7 +105,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get ticker info for a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetTicker" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-market-information-for-all-trading-pairs" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/ticker
         /// </para>
@@ -118,7 +118,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get tickers for all symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetTicker" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-market-information-for-specific-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/tickers
         /// </para>
@@ -130,7 +130,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get recent trades for a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetDeal" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-latest-transaction-information-of-trading-pairs" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/deal
         /// </para>
@@ -144,7 +144,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get order book
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-depth-data-of-trading-pairs" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/depth
         /// </para>
@@ -158,7 +158,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get index price for a symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetIndexPrices" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-index-price-for-all-trading-pairs" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/symbol-index-price
         /// </para>
@@ -171,7 +171,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get index prices for all symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetIndexPrices" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-index-price-for-single-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/index-price
         /// </para>
@@ -183,7 +183,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get index price for a symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetMarkPrice" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-mark-price-for-single-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/symbol-mark-price
         /// </para>
@@ -196,7 +196,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get index prices for all symbols
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgitMarkPrices" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-mark-price-for-all-trading-pairs" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/mark-price
         /// </para>
@@ -208,7 +208,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get kline/candlestick data
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetKLine" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-trading-pair-information-of-kline" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/kline
         /// </para>
@@ -225,7 +225,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get market info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetAggTicker" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-aggregated-market-information-for-specific-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/agg-ticker
         /// </para>
@@ -238,7 +238,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get market info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetAggTickers" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get_aggregated_market_information_for_all_trading_pairs" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/agg-tickers
         /// </para>
@@ -250,7 +250,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Funding rate
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetFundingRate" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-funding-rate-information" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/funding-rate
         /// </para>
@@ -263,7 +263,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get book ticker
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetTickerBook" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-ask-bid-market-information-for-specific-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/ticker/book
         /// </para>
@@ -276,7 +276,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get book tickers
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetTickerBooks" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-ask-bid-market-information-for-all-trading-pairs" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/ticker/books
         /// </para>
@@ -288,7 +288,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get funding rate history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetFundingRateRecord" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-funding-rate-records" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/q/funding-rate-record
         /// </para>
@@ -304,7 +304,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get risk balance info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetRiskBalance" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-trading-pair-risk-fund-balance" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/contract/risk-balance
         /// </para>
@@ -320,7 +320,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get open interest info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quotesgetOpenInterest" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/MarketData/get-the-open-position-of-a-trading-pair" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/contract/open-interest
         /// </para>
@@ -333,7 +333,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get symbol info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_quote_collectiongetFutureInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Quote%20collection/get-futures-info" /><br />
         /// Endpoint:<br />
         /// GET /future/market/v1/public/cg/contracts
         /// </para>

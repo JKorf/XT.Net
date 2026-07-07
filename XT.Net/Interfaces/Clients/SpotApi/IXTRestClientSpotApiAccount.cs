@@ -16,7 +16,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get balance for an asset
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#balancebalanceGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Balance/GetSingleCurrencyAsset" /><br />
         /// Endpoint:<br />
         /// GET /v4/balance
         /// </para>
@@ -29,7 +29,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get balances
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#balancecurrenciesGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Balance/GetBalances" /><br />
         /// Endpoint:<br />
         /// GET /v4/balances
         /// </para>
@@ -42,7 +42,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get deposit address for an asset
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#deposit_withdrawaldepositAddressGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Deposit%26Withdrawal/GetDepositAddress" /><br />
         /// Endpoint:<br />
         /// GET /v4/deposit/address
         /// </para>
@@ -56,7 +56,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get deposit history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#deposit_withdrawalhistoryDepositGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Deposit%26Withdrawal/GetDepositHistory" /><br />
         /// Endpoint:<br />
         /// GET /v4/deposit/history
         /// </para>
@@ -76,7 +76,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Withdraw an asset
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#deposit_withdrawalwithdraw" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Deposit%26Withdrawal/Withdraw" /><br />
         /// Endpoint:<br />
         /// POST /v4/withdraw
         /// </para>
@@ -93,7 +93,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get withdrawal history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#deposit_withdrawalwithdrawHistory" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Deposit%26Withdrawal/WithdrawHistory" /><br />
         /// Endpoint:<br />
         /// GET /v4/withdraw/history
         /// </para>
@@ -113,7 +113,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Transfer assets
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#transfertransferPost" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Transfer/TransferBetweenUserSystems" /><br />
         /// Endpoint:<br />
         /// POST /v4/balance/transfer
         /// </para>
@@ -131,7 +131,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Transfer assets for sub accounts
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#transfersubTransferPost" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Transfer/TransferBetweenSubAccounts" /><br />
         /// Endpoint:<br />
         /// POST /v4/balance/account/transfer
         /// </para>

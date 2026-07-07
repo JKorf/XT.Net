@@ -17,7 +17,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get balances
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetContractAccountInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/GetContractAccountAssets" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/compat/balance/list
         /// </para>
@@ -30,7 +30,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get account info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetContractInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/GetAccountInfo" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/account/info
         /// </para>
@@ -42,7 +42,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get user asset
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetBalance" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20User%27s%20Single%20Currency%20Fund%20Information" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/balance/detail
         /// </para>
@@ -56,7 +56,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get user assets
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetBalances" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/GetUserFunds" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/balance/list
         /// </para>
@@ -68,7 +68,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get account bills
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetBalanceBill" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20User%27s%20Account%20Flow%20Information" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/balance/bills
         /// </para>
@@ -91,7 +91,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get funding fee info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetFunding" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20Fund%20Fee%20Information" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/balance/funding-rate-list
         /// </para>
@@ -109,7 +109,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get user trading fees
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetStepRate" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20User%27s%20Step%20Rate" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/user/step-rate
         /// </para>
@@ -121,7 +121,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Set leverage
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_useradjustLeverage" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Adjust%20Leverage" /><br />
         /// Endpoint:<br />
         /// POST /future/user/v1/position/adjust-leverage
         /// </para>
@@ -136,7 +136,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Adjust margin
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_useradjustMargin" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Alter%20Margin" /><br />
         /// Endpoint:<br />
         /// POST /future/user/v1/position/margin
         /// </para>
@@ -152,7 +152,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get auto deleverage info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetAdl" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20ADL%20Information" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/position/adl
         /// </para>
@@ -164,7 +164,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Set position type
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_userchangePositionType" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Change%20Position%20Type" /><br />
         /// Endpoint:<br />
         /// POST /future/user/v1/position/change-type
         /// </para>
@@ -179,7 +179,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get listen key for starting the user websocket connection
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetListenKey" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20ListenKey" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/user/listen-key
         /// </para>

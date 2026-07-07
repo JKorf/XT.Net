@@ -20,7 +20,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to public trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2dealRecord" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/TradeRecord" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market trade
         /// </para>
@@ -35,7 +35,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to public trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2dealRecord" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/TradeRecord" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market trade
         /// </para>
@@ -50,7 +50,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to kline/candlestick updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2symbolKline" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/Kline" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market kline
         /// </para>
@@ -66,7 +66,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to kline/candlestick updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2symbolKline" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/Kline" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market kline
         /// </para>
@@ -82,7 +82,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2tickerRealTime" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/AggTicker" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market ticker
         /// </para>
@@ -97,7 +97,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2tickerRealTime" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/AggTicker" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market ticker
         /// </para>
@@ -112,7 +112,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2aggTickerRealTime" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/AggTicker" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market agg_ticker
         /// </para>
@@ -127,7 +127,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2aggTickerRealTime" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/AggTicker" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market agg_ticker
         /// </para>
@@ -142,7 +142,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to index price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2indexPrice" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/IndexPrice" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market index_price
         /// </para>
@@ -157,7 +157,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to index price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2indexPrice" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/IndexPrice" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market index_price
         /// </para>
@@ -172,7 +172,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to mark price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2markPrice" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/MarkPrice" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market mark_price
         /// </para>
@@ -187,7 +187,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to mark price updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2markPrice" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/MarkPrice" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market mark_price
         /// </para>
@@ -202,7 +202,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to incremental order book updates, only pushes changed entries
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2increDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/IncrementalDepth" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market depth_update
         /// </para>
@@ -218,7 +218,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to incremental order book updates, only pushes changed entries
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2increDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/IncrementalDepth" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market depth_update
         /// </para>
@@ -234,7 +234,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to incremental order book updates, only pushes changed entries
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2limitDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/LimitedDepth" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market depth
         /// </para>
@@ -251,7 +251,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to incremental order book updates, only pushes changed entries
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2limitDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/LimitedDepth" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market depth
         /// </para>
@@ -268,7 +268,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to funding rate updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2fundRate" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/FundRate" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market mark_price
         /// </para>
@@ -283,7 +283,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to funding rate updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_market_websocket_v2fundRate" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/WebsocKetV2/FundRate" /><br />
         /// Endpoint:<br />
         /// SUB /ws/market mark_price
         /// </para>
@@ -298,7 +298,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to user balance updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2base" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/General_WSS_information" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user balance
         /// </para>
@@ -314,7 +314,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2balance" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/BalanceChange" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user balance
         /// </para>
@@ -328,7 +328,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to user position updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2position" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/ChangePosition" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user position
         /// </para>
@@ -344,7 +344,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2position" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/ChangePosition" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user position
         /// </para>
@@ -358,7 +358,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to user order updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2order" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/UserOrder" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user order
         /// </para>
@@ -374,7 +374,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2order" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/UserOrder" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user order
         /// </para>
@@ -388,7 +388,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to user trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2trade" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/Transactions" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user trade
         /// </para>
@@ -404,7 +404,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2trade" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/Transactions" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user trade
         /// </para>
@@ -418,7 +418,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Subscribe to user notifications
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2notify" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/Message" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user notify
         /// </para>
@@ -434,7 +434,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// credentials, cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_user_websocket_v2notify" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/UserWebsocket/Message" /><br />
         /// Endpoint:<br />
         /// SUB /ws/user notify
         /// </para>

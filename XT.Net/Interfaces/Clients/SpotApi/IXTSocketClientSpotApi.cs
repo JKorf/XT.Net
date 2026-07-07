@@ -20,7 +20,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publicdealRecord" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/TradeRecord" /><br />
         /// Endpoint:<br />
         /// SUB /public trade
         /// </para>
@@ -35,7 +35,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to trade updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publicdealRecord" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/TradeRecord" /><br />
         /// Endpoint:<br />
         /// SUB /public trade
         /// </para>
@@ -50,7 +50,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to kline/candlestick updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publicsymbolKline" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/Kline" /><br />
         /// Endpoint:<br />
         /// SUB /public kline
         /// </para>
@@ -66,7 +66,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to kline/candlestick updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publicsymbolKline" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/Kline" /><br />
         /// Endpoint:<br />
         /// SUB /public kline
         /// </para>
@@ -82,7 +82,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to order book updates, pushes the selected depth at each update
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publiclimitDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/LimitedDepth" /><br />
         /// Endpoint:<br />
         /// SUB /public depth
         /// </para>
@@ -98,7 +98,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to order book updates, pushes the selected depth at each update
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publiclimitDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/LimitedDepth" /><br />
         /// Endpoint:<br />
         /// SUB /public depth
         /// </para>
@@ -114,7 +114,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to incremental order book updates, only pushes changed entries
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publicincreDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/IncrementalDepth" /><br />
         /// Endpoint:<br />
         /// SUB /public depth_update
         /// </para>
@@ -129,7 +129,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to incremental order book updates, only pushes changed entries
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publicincreDepth" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/IncrementalDepth" /><br />
         /// Endpoint:<br />
         /// SUB /public depth_update
         /// </para>
@@ -144,7 +144,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publictickerRealTime" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/Ticker" /><br />
         /// Endpoint:<br />
         /// SUB /public ticker
         /// </para>
@@ -159,7 +159,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to ticker updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_publictickerRealTime" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Public/Ticker" /><br />
         /// Endpoint:<br />
         /// SUB /public ticker
         /// </para>
@@ -174,7 +174,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to user balance updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_privatebalanceChange" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Private/BalanceChange" /><br />
         /// Endpoint:<br />
         /// SUB /private balance
         /// </para>
@@ -190,7 +190,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_privatebalanceChange" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Private/BalanceChange" /><br />
         /// Endpoint:<br />
         /// SUB /private balance
         /// </para>
@@ -204,7 +204,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to user order updates
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_privateorderChange" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Private/OrderChange" /><br />
         /// Endpoint:<br />
         /// SUB /private order
         /// </para>
@@ -220,7 +220,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_privateorderChange" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Private/OrderChange" /><br />
         /// Endpoint:<br />
         /// SUB /private order
         /// </para>
@@ -234,7 +234,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Subscribe to user trade update
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_privateorderDeal" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Private/OrderFilled" /><br />
         /// Endpoint:<br />
         /// SUB /private trade
         /// </para>
@@ -250,7 +250,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// cached, and automatically refreshed before each resubscribe (e.g. after a socket reconnect).
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#websocket_privateorderDeal" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/WebSocket%20Private/OrderFilled" /><br />
         /// Endpoint:<br />
         /// SUB /private trade
         /// </para>

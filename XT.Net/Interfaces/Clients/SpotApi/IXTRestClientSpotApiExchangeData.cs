@@ -17,7 +17,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get server time
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market1serverInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetServerTime" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/time
         /// </para>
@@ -30,7 +30,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get your client IP
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market1clientInfo" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetClientIp" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/client
         /// </para>
@@ -42,7 +42,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get symbol information
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market2symbol" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetSymbolInformation" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/symbol
         /// </para>
@@ -57,7 +57,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get the order book
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market3depth" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetDepthData" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/depth
         /// </para>
@@ -71,7 +71,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get klines
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market4kline" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetKlineData" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/kline
         /// </para>
@@ -88,7 +88,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get recent trades
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market5tradeRecent" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/QueryRecentTransactions" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/trade/recent
         /// </para>
@@ -102,7 +102,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get trade history
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market6tradeHistory" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/QueryHistoricalTransactions" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/trade/history
         /// </para>
@@ -118,7 +118,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get tickers
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market7allTicker" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/FullTicker" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/ticker
         /// </para>
@@ -132,7 +132,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get price tickers
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market8tickerPrice" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetLatestPricesTicker" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/ticker/price
         /// </para>
@@ -146,7 +146,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get best orderbook offers
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market9tickerBook" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/GetBestPendingOrderTicker" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/ticker/book
         /// </para>
@@ -160,7 +160,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get 24h price stats
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#market10ticker24h" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Market/Get24hStatisticsTicker" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/ticker/24h
         /// </para>
@@ -174,7 +174,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get assets
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#balancecurrenciesGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Balance/GetBalances" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/currencies
         /// </para>
@@ -186,7 +186,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get assets network info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#deposit_withdrawalsupportedCurrenciesGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Deposit%26Withdrawal/GetSupportedCurrencies" /><br />
         /// Endpoint:<br />
         /// GET /v4/public/wallet/support/currency
         /// </para>

@@ -17,7 +17,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Place a new order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderorderPost" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/SubmitOrder" /><br />
         /// Endpoint:<br />
         /// POST /v4/order
         /// </para>
@@ -38,7 +38,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get order info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderorderGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/GetSingleOrder" /><br />
         /// Endpoint:<br />
         /// GET /v4/order/{orderId}
         /// </para>
@@ -51,7 +51,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get order info by client order id
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderorderGetQueryParam" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/QuerySingle" /><br />
         /// Endpoint:<br />
         /// GET /v4/order
         /// </para>
@@ -64,7 +64,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Cancel an order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderorderDel" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/CancelOrder" /><br />
         /// Endpoint:<br />
         /// DELETE /v4/order/{orderId}
         /// </para>
@@ -77,7 +77,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get open orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderopenOrderGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/QueryOpenOrders" /><br />
         /// Endpoint:<br />
         /// GET /v4/open-order
         /// </para>
@@ -92,7 +92,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get closed orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderhistoryOrderGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/QueryHistoricalOrders" /><br />
         /// Endpoint:<br />
         /// GET /v4/history-order
         /// </para>
@@ -115,7 +115,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Cancel all orders matching the parameters
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderopenOrderDel" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/CancelCurrentPendingOrder" /><br />
         /// Endpoint:<br />
         /// DELETE /v4/open-order
         /// </para>
@@ -130,7 +130,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Edit an active order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderorderUpdate" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/UpdateOrderLimit" /><br />
         /// Endpoint:<br />
         /// PUT /v4/order/{orderId}
         /// </para>
@@ -145,7 +145,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get multiple orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#orderbatchOrderGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Order/GetBatch" /><br />
         /// Endpoint:<br />
         /// GET /v4/batch-order
         /// </para>
@@ -170,7 +170,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// Get user trades
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#tradetradeGet" /><br />
+        /// <a href="https://doc.xt.com/docs/spot/Trade/QueryTrade" /><br />
         /// Endpoint:<br />
         /// GET /v4/trade
         /// </para>

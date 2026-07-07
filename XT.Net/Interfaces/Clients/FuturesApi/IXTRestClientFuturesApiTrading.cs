@@ -17,7 +17,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Place a new order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordercreate" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/Create%20Orders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/order/create
         /// </para>
@@ -39,7 +39,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Place multiple new orders in a single call
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordercreateBatch" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/bulk-orders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v2/order/create-batch
         /// </para>
@@ -52,7 +52,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Edit an existing order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_orderupdate" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/update-orders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/order/update
         /// </para>
@@ -77,7 +77,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get closed orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordergetHistory" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/see-order-history" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/order/list-history
         /// </para>
@@ -95,7 +95,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get user trades
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordergetTrades" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/see-transaction-details" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/order/trade-list
         /// </para>
@@ -113,7 +113,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get order by id
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordergetById" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/see-orders-by-id" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/order/detail
         /// </para>
@@ -126,7 +126,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordergetOrders" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/see-orders" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/order/list
         /// </para>
@@ -157,7 +157,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel an order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordercancel" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/cancel-orders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/order/cancel
         /// </para>
@@ -170,7 +170,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel all open orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_ordercancel" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/cancel-orders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/order/cancel-all
         /// </para>
@@ -183,7 +183,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get open positions
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetActivitePosition" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20active%20position%20information" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/position
         /// </para>
@@ -196,7 +196,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get position info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetPosition" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20Position%20Information" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/position/list
         /// </para>
@@ -209,7 +209,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Close all open positions
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usercloseAllPosition" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/CloseAll" /><br />
         /// Endpoint:<br />
         /// POST /future/user/v1/position/close-all
         /// </para>
@@ -221,7 +221,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get margin call info
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_usergetMarginCall" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/User/Get%20Margin%20Call%20Information" /><br />
         /// Endpoint:<br />
         /// GET /future/user/v1/position/break-list
         /// </para>
@@ -234,7 +234,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Place a new trigger order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcreatePlan" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CreateTriggerOrders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/create-plan
         /// </para>
@@ -256,7 +256,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel a trigger order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcancelPlan" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CancelTriggerOrders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/cancel-plan
         /// </para>
@@ -269,7 +269,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel all trigger orders for a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcancelPlanBatch" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CancelAllTriggerOrders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/cancel-all-plan
         /// </para>
@@ -282,7 +282,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get trigger orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetPlan" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/SeeTriggerOrders" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/plan-list
         /// </para>
@@ -300,7 +300,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get trigger order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetPlanById" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/SeeTriggerOrdersByEntrustId" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/plan-detail
         /// </para>
@@ -313,7 +313,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get closed trigger orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetPlanHistory" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/SeeTriggerOrdersHistory" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/plan-list-history
         /// </para>
@@ -331,7 +331,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Place a new stop limit order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcreateProfit" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CreateStopLimit" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/create-profit
         /// </para>
@@ -349,7 +349,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel a stop limit order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcancelProfit" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CancelStopLimit" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/cancel-profit-stop
         /// </para>
@@ -362,7 +362,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel all stop limit orders for a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcancelProfitBatch" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CancelAllStopLimit" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/cancel-all-profit-stop
         /// </para>
@@ -375,7 +375,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get trigger orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetProfit" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/SeeStopLimit" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/profit-list
         /// </para>
@@ -393,7 +393,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get stop limit order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetProfitById" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/SeeStopLimitByProfitId" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/profit-detail
         /// </para>
@@ -406,7 +406,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Edit a stop limit order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustupdateProfit" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/AlterStopLimit" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/update-profit-stop
         /// </para>
@@ -421,7 +421,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// 
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcreateTrack" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CreateTrack" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/create-track
         /// </para>
@@ -446,7 +446,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel a track order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcancelTrack" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CancelSingleTrack" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/cancel-track
         /// </para>
@@ -459,7 +459,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get trigger order
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetTrackDetail" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/GetSingleTrackDetail" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/track-detail
         /// </para>
@@ -472,7 +472,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get open track orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetTrackList" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/getTrackList" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/track-list
         /// </para>
@@ -489,7 +489,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel all track orders for a symbol
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustcancelAllTrack" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/CancelAllTrack" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/entrust/cancel-all-track
         /// </para>
@@ -502,7 +502,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Get closed track orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/#futures_entrustgetTrackHistoryList" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/GetHistoryTrackListInactive" /><br />
         /// Endpoint:<br />
         /// GET /future/trade/v1/entrust/profit-list
         /// </para>
