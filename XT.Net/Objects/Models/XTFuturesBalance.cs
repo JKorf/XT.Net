@@ -90,6 +90,26 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("coupon")]
         public decimal Coupon { get; set; }
+        /// <summary>
+        /// ["<c>bonusCumPnl</c>"] Bonus cumulative profit and loss
+        /// </summary>
+        [JsonPropertyName("bonusCumPnl")]
+        public decimal BonusCumPnl { get; set; }
+        /// <summary>
+        /// ["<c>depositCoupon</c>"] Deposit coupon
+        /// </summary>
+        [JsonPropertyName("depositCoupon")]
+        public decimal DepositCoupon { get; set; }
+        /// <summary>
+        /// ["<c>marginBalance</c>"] Margin balance
+        /// </summary>
+        [JsonPropertyName("marginBalance")]
+        public decimal MarginBalance { get; set; }
+        /// <summary>
+        /// ["<c>openOrderFeeFrozen</c>"] Open order fee frozen
+        /// </summary>
+        [JsonPropertyName("openOrderFeeFrozen")]
+        public decimal OpenOrderFeeFrozen { get; set; }
     }
 
 

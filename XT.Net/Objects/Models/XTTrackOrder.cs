@@ -6,7 +6,7 @@ using XT.Net.Enums;
 namespace XT.Net.Objects.Models
 {
     /// <summary>
-    /// 
+    /// Track order
     /// </summary>
     [SerializationModel]
     public record XTTrackOrder
@@ -111,6 +111,51 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("triggerPriceType")]
         public PriceType TriggerPriceType { get; set; }
+        /// <summary>
+        /// ["<c>delegateTriggerPriceType</c>"] Delegate trigger price type
+        /// </summary>
+        [JsonPropertyName("delegateTriggerPriceType")]
+        public PriceType? DelegateTriggerPriceType { get; set; }
+        /// <summary>
+        /// ["<c>profitDelegateOrderType</c>"] Delegate profit order type
+        /// </summary>
+        [JsonPropertyName("profitDelegateOrderType")]
+        public TriggerOrderType? ProfitDelegateOrderType { get; set; }
+        /// <summary>
+        /// ["<c>stopDelegateOrderType</c>"] Delegate stop order type
+        /// </summary>
+        [JsonPropertyName("stopDelegateOrderType")]
+        public TriggerOrderType? StopDelegateOrderType { get; set; }
+        /// <summary>
+        /// ["<c>triggerProfitPercentage</c>"] Trigger profit percentage
+        /// </summary>
+        [JsonPropertyName("triggerProfitPercentage")]
+        public decimal? TriggerProfitPercentage { get; set; }
+        /// <summary>
+        /// ["<c>triggerStopPercentage</c>"] Trigger stop percentage
+        /// </summary>
+        [JsonPropertyName("triggerStopPercentage")]
+        public decimal? TriggerStopPercentage { get; set; }
+        /// <summary>
+        /// ["<c>stopDelegatePrice</c>"] Stop delegate price
+        /// </summary>
+        [JsonPropertyName("stopDelegatePrice")]
+        public decimal? StopDelegatePrice { get; set; }
+        /// <summary>
+        /// ["<c>profitDelegatePrice</c>"] Profit delegate price
+        /// </summary>
+        [JsonPropertyName("profitDelegatePrice")]
+        public decimal? ProfitDelegatePrice { get; set; }
+        /// <summary>
+        /// ["<c>stopDelegateTimeInForce</c>"] Stop delegate time in force
+        /// </summary>
+        [JsonPropertyName("stopDelegateTimeInForce")]
+        public TimeInForce? StopDelegateTimeInForce { get; set; }
+        /// <summary>
+        /// ["<c>profitDelegateTimeInForce</c>"] Profit delegate time in force
+        /// </summary>
+        [JsonPropertyName("profitDelegateTimeInForce")]
+        public TimeInForce? ProfitDelegateTimeInForce { get; set; }
     }
 
 

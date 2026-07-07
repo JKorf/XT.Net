@@ -19,6 +19,21 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("hasPrev")]
         public bool? HasPrevious { get; set; }
+        /// <summary>
+        /// ["<c>page</c>"] Page
+        /// </summary>
+        [JsonPropertyName("page")]
+        public int? Page { get; set; }
+        /// <summary>
+        /// ["<c>total</c>"] Total
+        /// </summary>
+        [JsonPropertyName("total")]
+        public int? Total { get; set; }
+        /// <summary>
+        /// ["<c>ps</c>"] Page size
+        /// </summary>
+        [JsonPropertyName("ps")]
+        public int? PageSize { get; set; }
 
         private T[]? _data;
         /// <summary>

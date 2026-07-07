@@ -16,6 +16,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("totalBtcAmount")]
         public decimal TotalBtcQuantity { get; set; }
         /// <summary>
+        /// ["<c>totalUsdtAmount</c>"] Total usdt quantity
+        /// </summary>
+        [JsonPropertyName("totalUsdtAmount")]
+        public decimal TotalUsdtQuantity { get; set; }
+        /// <summary>
         /// ["<c>assets</c>"] Assets
         /// </summary>
         [JsonPropertyName("assets")]
@@ -88,6 +93,11 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("convertUsdtAmount")]
         public decimal ConvertUsdtQuantity { get; set; }
+        /// <summary>
+        /// ["<c>predictAmount</c>"] Predict quantity
+        /// </summary>
+        [JsonPropertyName("predictAmount")]
+        public decimal PredictQuantity { get; set; }
     }
 
 

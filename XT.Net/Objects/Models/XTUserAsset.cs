@@ -49,6 +49,26 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("walletBalance")]
         public decimal WalletBalance { get; set; }
+        /// <summary>
+        /// ["<c>bonusCumPnl</c>"] Bonus cumulative profit and loss
+        /// </summary>
+        [JsonPropertyName("bonusCumPnl")]
+        public decimal BonusCumPnl { get; set; }
+        /// <summary>
+        /// ["<c>bonusDisRate</c>"] Bonus discount rate
+        /// </summary>
+        [JsonPropertyName("bonusDisRate")]
+        public decimal BonusDiscountRate { get; set; }
+        /// <summary>
+        /// ["<c>depositCoupon</c>"] Deposit coupon
+        /// </summary>
+        [JsonPropertyName("depositCoupon")]
+        public decimal DepositCoupon { get; set; }
+        /// <summary>
+        /// ["<c>openOrderFeeFrozen</c>"] Open order fee frozen
+        /// </summary>
+        [JsonPropertyName("openOrderFeeFrozen")]
+        public decimal OpenOrderFeeFrozen { get; set; }
     }
 
 

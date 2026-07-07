@@ -13,12 +13,12 @@ namespace XT.Net.Enums
         /// <summary>
         /// ["<c>maker</c>"] Maker
         /// </summary>
-        [Map("maker")]
+        [Map("maker", "MAKER")]
         Maker,
         /// <summary>
         /// ["<c>taker</c>"] Taker
         /// </summary>
-        [Map("taker")]
+        [Map("taker", "TAKER")]
         Taker
     }
 }

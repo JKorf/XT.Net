@@ -131,6 +131,11 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("underlyingType")]
         public UnderlyingType UnderlyingType { get; set; }
+        /// <summary>
+        /// ["<c>collection_internal</c>"] Collection internal
+        /// </summary>
+        [JsonPropertyName("collection_internal")]
+        public int? CollectionInternal { get; set; }
     }
 
 

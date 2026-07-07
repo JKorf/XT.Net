@@ -13,6 +13,11 @@ namespace XT.Net.Objects.Models
     public record XTOrderBook
     {
         /// <summary>
+        /// ["<c>symbol</c>"] Symbol
+        /// </summary>
+        [JsonPropertyName("symbol")]
+        public string? Symbol { get; set; }
+        /// <summary>
         /// ["<c>timestamp</c>"] Timestamp
         /// </summary>
         [JsonPropertyName("timestamp")]

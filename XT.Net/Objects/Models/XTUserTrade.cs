@@ -86,6 +86,36 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("takerMaker")]
         public TradeRole TradeRole { get; set; }
+        /// <summary>
+        /// ["<c>nftId</c>"] NFT id
+        /// </summary>
+        [JsonPropertyName("nftId")]
+        public long? NftId { get; set; }
+        /// <summary>
+        /// ["<c>symbolType</c>"] Symbol type
+        /// </summary>
+        [JsonPropertyName("symbolType")]
+        public SymbolType Type { get; set; }
+        /// <summary>
+        /// ["<c>deductFee</c>"] Deduct fee
+        /// </summary>
+        [JsonPropertyName("deductFee")]
+        public decimal? DeductFee { get; set; }
+        /// <summary>
+        /// ["<c>couponAmount</c>"] Coupon quantity
+        /// </summary>
+        [JsonPropertyName("couponAmount")]
+        public decimal? CouponQuantity { get; set; }
+        /// <summary>
+        /// ["<c>couponCurrency</c>"] Coupon asset
+        /// </summary>
+        [JsonPropertyName("couponCurrency")]
+        public string? CouponAsset { get; set; }
+        /// <summary>
+        /// ["<c>deductType</c>"] Deduct type
+        /// </summary>
+        [JsonPropertyName("deductType")]
+        public string? DeductType { get; set; }
     }
 
 

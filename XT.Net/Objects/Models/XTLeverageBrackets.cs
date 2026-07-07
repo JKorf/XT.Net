@@ -64,6 +64,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("startMarginRate")]
         public decimal InitialMarginRate { get; set; }
         /// <summary>
+        /// ["<c>deduction</c>"] Deduction
+        /// </summary>
+        [JsonPropertyName("deduction")]
+        public decimal Deduction { get; set; }
+        /// <summary>
         /// ["<c>symbol</c>"] Symbol
         /// </summary>
         [JsonPropertyName("symbol")]

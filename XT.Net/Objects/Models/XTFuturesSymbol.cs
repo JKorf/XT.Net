@@ -1,5 +1,6 @@
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using XT.Net.Enums;
 
@@ -39,6 +40,11 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("id")]
         public long Id { get; set; }
+        /// <summary>
+        /// ["<c>symbolId</c>"] Symbol id
+        /// </summary>
+        [JsonPropertyName("symbolId")]
+        public long? SymbolId { get; set; }
         /// <summary>
         /// ["<c>symbol</c>"] Symbol
         /// </summary>
@@ -353,6 +359,101 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("latestPriceDeviation")]
         public decimal? LatestPriceDeviation { get; set; }
+        /// <summary>
+        /// ["<c>thanosSwitch</c>"] Thanos switch
+        /// </summary>
+        [JsonPropertyName("thanosSwitch")]
+        public bool ThanosSwitch { get; set; }
+        /// <summary>
+        /// ["<c>maxMarketOrderQty</c>"] Max quantity for market orders
+        /// </summary>
+        [JsonPropertyName("maxMarketOrderQty")]
+        public decimal? MaxMarketOrderQuantity { get; set; }
+        /// <summary>
+        /// ["<c>maxLimitOrderQty</c>"] Max quantity for limit orders
+        /// </summary>
+        [JsonPropertyName("maxLimitOrderQty")]
+        public decimal? MaxLimitOrderQuantity { get; set; }
+        /// <summary>
+        /// ["<c>maxMarketOrderNotional</c>"] Max notional for market orders
+        /// </summary>
+        [JsonPropertyName("maxMarketOrderNotional")]
+        public decimal? MaxMarketOrderNotional { get; set; }
+        /// <summary>
+        /// ["<c>maxLimitOrderNotional</c>"] Max notional for limit orders
+        /// </summary>
+        [JsonPropertyName("maxLimitOrderNotional")]
+        public decimal? MaxLimitOrderNotional { get; set; }
+        /// <summary>
+        /// ["<c>useIndependentFeeRate</c>"] Use independent fee rate
+        /// </summary>
+        [JsonPropertyName("useIndependentFeeRate")]
+        public bool UseIndependentFeeRate { get; set; }
+        /// <summary>
+        /// ["<c>businessNameI18n</c>"] Business name
+        /// </summary>
+        [JsonPropertyName("businessNameI18n")]
+        public Dictionary<string, string>? BusinessName { get; set; }
+        /// <summary>
+        /// ["<c>tags</c>"] Tags
+        /// </summary>
+        [JsonPropertyName("tags")]
+        public string[]? Tags { get; set; } = [];
+        /// <summary>
+        /// ["<c>marketOpenTakeBound</c>"] Market open take bound
+        /// </summary>
+        [JsonPropertyName("marketOpenTakeBound")]
+        public decimal? MarketOpenTakeBound { get; set; }
+        /// <summary>
+        /// ["<c>marketCloseTakeBound</c>"] Market close take bound
+        /// </summary>
+        [JsonPropertyName("marketCloseTakeBound")]
+        public decimal? MarketCloseTakeBound { get; set; }
+        /// <summary>
+        /// ["<c>offTime</c>"] Offline time
+        /// </summary>
+        [JsonPropertyName("offTime")]
+        public DateTime? OfflineTime { get; set; }
+        /// <summary>
+        /// ["<c>updatedTime</c>"] Update time
+        /// </summary>
+        [JsonPropertyName("updatedTime")]
+        public DateTime? UpdateTime { get; set; }
+        /// <summary>
+        /// ["<c>displaySwitch</c>"] Display switch
+        /// </summary>
+        [JsonPropertyName("displaySwitch")]
+        public bool DisplaySwitch { get; set; }
+        /// <summary>
+        /// ["<c>curMaxLeverage</c>"] Current max leverage
+        /// </summary>
+        [JsonPropertyName("curMaxLeverage")]
+        public decimal? CurrentMaxLeverage { get; set; }
+        /// <summary>
+        /// ["<c>riskNominalValueCoefficient</c>"] Risk nominal value coefficient
+        /// </summary>
+        [JsonPropertyName("riskNominalValueCoefficient")]
+        public decimal? RiskNominalValueCoefficient { get; set; }
+        /// <summary>
+        /// ["<c>riskExpireTime</c>"] Risk expire time
+        /// </summary>
+        [JsonPropertyName("riskExpireTime")]
+        public DateTime? RiskExpireTime { get; set; }
+        /// <summary>
+        /// ["<c>nextOpenTime</c>"] Next open time
+        /// </summary>
+        [JsonPropertyName("nextOpenTime")]
+        public DateTime? NextOpenTime { get; set; }
+        /// <summary>
+        /// ["<c>inPreMarket</c>"] In pre-market
+        /// </summary>
+        [JsonPropertyName("inPreMarket")]
+        public bool InPreMarket { get; set; }
+        /// <summary>
+        /// ["<c>inPreMarketNoMarketOrder</c>"] In pre-market, disallowing market orders
+        /// </summary>
+        [JsonPropertyName("inPreMarketNoMarketOrder")]
+        public bool InPreMarketNoMarketOrder { get; set; }
     }
 
 

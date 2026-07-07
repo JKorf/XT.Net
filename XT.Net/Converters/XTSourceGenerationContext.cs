@@ -239,7 +239,6 @@ namespace XT.Net.Converters
     [JsonSerializable(typeof(XTProtectionOnlineFilter[]))]
     [JsonSerializable(typeof(XTSymbols[]))]
     [JsonSerializable(typeof(XTSymbol[]))]
-    [JsonSerializable(typeof(XTSymbolSUBSUB[]))]
     [JsonSerializable(typeof(XTTrackOrder[]))]
     [JsonSerializable(typeof(XTTradeUpdate[]))]
     [JsonSerializable(typeof(XTTriggerOrder[]))]

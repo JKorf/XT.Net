@@ -37,6 +37,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("id")]
         public long Id { get; set; }
         /// <summary>
+        /// ["<c>accountId</c>"] Account id
+        /// </summary>
+        [JsonPropertyName("accountId")]
+        public long AccountId { get; set; }
+        /// <summary>
         /// ["<c>side</c>"] Side
         /// </summary>
         [JsonPropertyName("side")]
@@ -51,6 +56,16 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("type")]
         public BillType Type { get; set; }
+        /// <summary>
+        /// ["<c>bonus</c>"] Bonus
+        /// </summary>
+        [JsonPropertyName("bonus")]
+        public decimal? Bonus { get; set; }
+        /// <summary>
+        /// ["<c>bonusDisRate</c>"] Bonus discount rate
+        /// </summary>
+        [JsonPropertyName("bonusDisRate")]
+        public decimal? BonusDiscountRate { get; set; }
     }
 
 

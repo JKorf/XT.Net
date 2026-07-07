@@ -46,6 +46,11 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("userId")]
         public long UserId { get; set; }
+        /// <summary>
+        /// ["<c>userGroupId</c>"] User group id
+        /// </summary>
+        [JsonPropertyName("userGroupId")]
+        public int UserGroupId { get; set; }
     }
 
 

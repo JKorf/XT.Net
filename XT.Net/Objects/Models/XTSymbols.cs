@@ -1,5 +1,6 @@
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using XT.Net.Enums;
@@ -46,6 +47,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("symbol")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
+        /// ["<c>displayName</c>"] Display name
+        /// </summary>
+        [JsonPropertyName("displayName")]
+        public string DisplayName { get; set; } = string.Empty;
+        /// <summary>
         /// ["<c>state</c>"] Symbol status
         /// </summary>
         [JsonPropertyName("state")]
@@ -65,6 +71,11 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("nextStateTime")]
         public DateTime? NextStateTime { get; set; }
+        /// <summary>
+        /// ["<c>stateTime</c>"] State time
+        /// </summary>
+        [JsonPropertyName("stateTime")]
+        public DateTime? StateTime { get; set; }
         /// <summary>
         /// ["<c>nextState</c>"] Next state
         /// </summary>
@@ -146,6 +157,21 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("displayLevel")]
         public string DisplayLevel { get; set; } = string.Empty;
         /// <summary>
+        /// ["<c>baseCurrencyLogo</c>"] Base asset logo
+        /// </summary>
+        [JsonPropertyName("baseCurrencyLogo")]
+        public string BaseAssetLogo { get; set; } = string.Empty;
+        /// <summary>
+        /// ["<c>businessNameI18n</c>"] Business name
+        /// </summary>
+        [JsonPropertyName("businessNameI18n")]
+        public Dictionary<string, string>? BusinessName { get; set; }
+        /// <summary>
+        /// ["<c>tags</c>"] Tags
+        /// </summary>
+        [JsonPropertyName("tags")]
+        public string[]? Tags { get; set; } = [];
+        /// <summary>
         /// ["<c>plates</c>"] Plates
         /// </summary>
         [JsonPropertyName("plates")]
@@ -155,6 +181,12 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("filters")]
         public XTSymbolFilter[] Filters { get; set; } = Array.Empty<XTSymbolFilter>();
+
+        /// <summary>
+        /// ["<c>type</c>"] Symbol type
+        /// </summary>
+        [JsonPropertyName("type")]
+        public SymbolType Type { get; set; }
         /// <summary>
         /// Price filter for this symbol
         /// </summary>
@@ -171,29 +203,5 @@ namespace XT.Net.Objects.Models
         [JsonIgnore]
         public XTQuoteQuantityFilter? QuoteQuantityFilter => Filters.OfType<XTQuoteQuantityFilter>().FirstOrDefault();
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    [SerializationModel]
-    public record XTSymbolSUBSUB
-    {
-        /// <summary>
-        /// ["<c>filter</c>"] Filter
-        /// </summary>
-        [JsonPropertyName("filter")]
-        public string Filter { get; set; } = string.Empty;
-        /// <summary>
-        /// ["<c>buyMaxDeviation</c>"] Buy max deviation
-        /// </summary>
-        [JsonPropertyName("buyMaxDeviation")]
-        public decimal BuyMaxDeviation { get; set; }
-        /// <summary>
-        /// ["<c>sellMaxDeviation</c>"] Sell max deviation
-        /// </summary>
-        [JsonPropertyName("sellMaxDeviation")]
-        public decimal SellMaxDeviation { get; set; }
-    }
-
 
 }

@@ -91,8 +91,41 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("triggerPriceType")]
         public PriceType TriggerPriceType { get; set; }
-
-
+        /// <summary>
+        /// ["<c>delegateTriggerPriceType</c>"] Delegate trigger price type
+        /// </summary>
+        [JsonPropertyName("delegateTriggerPriceType")]
+        public PriceType? DelegateTriggerPriceType { get; set; }
+        /// <summary>
+        /// ["<c>profitDelegateOrderType</c>"] Delegate profit order type
+        /// </summary>
+        [JsonPropertyName("profitDelegateOrderType")]
+        public TriggerOrderType? ProfitDelegateOrderType { get; set; }
+        /// <summary>
+        /// ["<c>stopDelegateOrderType</c>"] Delegate stop order type
+        /// </summary>
+        [JsonPropertyName("stopDelegateOrderType")]
+        public TriggerOrderType? StopDelegateOrderType { get; set; }
+        /// <summary>
+        /// ["<c>profitDelegateTimeInForce</c>"] Profit delegate time in force
+        /// </summary>
+        [JsonPropertyName("profitDelegateTimeInForce")]
+        public TimeInForce? ProfitDelegateTimeInForce { get; set; }
+        /// <summary>
+        /// ["<c>profitDelegatePrice</c>"] Profit delegate price
+        /// </summary>
+        [JsonPropertyName("profitDelegatePrice")]
+        public decimal? ProfitDelegatePrice { get; set; }
+        /// <summary>
+        /// ["<c>stopDelegateTimeInForce</c>"] Stop delegate time in force
+        /// </summary>
+        [JsonPropertyName("stopDelegateTimeInForce")]
+        public TimeInForce? StopDelegateTimeInForce { get; set; }
+        /// <summary>
+        /// ["<c>stopDelegatePrice</c>"] Stop delegate price
+        /// </summary>
+        [JsonPropertyName("stopDelegatePrice")]
+        public decimal? StopDelegatePrice { get; set; }
         /// <summary>
         /// ["<c>avgPrice</c>"] Average price
         /// </summary>
@@ -103,6 +136,46 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("updatedTime")]
         public DateTime? UpdateTime { get; set; }
+        /// <summary>
+        /// ["<c>executedQty</c>"] Quantity filled
+        /// </summary>
+        [JsonPropertyName("executedQty")]
+        public decimal? QuantityFilled { get; set; }
+        /// <summary>
+        /// ["<c>triggerProfitPrice</c>"] Trigger profit price
+        /// </summary>
+        [JsonPropertyName("triggerProfitPrice")]
+        public decimal? TriggerProfitPrice { get; set; }
+        /// <summary>
+        /// ["<c>triggerStopPrice</c>"] Trigger stop price
+        /// </summary>
+        [JsonPropertyName("triggerStopPrice")]
+        public decimal? TriggerStopPrice { get; set; }
+        /// <summary>
+        /// ["<c>reverseOpenExecutedQty</c>"] Reverse open executed quantity
+        /// </summary>
+        [JsonPropertyName("reverseOpenExecutedQty")]
+        public decimal? ReverseOpenExecutedQuantity { get; set; }
+        /// <summary>
+        /// ["<c>reverseOpenAvgPrice</c>"] Reverse open average price
+        /// </summary>
+        [JsonPropertyName("reverseOpenAvgPrice")]
+        public decimal? ReverseOpenAveragePrice { get; set; }
+        /// <summary>
+        /// ["<c>reverseOrderId</c>"] Reverse order id
+        /// </summary>
+        [JsonPropertyName("reverseOrderId")]
+        public long? ReverseOrderId { get; set; }
+        /// <summary>
+        /// ["<c>reverseOpenOrderId</c>"] Reverse open order id
+        /// </summary>
+        [JsonPropertyName("reverseOpenOrderId")]
+        public long? ReverseOpenOrderId { get; set; }
+        /// <summary>
+        /// ["<c>desc</c>"] Description
+        /// </summary>
+        [JsonPropertyName("desc")]
+        public string? Description { get; set; }
     }
 
 

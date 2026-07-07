@@ -131,6 +131,51 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("closed")]
         public bool Closed { get; set; }
+        /// <summary>
+        /// ["<c>nftId</c>"] NFT id
+        /// </summary>
+        [JsonPropertyName("nftId")]
+        public long? NftId { get; set; }
+        /// <summary>
+        /// ["<c>symbolType</c>"] Symbol type
+        /// </summary>
+        [JsonPropertyName("symbolType")]
+        public SymbolType SymbolType { get; set; }
+        /// <summary>
+        /// ["<c>origRestFee</c>"] Original rest fee
+        /// </summary>
+        [JsonPropertyName("origRestFee")]
+        public decimal? OrigRestFee { get; set; }
+        /// <summary>
+        /// ["<c>platFormCurrencyFee</c>"] Platform asset fee
+        /// </summary>
+        [JsonPropertyName("platFormCurrencyFee")]
+        public decimal? PlatformAssetFee { get; set; }
+        /// <summary>
+        /// ["<c>origFeeCurrency</c>"] Original fee asset
+        /// </summary>
+        [JsonPropertyName("origFeeCurrency")]
+        public string? OrigFeeAsset { get; set; }
+        /// <summary>
+        /// ["<c>platFormCurrency</c>"] Platform asset
+        /// </summary>
+        [JsonPropertyName("platFormCurrency")]
+        public string? PlatformAsset { get; set; }
+        /// <summary>
+        /// ["<c>couponAmount</c>"] Coupon quantity
+        /// </summary>
+        [JsonPropertyName("couponAmount")]
+        public decimal? CouponQuantity { get; set; }
+        /// <summary>
+        /// ["<c>couponCurrency</c>"] Coupon asset
+        /// </summary>
+        [JsonPropertyName("couponCurrency")]
+        public string? CouponAsset { get; set; }
+        /// <summary>
+        /// ["<c>couponDeductFee</c>"] Coupon deduct fee
+        /// </summary>
+        [JsonPropertyName("couponDeductFee")]
+        public decimal? CouponDeductFee { get; set; }
     }
 
     /// <summary>

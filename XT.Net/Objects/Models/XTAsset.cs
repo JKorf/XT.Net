@@ -1,5 +1,6 @@
 using CryptoExchange.Net.Converters.SystemTextJson;
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace XT.Net.Objects.Models
@@ -49,10 +50,30 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("fullName")]
         public string FullName { get; set; } = string.Empty;
         /// <summary>
+        /// ["<c>displayName</c>"] Display name
+        /// </summary>
+        [JsonPropertyName("displayName")]
+        public string DisplayName { get; set; } = string.Empty;
+        /// <summary>
+        /// ["<c>type</c>"] Type
+        /// </summary>
+        [JsonPropertyName("type")]
+        public string Type { get; set; } = string.Empty;
+        /// <summary>
         /// ["<c>logo</c>"] Logo
         /// </summary>
         [JsonPropertyName("logo")]
         public string? Logo { get; set; }
+        /// <summary>
+        /// ["<c>isChainExist</c>"] Network exists
+        /// </summary>
+        [JsonPropertyName("isChainExist")]
+        public bool? NetworkExists { get; set; }
+        /// <summary>
+        /// ["<c>isListing</c>"] Is listing
+        /// </summary>
+        [JsonPropertyName("isListing")]
+        public bool? IsListing { get; set; }
         /// <summary>
         /// ["<c>cmcLink</c>"] Cmc link
         /// </summary>
@@ -88,6 +109,21 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("transferEnabled")]
         public bool TransferEnabled { get; set; }
+        /// <summary>
+        /// ["<c>withdrawCloseReason</c>"] Withdraw close reason
+        /// </summary>
+        [JsonPropertyName("withdrawCloseReason")]
+        public string? WithdrawCloseReason { get; set; }
+        /// <summary>
+        /// ["<c>isNeedMemo</c>"] Needs memo
+        /// </summary>
+        [JsonPropertyName("isNeedMemo")]
+        public bool NeedsMemo { get; set; }
+        /// <summary>
+        /// ["<c>businessNameI18n</c>"] Business name
+        /// </summary>
+        [JsonPropertyName("businessNameI18n")]
+        public Dictionary<string, string>? BusinessName { get; set; }
     }
 
 

@@ -56,6 +56,31 @@ namespace XT.Net.Objects.Models
         /// </summary>
         [JsonPropertyName("takerMaker")]
         public TradeRole TradeRole { get; set; }
+        /// <summary>
+        /// ["<c>contractSize</c>"] Contract size
+        /// </summary>
+        [JsonPropertyName("contractSize")]
+        public decimal ContractSize { get; set; }
+        /// <summary>
+        /// ["<c>couponDeductFee</c>"] Coupon deduction fee
+        /// </summary>
+        [JsonPropertyName("couponDeductFee")]
+        public decimal? CouponDeductFee { get; set; }
+        /// <summary>
+        /// ["<c>bonusDeductFee</c>"] Bonus deduction fee
+        /// </summary>
+        [JsonPropertyName("bonusDeductFee")]
+        public decimal? BonusDeductFee { get; set; }
+        /// <summary>
+        /// ["<c>orderSide</c>"] Side
+        /// </summary>
+        [JsonPropertyName("orderSide")]
+        public OrderSide Side { get; set; }
+        /// <summary>
+        /// ["<c>positionSide</c>"] Position side
+        /// </summary>
+        [JsonPropertyName("positionSide")]
+        public PositionSide PositionSide { get; set; }
     }
 
 
