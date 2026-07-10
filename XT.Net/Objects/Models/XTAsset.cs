@@ -118,7 +118,7 @@ namespace XT.Net.Objects.Models
         /// ["<c>isNeedMemo</c>"] Needs memo
         /// </summary>
         [JsonPropertyName("isNeedMemo")]
-        public bool NeedsMemo { get; set; }
+        public bool? NeedsMemo { get; set; }
         /// <summary>
         /// ["<c>businessNameI18n</c>"] Business name
         /// </summary>
