@@ -294,6 +294,8 @@ new XTSocketClient().FuturesApi.SharedClient
 
 Use `SharedClient.Discover()` on any shared client root when code needs runtime metadata about supported shared interfaces and endpoint options.
 
+`ISpotSymbolRestClient` and `IFuturesSymbolRestClient` expose `SpotSymbolCatalog` and `FuturesSymbolCatalog`. A successful `GetSpotSymbolsAsync(...)` or `GetFuturesSymbolsAsync(...)` call populates the corresponding catalog and returns display names plus shared asset classifications. XT tags are mapped to crypto, stablecoin, equity, and commodity types where available.
+
 Spot REST shared interfaces include `IAssetsRestClient`, `IBalanceRestClient`, `IDepositRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IWithdrawalRestClient`, `IWithdrawRestClient`, `ISpotTickerRestClient`, `ISpotSymbolRestClient`, `ISpotOrderRestClient`, `IFeeRestClient`, `IBookTickerRestClient`, and `ITransferRestClient`.
 
 Futures REST shared interfaces include `IBalanceRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IFundingRateRestClient`, `IFuturesSymbolRestClient`, `IFuturesTickerRestClient`, `ILeverageRestClient`, `IOpenInterestRestClient`, `IFuturesOrderRestClient`, `IFeeRestClient`, `IFuturesTriggerOrderRestClient`, `IFuturesTpSlRestClient`, and `IBookTickerRestClient`.

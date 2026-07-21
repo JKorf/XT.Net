@@ -2,7 +2,7 @@
 
 > Strongly typed .NET client library for the XT REST and WebSocket APIs. Supports Spot, USDT-M Futures, Coin-M Futures, public market data, private account/trading endpoints, WebSocket streams, client-side rate limiting, local order books, dependency injection, native AOT, and CryptoExchange.Net SharedApis.
 
-XT.Net is part of the CryptoExchange.Net ecosystem. Current package version in source: 4.1.0. This branch targets CryptoExchange.Net 12.0.0-beta1. REST and Shared REST methods use `HttpResult<T>` / `HttpResult`; socket and Shared socket subscriptions use `WebSocketResult<UpdateSubscription>`. Targets `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, and `net10.0`.
+XT.Net is part of the CryptoExchange.Net ecosystem. Current package version in source: 4.2.0. This branch targets CryptoExchange.Net 12.2.0. REST and Shared REST methods use `HttpResult<T>` / `HttpResult`; socket and Shared socket subscriptions use `WebSocketResult<UpdateSubscription>`. Targets `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, and `net10.0`.
 
 ## Documentation
 
@@ -33,6 +33,7 @@ XT.Net is part of the CryptoExchange.Net ecosystem. Current package version in s
 - DI: `services.AddXT(options => { ... })`
 - SharedApis: `client.SpotApi.SharedClient`, `client.UsdtFuturesApi.SharedClient`, `client.CoinFuturesApi.SharedClient`, `socketClient.SpotApi.SharedClient`, `socketClient.FuturesApi.SharedClient`
 - Shared capability discovery: `client.SpotApi.SharedClient.Discover()` and equivalent SharedClient roots
+- Shared symbol catalogs: after a successful shared symbol query, use `ISpotSymbolRestClient.SpotSymbolCatalog` or `IFuturesSymbolRestClient.FuturesSymbolCatalog`; shared symbols include display names and asset type/subtype metadata
 
 ## Critical Rules
 

@@ -2,7 +2,7 @@
 
 XT.Net is a strongly typed C#/.NET client library for the XT exchange REST and WebSocket APIs. It is part of the CryptoExchange.Net family and follows the same result, client lifetime, dependency injection, and SharedApis patterns as the other JKorf exchange clients.
 
-Current source package version: 4.1.0. CryptoExchange.Net dependency on this branch: 12.0.0-beta1. Target frameworks: `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, `net10.0`. Native AOT compatibility is enabled for compatible target frameworks.
+Current source package version: 4.2.0. CryptoExchange.Net dependency on this branch: 12.2.0. Target frameworks: `netstandard2.0`, `netstandard2.1`, `net8.0`, `net9.0`, `net10.0`. Native AOT compatibility is enabled for compatible target frameworks.
 
 Use this file when generating XT.Net code for AI assistants. If a method, enum, or client member is not listed here, inspect `XT.Net/Interfaces/Clients/**` and the concrete source before writing code.
 
@@ -318,6 +318,18 @@ new XTSocketClient().FuturesApi.SharedClient
 ```
 
 Use `SharedClient.Discover()` on any shared client root when tooling or exchange-agnostic code needs runtime metadata about implemented shared interfaces and endpoint options.
+
+Shared symbol clients expose catalogs populated by successful symbol queries:
+
+```csharp
+ISpotSymbolRestClient spotSymbols = new XTRestClient().SpotApi.SharedClient;
+var symbols = await spotSymbols.GetSpotSymbolsAsync(new GetSymbolsRequest());
+if (!symbols.Success) { Console.WriteLine(symbols.Error); return; }
+
+SharedSymbolCatalog? catalog = spotSymbols.SpotSymbolCatalog;
+```
+
+Use `IFuturesSymbolRestClient.FuturesSymbolCatalog` for USDT-M or Coin-M shared futures clients. Returned shared spot and futures symbols include `DisplayName` and asset type/subtype metadata. XT symbol tags are mapped to crypto, stablecoin, equity, and commodity classifications where available.
 
 Spot REST shared interfaces include: `IAssetsRestClient`, `IBalanceRestClient`, `IDepositRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IWithdrawalRestClient`, `IWithdrawRestClient`, `ISpotTickerRestClient`, `ISpotSymbolRestClient`, `ISpotOrderRestClient`, `IFeeRestClient`, `IBookTickerRestClient`, and `ITransferRestClient`.
 

@@ -186,6 +186,8 @@ Private futures streams require `listenKey = await restClient.UsdtFuturesApi.Acc
 | Shared Coin-M futures REST client | `new XTRestClient().CoinFuturesApi.SharedClient` |
 | Shared spot socket client | `new XTSocketClient().SpotApi.SharedClient` |
 | Shared futures socket client | `new XTSocketClient().FuturesApi.SharedClient` |
+| Get shared spot symbols and populate the catalog | `ISpotSymbolRestClient.GetSpotSymbolsAsync(new GetSymbolsRequest(...))`, then `ISpotSymbolRestClient.SpotSymbolCatalog` |
+| Get shared futures symbols and populate the catalog | `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))`, then `IFuturesSymbolRestClient.FuturesSymbolCatalog` |
 | Shared spot ticker REST | `ISpotTickerRestClient.GetSpotTickerAsync(new GetTickerRequest(symbol))` |
 | Shared spot order REST | `ISpotOrderRestClient.PlaceSpotOrderAsync(...)` |
 | Shared futures ticker REST | `IFuturesTickerRestClient.GetFuturesTickerAsync(...)` |
@@ -193,6 +195,8 @@ Private futures streams require `listenKey = await restClient.UsdtFuturesApi.Acc
 | Shared ticker socket | `ITickerSocketClient.SubscribeToTickerUpdatesAsync(...)` |
 | Shared order book socket | `IOrderBookSocketClient.SubscribeToOrderBookUpdatesAsync(...)` |
 | Discover shared capabilities | `client.SpotApi.SharedClient.Discover()` or the equivalent futures/socket SharedClient root |
+
+Shared spot and futures symbol results include `DisplayName` and shared asset type/subtype metadata. XT tags are mapped to crypto, stablecoin, equity, and commodity classifications where available.
 
 For shared socket subscriptions, keep the concrete `XTSocketClient` and unsubscribe with `await socketClient.UnsubscribeAsync(subscription.Data)`.
 
