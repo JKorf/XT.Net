@@ -68,7 +68,7 @@ namespace XT.Net.Clients.SpotApi
                         update.Data.HighPrice,
                         update.Data.LowPrice,
                         update.Data.OpenPrice,
-                        update.Data.Volume)));
+                        new SharedOrderQuantity(update.Data.Volume, update.Data.QuoteVolume))));
             }, ct).ConfigureAwait(false);
 
             return result;
@@ -115,10 +115,9 @@ namespace XT.Net.Clients.SpotApi
                     update.Data.LastPrice,
                     update.Data.HighPrice,
                     update.Data.LowPrice,
-                    update.Data.Volume, 
+                    new SharedOrderQuantity(update.Data.Volume, update.Data.QuoteVolume), 
                     update.Data.ChangePercentage * 100)
             {
-                QuoteVolume = update.Data.QuoteVolume
             })), ct).ConfigureAwait(false);
             return result;
         }
@@ -144,7 +143,7 @@ namespace XT.Net.Clients.SpotApi
                         new SharedTrade(
                             ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
                             update.Data.Symbol,
-                            update.Data.Quantity, 
+                            new SharedOrderQuantity(update.Data.Quantity), 
                             update.Data.Price, 
                             update.Data.Timestamp)
                     {

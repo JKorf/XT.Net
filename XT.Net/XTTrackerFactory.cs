@@ -82,6 +82,7 @@ namespace XT.Net
                 exchangeParameters
                 );
         }
+
         /// <inheritdoc />
         public ITradeTracker CreateTradeTracker(SharedSymbol symbol, int? limit = null, TimeSpan? period = null, ExchangeParameters? exchangeParameters = null)
         {
@@ -90,20 +91,24 @@ namespace XT.Net
 
             IRecentTradeRestClient? sharedRestClient;
             ITradeSocketClient sharedSocketClient;
+            TradeQuantityType quantityType;
             if (symbol.TradingMode == TradingMode.Spot)
             {
                 sharedRestClient = restClient.SpotApi.SharedClient;
                 sharedSocketClient = socketClient.SpotApi.SharedClient;
+                quantityType = TradeQuantityType.BaseAsset;
             }
             else if (symbol.TradingMode.IsLinear())
             {
                 sharedRestClient = restClient.UsdtFuturesApi.SharedClient;
                 sharedSocketClient = socketClient.FuturesApi.SharedClient;
+                quantityType = TradeQuantityType.Contracts;
             }
             else
             {
                 sharedRestClient = restClient.CoinFuturesApi.SharedClient;
                 sharedSocketClient = socketClient.FuturesApi.SharedClient;
+                quantityType = TradeQuantityType.Contracts;
             }
 
             return new TradeTracker(
@@ -114,6 +119,7 @@ namespace XT.Net
                 symbol,
                 limit,
                 period,
+                quantityType,
                 exchangeParameters
                 );
         }

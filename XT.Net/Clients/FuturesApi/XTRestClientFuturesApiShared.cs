@@ -18,7 +18,6 @@ namespace XT.Net.Clients.FuturesApi
         private const string _topicId = "XTFutures";
         private const string _exchangeName = "XT";
 
-
         public TradingMode[] SupportedTradingModes =>
             this is XTRestClientUsdtFuturesApi
             ? new[] { TradingMode.PerpetualLinear, TradingMode.DeliveryLinear }
@@ -99,7 +98,15 @@ namespace XT.Net.Clients.FuturesApi
 
             return HttpResult.Ok(result, ExchangeHelpers.ApplyFilter(result.Data, x => x.OpenTime, request.StartTime, request.EndTime, direction)
                     .Select(x =>
-                        new SharedKline(request.Symbol, symbol, x.OpenTime, x.ClosePrice, x.HighPrice, x.LowPrice, x.OpenPrice, x.Volume))
+                        new SharedKline(
+                            request.Symbol,
+                            symbol, 
+                            x.OpenTime,
+                            x.ClosePrice,
+                            x.HighPrice,
+                            x.LowPrice,
+                            x.OpenPrice,
+                            new SharedOrderQuantity(null, x.Turnover, x.Volume)))
                     .ToArray(), nextPageRequest);
         }
 
@@ -143,7 +150,7 @@ namespace XT.Net.Clients.FuturesApi
                 return HttpResult.Fail<SharedTrade[]>(result);
 
             return HttpResult.Ok(result, result.Data.Select(x =>
-                new SharedTrade(request.Symbol, symbol, x.Quantity, x.Price, x.Timestamp)
+                new SharedTrade(request.Symbol, symbol, new SharedOrderQuantity(contractQuantity: x.Quantity), x.Price, x.Timestamp)
                 {
                     Side = x.Side == Enums.OrderSide.Sell ? SharedOrderSide.Sell : SharedOrderSide.Buy,
                 }).ToArray());
@@ -318,7 +325,15 @@ namespace XT.Net.Clients.FuturesApi
             if (ticker == null)
                 return HttpResult.Fail<SharedFuturesTicker>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
 
-            return HttpResult.Ok(resultTicker, new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, ticker.Symbol), ticker.Symbol, ticker.LastPrice, ticker.HighPrice, ticker.LowPrice, ticker.Volume, null)
+            return HttpResult.Ok(resultTicker, 
+                new SharedFuturesTicker(
+                    ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, ticker.Symbol), 
+                    ticker.Symbol, 
+                    ticker.LastPrice,
+                    ticker.HighPrice, 
+                    ticker.LowPrice,
+                    new SharedOrderQuantity(ticker.Volume, ticker.TargetVolume),
+                    null)
             {
                 IndexPrice = ticker.IndexPrice,
                 FundingRate = ticker.NextFundingRate,
@@ -343,7 +358,14 @@ namespace XT.Net.Clients.FuturesApi
 
             return HttpResult.Ok(resultTickers, data.Select(x =>
             {
-                return new SharedFuturesTicker(ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, x.Symbol), x.Symbol, x.LastPrice, x.HighPrice, x.LowPrice, x.Volume, null)
+                return new SharedFuturesTicker(
+                    ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, x.Symbol),
+                    x.Symbol,
+                    x.LastPrice,
+                    x.HighPrice, 
+                    x.LowPrice, 
+                    new SharedOrderQuantity(x.Volume, x.TargetVolume),
+                    null)
                 {
                     IndexPrice = x.IndexPrice,
                     FundingRate = x.FundingRate,

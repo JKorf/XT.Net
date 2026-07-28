@@ -56,7 +56,15 @@ namespace XT.Net.Clients.FuturesApi
 
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
             var result = await SubscribeToKlineUpdatesAsync(symbols, (Enums.KlineInterval)request.Interval, update => handler(update.ToType(
-                new SharedKline(ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol), update.Data.Symbol, update.Data.OpenTime, update.Data.ClosePrice, update.Data.HighPrice, update.Data.LowPrice, update.Data.OpenPrice, update.Data.Volume))), ct).ConfigureAwait(false);
+                new SharedKline(
+                    ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
+                    update.Data.Symbol,
+                    update.Data.OpenTime,
+                    update.Data.ClosePrice, 
+                    update.Data.HighPrice,
+                    update.Data.LowPrice,
+                    update.Data.OpenPrice, 
+                    new SharedOrderQuantity(null, update.Data.Turnover, update.Data.Volume)))), ct).ConfigureAwait(false);
 
             return result;
         }
@@ -100,10 +108,9 @@ namespace XT.Net.Clients.FuturesApi
                     update.Data.LastPrice,
                     update.Data.HighPrice,
                     update.Data.LowPrice,
-                    update.Data.Volume,
+                    new SharedOrderQuantity(null, update.Data.Turnover, update.Data.Volume),
                     update.Data.PriceChange * 100)
                 {
-                    QuoteVolume = update.Data.Turnover
                 })), ct: ct).ConfigureAwait(false);
 
             return result;
@@ -128,7 +135,7 @@ namespace XT.Net.Clients.FuturesApi
                 new SharedTrade(
                     ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
                     update.Data.Symbol,
-                    update.Data.Quantity,
+                    new SharedOrderQuantity(contractQuantity: update.Data.Quantity),
                     update.Data.Price,
                     update.Data.Timestamp)
                 {
