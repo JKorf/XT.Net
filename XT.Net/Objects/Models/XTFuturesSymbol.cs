@@ -395,6 +395,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("businessNameI18n")]
         public Dictionary<string, string>? BusinessName { get; set; }
         /// <summary>
+        /// ["<c>businessName</c>"] Business name
+        /// </summary>
+        [JsonPropertyName("businessName")]
+        public string? BusinessNameDefault { get; set; }
+        /// <summary>
         /// ["<c>tags</c>"] Tags
         /// </summary>
         [JsonPropertyName("tags")]
