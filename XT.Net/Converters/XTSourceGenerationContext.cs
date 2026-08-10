@@ -107,6 +107,7 @@ namespace XT.Net.Converters
     [JsonSerializable(typeof(XTFuturesRestResponse<XTOpenInterest>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<long?>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTFuturesOrder>))]
+    [JsonSerializable(typeof(XTFuturesRestResponse<XTFuturesOrder[]>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTTriggerOrder>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTStopLimitOrder>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTTrackOrder>))]
