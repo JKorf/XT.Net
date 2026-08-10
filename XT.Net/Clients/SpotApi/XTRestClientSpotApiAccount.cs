@@ -68,7 +68,7 @@ namespace XT.Net.Clients.SpotApi
         #region Get Deposit History
 
         /// <inheritdoc />
-        public async Task<HttpResult<XTPage<XTDeposit>>> GetDepositHistoryAsync(string asset, string network, DepositStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<HttpResult<XTPage<XTDeposit>>> GetDepositHistoryAsync(string asset, string? network = null, DepositStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
             parameters.Add("currency", asset);
@@ -107,7 +107,7 @@ namespace XT.Net.Clients.SpotApi
         #region Get Withdrawal History
 
         /// <inheritdoc />
-        public async Task<HttpResult<XTPage<XTWithdrawal>>> GetWithdrawalHistoryAsync(string asset, string network, WithdrawalStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<HttpResult<XTPage<XTWithdrawal>>> GetWithdrawalHistoryAsync(string asset, string? network = null, WithdrawalStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
         {
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
             parameters.Add("currency", asset);

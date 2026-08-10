@@ -62,7 +62,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </para>
         /// </summary>
         /// <param name="asset">["<c>currency</c>"] Asset name</param>
-        /// <param name="network">["<c>chain</c>"] Network</param>
+        /// <param name="network">["<c>chain</c>"] Network; when omitted the history for all networks is returned</param>
         /// <param name="status">["<c>status</c>"] Filter by status</param>
         /// <param name="fromId">["<c>fromId</c>"] From id</param>
         /// <param name="direction">["<c>direction</c>"] Page direction</param>
@@ -70,7 +70,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<HttpResult<XTPage<XTDeposit>>> GetDepositHistoryAsync(string asset, string network, DepositStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTDeposit>>> GetDepositHistoryAsync(string asset, string? network = null, DepositStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Withdraw an asset
@@ -99,7 +99,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// </para>
         /// </summary>
         /// <param name="asset">["<c>currency</c>"] Asset name</param>
-        /// <param name="network">["<c>chain</c>"] Network</param>
+        /// <param name="network">["<c>chain</c>"] Network; when omitted the history for all networks is returned</param>
         /// <param name="status">["<c>status</c>"] Filter by status</param>
         /// <param name="fromId">["<c>fromId</c>"] From id</param>
         /// <param name="direction">["<c>direction</c>"] Page direction</param>
@@ -107,7 +107,7 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
         /// <param name="ct">Cancellation token</param>
-        Task<HttpResult<XTPage<XTWithdrawal>>> GetWithdrawalHistoryAsync(string asset, string network, WithdrawalStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTWithdrawal>>> GetWithdrawalHistoryAsync(string asset, string? network = null, WithdrawalStatus? status = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
 
         /// <summary>
         /// Transfer assets
