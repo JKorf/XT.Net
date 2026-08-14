@@ -184,7 +184,8 @@ namespace XT.Net.Clients.FuturesApi
         {
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
             parameters.Add("symbol", symbol?.ToLowerInvariant());
-            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/future/trade/v1/order/list-open-order", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            // XT serves list-open-order as POST only; GET returns HTTP 405
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "/future/trade/v1/order/list-open-order", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTFuturesOrder[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }
