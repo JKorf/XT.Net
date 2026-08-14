@@ -94,6 +94,8 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetFeeRateAsync(), "GetFeeRate", nestedJsonProperty: "result");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.SetPositionTypeAsync("123", PositionSide.Short, PositionType.Isolated), "SetPositionType");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetAdlInfoAsync(), "GetAdlInfo", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Account.GetLeverageInfoAsync("eth_usdt"), "GetLeverageInfo", nestedJsonProperty: "result");
+
         }
 
         [Test]
@@ -148,6 +150,7 @@ namespace XT.Net.UnitTests
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.CancelStopLimitOrderAsync(123), "CancelStopLimitOrder");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.EditStopLimitOrderAsync(123), "EditStopLimitOrder");
             await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetOpenTrackOrdersAsync(), "GetOpenTrackOrders", nestedJsonProperty: "result");
+            await tester.ValidateAsync(client => client.UsdtFuturesApi.Trading.GetUserTradeDetailsAsync(), "GetUserTradeDetails", nestedJsonProperty: "result");
         }
 
         private bool IsAuthenticated(IHttpResult result)

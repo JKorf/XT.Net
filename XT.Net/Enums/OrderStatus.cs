@@ -40,6 +40,21 @@ namespace XT.Net.Enums
         /// </summary>
         [Map("EXPIRED")]
         Expired,
+        /// <summary>
+        /// ["<c>PLACED</c>"] Placed (plan order)
+        /// </summary>
+        [Map("PLACED")]
+        Placed,
+        /// <summary>
+        /// ["<c>UNFINISHED</c>"] Unfinished (plan order)
+        /// </summary>
+        [Map("UNFINISHED")]
+        Unfinished,
+        /// <summary>
+        /// ["<c>HISTORY</c>"] History (plan order)
+        /// </summary>
+        [Map("HISTORY")]
+        History,
     }
 
 }

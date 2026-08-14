@@ -186,5 +186,19 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// </summary>
         /// <param name="ct">Cancellation token</param>
         Task<HttpResult<string>> GetListenKeyAsync(CancellationToken ct = default);
+
+        /// <summary>
+        /// Get leverage info
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/GetLeverageInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/position/leverage/list<br />
+        /// </para>
+        /// </summary>
+        /// <param name="symbol">["<c>symbol</c>"] The symbol, for example `ETH_USDT`</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<HttpResult<XTLeverageInfo[]>> GetLeverageInfoAsync(string symbol, CancellationToken ct = default);
+
     }
 }

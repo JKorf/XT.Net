@@ -1,0 +1,5 @@
+GET
+/future/trade/v1/position/leverage/list
+true
+UriParams: { "symbol": "eth_usdt" }
+{"returnCode":0,"msgInfo":"success","error":null,"result":[{"symbol":"btc_usdt","accountId":null,"positionType":"CROSSED","positionSide":"LONG","contractType":null,"leverage":20},{"symbol":"btc_usdt","accountId":null,"positionType":"CROSSED","positionSide":"SHORT","contractType":null,"leverage":20}]}

@@ -590,5 +590,27 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
+        #region Get User Trade Details
+
+        /// <inheritdoc />
+        public async Task<HttpResult<XTUserTradeDetails[]>> GetUserTradeDetailsAsync(
+            long? orderId = null,
+            string? symbol = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null,
+            CancellationToken ct = default)
+        {
+            var parameters = new Parameters(XTExchange._parameterSerializationSettings);
+            parameters.Add("orderId", orderId);
+            parameters.Add("symbol", symbol);
+            parameters.Add("startTime", startTime);
+            parameters.Add("endTime", endTime);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/future/trade/v1/order/trade-list-all", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            var result = await _baseClient.SendAsync<XTUserTradeDetails[]>(request, parameters, ct).ConfigureAwait(false);
+            return result;
+        }
+
+        #endregion
     }
 }

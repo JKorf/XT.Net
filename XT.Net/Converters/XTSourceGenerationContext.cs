@@ -11,7 +11,9 @@ namespace XT.Net.Converters
     [JsonSerializable(typeof(SymbolFilterType))]
 
     // End manual defined attributes
-
+    [JsonSerializable(typeof(XTFuturesRestResponse<XTLeverageInfo[]>))]
+    [JsonSerializable(typeof(XTFuturesRestResponse<XTPage<XTTriggerOrder>>))]
+    [JsonSerializable(typeof(XTFuturesRestResponse<XTUserTradeDetails[]>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTPage<XTAccountBill>>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTPage<XTFundingFee>>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTPage<XTFundingRateHistory>>))]

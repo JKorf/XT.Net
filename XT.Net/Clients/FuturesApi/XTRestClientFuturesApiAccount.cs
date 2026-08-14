@@ -207,5 +207,20 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
+        #region Get Leverage Info
+
+        /// <inheritdoc />
+        public async Task<HttpResult<XTLeverageInfo[]>> GetLeverageInfoAsync(string symbol, CancellationToken ct = default)
+        {
+            var parameters = new Parameters(XTExchange._parameterSerializationSettings);
+            parameters.Add("symbol", symbol.ToLowerInvariant());
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/future/trade/v1/position/leverage/list", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            var result = await _baseClient.SendAsync<XTLeverageInfo[]>(request, parameters, ct).ConfigureAwait(false);
+            return result;
+        }
+
+        #endregion
+
     }
 }

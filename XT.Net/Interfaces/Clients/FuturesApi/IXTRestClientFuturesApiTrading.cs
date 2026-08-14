@@ -516,5 +516,26 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="pageSize">["<c>size</c>"] Page size</param>
         /// <param name="ct">Cancellation token</param>
         Task<HttpResult<XTPage<XTTrackOrder>>> GetClosedTrackOrdersAsync(string? symbol = null, TrackOrderStatus? status = null, long? orderId = null, DateTime? startTime = null, DateTime? endTime = null, int? page = null, int? pageSize = null, CancellationToken ct = default);
+
+        /// <summary>
+        /// Get user trade history details
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/docs/futures/Entrust/TradeHistory" /><br />
+        /// Endpoint:<br />
+        /// GET /future/trade/v1/order/trade-list-all<br />
+        /// </para>
+        /// </summary>
+        /// <param name="orderId">["<c>orderId</c>"] Filter by order id</param>
+        /// <param name="symbol">["<c>symbol</c>"] Filter by symbol, for example `ETHUSDT`</param>
+        /// <param name="startTime">["<c>startTime</c>"] Filter by start time</param>
+        /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
+        /// <param name="ct">Cancellation token</param>
+        Task<HttpResult<XTUserTradeDetails[]>> GetUserTradeDetailsAsync(
+            long? orderId = null,
+            string? symbol = null,
+            DateTime? startTime = null,
+            DateTime? endTime = null,
+            CancellationToken ct = default);
     }
 }
