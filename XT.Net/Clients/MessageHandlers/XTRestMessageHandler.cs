@@ -33,7 +33,9 @@ namespace XT.Net.Clients.MessageHandlers
             if (result is XTRestResponse xtSpotResponse)
             {
                 if (xtSpotResponse.MessageCode != null && !xtSpotResponse.MessageCode.Equals("SUCCESS", StringComparison.Ordinal))
-                    return new ServerError(xtSpotResponse.MessageCode, _errorMapping.GetErrorInfo(xtSpotResponse.MessageCode, null));
+                    // Fall back to the raw mc code as message so unmapped codes surface as
+                    // e.g. "AUTH_105" instead of "Unknown error"
+                    return new ServerError(xtSpotResponse.MessageCode, _errorMapping.GetErrorInfo(xtSpotResponse.MessageCode, xtSpotResponse.MessageCode));
             }
 
             return null;
