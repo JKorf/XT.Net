@@ -82,7 +82,9 @@ namespace XT.Net.Clients.FuturesApi
                 return WebSocketResult.Fail<UpdateSubscription>(_exchangeName, validationError);
 ;
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
-            var result = await SubscribeToOrderBookUpdatesAsync(symbols, request.Limit ?? 20, 100, update => handler(update.ToType(new SharedOrderBook(update.Data.Asks, update.Data.Bids))), ct).ConfigureAwait(false);
+            var result = await SubscribeToOrderBookUpdatesAsync(symbols, request.Limit ?? 20, 100, update => handler(
+                update.ToType(
+                    new SharedOrderBook(SharedQuantityType.Contracts, update.Data.Asks, update.Data.Bids))), ct).ConfigureAwait(false);
 
             return result;
         }
@@ -164,7 +166,7 @@ namespace XT.Net.Clients.FuturesApi
                         update.Data.OrderId.ToString(),
                         string.Empty,
                         update.Data.OrderSide == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell,
-                        update.Data.Quantity,
+                        new SharedOrderQuantity(contractQuantity: update.Data.Quantity),
                         update.Data.Price,
                         update.Data.Timestamp)
                     {
@@ -229,7 +231,7 @@ namespace XT.Net.Clients.FuturesApi
                     new SharedPosition(
                         ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, update.Data.Symbol),
                         update.Data.Symbol,
-                        update.Data.PositionSize,
+                        new SharedOrderQuantity(contractQuantity: update.Data.PositionSize),
                         update.DataTime ?? update.ReceiveTime)
                     {
                         AverageOpenPrice = update.Data.EntryPrice == 0 ? null : update.Data.EntryPrice,

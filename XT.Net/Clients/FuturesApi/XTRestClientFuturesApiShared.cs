@@ -127,7 +127,7 @@ namespace XT.Net.Clients.FuturesApi
             if (!result.Success)
                 return HttpResult.Fail<SharedOrderBook>(result);
 
-            return HttpResult.Ok(result, new SharedOrderBook(result.Data.Asks, result.Data.Bids));
+            return HttpResult.Ok(result, new SharedOrderBook(SharedQuantityType.Contracts, result.Data.Asks, result.Data.Bids));
         }
 
         #endregion
@@ -231,10 +231,17 @@ namespace XT.Net.Clients.FuturesApi
                 DeliveryTime = s.DeliveryDate,
                 MinTradeQuantity = s.MinQuantity,
                 MinNotionalValue = s.MinNotional,
+                MaxTradeQuantity = s.MaxMarketOrderQuantity,
                 PriceStep = s.MinStepPrice,
                 PriceDecimals = s.PricePrecision,
                 QuantityDecimals = s.QuantityPrecision,
-                DisplayName = s.EnglishName ?? s.Symbol
+                DisplayName = s.EnglishName ?? s.Symbol,
+                MakerFeePercentage = s.MakerFee * 100,
+                TakerFeePercentage = s.TakerFee * 100,
+                MaxLongLeverage = s.CurrentMaxLeverage,
+                MaxShortLeverage = s.CurrentMaxLeverage,
+                UpperPriceLimitPercentage = s.MultiplierUp * 100,
+                LowerPriceLimitPercentage = -s.MultiplierDown * 100                
             };
 
             if (result.TradingMode.IsInverse())
@@ -393,9 +400,9 @@ namespace XT.Net.Clients.FuturesApi
                 ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, resultTicker.Data.Symbol),
                 resultTicker.Data.Symbol,
                 resultTicker.Data.BestAskPrice ?? 0,
-                resultTicker.Data.BestAskQuantity ?? 0,
+                new SharedOrderQuantity(contractQuantity: resultTicker.Data.BestAskQuantity),
                 resultTicker.Data.BestBidPrice ?? 0,
-                resultTicker.Data.BestBidQuantity ?? 0));
+                new SharedOrderQuantity(contractQuantity: resultTicker.Data.BestBidQuantity)));
         }
 
         #endregion
@@ -457,7 +464,7 @@ namespace XT.Net.Clients.FuturesApi
             if (!result.Success)
                 return HttpResult.Fail<SharedOpenInterest>(result);
 
-            return HttpResult.Ok(result, new SharedOpenInterest(result.Data.OpenInterest));
+            return HttpResult.Ok(result, new SharedOpenInterest(new SharedOrderQuantity(contractQuantity: result.Data.OpenInterest)));
         }
 
         #endregion
@@ -651,7 +658,7 @@ namespace XT.Net.Clients.FuturesApi
                 x.OrderId.ToString(),
                 x.TradeId.ToString(),
                 null,
-                x.Quantity,
+                new SharedOrderQuantity(contractQuantity: x.Quantity),
                 x.Price,
                 x.Timestamp)
             {
@@ -699,7 +706,7 @@ namespace XT.Net.Clients.FuturesApi
                             x.OrderId.ToString(),
                             x.TradeId.ToString(),
                             null,
-                            x.Quantity,
+                            new SharedOrderQuantity(contractQuantity: x.Quantity),
                             x.Price,
                             x.Timestamp)
                         {
@@ -742,7 +749,12 @@ namespace XT.Net.Clients.FuturesApi
                 data = data.Where(x => (request.TradingMode.Value.IsPerpetual() ? x.Symbol.IndexOf('_') == x.Symbol.LastIndexOf('_') : x.Symbol.IndexOf('_') != x.Symbol.LastIndexOf('_')));
 
             var resultTypes = request.Symbol == null && request.TradingMode == null ? SupportedTradingModes : request.Symbol != null ? new[] { request.Symbol.TradingMode } : new[] { request.TradingMode!.Value };
-            return HttpResult.Ok(result, data.Select(x => new SharedPosition(ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, x.Symbol), x.Symbol, x.PositionSize, null)
+            return HttpResult.Ok(result, data.Select(x => 
+            new SharedPosition(
+                ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, x.Symbol),
+                x.Symbol,
+                new SharedOrderQuantity(contractQuantity: x.PositionSize), 
+                null)
             {
                 UnrealizedPnl = x.UnrealizedPnl,
                 Leverage = x.Leverage,

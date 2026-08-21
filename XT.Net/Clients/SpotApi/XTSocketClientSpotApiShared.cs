@@ -89,7 +89,7 @@ namespace XT.Net.Clients.SpotApi
             var symbols = request.Symbols?.Length > 0 ? request.Symbols.Select(x => x.GetSymbol(FormatSymbol)).ToArray() : [request.Symbol!.GetSymbol(FormatSymbol)];
             var result = await SubscribeToOrderBookUpdatesAsync(symbols, request.Limit ?? 10, update =>
             {
-                handler(update.ToType(new SharedOrderBook(update.Data.Asks, update.Data.Bids)));
+                handler(update.ToType(new SharedOrderBook(SharedQuantityType.BaseAsset, update.Data.Asks, update.Data.Bids)));
             }, ct).ConfigureAwait(false);
 
             return result;
@@ -173,7 +173,7 @@ namespace XT.Net.Clients.SpotApi
                         update.Data.OrderId.ToString(),
                         update.Data.Id.ToString(),
                         null,
-                        update.Data.Quantity,
+                        new SharedOrderQuantity(update.Data.Quantity, update.Data.QuoteQuantity),
                         update.Data.Price,
                         update.Data.Timestamp)
                     {

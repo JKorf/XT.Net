@@ -276,7 +276,7 @@ namespace XT.Net.Clients.SpotApi
             if (!result.Success)
                 return HttpResult.Fail<SharedOrderBook>(result);
 
-            return HttpResult.Ok(result, new SharedOrderBook(result.Data.Asks, result.Data.Bids));
+            return HttpResult.Ok(result, new SharedOrderBook(SharedQuantityType.BaseAsset, result.Data.Asks, result.Data.Bids));
         }
 
         #endregion
@@ -497,9 +497,9 @@ namespace XT.Net.Clients.SpotApi
                 ExchangeSymbolCache.ParseSymbol(_topicId, EnvironmentName, null, ticker.Symbol),
                 ticker.Symbol,
                 ticker.BestAskPrice ?? 0,
-                ticker.BestAskQuantity ?? 0,
+                new SharedOrderQuantity(ticker.BestAskQuantity),
                 ticker.BestBidPrice ?? 0,
-                ticker.BestBidQuantity ?? 0));
+                new SharedOrderQuantity(ticker.BestBidQuantity)));
         }
 
         #endregion
@@ -537,7 +537,10 @@ namespace XT.Net.Clients.SpotApi
                 QuantityDecimals = s.QuantityPrecision,
                 PriceDecimals = s.PricePrecision,
                 DisplayName = s.DisplayName,
-                QuoteAssetType = SharedAssetType.Crypto
+                QuoteAssetType = SharedAssetType.Crypto,
+                TakerFeePercentage = s.TakerFeeRate * 100,
+                MakerFeePercentage = s.MakerFeeRate * 100,
+                
             };
 
             if (LibraryHelpers.IsStableCoin(s.QuoteAsset))
@@ -785,7 +788,7 @@ namespace XT.Net.Clients.SpotApi
                 x.OrderId.ToString(),
                 x.TradeId.ToString(),
                 x.OrderSide == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell,
-                x.Quantity,
+                new SharedOrderQuantity(x.Quantity, x.QuoteQuantity),
                 x.Price,
                 x.Timestamp)
             {
@@ -835,7 +838,7 @@ namespace XT.Net.Clients.SpotApi
                             x.OrderId.ToString(),
                             x.TradeId.ToString(),
                             x.OrderSide == OrderSide.Buy ? SharedOrderSide.Buy : SharedOrderSide.Sell,
-                            x.Quantity,
+                            new SharedOrderQuantity(x.Quantity, x.QuoteQuantity),
                             x.Price,
                             x.Timestamp)
                         {
