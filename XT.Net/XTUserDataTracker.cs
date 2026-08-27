@@ -19,12 +19,18 @@ namespace XT.Net
             string? userIdentifier,
             SpotUserDataTrackerConfig? config) : base(
                 logger,
-                restClient.SpotApi.SharedClient,
-                restClient.SpotApi.SharedClient,
-                socketClient.SpotApi.SharedClient,
-                restClient.SpotApi.SharedClient,
-                socketClient.SpotApi.SharedClient,
-                socketClient.SpotApi.SharedClient,
+                restClient.SpotApi.SharedApi,
+
+                restClient.SpotApi.SharedApi,
+                socketClient.SpotApi.SharedApi,
+
+                restClient.SpotApi.SharedApi,
+                restClient.SpotApi.SharedApi,
+                socketClient.SpotApi.SharedApi,
+
+                restClient.SpotApi.SharedApi,
+                socketClient.SpotApi.SharedApi,
+
                 userIdentifier,
                 config ?? new SpotUserDataTrackerConfig())
         {
@@ -46,13 +52,20 @@ namespace XT.Net
             IXTSocketClient socketClient,
             string? userIdentifier,
             FuturesUserDataTrackerConfig? config) : base(logger,
-                restClient.UsdtFuturesApi.SharedClient,
-                restClient.UsdtFuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
-                restClient.UsdtFuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
+                restClient.UsdtFuturesApi.SharedApi,
+
+                restClient.UsdtFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
+
+                restClient.UsdtFuturesApi.SharedApi,
+                restClient.UsdtFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
+
+                restClient.UsdtFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
+
+                restClient.UsdtFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
                 userIdentifier,
                 config ?? new FuturesUserDataTrackerConfig())
         {
@@ -74,13 +87,20 @@ namespace XT.Net
             IXTSocketClient socketClient,
             string? userIdentifier,
             FuturesUserDataTrackerConfig config) : base(logger,
-                restClient.CoinFuturesApi.SharedClient,
-                restClient.CoinFuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
-                restClient.CoinFuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
-                socketClient.FuturesApi.SharedClient,
+                restClient.CoinFuturesApi.SharedApi,
+
+                restClient.CoinFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
+
+                restClient.CoinFuturesApi.SharedApi,
+                restClient.CoinFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
+
+                restClient.CoinFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
+
+                restClient.CoinFuturesApi.SharedApi,
+                socketClient.FuturesApi.SharedApi,
                 userIdentifier,
                 config)
         {

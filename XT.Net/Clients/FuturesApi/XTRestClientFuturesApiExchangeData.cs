@@ -29,7 +29,9 @@ namespace XT.Net.Clients.FuturesApi
         /// <inheritdoc />
         public async Task<HttpResult<DateTime>> GetServerTimeAsync(CancellationToken ct = default)
         {
-            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.ClientOptions.Environment.SpotRestClientAddress, "/v4/public/time", XTExchange.RateLimiter.XT, 1, false);
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.ClientOptions.Environment.SpotRestClientAddress, "/v4/public/time", XTExchange.RateLimiter.XT, 1, false,
+                preventCaching: true,
+                preventRequestCoalescing: true);
             var result = await _baseClient.SendRawAsync<XTRestResponse<XTServerTime>>(request, null, ct).ConfigureAwait(false);
             if (!result.Success)
                 return HttpResult.Fail<DateTime>(result);
@@ -176,7 +178,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #endregion
 
-        #region Get Index Prices
+        #region Get Index Price
 
         /// <inheritdoc />
         public async Task<HttpResult<XTPrice>> GetIndexPriceAsync(string symbol, CancellationToken ct = default)
@@ -203,7 +205,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #endregion
 
-        #region Get Index Prices
+        #region Get Mark Price
 
         /// <inheritdoc />
         public async Task<HttpResult<XTPrice>> GetMarkPriceAsync(string symbol, CancellationToken ct = default)
@@ -217,7 +219,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #endregion
 
-        #region Get Index Prices
+        #region Get Mark Prices
 
         /// <inheritdoc />
         public async Task<HttpResult<XTPrice[]>> GetMarkPricesAsync(CancellationToken ct = default)
@@ -262,7 +264,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #endregion
 
-        #region Get Market Info
+        #region Get Market Infos
 
         /// <inheritdoc />
         public async Task<HttpResult<XTMarketInfo[]>> GetMarketInfosAsync(CancellationToken ct = default)

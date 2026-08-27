@@ -20,6 +20,7 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
+using XT.Net.Clients.FuturesApi;
 using XT.Net.Clients.MessageHandlers;
 using XT.Net.Enums;
 using XT.Net.Interfaces.Clients.SpotApi;
@@ -37,6 +38,8 @@ namespace XT.Net.Clients.SpotApi
     internal partial class XTSocketClientSpotApi : SocketApiClient<XTEnvironment, XTSpotAuthenticationProvider, XTCredentials>, IXTSocketClientSpotApi
     {
         #region fields
+        private readonly XTSocketClientSpotSharedApi _sharedApi;
+
         protected override ErrorMapping ErrorMapping => XTErrors.SpotSocketErrors;
         private readonly ILoggerFactory? _loggerFactory;
         private XTRestClient? _tokenClient;
@@ -70,6 +73,8 @@ namespace XT.Net.Clients.SpotApi
             base(loggerFactory, XTExchange.Metadata.Id, options.Environment.SpotSocketClientAddress!, options, options.SpotOptions)
         {
             _loggerFactory = loggerFactory;
+
+            _sharedApi = new XTSocketClientSpotSharedApi(this);
 
             RegisterPeriodicQuery(
                 "Ping",
@@ -396,7 +401,9 @@ namespace XT.Net.Clients.SpotApi
         }
 
         /// <inheritdoc />
-        public IXTSocketClientSpotApiShared SharedClient => this;
+        public IXTSocketClientSpotApiShared SharedClient => _sharedApi;
+        /// <inheritdoc />
+        public IXTSocketClientSpotSharedApi SharedApi => _sharedApi;
 
         /// <inheritdoc />
         public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverDate = null)

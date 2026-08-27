@@ -24,6 +24,8 @@ namespace XT.Net.Clients.SpotApi
     internal partial class XTRestClientSpotApi : RestApiClient<XTEnvironment, XTSpotAuthenticationProvider, XTCredentials>, IXTRestClientSpotApi
     {
         #region fields 
+        private readonly XTRestClientSpotSharedApi _sharedApi;
+
         internal new XTSpotRestApiOptions ApiOptions => (XTSpotRestApiOptions)base.ApiOptions;
         internal new XTRestOptions ClientOptions => (XTRestOptions)base.ClientOptions;
 
@@ -49,6 +51,8 @@ namespace XT.Net.Clients.SpotApi
             Account = new XTRestClientSpotApiAccount(this);
             ExchangeData = new XTRestClientSpotApiExchangeData(_logger, this);
             Trading = new XTRestClientSpotApiTrading(_logger, this);
+
+            _sharedApi = new XTRestClientSpotSharedApi(this);
         }
         #endregion
 
@@ -86,7 +90,9 @@ namespace XT.Net.Clients.SpotApi
             => XTExchange.FormatSymbol(baseAsset, quoteAsset, tradingMode, deliverDate);
 
         /// <inheritdoc />
-        public IXTRestClientSpotApiShared SharedClient => this;
+        public IXTRestClientSpotApiShared SharedClient => _sharedApi;
+        /// <inheritdoc />
+        public IXTRestClientSpotSharedApi SharedApi => _sharedApi;
 
     }
 }

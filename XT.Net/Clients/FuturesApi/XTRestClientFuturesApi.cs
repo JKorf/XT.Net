@@ -48,6 +48,7 @@ namespace XT.Net.Clients.FuturesApi
     internal abstract partial class XTRestClientFuturesApi : RestApiClient<XTEnvironment, XTFuturesAuthenticationProvider, XTCredentials>, IXTRestClientFuturesApi
     {
         #region fields 
+        private readonly XTRestClientFuturesSharedApi _sharedApi;
         internal XTRestClient _baseClient;
 
         protected override ErrorMapping ErrorMapping => XTErrors.FuturesErrors;
@@ -75,6 +76,8 @@ namespace XT.Net.Clients.FuturesApi
             Account = new XTRestClientFuturesApiAccount(this);
             ExchangeData = new XTRestClientFuturesApiExchangeData(_logger, this);
             Trading = new XTRestClientFuturesApiTrading(_logger, this);
+
+            _sharedApi = new XTRestClientFuturesSharedApi(this);
 
             RequestBodyEmptyContent = "";
         }
@@ -119,7 +122,9 @@ namespace XT.Net.Clients.FuturesApi
             => XTExchange.FormatSymbol(baseAsset, quoteAsset, tradingMode, deliverDate);
 
         /// <inheritdoc />
-        public IXTRestClientFuturesApiShared SharedClient => this;
+        public IXTRestClientFuturesApiShared SharedClient => _sharedApi;
+        /// <inheritdoc />
+        public IXTRestClientFuturesSharedApi SharedApi => _sharedApi;
 
     }
 }

@@ -36,6 +36,7 @@ namespace XT.Net.Clients.FuturesApi
     /// </summary>
     internal partial class XTSocketClientFuturesApi : SocketApiClient<XTEnvironment, XTFuturesAuthenticationProvider, XTCredentials>, IXTSocketClientFuturesApi
     {
+        private readonly XTSocketClientFuturesSharedApi _sharedApi;
         private readonly ILoggerFactory? _loggerFactory;
         private XTRestClient? _tokenClient;
         internal TokenManager TokenManager { get; }
@@ -66,6 +67,8 @@ namespace XT.Net.Clients.FuturesApi
             base(loggerFactory, XTExchange.Metadata.Id, options.Environment.FuturesSocketClientAddress!, options, options.FuturesOptions)
         {
             _loggerFactory = loggerFactory;
+
+            _sharedApi = new XTSocketClientFuturesSharedApi(this);
 
             RegisterPeriodicQuery(
                 "Ping",
@@ -583,7 +586,9 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         /// <inheritdoc />
-        public IXTSocketClientFuturesApiShared SharedClient => this;
+        public IXTSocketClientFuturesApiShared SharedClient => _sharedApi;
+        /// <inheritdoc />
+        public IXTSocketClientFuturesSharedApi SharedApi => _sharedApi;
 
         /// <inheritdoc />
         public override string FormatSymbol(string baseAsset, string quoteAsset, TradingMode tradingMode, DateTime? deliverDate = null)

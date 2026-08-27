@@ -22,4 +22,39 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         IBookTickerRestClient
     {
     }
+
+    /// <summary>
+    /// Shared API interface. Shared APIs provide a common,
+    /// exchange-independent contract for accessing functionality across different
+    /// exchange client libraries.
+    /// </summary>
+    public interface IXTRestClientFuturesSharedApi:
+        IGetBalancesEndpoint,
+        IGetKlinesEndpoint,
+        IGetOrderBookEndpoint,
+        IGetRecentTradesEndpoint,
+        IGetFundingRateHistoryEndpoint,
+        IGetFuturesSymbolsEndpoint,
+        IGetFuturesTickerEndpoint,
+        IGetAllFuturesTickersEndpoint,
+        IGetLeverageEndpoint,
+        ISetLeverageEndpoint,
+        IGetOpenInterestEndpoint,
+        IPlaceFuturesOrderEndpoint,
+        IGetFuturesOrderEndpoint,
+        IGetOpenFuturesOrdersEndpoint,
+        IGetClosedFuturesOrdersEndpoint,
+        IGetFuturesOrderTradesEndpoint,
+        IGetFuturesUserTradeHistoryEndpoint,
+        ICancelFuturesOrderEndpoint,
+        IGetPositionsEndpoint,
+        IClosePositionEndpoint,
+        IGetFeesEndpoint,
+        IPlaceFuturesTriggerOrderEndpoint,
+        IGetFuturesTriggerOrderEndpoint,
+        ICancelFuturesTriggerOrderEndpoint,
+        ISetFuturesTpSlEndpoint,
+        ICancelFuturesTpSlEndpoint,
+        IGetBookTickerEndpoint
+    { }
 }
