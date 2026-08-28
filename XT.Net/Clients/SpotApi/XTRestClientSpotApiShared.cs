@@ -37,7 +37,7 @@ namespace XT.Net.Clients.SpotApi
 
             SetCapabilities(
                 GetAssetOptions,
-                GetAssetsOptions,
+                GetAllAssetsOptions,
                 GetBalancesOptions,
                 GetDepositHistoryOptions,
                 GetDepositAddressesOptions,
@@ -63,11 +63,11 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #region Asset client
-        public GetAssetsOptions GetAssetsOptions { get; } = new GetAssetsOptions(_exchangeName, false);
+        public GetAllAssetsOptions GetAllAssetsOptions { get; } = new GetAllAssetsOptions(_exchangeName, false);
 
-        public async Task<HttpResult<SharedAsset[]>> GetAssetsAsync(GetAssetsRequest request, CancellationToken ct)
+        public async Task<HttpResult<SharedAsset[]>> GetAllAssetsAsync(GetAssetsRequest request, CancellationToken ct)
         {
-            var validationError = GetAssetsOptions.ValidateRequest(request, this);
+            var validationError = GetAllAssetsOptions.ValidateRequest(request, this);
             if (validationError != null)
                 return HttpResult.Fail<SharedAsset[]>(Exchange, validationError);
 
