@@ -63,6 +63,10 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #region Asset client
+        Task<HttpResult<SharedAsset[]>> IAssetsRestClient.GetAssetsAsync(GetAssetsRequest request, CancellationToken ct)
+            => GetAllAssetsAsync(request, ct);
+        GetAllAssetsOptions IAssetsRestClient.GetAssetsOptions => GetAllAssetsOptions;
+
         public GetAllAssetsOptions GetAllAssetsOptions { get; } = new GetAllAssetsOptions(_exchangeName, false);
 
         public async Task<HttpResult<SharedAsset[]>> GetAllAssetsAsync(GetAssetsRequest request, CancellationToken ct)
