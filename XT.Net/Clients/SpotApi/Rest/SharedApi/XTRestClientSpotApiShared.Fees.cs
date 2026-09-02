@@ -1,0 +1,42 @@
+using CryptoExchange.Net;
+using CryptoExchange.Net.Objects;
+using CryptoExchange.Net.Objects.Errors;
+using CryptoExchange.Net.SharedApis;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using XT.Net.Clients.FuturesApi;
+using XT.Net.Enums;
+using XT.Net.Interfaces.Clients.SpotApi;
+using XT.Net.Objects.Models;
+
+namespace XT.Net.Clients.SpotApi
+{
+    internal partial class XTRestClientSpotSharedApi
+    {
+        #region Fee Client
+        public GetFeeOptions GetFeeOptions { get; } = new GetFeeOptions(_exchangeName, false);
+
+        public async Task<HttpResult<SharedFee>> GetFeesAsync(GetFeeRequest request, CancellationToken ct)
+        {
+            var validationError = GetFeeOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedFee>(Exchange, validationError);
+
+            // Get data
+            var result = await _api.ExchangeData.GetSymbolsAsync(ct: ct).ConfigureAwait(false);
+            if (!result.Success)
+                return HttpResult.Fail<SharedFee>(result);
+
+            var symbol = result.Data.Symbols.SingleOrDefault(x => x.Symbol == request.Symbol!.GetSymbol(FormatSymbol));
+            if (symbol == null)
+                return HttpResult.Fail<SharedFee>(Exchange, new ServerError(new ErrorInfo(ErrorType.UnknownSymbol, "Symbol not found")));
+
+            // Return
+            return HttpResult.Ok(result, new SharedFee(symbol.MakerFeeRate * 100, symbol.TakerFeeRate * 100));
+        }
+        #endregion
+    }
+}
