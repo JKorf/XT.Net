@@ -23,14 +23,14 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
     /// exchange client libraries.
     /// </summary>
     public interface IXTSocketClientFuturesSharedApi :
-        ISubscribeBalancesOperation,
-        ISubscribeKlinesOperation,
-        ISubscribeOrderBookOperation,
-        ISubscribeTickerOperation,
-        ISubscribeTradesOperation,
-        ISubscribeUserTradesOperation,
-        ISubscribeFuturesOrdersOperation,
-        ISubscribePositionsOperation
+        ISubscribeBalancesSocket,
+        ISubscribeKlinesSocket,
+        ISubscribeOrderBookSocket,
+        ISubscribeTickerSocket,
+        ISubscribeTradesSocket,
+        ISubscribeUserTradesSocket,
+        ISubscribeFuturesOrdersSocket,
+        ISubscribePositionsSocket
     {
     }
 }

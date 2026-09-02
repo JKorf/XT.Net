@@ -22,13 +22,13 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     /// exchange client libraries.
     /// </summary>
     public interface IXTSocketClientSpotSharedApi :
-        ISubscribeBalancesOperation,
-        ISubscribeKlinesOperation,
-        ISubscribeOrderBookOperation,
-        ISubscribeTickerOperation,
-        ISubscribeTradesOperation,
-        ISubscribeUserTradesOperation,
-        ISubscribeSpotOrdersOperation
+        ISubscribeBalancesSocket,
+        ISubscribeKlinesSocket,
+        ISubscribeOrderBookSocket,
+        ISubscribeTickerSocket,
+        ISubscribeTradesSocket,
+        ISubscribeUserTradesSocket,
+        ISubscribeSpotOrdersSocket
     {
     }
 }

@@ -28,6 +28,7 @@ namespace XT.Net.Clients.SpotApi
 
         public XTRestClientSpotSharedApi(XTRestClientSpotApi api)
             : base(
+                  SharedTransport.Rest,
                   api.Exchange,
                   [TradingMode.Spot],
                   () => api.Authenticated,
