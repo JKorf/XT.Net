@@ -64,7 +64,14 @@ namespace XT.Net.Clients.FuturesApi
                 CancelFuturesTpSlOptions,
                 PlaceFuturesTriggerOrderOptions,
                 GetFuturesTriggerOrderOptions,
-                CancelFuturesTriggerOrderOptions
+                CancelFuturesTriggerOrderOptions,
+                GetMarkPriceOptions,
+                GetMarkPricesOptions,
+                GetIndexPriceOptions,
+                GetIndexPricesOptions,
+                EditFuturesOrderOptions,
+                CancelAllFuturesOrdersOptions,
+                CancelAllFuturesSymbolOrdersOptions
                 );
         }
 

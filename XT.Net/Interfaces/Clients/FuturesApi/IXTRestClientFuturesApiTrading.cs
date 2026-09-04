@@ -170,7 +170,7 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// Cancel all open orders
         /// <para>
         /// Docs:<br />
-        /// <a href="https://doc.xt.com/docs/futures/Order/cancel-orders" /><br />
+        /// <a href="https://doc.xt.com/docs/futures/Order/cancel-all-orders" /><br />
         /// Endpoint:<br />
         /// POST /future/trade/v1/order/cancel-all
         /// </para>

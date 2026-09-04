@@ -51,7 +51,10 @@ namespace XT.Net.Interfaces.Clients.SpotApi
         ICancelSpotOrderRest,
         IGetFeesRest,
         IGetBookTickerRest,
-        ITransferRest
+        ITransferRest,
+        IEditSpotOrderRest,
+        ICancelAllSpotOrdersRest,
+        ICancelAllSpotSymbolOrdersRest
     {
     }
 }

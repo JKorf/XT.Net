@@ -212,7 +212,7 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<HttpResult> CancelAllOrdersAsync(string? symbol = null, CancellationToken ct = default)
         {
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
-            parameters.Add("symbol", symbol?.ToLowerInvariant());
+            parameters.Add("symbol", symbol?.ToLowerInvariant() ?? "");
             var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "/future/trade/v1/order/cancel-all", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
             return result;

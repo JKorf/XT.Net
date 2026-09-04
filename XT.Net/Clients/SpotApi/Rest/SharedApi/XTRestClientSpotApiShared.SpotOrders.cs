@@ -59,6 +59,7 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
+
         #region Get Spot Order
 
         async Task<ICallResult<SharedSpotOrder>> IGetSpotOrder.GetSpotOrderAsync(GetOrderRequest request, CancellationToken ct)
@@ -102,6 +103,7 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
+
         #region Get Open Spot Orders
 
         async Task<ICallResult<SharedSpotOrder[]>> IGetOpenSpotOrders.GetOpenSpotOrdersAsync(GetOpenOrdersRequest request, CancellationToken ct)
@@ -143,6 +145,7 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
+
         #region Get Closed Spot Orders
 
         async Task<ICallResult<SharedSpotOrder[]>> IGetClosedSpotOrders.GetClosedSpotOrdersAsync(GetClosedOrdersRequest request, PageRequest? pageRequest, CancellationToken ct)
@@ -206,6 +209,7 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
+
         #region Get Spot Order Trades
 
         async Task<ICallResult<SharedUserTrade[]>> IGetSpotOrderTrades.GetSpotOrderTradesAsync(GetOrderTradesRequest request, CancellationToken ct)
@@ -304,6 +308,7 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
+
         #region Cancel Spot Order
 
         async Task<ICallResult<SharedId>> ICancelSpotOrder.CancelSpotOrderAsync(CancelOrderRequest request, CancellationToken ct)
@@ -324,6 +329,82 @@ namespace XT.Net.Clients.SpotApi
                 return HttpResult.Fail<SharedId>(order);
 
             return HttpResult.Ok(order, new SharedId(request.OrderId));
+        }
+
+        #endregion
+
+        #region Edit Spot Order
+
+        async Task<ICallResult<SharedId>> IEditSpotOrder.EditSpotOrderAsync(EditSpotOrderRequest request, CancellationToken ct)
+            => await EditSpotOrderAsync(request, ct).ConfigureAwait(false);
+
+        public EditSpotOrderOptions EditSpotOrderOptions { get; } = new EditSpotOrderOptions(_exchangeName)
+        {
+            RequiredRequestParameters = [
+                RequestParameter<EditSpotOrderRequest>.Required(x => x.Price, "The new order price", 0.1m),
+                RequestParameter<EditSpotOrderRequest>.Required(x => x.Quantity, "The new order quantity", SharedQuantity.Base(1))
+                ]
+        };
+        public async Task<HttpResult<SharedId>> EditSpotOrderAsync(EditSpotOrderRequest request, CancellationToken ct)
+        {
+            var validationError = EditSpotOrderOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedId>(Exchange, validationError);
+
+            if (!long.TryParse(request.OrderId, out var orderId))
+                return HttpResult.Fail<SharedId>(Exchange, ArgumentError.Invalid(nameof(EditSpotOrderRequest.OrderId), "Invalid order id"));
+
+            var order = await _api.Trading.EditOrderAsync(
+                orderId, 
+                request.Price!.Value,
+                request.Quantity!.QuantityInBaseAsset ?? 0,
+                ct: ct).ConfigureAwait(false);
+            if (!order.Success)
+                return HttpResult.Fail<SharedId>(order);
+
+            return HttpResult.Ok(order, new SharedId(request.OrderId));
+        }
+
+        #endregion
+
+        #region Cancel All Spot Orders
+
+        async Task<ICallResult> ICancelAllSpotOrders.CancelAllSpotOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
+            => await CancelAllSpotOrdersAsync(request, ct).ConfigureAwait(false);
+
+        public CancelAllSpotOrdersOptions CancelAllSpotOrdersOptions { get; } = new CancelAllSpotOrdersOptions(_exchangeName);
+        public async Task<HttpResult> CancelAllSpotOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
+        {
+            var validationError = CancelAllSpotOrdersOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail(Exchange, validationError);
+
+            var order = await _api.Trading.CancelAllOrdersAsync(BusinessType.Spot, ct: ct).ConfigureAwait(false);
+            if (!order.Success)
+                return HttpResult.Fail(order);
+
+            return HttpResult.Ok(order);
+        }
+
+        #endregion
+
+        #region Cancel All Spot Symbol Orders
+
+        async Task<ICallResult> ICancelAllSpotSymbolOrders.CancelAllSpotSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
+            => await CancelAllSpotSymbolOrdersAsync(request, ct).ConfigureAwait(false);
+
+        public CancelAllSpotSymbolOrdersOptions CancelAllSpotSymbolOrdersOptions { get; } = new CancelAllSpotSymbolOrdersOptions(_exchangeName, true);
+        public async Task<HttpResult> CancelAllSpotSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
+        {
+            var validationError = CancelAllSpotSymbolOrdersOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail(Exchange, validationError);
+
+            var order = await _api.Trading.CancelAllOrdersAsync(BusinessType.Spot, request.SymbolName(FormatSymbol), ct: ct).ConfigureAwait(false);
+            if (!order.Success)
+                return HttpResult.Fail(order);
+
+            return HttpResult.Ok(order);
         }
 
         #endregion

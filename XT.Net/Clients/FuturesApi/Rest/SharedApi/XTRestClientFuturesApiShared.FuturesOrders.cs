@@ -66,6 +66,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Get Futures Order
 
         async Task<ICallResult<SharedFuturesOrder>> IGetFuturesOrder.GetFuturesOrderAsync(GetOrderRequest request, CancellationToken ct)
@@ -107,6 +108,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Get Open Futures Orders
 
         async Task<ICallResult<SharedFuturesOrder[]>> IGetOpenFuturesOrders.GetOpenFuturesOrdersAsync(GetOpenOrdersRequest request, CancellationToken ct)
@@ -146,6 +148,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Get Closed Futures Orders
 
         async Task<ICallResult<SharedFuturesOrder[]>> IGetClosedFuturesOrders.GetClosedFuturesOrdersAsync(GetClosedOrdersRequest request, PageRequest? pageRequest, CancellationToken ct)
@@ -206,6 +209,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Get Futures Order Trades
 
         async Task<ICallResult<SharedUserTrade[]>> IGetFuturesOrderTrades.GetFuturesOrderTradesAsync(GetOrderTradesRequest request, CancellationToken ct)
@@ -301,6 +305,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Cancel Futures Order
 
         async Task<ICallResult<SharedId>> ICancelFuturesOrder.CancelFuturesOrderAsync(CancelOrderRequest request, CancellationToken ct)
@@ -324,6 +329,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Get Positions
 
         async Task<ICallResult<SharedPosition[]>> IGetPositions.GetPositionsAsync(GetPositionsRequest request, CancellationToken ct)
@@ -363,6 +369,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Close Position
 
         async Task<ICallResult<SharedId>> IClosePosition.ClosePositionAsync(ClosePositionRequest request, CancellationToken ct)
@@ -393,6 +400,82 @@ namespace XT.Net.Clients.FuturesApi
                 return HttpResult.Fail<SharedId>(result);
 
             return HttpResult.Ok(result, new SharedId(result.Data.ToString()));
+        }
+
+        #endregion
+
+        #region Edit Futures Order
+
+        async Task<ICallResult<SharedId>> IEditFuturesOrder.EditFuturesOrderAsync(EditFuturesOrderRequest request, CancellationToken ct)
+            => await EditFuturesOrderAsync(request, ct).ConfigureAwait(false);
+
+        public EditFuturesOrderOptions EditFuturesOrderOptions { get; } = new EditFuturesOrderOptions(_exchangeName)
+        {
+            RequiredRequestParameters = [
+                RequestParameter<EditFuturesOrderRequest>.Required(x => x.Price, "The new order price", 0.1m),
+                RequestParameter<EditFuturesOrderRequest>.Required(x => x.Quantity, "The new order quantity", SharedQuantity.Base(1))
+                ]
+        };
+        public async Task<HttpResult<SharedId>> EditFuturesOrderAsync(EditFuturesOrderRequest request, CancellationToken ct)
+        {
+            var validationError = EditFuturesOrderOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedId>(Exchange, validationError);
+
+            if (!long.TryParse(request.OrderId, out var orderId))
+                return HttpResult.Fail<SharedId>(Exchange, ArgumentError.Invalid(nameof(EditFuturesOrderRequest.OrderId), "Invalid order id"));
+
+            var order = await _api.Trading.EditOrderAsync(
+                orderId,
+                request.Price!.Value,
+                request.Quantity!.QuantityInBaseAsset ?? 0,
+                ct: ct).ConfigureAwait(false);
+            if (!order.Success)
+                return HttpResult.Fail<SharedId>(order);
+
+            return HttpResult.Ok(order, new SharedId(request.OrderId));
+        }
+
+        #endregion
+
+        #region Cancel All Futures Orders
+
+        async Task<ICallResult> ICancelAllFuturesOrders.CancelAllFuturesOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
+            => await CancelAllFuturesOrdersAsync(request, ct).ConfigureAwait(false);
+
+        public CancelAllFuturesOrdersOptions CancelAllFuturesOrdersOptions { get; } = new CancelAllFuturesOrdersOptions(_exchangeName);
+        public async Task<HttpResult> CancelAllFuturesOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
+        {
+            var validationError = CancelAllFuturesOrdersOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail(Exchange, validationError);
+
+            var order = await _api.Trading.CancelAllOrdersAsync(ct: ct).ConfigureAwait(false);
+            if (!order.Success)
+                return HttpResult.Fail(order);
+
+            return HttpResult.Ok(order);
+        }
+
+        #endregion
+
+        #region Cancel All Futures Symbol Orders
+
+        async Task<ICallResult> ICancelAllFuturesSymbolOrders.CancelAllFuturesSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
+            => await CancelAllFuturesSymbolOrdersAsync(request, ct).ConfigureAwait(false);
+
+        public CancelAllFuturesSymbolOrdersOptions CancelAllFuturesSymbolOrdersOptions { get; } = new CancelAllFuturesSymbolOrdersOptions(_exchangeName, true);
+        public async Task<HttpResult> CancelAllFuturesSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
+        {
+            var validationError = CancelAllFuturesSymbolOrdersOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail(Exchange, validationError);
+
+            var order = await _api.Trading.CancelAllOrdersAsync(request.SymbolName(FormatSymbol), ct: ct).ConfigureAwait(false);
+            if (!order.Success)
+                return HttpResult.Fail(order);
+
+            return HttpResult.Ok(order);
         }
 
         #endregion
