@@ -58,7 +58,6 @@ namespace Microsoft.Extensions.DependencyInjection
             options.Socket.Environment = XTEnvironment.GetEnvironmentByName(socketEnvName) ?? options.Socket.Environment!;
             options.Socket.ApiCredentials = options.Socket.ApiCredentials ?? options.ApiCredentials;
 
-
             services.AddSingleton(x => Options.Options.Create(options.Rest));
             services.AddSingleton(x => Options.Options.Create(options.Socket));
 
@@ -118,6 +117,14 @@ namespace Microsoft.Extensions.DependencyInjection
                 x.GetRequiredService<ILoggerFactory>(),
                 x.GetRequiredService<IOptions<XTRestOptions>>(),
                 x.GetRequiredService<IOptions<XTSocketOptions>>()));
+
+            services.AddTransient<IXTSharedApiClient, XTSharedApiClient>();
+
+            services.RegisterSharedApi(x => x.GetRequiredService<IXTRestClient>().SpotApi.SharedApi);
+            services.RegisterSharedApi(x => x.GetRequiredService<IXTSocketClient>().SpotApi.SharedApi);
+            services.RegisterSharedApi(x => x.GetRequiredService<IXTRestClient>().UsdtFuturesApi.SharedApi);
+            services.RegisterSharedApi(x => x.GetRequiredService<IXTSocketClient>().FuturesApi.SharedApi);
+            services.RegisterSharedApi(x => x.GetRequiredService<IXTRestClient>().CoinFuturesApi.SharedApi);
 
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().SpotApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().SpotApi.SharedClient);

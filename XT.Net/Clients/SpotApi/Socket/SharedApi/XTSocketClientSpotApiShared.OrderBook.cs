@@ -14,7 +14,8 @@ namespace XT.Net.Clients.SpotApi
 {
     internal partial class XTSocketClientSpotSharedApi
     {
-        #region Order Book client
+        #region Subscribe Order Book
+
         public SubscribeOrderBookOptions SubscribeOrderBookOptions { get; } = new SubscribeOrderBookOptions(_exchangeName, false, [5, 10, 20, 50])
         {
             SupportsMultipleSymbols = true
@@ -33,6 +34,7 @@ namespace XT.Net.Clients.SpotApi
 
             return result;
         }
+
         #endregion
     }
 }

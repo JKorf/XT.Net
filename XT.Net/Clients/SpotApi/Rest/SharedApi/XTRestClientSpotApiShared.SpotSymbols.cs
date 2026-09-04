@@ -16,7 +16,11 @@ namespace XT.Net.Clients.SpotApi
 {
     internal partial class XTRestClientSpotSharedApi
     {
-        #region Spot Symbol client
+        #region Get Spot Symbols
+
+        async Task<ICallResult<SharedSpotSymbol[]>> IGetSpotSymbols.GetSpotSymbolsAsync(GetSymbolsRequest request, CancellationToken ct)
+            => await GetSpotSymbolsAsync(request, ct).ConfigureAwait(false);
+
         public SharedSymbolCatalog? SpotSymbolCatalog => ExchangeSymbolCache.GetSymbolCatalog(_exchangeName, _topicId, _api.EnvironmentName, null);
         public GetSpotSymbolsOptions GetSpotSymbolsOptions { get; } = new GetSpotSymbolsOptions(_exchangeName, false);
 
@@ -38,6 +42,8 @@ namespace XT.Net.Clients.SpotApi
             ExchangeSymbolCache.UpdateSymbolInfo(_topicId, _api.EnvironmentName, null, resultData);
             return HttpResult.Ok(result, SharedUtils.ApplySymbolFilter(resultData, request));
         }
+
+        #endregion
 
         private SharedSpotSymbol ParseSymbol(XTSymbol s)
         {
@@ -116,6 +122,5 @@ namespace XT.Net.Clients.SpotApi
 
             return ExchangeCallResult<bool>.Ok(Exchange, ExchangeSymbolCache.SupportsSymbol(_topicId, _api.EnvironmentName, null, symbolName));
         }
-        #endregion
     }
 }

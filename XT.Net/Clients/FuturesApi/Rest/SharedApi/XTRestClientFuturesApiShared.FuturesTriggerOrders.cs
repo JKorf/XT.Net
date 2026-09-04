@@ -15,7 +15,11 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTRestClientFuturesSharedApi
     {
-        #region Futures Trigger Order Client
+        #region Place Futures Trigger Order
+
+        async Task<ICallResult<SharedId>> IPlaceFuturesTriggerOrder.PlaceFuturesTriggerOrderAsync(PlaceFuturesTriggerOrderRequest request, CancellationToken ct)
+            => await PlaceFuturesTriggerOrderAsync(request, ct).ConfigureAwait(false);
+
         public PlaceFuturesTriggerOrderOptions PlaceFuturesTriggerOrderOptions { get; } = new PlaceFuturesTriggerOrderOptions(_exchangeName, false)
         {
             RequiredRequestParameters = new List<ParameterDescription>
@@ -50,6 +54,8 @@ namespace XT.Net.Clients.FuturesApi
             return HttpResult.Ok(result, new SharedId(result.Data.ToString()));
         }
 
+        #endregion
+
         private PriceType GetTriggerPriceType(PlaceFuturesTriggerOrderRequest request)
         {
             if (request.TriggerPriceType == null || request.TriggerPriceType == SharedTriggerPriceType.LastPrice)
@@ -82,6 +88,10 @@ namespace XT.Net.Clients.FuturesApi
 
             return request.OrderDirection == SharedTriggerOrderDirection.Enter ? OrderSide.Sell : OrderSide.Buy;
         }
+        #region Get Futures Trigger Order
+
+        async Task<ICallResult<SharedFuturesTriggerOrder>> IGetFuturesTriggerOrder.GetFuturesTriggerOrderAsync(GetOrderRequest request, CancellationToken ct)
+            => await GetFuturesTriggerOrderAsync(request, ct).ConfigureAwait(false);
 
         public GetFuturesTriggerOrderOptions GetFuturesTriggerOrderOptions { get; } = new GetFuturesTriggerOrderOptions(_exchangeName, true)
         {
@@ -118,6 +128,8 @@ namespace XT.Net.Clients.FuturesApi
             });
         }
 
+        #endregion
+
         private SharedTriggerOrderDirection? ParseOrderDirection(XTTriggerOrder data)
         {
             if (data.PositionSide == PositionSide.Long)
@@ -147,6 +159,10 @@ namespace XT.Net.Clients.FuturesApi
 
             return SharedTriggerOrderStatus.Unknown;
         }
+        #region Cancel Futures Trigger Order
+
+        async Task<ICallResult<SharedId>> ICancelFuturesTriggerOrder.CancelFuturesTriggerOrderAsync(CancelOrderRequest request, CancellationToken ct)
+            => await CancelFuturesTriggerOrderAsync(request, ct).ConfigureAwait(false);
 
         public CancelFuturesTriggerOrderOptions CancelFuturesTriggerOrderOptions { get; } = new CancelFuturesTriggerOrderOptions(_exchangeName, true);
         public async Task<HttpResult<SharedId>> CancelFuturesTriggerOrderAsync(CancelOrderRequest request, CancellationToken ct)

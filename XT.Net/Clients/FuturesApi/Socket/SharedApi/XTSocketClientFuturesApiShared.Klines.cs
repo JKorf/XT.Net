@@ -14,7 +14,8 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTSocketClientFuturesSharedApi
     {
-        #region Kline client
+        #region Subscribe Klines
+
         public SubscribeKlineOptions SubscribeKlineOptions { get; } = new SubscribeKlineOptions(_exchangeName, false)
         {
             SupportsMultipleSymbols = true
@@ -39,6 +40,7 @@ namespace XT.Net.Clients.FuturesApi
 
             return result;
         }
+
         #endregion
     }
 }

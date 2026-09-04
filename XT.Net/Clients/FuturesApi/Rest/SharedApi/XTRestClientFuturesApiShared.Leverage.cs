@@ -15,8 +15,11 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTRestClientFuturesSharedApi
     {
-        #region Leverage client
         public SharedLeverageSettingMode LeverageSettingType => SharedLeverageSettingMode.PerSide;
+        #region Get Leverage
+
+        async Task<ICallResult<SharedLeverage>> IGetLeverage.GetLeverageAsync(GetLeverageRequest request, CancellationToken ct)
+            => await GetLeverageAsync(request, ct).ConfigureAwait(false);
 
         public GetLeverageOptions GetLeverageOptions { get; } = new GetLeverageOptions(_exchangeName, true);
         public async Task<HttpResult<SharedLeverage>> GetLeverageAsync(GetLeverageRequest request, CancellationToken ct)
@@ -38,6 +41,12 @@ namespace XT.Net.Clients.FuturesApi
             });
         }
 
+        #endregion
+        #region Set Leverage
+
+        async Task<ICallResult<SharedLeverage>> ISetLeverage.SetLeverageAsync(SetLeverageRequest request, CancellationToken ct)
+            => await SetLeverageAsync(request, ct).ConfigureAwait(false);
+
         public SetLeverageOptions SetLeverageOptions { get; } = new SetLeverageOptions(_exchangeName)
         {
             RequiredExchangeParameters = new List<ParameterDescription>
@@ -57,6 +66,7 @@ namespace XT.Net.Clients.FuturesApi
 
             return HttpResult.Ok(result, new SharedLeverage(request.Leverage) { Side = request.Side });
         }
+
         #endregion
     }
 }

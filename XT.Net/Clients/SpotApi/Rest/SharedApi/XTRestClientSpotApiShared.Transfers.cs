@@ -16,7 +16,10 @@ namespace XT.Net.Clients.SpotApi
 {
     internal partial class XTRestClientSpotSharedApi
     {
-        #region Transfer client
+        #region Transfer
+
+        async Task<ICallResult<SharedId>> ITransfer.TransferAsync(TransferRequest request, CancellationToken ct)
+            => await TransferAsync(request, ct).ConfigureAwait(false);
 
         public TransferOptions TransferOptions { get; } = new TransferOptions(_exchangeName, [
             SharedAccountType.Spot,
@@ -52,6 +55,8 @@ namespace XT.Net.Clients.SpotApi
             return HttpResult.Ok(transfer, new SharedId(""));
         }
 
+        #endregion
+
         private BusinessType? GetTransferType(SharedAccountType type)
         {
             if (type == SharedAccountType.Spot) return BusinessType.Spot;
@@ -60,7 +65,5 @@ namespace XT.Net.Clients.SpotApi
             if (type == SharedAccountType.PerpetualInverseFutures || type == SharedAccountType.DeliveryInverseFutures) return BusinessType.CoinFutures;
             return null;
         }
-
-        #endregion
     }
 }

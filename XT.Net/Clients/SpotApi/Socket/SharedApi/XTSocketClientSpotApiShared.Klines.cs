@@ -14,7 +14,8 @@ namespace XT.Net.Clients.SpotApi
 {
     internal partial class XTSocketClientSpotSharedApi
     {
-        #region Kline client
+        #region Subscribe Klines
+
         public SubscribeKlineOptions SubscribeKlineOptions { get; } = new SubscribeKlineOptions(_exchangeName, false)
         {
             SupportsMultipleSymbols = true
@@ -46,6 +47,7 @@ namespace XT.Net.Clients.SpotApi
 
             return result;
         }
+
         #endregion
     }
 }

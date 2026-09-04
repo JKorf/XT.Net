@@ -14,7 +14,8 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTSocketClientFuturesSharedApi
     {
-        #region Order Book client
+        #region Subscribe Order Book
+
         public SubscribeOrderBookOptions SubscribeOrderBookOptions { get; } = new SubscribeOrderBookOptions(_exchangeName, false, new[] { 5, 10, 20, 50 })
         {
             SupportsMultipleSymbols = true
@@ -32,6 +33,7 @@ namespace XT.Net.Clients.FuturesApi
 
             return result;
         }
+
         #endregion
     }
 }

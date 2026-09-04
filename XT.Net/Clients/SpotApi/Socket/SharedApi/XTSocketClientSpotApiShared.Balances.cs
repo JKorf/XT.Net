@@ -14,7 +14,8 @@ namespace XT.Net.Clients.SpotApi
 {
     internal partial class XTSocketClientSpotSharedApi
     {
-        #region Balance client
+        #region Subscribe Balances
+
         public SubscribeBalanceOptions SubscribeBalanceOptions { get; } = new SubscribeBalanceOptions(_exchangeName, true);
         public async Task<WebSocketResult<UpdateSubscription>> SubscribeToBalanceUpdatesAsync(SubscribeBalancesRequest request, Action<DataEvent<SharedBalance[]>> handler, CancellationToken ct)
         {

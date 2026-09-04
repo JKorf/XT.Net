@@ -14,7 +14,8 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTSocketClientFuturesSharedApi
     {
-        #region Futures Order client
+        #region Subscribe Futures Orders
+
         async Task<WebSocketResult<UpdateSubscription>> IFuturesOrderSocketClient.SubscribeToFuturesOrderUpdatesAsync(SubscribeFuturesOrderRequest request, Action<DataEvent<SharedFuturesOrder[]>> handler, CancellationToken ct)
             => await SubscribeToFuturesOrderUpdatesAsync(request, x => handler(x.ToType<SharedFuturesOrder[]>(x.Data)), ct).ConfigureAwait(false);
 
@@ -51,6 +52,7 @@ namespace XT.Net.Clients.FuturesApi
 
             return result;
         }
+
         #endregion
     }
 }

@@ -14,7 +14,8 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTSocketClientFuturesSharedApi
     {
-        #region Position client
+        #region Subscribe Positions
+
         public SubscribePositionOptions SubscribePositionOptions { get; } = new SubscribePositionOptions(_exchangeName, true);
         public async Task<WebSocketResult<UpdateSubscription>> SubscribeToPositionUpdatesAsync(SubscribePositionRequest request, Action<DataEvent<SharedPosition[]>> handler, CancellationToken ct)
         {
@@ -40,6 +41,8 @@ namespace XT.Net.Clients.FuturesApi
             return result;
         }
 
+        #endregion
+
         private SharedOrderStatus ParseOrderStatus(OrderStatus status)
         {
             if (status == OrderStatus.New || status == OrderStatus.PartiallyFilled) return SharedOrderStatus.Open;
@@ -55,6 +58,5 @@ namespace XT.Net.Clients.FuturesApi
             if (timeInForce == TimeInForce.FillOrKill) return SharedTimeInForce.FillOrKill;
              return SharedTimeInForce.GoodTillCanceled;
         }
-        #endregion
     }
 }

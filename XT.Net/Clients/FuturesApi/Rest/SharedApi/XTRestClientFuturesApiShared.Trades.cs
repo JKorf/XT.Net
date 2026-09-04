@@ -15,7 +15,10 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTRestClientFuturesSharedApi
     {
-        #region Recent Trade client
+        #region Get Recent Trades
+
+        async Task<ICallResult<SharedTrade[]>> IGetRecentTrades.GetRecentTradesAsync(GetRecentTradesRequest request, CancellationToken ct)
+            => await GetRecentTradesAsync(request, ct).ConfigureAwait(false);
 
         public GetRecentTradesOptions GetRecentTradesOptions { get; } = new GetRecentTradesOptions(_exchangeName, 1000, false);
         public async Task<HttpResult<SharedTrade[]>> GetRecentTradesAsync(GetRecentTradesRequest request, CancellationToken ct)

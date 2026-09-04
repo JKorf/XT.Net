@@ -15,7 +15,11 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTRestClientFuturesSharedApi
     {
-        #region Funding Rate client
+        #region Get Funding Rate History
+
+        async Task<ICallResult<SharedFundingRate[]>> IGetFundingRateHistory.GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
+            => await GetFundingRateHistoryAsync(request, pageRequest, ct).ConfigureAwait(false);
+
         public GetFundingRateHistoryOptions GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(_exchangeName, false, true, false, 100, false);
         public async Task<HttpResult<SharedFundingRate[]>> GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
         {
@@ -50,6 +54,7 @@ namespace XT.Net.Clients.FuturesApi
                         new SharedFundingRate(x.FundingRate, x.Timestamp))
                     .ToArray(), nextPageRequest);
         }
+
         #endregion
     }
 }

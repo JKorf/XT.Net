@@ -14,7 +14,7 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTSocketClientFuturesSharedApi
     {
-        #region User Trade client
+        #region Subscribe User Trades
 
         public SubscribeUserTradeOptions SubscribeUserTradeOptions { get; } = new SubscribeUserTradeOptions(_exchangeName, true);
         public async Task<WebSocketResult<UpdateSubscription>> SubscribeToUserTradeUpdatesAsync(SubscribeUserTradeRequest request, Action<DataEvent<SharedUserTrade[]>> handler, CancellationToken ct)
@@ -44,6 +44,7 @@ namespace XT.Net.Clients.FuturesApi
 
             return result;
         }
+
         #endregion
     }
 }

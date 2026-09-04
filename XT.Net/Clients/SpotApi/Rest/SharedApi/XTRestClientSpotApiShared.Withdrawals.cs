@@ -16,7 +16,11 @@ namespace XT.Net.Clients.SpotApi
 {
     internal partial class XTRestClientSpotSharedApi
     {
-        #region Withdrawal client
+
+        #region Get Withdrawal History
+
+        async Task<ICallResult<SharedWithdrawal[]>> IGetWithdrawalHistory.GetWithdrawalHistoryAsync(GetWithdrawalsRequest request, PageRequest? pageRequest, CancellationToken ct)
+            => await GetWithdrawalHistoryAsync(request, pageRequest, ct).ConfigureAwait(false);
 
         Task<HttpResult<SharedWithdrawal[]>> IWithdrawalRestClient.GetWithdrawalsAsync(GetWithdrawalsRequest request, PageRequest? pageRequest, CancellationToken ct)
             => GetWithdrawalHistoryAsync(request, pageRequest, ct);
@@ -88,6 +92,8 @@ namespace XT.Net.Clients.SpotApi
                     .ToArray(), nextPageRequest);
         }
 
+        #endregion
+
         private SharedTransferStatus GetWithdrawalStatus(XTWithdrawal x)
         {
             if (x.Status == WithdrawalStatus.Canceled || x.Status == WithdrawalStatus.Fail)
@@ -107,9 +113,10 @@ namespace XT.Net.Clients.SpotApi
 
             return SharedTransferStatus.Unknown;
         }
-        #endregion
+        #region Withdraw
 
-        #region Withdraw client
+        async Task<ICallResult<SharedId>> IWithdraw.WithdrawAsync(WithdrawRequest request, CancellationToken ct)
+            => await WithdrawAsync(request, ct).ConfigureAwait(false);
 
         public WithdrawOptions WithdrawOptions { get; } = new WithdrawOptions(_exchangeName)
         {
