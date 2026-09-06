@@ -28,18 +28,17 @@ namespace XT.Net.Clients.SpotApi
 
         public GetWithdrawalHistoryOptions GetWithdrawalHistoryOptions { get; } = new GetWithdrawalHistoryOptions(_exchangeName, false, true, true, 200)
         {
-            RequiredRequestParameters = [
-                RequestParameter<GetWithdrawalsRequest>.Required(x => x.Asset,  "Asset filter for the withdrawals", "eth")
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<GetWithdrawalsRequest>.Required(x => x.Asset)
             ],
-            RequiredExchangeParameters = new List<ParameterDescription>
-            {
-                ExchangeParameterDescription.Required(
+            ExchangeParameterRules = [
+                ExchangeParameterRule.Required(
                     "Network",
                     aliases: ["chain"],
                     description: "Network filter for the withdrawals",
                     exampleValue: "Ethereum"
                     )
-            }
+            ]
         };
         public async Task<HttpResult<SharedWithdrawal[]>> GetWithdrawalHistoryAsync(GetWithdrawalsRequest request, PageRequest? pageRequest, CancellationToken ct)
         {
@@ -113,6 +112,7 @@ namespace XT.Net.Clients.SpotApi
 
             return SharedTransferStatus.Unknown;
         }
+
         #region Withdraw
 
         async Task<ICallResult<SharedId>> IWithdraw.WithdrawAsync(WithdrawRequest request, CancellationToken ct)
@@ -120,8 +120,8 @@ namespace XT.Net.Clients.SpotApi
 
         public WithdrawOptions WithdrawOptions { get; } = new WithdrawOptions(_exchangeName)
         {
-            RequiredRequestParameters = [
-                RequestParameter<WithdrawRequest>.Required(x => x.Network, "Network for the withdrawal", "Ethereum")
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<WithdrawRequest>.Required(x => x.Network)
                 ]
         };
         public async Task<HttpResult<SharedId>> WithdrawAsync(WithdrawRequest request, CancellationToken ct)

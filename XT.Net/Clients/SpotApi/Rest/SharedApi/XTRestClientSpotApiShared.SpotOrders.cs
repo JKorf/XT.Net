@@ -16,6 +16,7 @@ namespace XT.Net.Clients.SpotApi
 {
     internal partial class XTRestClientSpotSharedApi
     {
+        #region Place Spot Order
 
         public SharedFeeDeductionType SpotFeeDeductionType => SharedFeeDeductionType.DeductFromOutput;
         public SharedFeeAssetType SpotFeeAssetType => SharedFeeAssetType.OutputAsset;
@@ -28,7 +29,6 @@ namespace XT.Net.Clients.SpotApi
                 SharedQuantityType.BaseAsset);
 
         public string GenerateClientOrderId() => ExchangeHelpers.RandomString(32);
-        #region Place Spot Order
 
         async Task<ICallResult<SharedId>> IPlaceSpotOrder.PlaceSpotOrderAsync(PlaceSpotOrderRequest request, CancellationToken ct)
             => await PlaceSpotOrderAsync(request, ct).ConfigureAwait(false);
@@ -340,9 +340,9 @@ namespace XT.Net.Clients.SpotApi
 
         public EditSpotOrderOptions EditSpotOrderOptions { get; } = new EditSpotOrderOptions(_exchangeName)
         {
-            RequiredRequestParameters = [
-                RequestParameter<EditSpotOrderRequest>.Required(x => x.Price, "The new order price", 0.1m),
-                RequestParameter<EditSpotOrderRequest>.Required(x => x.Quantity, "The new order quantity", SharedQuantity.Base(1))
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<EditSpotOrderRequest>.Required(x => x.Price, "The new order price"),
+                RequestParameterRuleOverride<EditSpotOrderRequest>.Required(x => x.Quantity, "The new order quantity")
                 ]
         };
         public async Task<HttpResult<SharedId>> EditSpotOrderAsync(EditSpotOrderRequest request, CancellationToken ct)

@@ -57,9 +57,9 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         ICancelFuturesTpSlRest,
         IGetBookTickerRest,
         IGetMarkPriceRest,
-        IGetMarkPricesRest,
+        IGetAllMarkPricesRest,
         IGetIndexPriceRest,
-        IGetIndexPricesRest,
+        IGetAllIndexPricesRest,
         IEditFuturesOrderRest,
         ICancelAllFuturesOrdersRest,
         ICancelAllFuturesSymbolOrdersRest

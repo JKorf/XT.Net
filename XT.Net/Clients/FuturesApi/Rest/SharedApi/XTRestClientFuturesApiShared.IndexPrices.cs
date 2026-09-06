@@ -16,15 +16,15 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTRestClientFuturesSharedApi
     {
-        #region Get Index Prices
+        #region Get All Index Prices
 
-        async Task<ICallResult<SharedIndexPrice[]>> IGetIndexPrices.GetIndexPricesAsync(GetIndexPricesRequest request, CancellationToken ct)
-            => await GetIndexPricesAsync(request, ct).ConfigureAwait(false);
+        async Task<ICallResult<SharedIndexPrice[]>> IGetAllIndexPrices.GetAllIndexPricesAsync(GetAllIndexPricesRequest request, CancellationToken ct)
+            => await GetAllIndexPricesAsync(request, ct).ConfigureAwait(false);
 
-        public GetIndexPricesOptions GetIndexPricesOptions { get; } = new GetIndexPricesOptions(_exchangeName, false);
-        public async Task<HttpResult<SharedIndexPrice[]>> GetIndexPricesAsync(GetIndexPricesRequest request, CancellationToken ct)
+        public GetAllIndexPricesOptions GetAllIndexPricesOptions { get; } = new GetAllIndexPricesOptions(_exchangeName, false);
+        public async Task<HttpResult<SharedIndexPrice[]>> GetAllIndexPricesAsync(GetAllIndexPricesRequest request, CancellationToken ct)
         {
-            var validationError = GetIndexPricesOptions.ValidateRequest(request, this);
+            var validationError = GetAllIndexPricesOptions.ValidateRequest(request, this);
             if (validationError != null)
                 return HttpResult.Fail<SharedIndexPrice[]>(Exchange, validationError);
 

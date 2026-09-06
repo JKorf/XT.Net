@@ -15,15 +15,15 @@ namespace XT.Net.Clients.FuturesApi
 {
     internal partial class XTRestClientFuturesSharedApi
     {
-        #region Get Mark Prices
+        #region Get All Mark Prices
 
-        async Task<ICallResult<SharedMarkPrice[]>> IGetMarkPrices.GetMarkPricesAsync(GetMarkPricesRequest request, CancellationToken ct)
-            => await GetMarkPricesAsync(request, ct).ConfigureAwait(false);
+        async Task<ICallResult<SharedMarkPrice[]>> IGetAllMarkPrices.GetAllMarkPricesAsync(GetAllMarkPricesRequest request, CancellationToken ct)
+            => await GetAllMarkPricesAsync(request, ct).ConfigureAwait(false);
 
-        public GetMarkPricesOptions GetMarkPricesOptions { get; } = new GetMarkPricesOptions(_exchangeName, false);
-        public async Task<HttpResult<SharedMarkPrice[]>> GetMarkPricesAsync(GetMarkPricesRequest request, CancellationToken ct)
+        public GetAllMarkPricesOptions GetAllMarkPricesOptions { get; } = new GetAllMarkPricesOptions(_exchangeName, false);
+        public async Task<HttpResult<SharedMarkPrice[]>> GetAllMarkPricesAsync(GetAllMarkPricesRequest request, CancellationToken ct)
         {
-            var validationError = GetMarkPricesOptions.ValidateRequest(request, this);
+            var validationError = GetAllMarkPricesOptions.ValidateRequest(request, this);
             if (validationError != null)
                 return HttpResult.Fail<SharedMarkPrice[]>(Exchange, validationError);
 

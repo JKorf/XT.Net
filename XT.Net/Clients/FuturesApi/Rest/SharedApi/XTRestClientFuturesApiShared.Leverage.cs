@@ -16,6 +16,7 @@ namespace XT.Net.Clients.FuturesApi
     internal partial class XTRestClientFuturesSharedApi
     {
         public SharedLeverageSettingMode LeverageSettingType => SharedLeverageSettingMode.PerSide;
+
         #region Get Leverage
 
         async Task<ICallResult<SharedLeverage>> IGetLeverage.GetLeverageAsync(GetLeverageRequest request, CancellationToken ct)
@@ -42,6 +43,7 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
         #region Set Leverage
 
         async Task<ICallResult<SharedLeverage>> ISetLeverage.SetLeverageAsync(SetLeverageRequest request, CancellationToken ct)
@@ -49,10 +51,9 @@ namespace XT.Net.Clients.FuturesApi
 
         public SetLeverageOptions SetLeverageOptions { get; } = new SetLeverageOptions(_exchangeName)
         {
-            RequiredExchangeParameters = new List<ParameterDescription>
-            {
-                RequestParameter<SetLeverageRequest>.Required(x => x.Side, "Position side to set the leverage for", SharedPositionSide.Long)
-            }
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<SetLeverageRequest>.Required(x => x.Side)
+            ]
         };
         public async Task<HttpResult<SharedLeverage>> SetLeverageAsync(SetLeverageRequest request, CancellationToken ct)
         {

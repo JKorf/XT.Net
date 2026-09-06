@@ -52,6 +52,7 @@ namespace XT.Net.Clients.SpotApi
         }
 
         #endregion
+
         #region Get Asset
 
         async Task<ICallResult<SharedAsset>> IGetAsset.GetAssetAsync(GetAssetRequest request, CancellationToken ct)

@@ -66,9 +66,9 @@ namespace XT.Net.Clients.FuturesApi
                 GetFuturesTriggerOrderOptions,
                 CancelFuturesTriggerOrderOptions,
                 GetMarkPriceOptions,
-                GetMarkPricesOptions,
+                GetAllMarkPricesOptions,
                 GetIndexPriceOptions,
-                GetIndexPricesOptions,
+                GetAllIndexPricesOptions,
                 EditFuturesOrderOptions,
                 CancelAllFuturesOrdersOptions,
                 CancelAllFuturesSymbolOrdersOptions

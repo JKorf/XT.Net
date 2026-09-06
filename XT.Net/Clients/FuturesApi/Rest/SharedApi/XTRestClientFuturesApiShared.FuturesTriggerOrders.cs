@@ -20,13 +20,7 @@ namespace XT.Net.Clients.FuturesApi
         async Task<ICallResult<SharedId>> IPlaceFuturesTriggerOrder.PlaceFuturesTriggerOrderAsync(PlaceFuturesTriggerOrderRequest request, CancellationToken ct)
             => await PlaceFuturesTriggerOrderAsync(request, ct).ConfigureAwait(false);
 
-        public PlaceFuturesTriggerOrderOptions PlaceFuturesTriggerOrderOptions { get; } = new PlaceFuturesTriggerOrderOptions(_exchangeName, false)
-        {
-            RequiredRequestParameters = new List<ParameterDescription>
-            {
-                RequestParameter<PlaceFuturesTriggerOrderRequest>.Required(x => x.PositionMode, "PositionMode the account is in", SharedPositionMode.OneWay)
-            }
-        };
+        public PlaceFuturesTriggerOrderOptions PlaceFuturesTriggerOrderOptions { get; } = new PlaceFuturesTriggerOrderOptions(_exchangeName, false);
 
         public async Task<HttpResult<SharedId>> PlaceFuturesTriggerOrderAsync(PlaceFuturesTriggerOrderRequest request, CancellationToken ct)
         {
@@ -88,6 +82,7 @@ namespace XT.Net.Clients.FuturesApi
 
             return request.OrderDirection == SharedTriggerOrderDirection.Enter ? OrderSide.Sell : OrderSide.Buy;
         }
+
         #region Get Futures Trigger Order
 
         async Task<ICallResult<SharedFuturesTriggerOrder>> IGetFuturesTriggerOrder.GetFuturesTriggerOrderAsync(GetOrderRequest request, CancellationToken ct)

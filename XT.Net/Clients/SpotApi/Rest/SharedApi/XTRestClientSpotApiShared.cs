@@ -61,7 +61,8 @@ namespace XT.Net.Clients.SpotApi
                 GetFeeOptions,
                 TransferOptions,
                 CancelAllSpotOrdersOptions,
-                CancelAllSpotSymbolOrdersOptions
+                CancelAllSpotSymbolOrdersOptions,
+                EditSpotOrderOptions
                 );
         }
 

@@ -23,8 +23,8 @@ namespace XT.Net.Clients.SpotApi
 
         public GetDepositAddressesOptions GetDepositAddressesOptions { get; } = new GetDepositAddressesOptions(_exchangeName, true)
         {
-            RequiredRequestParameters = [
-                RequestParameter<GetDepositAddressesRequest>.Required(x => x.Network,  "Network name", "Ethereum")
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<GetDepositAddressesRequest>.Required(x => x.Network)
             ]
         };
         public async Task<HttpResult<SharedDepositAddress[]>> GetDepositAddressesAsync(GetDepositAddressesRequest request, CancellationToken ct)
@@ -57,12 +57,11 @@ namespace XT.Net.Clients.SpotApi
 
         public GetDepositHistoryOptions GetDepositHistoryOptions { get; } = new GetDepositHistoryOptions(_exchangeName, false, true, true, 100)
         {
-            RequiredRequestParameters = [
-                RequestParameter<GetDepositsRequest>.Required(x => x.Asset,  "Asset filter for the withdrawals", "eth")
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<GetDepositsRequest>.Required(x => x.Asset)
             ],
-            RequiredExchangeParameters = [
-            
-                ExchangeParameterDescription.Required(
+            ExchangeParameterRules = [            
+                ExchangeParameterRule.Required(
                     "Network",
                     aliases: ["chain"],
                     description: "Network filter for the withdrawals",

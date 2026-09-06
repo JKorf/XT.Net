@@ -28,6 +28,7 @@ namespace XT.Net.Clients.FuturesApi
                 SharedQuantityType.Contracts);
 
         public string GenerateClientOrderId() => ExchangeHelpers.RandomString(32);
+
         #region Place Futures Order
 
         async Task<ICallResult<SharedId>> IPlaceFuturesOrder.PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
@@ -35,10 +36,12 @@ namespace XT.Net.Clients.FuturesApi
 
         public PlaceFuturesOrderOptions PlaceFuturesOrderOptions { get; } = new PlaceFuturesOrderOptions(_exchangeName, true)
         {
-            RequiredRequestParameters = new List<ParameterDescription>
-            {
-                RequestParameter<PlaceFuturesOrderRequest>.Required(x => x.PositionSide, "Position side for the order", SharedPositionSide.Long)
-            }
+            ParameterRuleOverwrites = [            
+                RequestParameterRuleOverride<PlaceFuturesOrderRequest>.Required(x => x.PositionSide),
+                RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.MarginMode),
+                RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.ReduceOnly),
+                RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.Leverage)
+            ]
         };
         public async Task<HttpResult<SharedId>> PlaceFuturesOrderAsync(PlaceFuturesOrderRequest request, CancellationToken ct)
         {
@@ -377,11 +380,10 @@ namespace XT.Net.Clients.FuturesApi
 
         public ClosePositionOptions ClosePositionOptions { get; } = new ClosePositionOptions(_exchangeName, true)
         {
-            RequiredRequestParameters = new List<ParameterDescription>
-            {
-                RequestParameter<ClosePositionRequest>.Required(x => x.PositionSide, "The position side to close", SharedPositionSide.Long),
-                RequestParameter<ClosePositionRequest>.Required(x => x.Quantity, "Quantity of the position is required", 0.1m)
-            }
+            ParameterRuleOverwrites = [            
+                RequestParameterRuleOverride<ClosePositionRequest>.Required(x => x.PositionSide),
+                RequestParameterRuleOverride<ClosePositionRequest>.Required(x => x.Quantity)
+            ]
         };
         public async Task<HttpResult<SharedId>> ClosePositionAsync(ClosePositionRequest request, CancellationToken ct)
         {
@@ -411,9 +413,9 @@ namespace XT.Net.Clients.FuturesApi
 
         public EditFuturesOrderOptions EditFuturesOrderOptions { get; } = new EditFuturesOrderOptions(_exchangeName)
         {
-            RequiredRequestParameters = [
-                RequestParameter<EditFuturesOrderRequest>.Required(x => x.Price, "The new order price", 0.1m),
-                RequestParameter<EditFuturesOrderRequest>.Required(x => x.Quantity, "The new order quantity", SharedQuantity.Base(1))
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<EditFuturesOrderRequest>.Required(x => x.Price),
+                RequestParameterRuleOverride<EditFuturesOrderRequest>.Required(x => x.Quantity)
                 ]
         };
         public async Task<HttpResult<SharedId>> EditFuturesOrderAsync(EditFuturesOrderRequest request, CancellationToken ct)
