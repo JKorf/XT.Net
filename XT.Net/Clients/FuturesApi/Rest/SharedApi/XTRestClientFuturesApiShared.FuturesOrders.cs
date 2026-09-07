@@ -482,6 +482,47 @@ namespace XT.Net.Clients.FuturesApi
 
         #endregion
 
+        #region Place Multiple Futures Orders
+
+        /// <inheritdoc />
+        public bool PlaceMultipleFuturesOrdersAllowsMultipleSymbols => true;
+        public int? MaxFuturesOrdersPerRequest => null;
+
+        async Task<ICallResult<CallResult<SharedId>[]>> IPlaceMultipleFuturesOrders.PlaceMultipleFuturesOrdersAsync(PlaceMultipleFuturesOrdersRequest request, CancellationToken ct)
+            => await PlaceMultipleFuturesOrdersAsync(request, ct).ConfigureAwait(false);
+
+        public PlaceMultipleFuturesOrdersOptions PlaceMultipleFuturesOrdersOptions { get; } = new PlaceMultipleFuturesOrdersOptions(_exchangeName);
+        public async Task<HttpResult<CallResult<SharedId>[]>> PlaceMultipleFuturesOrdersAsync(PlaceMultipleFuturesOrdersRequest request, CancellationToken ct)
+        {
+            var validationError = PlaceMultipleFuturesOrdersOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<CallResult<SharedId>[]>(Exchange, validationError);
+
+            var result = await _api.Trading.PlaceMultipleOrdersAsync(
+                request.Orders.Select(x => new XTFuturesOrderRequest
+                {
+                    Symbol = x.Symbol!.GetSymbol(FormatSymbol),
+                    OrderSide = x.Side == SharedOrderSide.Buy ? Enums.OrderSide.Buy : Enums.OrderSide.Sell,
+                    OrderType = x.OrderType == SharedOrderType.Limit ? OrderType.Limit : OrderType.Market,
+                    Quantity = x.Quantity?.QuantityInContracts ?? 0,
+                    Price = x.Price,
+                    PositionSide = x.PositionSide == SharedPositionSide.Long ? PositionSide.Long : PositionSide.Short,
+                    TimeInForce = GetTimeInForce(x.OrderType, x.TimeInForce),
+                    ClientOrderId = x.ClientOrderId,
+                    TriggerProfitPrice = x.TakeProfitPrice,
+                    TriggerStopPrice = x.StopLossPrice
+                }),
+                ct: ct
+                ).ConfigureAwait(false);
+
+            if (!result.Success)
+                return HttpResult.Fail<CallResult<SharedId>[]>(result, data: []);
+
+            return HttpResult.Ok<CallResult<SharedId>[]>(result, []);
+        }
+
+        #endregion
+
         private TimeInForce? GetTimeInForce(SharedOrderType type, SharedTimeInForce? tif)
         {
             if (tif == SharedTimeInForce.ImmediateOrCancel) return TimeInForce.ImmediateOrCancel;

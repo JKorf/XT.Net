@@ -69,5 +69,46 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
+        #region Get Leverage Tiers
+
+        async Task<ICallResult<SharedLeverageTier[]>> IGetLeverageTiers.GetLeverageTiersAsync(GetLeverageTiersRequest request, CancellationToken ct)
+            => await GetLeverageTiersAsync(request, ct).ConfigureAwait(false);
+
+        public GetLeverageTiersOptions GetLeverageTiersOptions { get; } = new GetLeverageTiersOptions(_exchangeName, true);
+        public async Task<HttpResult<SharedLeverageTier[]>> GetLeverageTiersAsync(GetLeverageTiersRequest request, CancellationToken ct)
+        {
+            var validationError = GetLeverageTiersOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedLeverageTier[]>(Exchange, validationError);
+
+            var result = await _api.ExchangeData.GetLeverageBracketsAsync(symbol: request.Symbol!.GetSymbol(FormatSymbol), ct: ct).ConfigureAwait(false);
+            if (!result.Success)
+                return HttpResult.Fail<SharedLeverageTier[]>(result);
+
+            var resultData = new List<SharedLeverageTier>();
+            var last = 0m;
+            var sharedSymbol = ExchangeSymbolCache.ParseSymbol(_topicId, _api.EnvironmentName, null, result.Data.Symbol);
+            foreach (var tier in result.Data.LeverageBrackets)
+            {
+                resultData.Add(new SharedLeverageTier(
+                    sharedSymbol,
+                    result.Data.Symbol,
+                    tier.Bracket,
+                    null,
+                    last,
+                    tier.MaxNominalValue,
+                    tier.MaintenanceMarginRate,
+                    tier.MaxLeverage
+                    ));
+
+                last = tier.MaxNominalValue;
+            }
+
+            return HttpResult.Ok(result, resultData.ToArray());
+        }
+
+        #endregion
+
     }
 }

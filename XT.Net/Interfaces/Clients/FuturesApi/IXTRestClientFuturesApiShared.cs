@@ -35,8 +35,8 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         IGetRecentTradesRest,
         IGetFundingRateHistoryRest,
         IGetFuturesSymbolsRest,
-        IGetFuturesTickerRest,
-        IGetAllFuturesTickersRest,
+        IGetTickerRest,
+        IGetAllTickersRest,
         IGetLeverageRest,
         ISetLeverageRest,
         IGetOpenInterestRest,
@@ -62,6 +62,11 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         IGetAllIndexPricesRest,
         IEditFuturesOrderRest,
         ICancelAllFuturesOrdersRest,
-        ICancelAllFuturesSymbolOrdersRest
+        ICancelAllFuturesSymbolOrdersRest,
+        IGetLedgerRest,
+        IGetUserFundingHistoryRest,
+        IGetLeverageTiersRest,
+        IGetFundingInfoRest,
+        IPlaceMultipleFuturesOrders
     { }
 }

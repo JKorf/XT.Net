@@ -30,7 +30,9 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         ISubscribeTradesSocket,
         ISubscribeUserTradesSocket,
         ISubscribeFuturesOrdersSocket,
-        ISubscribePositionsSocket
+        ISubscribePositionsSocket,
+        ISubscribeMarkPriceSocket,
+        ISubscribeIndexPriceSocket
     {
     }
 }

@@ -44,8 +44,8 @@ namespace XT.Net.Clients.FuturesApi
                 GetRecentTradesOptions,
                 GetFundingRateHistoryOptions,
                 GetFuturesSymbolsOptions,
-                GetFuturesTickerOptions,
-                GetAllFuturesTickersOptions,
+                GetTickerOptions,
+                GetAllTickersOptions,
                 GetBookTickerOptions,
                 GetOpenInterestOptions,
                 GetLeverageOptions,
@@ -71,7 +71,12 @@ namespace XT.Net.Clients.FuturesApi
                 GetAllIndexPricesOptions,
                 EditFuturesOrderOptions,
                 CancelAllFuturesOrdersOptions,
-                CancelAllFuturesSymbolOrdersOptions
+                CancelAllFuturesSymbolOrdersOptions,
+                GetLedgerOptions,
+                GetUserFundingHistoryOptions,
+                GetLeverageTiersOptions,
+                GetFundingInfoOptions,
+                PlaceMultipleFuturesOrdersOptions
                 );
         }
 

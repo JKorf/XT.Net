@@ -62,14 +62,16 @@ namespace XT.Net.Clients.FuturesApi
         public async Task<HttpResult> PlaceMultipleOrdersAsync(IEnumerable<XTFuturesOrderRequest> orders, CancellationToken ct = default)
         {
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
-            foreach (var order in orders)
+            var orderArray = orders.ToArray();
+            foreach (var order in orderArray)
             {
                 //order.Media = LibraryHelpers.GetClientReference(() => _baseClient.ClientOptions.BrokerId, _baseClient.Exchange);
                 order.Media = _baseClient.ClientOptions.BrokerId ?? "9231";
             }
 
-            parameters.Add("list", orders.ToArray());
-            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "/future/trade/v2/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            parameters.Add("list", orderArray);
+            var request = _definitions.GetOrCreate(HttpMethod.Post, _baseClient.BaseAddress, "/future/trade/v2/order/create-batch", XTExchange.RateLimiter.RestFutures, 1, true,
+                limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync(request, parameters, ct).ConfigureAwait(false);
             return result;
         }

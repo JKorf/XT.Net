@@ -56,5 +56,83 @@ namespace XT.Net.Clients.FuturesApi
         }
 
         #endregion
+
+        #region Get User Funding History
+
+        async Task<ICallResult<SharedFundingFee[]>> IGetUserFundingHistory.GetUserFundingHistoryAsync(GetUserFundingHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
+            => await GetUserFundingHistoryAsync(request, pageRequest, ct).ConfigureAwait(false);
+
+        public GetUserFundingHistoryOptions GetUserFundingHistoryOptions { get; } = new GetUserFundingHistoryOptions(_exchangeName, false, true, true, 100, false);
+        public async Task<HttpResult<SharedFundingFee[]>> GetUserFundingHistoryAsync(GetUserFundingHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
+        {
+            var validationError = GetUserFundingHistoryOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedFundingFee[]>(Exchange, validationError);
+
+            int limit = request.Limit ?? 100;
+            var direction = DataDirection.Descending;
+            var pageParams = Pagination.GetPaginationParameters(direction, limit, request.StartTime, request.EndTime ?? DateTime.UtcNow, pageRequest, false);
+
+            // Get data
+            var result = await _api.Account.GetFundingFeeHistoryAsync(
+                request.Symbol?.GetSymbol(FormatSymbol),
+                startTime: pageParams.StartTime,
+                endTime: pageParams.EndTime,
+                limit: pageParams.Limit,
+                direction: Enums.PageDirection.Next,                
+                ct: ct).ConfigureAwait(false);
+            if (!result.Success)
+                return HttpResult.Fail<SharedFundingFee[]>(result);
+
+            var nextPageRequest = Pagination.GetNextPageRequest(
+                     () => result.Data.HasNext == false ? null : Pagination.NextPageFromTime(pageParams, result.Data.Data.Min(x => x.CreateTime)),
+                     result.Data.Data.Length,
+                     result.Data.Data.Select(x => x.CreateTime),
+                     request.StartTime,
+                     request.EndTime ?? DateTime.UtcNow,
+                     pageParams);
+
+            return HttpResult.Ok(result, ExchangeHelpers.ApplyFilter(result.Data.Data, x => x.CreateTime, request.StartTime, request.EndTime, direction)
+                    .Select(x =>
+                        new SharedFundingFee(
+                            x.Symbol,
+                            x.FundingFee,
+                            x.CreateTime
+                            )
+                        {
+                            Asset = x.Asset,
+                            Side = x.PositionSide == PositionSide.Short ? SharedPositionSide.Short: SharedPositionSide.Long,
+                            Id = x.Id.ToString()
+                        })
+                    .ToArray(), nextPageRequest);
+        }
+
+        #endregion
+
+        #region Get Funding Info
+
+        async Task<ICallResult<SharedFundingInfo>> IGetFundingInfo.GetFundingInfoAsync(GetFundingInfoRequest request, CancellationToken ct)
+            => await GetFundingInfoAsync(request, ct).ConfigureAwait(false);
+
+        public GetFundingInfoOptions GetFundingInfoOptions { get; } = new GetFundingInfoOptions(_exchangeName, false, true, true, 100, false);
+        public async Task<HttpResult<SharedFundingInfo>> GetFundingInfoAsync(GetFundingInfoRequest request, CancellationToken ct)
+        {
+            var validationError = GetFundingInfoOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedFundingInfo>(Exchange, validationError);
+
+            var result = await _api.ExchangeData.GetFundingRateAsync(request.SymbolName(FormatSymbol), ct: ct).ConfigureAwait(false);
+            if (!result.Success)
+                return HttpResult.Fail<SharedFundingInfo>(result);
+
+            return HttpResult.Ok(result,
+                new SharedFundingInfo(
+                    result.Data.LastFundingRate,
+                    result.Data.NextFundingTime,
+                    result.Data.FundingRateInterval
+                ));
+        }
+
+        #endregion
     }
 }

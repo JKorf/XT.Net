@@ -43,7 +43,9 @@ namespace XT.Net.Clients.FuturesApi
                 SubscribeTradeOptions,
                 SubscribeUserTradeOptions,
                 SubscribeFuturesOrderOptions,
-                SubscribePositionOptions
+                SubscribePositionOptions,
+                SubscribeMarkPriceOptions,
+                SubscribeIndexPriceOptions
                 );
         }
 
