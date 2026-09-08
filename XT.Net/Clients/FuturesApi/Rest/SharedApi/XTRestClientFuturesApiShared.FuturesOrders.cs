@@ -375,9 +375,6 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Close Position
 
-        async Task<ICallResult<SharedId>> IClosePosition.ClosePositionAsync(ClosePositionRequest request, CancellationToken ct)
-            => await ClosePositionAsync(request, ct).ConfigureAwait(false);
-
         public ClosePositionOptions ClosePositionOptions { get; } = new ClosePositionOptions(_exchangeName, true)
         {
             ParameterRuleOverwrites = [            

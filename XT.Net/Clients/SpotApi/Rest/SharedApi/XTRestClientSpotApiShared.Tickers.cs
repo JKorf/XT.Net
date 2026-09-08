@@ -76,7 +76,9 @@ namespace XT.Net.Clients.SpotApi
         }
 
         Task<HttpResult<SharedSpotTicker[]>> ISpotTickerRestClient.GetSpotTickersAsync(GetTickersRequest request, CancellationToken ct)
-            => GetAllSpotTickersAsync(request, ct);
+            => GetAllSpotTickersAsync(
+                request.TradingMode == null ? request with { TradingMode = TradingMode.Spot } : request,
+                ct);
         GetAllTickersOptions ISpotTickerRestClient.GetSpotTickersOptions => GetAllTickersOptions;
 
         public GetAllTickersOptions GetAllTickersOptions { get; } = new GetAllTickersOptions(_exchangeName);

@@ -71,6 +71,10 @@ namespace XT.Net.Clients.FuturesApi
 
         async Task<HttpResult<SharedTicker[]>> IGetAllTickersRest.GetAllTickersAsync(GetTickersRequest request, CancellationToken ct)
         {
+            var validationError = GetAllTickersOptions.ValidateRequest(request, this);
+            if (validationError != null)
+                return HttpResult.Fail<SharedTicker[]>(Exchange, validationError);
+
             var result = await GetAllFuturesTickersAsync(request, ct).ConfigureAwait(false);
             if (!result.Success)
                 return HttpResult.Fail<SharedTicker[]>(result);
@@ -85,9 +89,12 @@ namespace XT.Net.Clients.FuturesApi
         public GetAllTickersOptions GetAllTickersOptions { get; } = new GetAllTickersOptions(_exchangeName);
         public async Task<HttpResult<SharedFuturesTicker[]>> GetAllFuturesTickersAsync(GetTickersRequest request, CancellationToken ct)
         {
-            var validationError = GetAllTickersOptions.ValidateRequest(request, this);
-            if (validationError != null)
-                return HttpResult.Fail<SharedFuturesTicker[]>(Exchange, validationError);
+            if (request.TradingMode != null)
+            {
+                var validationError = GetAllTickersOptions.ValidateRequest(request, this);
+                if (validationError != null)
+                    return HttpResult.Fail<SharedFuturesTicker[]>(Exchange, validationError);
+            }
 
             var resultTickers = await _api.ExchangeData.GetSymbolInfoAsync(ct).ConfigureAwait(false);
             if (!resultTickers.Success)

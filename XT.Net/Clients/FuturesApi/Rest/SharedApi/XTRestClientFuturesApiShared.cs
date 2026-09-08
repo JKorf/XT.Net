@@ -58,7 +58,6 @@ namespace XT.Net.Clients.FuturesApi
                 GetFuturesUserTradeHistoryOptions,
                 CancelFuturesOrderOptions,
                 GetPositionsOptions,
-                ClosePositionOptions,
                 GetFeeOptions,
                 SetFuturesTpSlOptions,
                 CancelFuturesTpSlOptions,

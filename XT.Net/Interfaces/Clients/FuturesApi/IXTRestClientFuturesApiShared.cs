@@ -48,7 +48,6 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         IGetFuturesUserTradeHistoryRest,
         ICancelFuturesOrderRest,
         IGetPositionsRest,
-        IClosePositionRest,
         IGetFeesRest,
         IPlaceFuturesTriggerOrderRest,
         IGetFuturesTriggerOrderRest,
