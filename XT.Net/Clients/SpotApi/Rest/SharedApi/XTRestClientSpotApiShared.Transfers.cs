@@ -29,7 +29,9 @@ namespace XT.Net.Clients.SpotApi
             SharedAccountType.PerpetualInverseFutures,
             SharedAccountType.DeliveryLinearFutures,
             SharedAccountType.DeliveryInverseFutures
-            ]);
+            ])
+        {
+        };
         public async Task<HttpResult<SharedId>> TransferAsync(TransferRequest request, CancellationToken ct)
         {
             var validationError = TransferOptions.ValidateRequest(request, this);
@@ -48,6 +50,7 @@ namespace XT.Net.Clients.SpotApi
                 toType.Value,
                 request.Quantity,
                 Guid.NewGuid().ToString(),
+                symbol: request.FromAccountType == SharedAccountType.IsolatedMargin ? request.FromSymbol : request.ToSymbol,
                 ct: ct).ConfigureAwait(false);
             if (!transfer.Success)
                 return HttpResult.Fail<SharedId>(transfer);

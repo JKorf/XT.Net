@@ -20,7 +20,14 @@ namespace XT.Net.Clients.FuturesApi
         async Task<ICallResult<SharedId>> IPlaceFuturesTriggerOrder.PlaceFuturesTriggerOrderAsync(PlaceFuturesTriggerOrderRequest request, CancellationToken ct)
             => await PlaceFuturesTriggerOrderAsync(request, ct).ConfigureAwait(false);
 
-        public PlaceFuturesTriggerOrderOptions PlaceFuturesTriggerOrderOptions { get; } = new PlaceFuturesTriggerOrderOptions(_exchangeName, false);
+        public PlaceFuturesTriggerOrderOptions PlaceFuturesTriggerOrderOptions { get; } = new PlaceFuturesTriggerOrderOptions(_exchangeName, false)
+        {
+            ParameterRuleOverwrites = [
+                    RequestParameterRuleOverride<PlaceFuturesTriggerOrderRequest>.NotSupported(x => x.Leverage),
+                    RequestParameterRuleOverride<PlaceFuturesTriggerOrderRequest>.NotSupported(x => x.MarginMode),
+                    RequestParameterRuleOverride<PlaceFuturesTriggerOrderRequest>.NotSupported(x => x.ReduceOnly),
+                ]
+        };
 
         public async Task<HttpResult<SharedId>> PlaceFuturesTriggerOrderAsync(PlaceFuturesTriggerOrderRequest request, CancellationToken ct)
         {

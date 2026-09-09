@@ -20,7 +20,12 @@ namespace XT.Net.Clients.FuturesApi
         async Task<ICallResult<SharedFundingRate[]>> IGetFundingRateHistory.GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
             => await GetFundingRateHistoryAsync(request, pageRequest, ct).ConfigureAwait(false);
 
-        public GetFundingRateHistoryOptions GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(_exchangeName, false, true, false, 100, false);
+        public GetFundingRateHistoryOptions GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(_exchangeName, false, true, false, 100, false)
+        {
+            ParameterRuleOverwrites = [
+                RequestParameterRuleOverride<GetDepositsRequest>.NotSupported(x => x.EndTime)
+                ]
+        };
         public async Task<HttpResult<SharedFundingRate[]>> GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
         {
             var validationError = GetFundingRateHistoryOptions.ValidateRequest(request, this);
