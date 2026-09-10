@@ -28,7 +28,7 @@ namespace XT.Net.Clients.SpotApi
 
         public GetWithdrawalHistoryOptions GetWithdrawalHistoryOptions { get; } = new GetWithdrawalHistoryOptions(_exchangeName, false, true, true, 200)
         {
-            ParameterRuleOverwrites = [
+            ParameterRuleOverrides = [
                 RequestParameterRuleOverride<GetWithdrawalsRequest>.Required(x => x.Asset)
             ],
             ExchangeParameterRules = [
@@ -120,7 +120,7 @@ namespace XT.Net.Clients.SpotApi
 
         public WithdrawOptions WithdrawOptions { get; } = new WithdrawOptions(_exchangeName)
         {
-            ParameterRuleOverwrites = [
+            ParameterRuleOverrides = [
                 RequestParameterRuleOverride<WithdrawRequest>.Required(x => x.Network)
                 ]
         };

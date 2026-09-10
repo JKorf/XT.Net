@@ -22,7 +22,7 @@ namespace XT.Net.Clients.FuturesApi
 
         public GetFundingRateHistoryOptions GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(_exchangeName, false, true, false, 100, false)
         {
-            ParameterRuleOverwrites = [
+            ParameterRuleOverrides = [
                 RequestParameterRuleOverride<GetDepositsRequest>.NotSupported(x => x.EndTime)
                 ]
         };

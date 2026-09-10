@@ -36,7 +36,7 @@ namespace XT.Net.Clients.FuturesApi
 
         public PlaceFuturesOrderOptions PlaceFuturesOrderOptions { get; } = new PlaceFuturesOrderOptions(_exchangeName, true)
         {
-            ParameterRuleOverwrites = [            
+            ParameterRuleOverrides = [            
                 RequestParameterRuleOverride<PlaceFuturesOrderRequest>.Required(x => x.PositionSide),
                 RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.MarginMode),
                 RequestParameterRuleOverride<PlaceFuturesOrderRequest>.NotSupported(x => x.ReduceOnly),
@@ -377,7 +377,7 @@ namespace XT.Net.Clients.FuturesApi
 
         public ClosePositionOptions ClosePositionOptions { get; } = new ClosePositionOptions(_exchangeName, true)
         {
-            ParameterRuleOverwrites = [            
+            ParameterRuleOverrides = [            
                 RequestParameterRuleOverride<ClosePositionRequest>.Required(x => x.PositionSide),
                 RequestParameterRuleOverride<ClosePositionRequest>.Required(x => x.Quantity)
             ]
@@ -405,24 +405,24 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Edit Futures Order
 
-        async Task<ICallResult<SharedId>> IEditFuturesOrder.EditFuturesOrderAsync(EditFuturesOrderRequest request, CancellationToken ct)
+        async Task<ICallResult<SharedId>> IEditFuturesOrder.EditFuturesOrderAsync(EditOrderRequest request, CancellationToken ct)
             => await EditFuturesOrderAsync(request, ct).ConfigureAwait(false);
 
         public EditFuturesOrderOptions EditFuturesOrderOptions { get; } = new EditFuturesOrderOptions(_exchangeName)
         {
-            ParameterRuleOverwrites = [
-                RequestParameterRuleOverride<EditFuturesOrderRequest>.Required(x => x.Price),
-                RequestParameterRuleOverride<EditFuturesOrderRequest>.Required(x => x.Quantity)
+            ParameterRuleOverrides = [
+                RequestParameterRuleOverride<EditOrderRequest>.Required(x => x.Price),
+                RequestParameterRuleOverride<EditOrderRequest>.Required(x => x.Quantity)
                 ]
         };
-        public async Task<HttpResult<SharedId>> EditFuturesOrderAsync(EditFuturesOrderRequest request, CancellationToken ct)
+        public async Task<HttpResult<SharedId>> EditFuturesOrderAsync(EditOrderRequest request, CancellationToken ct)
         {
             var validationError = EditFuturesOrderOptions.ValidateRequest(request, this);
             if (validationError != null)
                 return HttpResult.Fail<SharedId>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return HttpResult.Fail<SharedId>(Exchange, ArgumentError.Invalid(nameof(EditFuturesOrderRequest.OrderId), "Invalid order id"));
+                return HttpResult.Fail<SharedId>(Exchange, ArgumentError.Invalid(nameof(EditOrderRequest.OrderId), "Invalid order id"));
 
             var order = await _api.Trading.EditOrderAsync(
                 orderId,

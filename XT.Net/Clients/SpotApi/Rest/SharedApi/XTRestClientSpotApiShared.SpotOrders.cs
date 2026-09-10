@@ -335,24 +335,24 @@ namespace XT.Net.Clients.SpotApi
 
         #region Edit Spot Order
 
-        async Task<ICallResult<SharedId>> IEditSpotOrder.EditSpotOrderAsync(EditSpotOrderRequest request, CancellationToken ct)
+        async Task<ICallResult<SharedId>> IEditSpotOrder.EditSpotOrderAsync(EditOrderRequest request, CancellationToken ct)
             => await EditSpotOrderAsync(request, ct).ConfigureAwait(false);
 
         public EditSpotOrderOptions EditSpotOrderOptions { get; } = new EditSpotOrderOptions(_exchangeName)
         {
-            ParameterRuleOverwrites = [
-                RequestParameterRuleOverride<EditSpotOrderRequest>.Required(x => x.Price, "The new order price"),
-                RequestParameterRuleOverride<EditSpotOrderRequest>.Required(x => x.Quantity, "The new order quantity")
+            ParameterRuleOverrides = [
+                RequestParameterRuleOverride<EditOrderRequest>.Required(x => x.Price, "The new order price"),
+                RequestParameterRuleOverride<EditOrderRequest>.Required(x => x.Quantity, "The new order quantity")
                 ]
         };
-        public async Task<HttpResult<SharedId>> EditSpotOrderAsync(EditSpotOrderRequest request, CancellationToken ct)
+        public async Task<HttpResult<SharedId>> EditSpotOrderAsync(EditOrderRequest request, CancellationToken ct)
         {
             var validationError = EditSpotOrderOptions.ValidateRequest(request, this);
             if (validationError != null)
                 return HttpResult.Fail<SharedId>(Exchange, validationError);
 
             if (!long.TryParse(request.OrderId, out var orderId))
-                return HttpResult.Fail<SharedId>(Exchange, ArgumentError.Invalid(nameof(EditSpotOrderRequest.OrderId), "Invalid order id"));
+                return HttpResult.Fail<SharedId>(Exchange, ArgumentError.Invalid(nameof(EditOrderRequest.OrderId), "Invalid order id"));
 
             var order = await _api.Trading.EditOrderAsync(
                 orderId, 
