@@ -1,3 +1,4 @@
+using CryptoExchange.Net.SharedApis;
 using XT.Net.Interfaces.Clients.FuturesApi;
 using XT.Net.Interfaces.Clients.SpotApi;
 
@@ -6,7 +7,7 @@ namespace XT.Net.Interfaces.Clients
     /// <summary>
     /// Client for the shared REST and WebSocket API implementations of XT
     /// </summary>
-    public interface IXTSharedApiClient
+    public interface IXTSharedApiClient : ISharedApiClientBase
     {
         /// <summary>
         /// Spot REST shared API implementations
