@@ -2,6 +2,7 @@ using CryptoExchange.Net;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Interfaces.Clients;
+using CryptoExchange.Net.SharedApis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -120,21 +121,21 @@ namespace Microsoft.Extensions.DependencyInjection
                 x.GetRequiredService<IOptions<XTRestOptions>>(),
                 x.GetRequiredService<IOptions<XTSocketOptions>>()));
 
-            services.AddTransient<IXTSharedApiClient, XTSharedApiClient>();
-
-            services.RegisterSharedApi(x => x.GetRequiredService<IXTRestClient>().SpotApi.SharedApi);
-            services.RegisterSharedApi(x => x.GetRequiredService<IXTSocketClient>().SpotApi.SharedApi);
-            services.RegisterSharedApi(x => x.GetRequiredService<IXTRestClient>().UsdtFuturesApi.SharedApi);
-            services.RegisterSharedApi(x => x.GetRequiredService<IXTSocketClient>().FuturesApi.SharedApi);
-            services.RegisterSharedApi(x => x.GetRequiredService<IXTRestClient>().CoinFuturesApi.SharedApi);
-
-            services.RegisterSharedApiClientCapabilities<IXTSharedApiClient>();
-
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().SpotApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().SpotApi.SharedClient);
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().UsdtFuturesApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().FuturesApi.SharedClient);
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().CoinFuturesApi.SharedClient);
+
+            services.RegisterSharedApiClient<
+                IXTSharedApiClient,
+                XTSharedApiClient>(sharedApis => sharedApis
+                    .Add(client => client.SpotRest)
+                    .Add(client => client.SpotSocket)
+                    .Add(client => client.UsdtFuturesRest)
+                    .Add(client => client.CoinFuturesRest)
+                    .Add(client => client.FuturesSocket)
+                    );
 
             return services;
         }
