@@ -143,7 +143,8 @@ namespace XT.Net.Clients.SpotApi
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
             parameters.Add("symbol", symbol?.ToLowerInvariant());
             parameters.Add("symbols", symbols == null ? null : string.Join(",", symbols));
-            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/v4/public/ticker", XTExchange.RateLimiter.XT, 1, false, limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/v4/public/ticker", XTExchange.RateLimiter.XT, 1, false, 
+                limitGuard: new SingleLimitGuard(10, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTTicker[]>(request, parameters, ct).ConfigureAwait(false);
             return result;
         }

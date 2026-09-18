@@ -17,7 +17,7 @@ namespace XT.Net.Clients.FuturesApi
     {
         #region Get All Mark Prices
 
-        async Task<ICallResult<SharedMarkPrice[]>> IGetAllMarkPrices.GetAllMarkPricesAsync(GetAllMarkPricesRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedMarkPrice[]>> IGetAllMarkPrices.GetAllMarkPricesAsync(GetAllMarkPricesRequest request, CancellationToken ct)
             => await GetAllMarkPricesAsync(request, ct).ConfigureAwait(false);
 
         public GetAllMarkPricesOptions GetAllMarkPricesOptions { get; } = new GetAllMarkPricesOptions(_exchangeName, false);
@@ -42,7 +42,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Get Mark Price
 
-        async Task<ICallResult<SharedMarkPrice>> IGetMarkPrice.GetMarkPriceAsync(GetMarkPriceRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedMarkPrice>> IGetMarkPrice.GetMarkPriceAsync(GetMarkPriceRequest request, CancellationToken ct)
             => await GetMarkPriceAsync(request, ct).ConfigureAwait(false);
 
         public GetMarkPriceOptions GetMarkPriceOptions { get; } = new GetMarkPriceOptions(_exchangeName, false);

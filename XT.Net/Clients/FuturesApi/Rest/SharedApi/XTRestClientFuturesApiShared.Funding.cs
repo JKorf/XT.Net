@@ -17,7 +17,7 @@ namespace XT.Net.Clients.FuturesApi
     {
         #region Get Funding Rate History
 
-        async Task<ICallResult<SharedFundingRate[]>> IGetFundingRateHistory.GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedFundingRate[]>> IGetFundingRateHistory.GetFundingRateHistoryAsync(GetFundingRateHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
             => await GetFundingRateHistoryAsync(request, pageRequest, ct).ConfigureAwait(false);
 
         public GetFundingRateHistoryOptions GetFundingRateHistoryOptions { get; } = new GetFundingRateHistoryOptions(_exchangeName, false, true, false, 100, false)
@@ -64,7 +64,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Get User Funding History
 
-        async Task<ICallResult<SharedFundingFee[]>> IGetUserFundingHistory.GetUserFundingHistoryAsync(GetUserFundingHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedFundingFee[]>> IGetUserFundingHistory.GetUserFundingHistoryAsync(GetUserFundingHistoryRequest request, PageRequest? pageRequest, CancellationToken ct)
             => await GetUserFundingHistoryAsync(request, pageRequest, ct).ConfigureAwait(false);
 
         public GetUserFundingHistoryOptions GetUserFundingHistoryOptions { get; } = new GetUserFundingHistoryOptions(_exchangeName, false, true, true, 100, false);
@@ -116,7 +116,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Get Funding Info
 
-        async Task<ICallResult<SharedFundingInfo>> IGetFundingInfo.GetFundingInfoAsync(GetFundingInfoRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedFundingInfo>> IGetFundingInfo.GetFundingInfoAsync(GetFundingInfoRequest request, CancellationToken ct)
             => await GetFundingInfoAsync(request, ct).ConfigureAwait(false);
 
         public GetFundingInfoOptions GetFundingInfoOptions { get; } = new GetFundingInfoOptions(_exchangeName, false, true, true, 100, false);

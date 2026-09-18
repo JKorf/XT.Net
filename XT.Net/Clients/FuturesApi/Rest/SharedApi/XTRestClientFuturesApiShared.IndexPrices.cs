@@ -18,7 +18,7 @@ namespace XT.Net.Clients.FuturesApi
     {
         #region Get All Index Prices
 
-        async Task<ICallResult<SharedIndexPrice[]>> IGetAllIndexPrices.GetAllIndexPricesAsync(GetAllIndexPricesRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedIndexPrice[]>> IGetAllIndexPrices.GetAllIndexPricesAsync(GetAllIndexPricesRequest request, CancellationToken ct)
             => await GetAllIndexPricesAsync(request, ct).ConfigureAwait(false);
 
         public GetAllIndexPricesOptions GetAllIndexPricesOptions { get; } = new GetAllIndexPricesOptions(_exchangeName, false);
@@ -43,7 +43,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Get Index Price
 
-        async Task<ICallResult<SharedIndexPrice>> IGetIndexPrice.GetIndexPriceAsync(GetIndexPriceRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedIndexPrice>> IGetIndexPrice.GetIndexPriceAsync(GetIndexPriceRequest request, CancellationToken ct)
             => await GetIndexPriceAsync(request, ct).ConfigureAwait(false);
 
         public GetIndexPriceOptions GetIndexPriceOptions { get; } = new GetIndexPriceOptions(_exchangeName, false);

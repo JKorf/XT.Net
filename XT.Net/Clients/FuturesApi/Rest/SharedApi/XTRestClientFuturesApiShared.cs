@@ -28,7 +28,7 @@ namespace XT.Net.Clients.FuturesApi
         public XTRestClientFuturesSharedApi(XTRestClientFuturesApi api)
             : base(
                   SharedTransport.Rest,
-                  api.Exchange,
+                  api,
                   api is XTRestClientUsdtFuturesApi
                         ? new[] { TradingMode.PerpetualLinear, TradingMode.DeliveryLinear }
                         : [TradingMode.PerpetualInverse, TradingMode.DeliveryInverse],

@@ -28,7 +28,7 @@ namespace XT.Net.Clients.FuturesApi
         public XTSocketClientFuturesSharedApi(XTSocketClientFuturesApi api)
             : base(
                   SharedTransport.Socket,
-                  api.Exchange,
+                  api,
                   [TradingMode.PerpetualLinear, TradingMode.PerpetualInverse, TradingMode.DeliveryLinear, TradingMode.DeliveryInverse],
                   () => api.Authenticated,
                   api.FormatSymbol)

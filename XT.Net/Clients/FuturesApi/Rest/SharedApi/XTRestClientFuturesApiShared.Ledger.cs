@@ -18,7 +18,7 @@ namespace XT.Net.Clients.FuturesApi
     {
         #region Get Ledger
 
-        async Task<ICallResult<SharedLedgerEntry[]>> IGetLedger.GetLedgerAsync(GetLedgerRequest request, PageRequest? pageRequest, CancellationToken ct)
+        async Task<IExchangeCallResult<SharedLedgerEntry[]>> IGetLedger.GetLedgerAsync(GetLedgerRequest request, PageRequest? pageRequest, CancellationToken ct)
             => await GetLedgerAsync(request, pageRequest, ct).ConfigureAwait(false);
 
         public GetLedgerOptions GetLedgerOptions { get; } = new GetLedgerOptions(_exchangeName, false, true, true, 100);

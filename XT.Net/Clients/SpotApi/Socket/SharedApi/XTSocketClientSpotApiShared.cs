@@ -27,7 +27,7 @@ namespace XT.Net.Clients.SpotApi
         public XTSocketClientSpotSharedApi(XTSocketClientSpotApi api)
             : base(
                   SharedTransport.Socket,
-                  api.Exchange,
+                  api,
                   [TradingMode.Spot],
                   () => api.Authenticated,
                   api.FormatSymbol)
