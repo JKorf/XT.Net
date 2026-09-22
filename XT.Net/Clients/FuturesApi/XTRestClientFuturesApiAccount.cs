@@ -90,6 +90,7 @@ namespace XT.Net.Clients.FuturesApi
         {
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
             parameters.Add("symbol", symbol?.ToLowerInvariant());
+            parameters.Add("id", id);
             parameters.Add("direction", direction);
             parameters.Add("startTime", startTime);
             parameters.Add("endTime", endTime);

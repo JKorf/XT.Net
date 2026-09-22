@@ -46,10 +46,10 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("entryPrice")]
         public decimal EntryPrice { get; set; }
         /// <summary>
-        /// ["<c>floatingPL</c>"] Unrealized profit and loss
+        /// ["<c>floatingPL</c>"] Unrealized profit and loss, or null when not reported (including isolated positions)
         /// </summary>
         [JsonPropertyName("floatingPL")]
-        public decimal UnrealizedPnl { get; set; }
+        public decimal? UnrealizedPnl { get; set; }
         /// <summary>
         /// ["<c>isolatedMargin</c>"] Isolated margin
         /// </summary>
