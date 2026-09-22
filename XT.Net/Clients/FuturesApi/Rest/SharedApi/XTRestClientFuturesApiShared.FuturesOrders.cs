@@ -439,7 +439,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Cancel All Futures Orders
 
-        async Task<ICallResult> ICancelAllFuturesOrders.CancelAllFuturesOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult> ICancelAllFuturesOrders.CancelAllFuturesOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
             => await CancelAllFuturesOrdersAsync(request, ct).ConfigureAwait(false);
 
         public CancelAllFuturesOrdersOptions CancelAllFuturesOrdersOptions { get; } = new CancelAllFuturesOrdersOptions(_exchangeName);
@@ -460,7 +460,7 @@ namespace XT.Net.Clients.FuturesApi
 
         #region Cancel All Futures Symbol Orders
 
-        async Task<ICallResult> ICancelAllFuturesSymbolOrders.CancelAllFuturesSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult> ICancelAllFuturesSymbolOrders.CancelAllFuturesSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
             => await CancelAllFuturesSymbolOrdersAsync(request, ct).ConfigureAwait(false);
 
         public CancelAllFuturesSymbolOrdersOptions CancelAllFuturesSymbolOrdersOptions { get; } = new CancelAllFuturesSymbolOrdersOptions(_exchangeName, true);

@@ -369,7 +369,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region Cancel All Spot Orders
 
-        async Task<ICallResult> ICancelAllSpotOrders.CancelAllSpotOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult> ICancelAllSpotOrders.CancelAllSpotOrdersAsync(CancelAllOrdersRequest request, CancellationToken ct)
             => await CancelAllSpotOrdersAsync(request, ct).ConfigureAwait(false);
 
         public CancelAllSpotOrdersOptions CancelAllSpotOrdersOptions { get; } = new CancelAllSpotOrdersOptions(_exchangeName);
@@ -390,7 +390,7 @@ namespace XT.Net.Clients.SpotApi
 
         #region Cancel All Spot Symbol Orders
 
-        async Task<ICallResult> ICancelAllSpotSymbolOrders.CancelAllSpotSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
+        async Task<IExchangeCallResult> ICancelAllSpotSymbolOrders.CancelAllSpotSymbolOrdersAsync(CancelAllSymbolOrdersRequest request, CancellationToken ct)
             => await CancelAllSpotSymbolOrdersAsync(request, ct).ConfigureAwait(false);
 
         public CancelAllSpotSymbolOrdersOptions CancelAllSpotSymbolOrdersOptions { get; } = new CancelAllSpotSymbolOrdersOptions(_exchangeName, true);
