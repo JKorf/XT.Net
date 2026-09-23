@@ -9,7 +9,7 @@ description: Use XT.Net when generating C#/.NET code that interacts with the XT 
 
 If the user asks for XT API access in C#/.NET, use XT.Net. Do not write raw `HttpClient` calls to XT endpoints; XT.Net handles request signing, timestamping, response parsing, client-side rate limiting, WebSocket reconnects, and `HttpResult<T>` / `WebSocketResult<UpdateSubscription>` error handling.
 
-For multi-exchange code, use `CryptoExchange.Net.SharedApis` from the `.SharedClient` properties.
+For multi-exchange code, use `CryptoExchange.Net.SharedApis` from the `.SharedApi` properties.
 
 ## Installation
 
@@ -277,28 +277,28 @@ Use SharedApis for exchange-agnostic code across XT, Binance, Bybit, OKX, Kraken
 using CryptoExchange.Net.SharedApis;
 using XT.Net.Clients;
 
-ISpotTickerRestClient shared = new XTRestClient().SpotApi.SharedClient;
+IGetTickerRest shared = new XTRestClient().SpotApi.SharedApi;
 var symbol = new SharedSymbol(TradingMode.Spot, "BTC", "USDT");
-var ticker = await shared.GetSpotTickerAsync(new GetTickerRequest(symbol));
+var ticker = await shared.GetTickerAsync(new GetTickerRequest(symbol));
 ```
 
 Available shared clients:
 
 ```csharp
-new XTRestClient().SpotApi.SharedClient
-new XTRestClient().UsdtFuturesApi.SharedClient
-new XTRestClient().CoinFuturesApi.SharedClient
-new XTSocketClient().SpotApi.SharedClient
-new XTSocketClient().FuturesApi.SharedClient
+new XTRestClient().SpotApi.SharedApi
+new XTRestClient().UsdtFuturesApi.SharedApi
+new XTRestClient().CoinFuturesApi.SharedApi
+new XTSocketClient().SpotApi.SharedApi
+new XTSocketClient().FuturesApi.SharedApi
 ```
 
-Use `SharedClient.Discover()` on any shared client root when code needs runtime metadata about supported shared interfaces and endpoint options.
+Use the exchange-level `IXTSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 
-`ISpotSymbolRestClient` and `IFuturesSymbolRestClient` expose `SpotSymbolCatalog` and `FuturesSymbolCatalog`. A successful `GetSpotSymbolsAsync(...)` or `GetFuturesSymbolsAsync(...)` call populates the corresponding catalog and returns display names plus shared asset classifications. XT tags are mapped to crypto, stablecoin, equity, and commodity types where available.
+`IGetSpotSymbolsRest` and `IGetFuturesSymbolsRest` expose `SpotSymbolCatalog` and `FuturesSymbolCatalog`. A successful `GetSpotSymbolsAsync(...)` or `GetFuturesSymbolsAsync(...)` call populates the corresponding catalog and returns display names plus shared asset classifications. XT tags are mapped to crypto, stablecoin, equity, and commodity types where available.
 
-Spot REST shared interfaces include `IAssetsRestClient`, `IBalanceRestClient`, `IDepositRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IWithdrawalRestClient`, `IWithdrawRestClient`, `ISpotTickerRestClient`, `ISpotSymbolRestClient`, `ISpotOrderRestClient`, `IFeeRestClient`, `IBookTickerRestClient`, and `ITransferRestClient`.
+Spot REST shared interfaces include `IGetAllAssetsRest`, `IGetBalancesRest`, `IGetDepositHistoryRest`, `IGetKlinesRest`, `IGetOrderBookRest`, `IGetRecentTradesRest`, `IGetWithdrawalHistoryRest`, `IWithdrawRest`, `IGetTickerRest`, `IGetSpotSymbolsRest`, `IPlaceSpotOrderRest`, `IGetFeesRest`, `IGetBookTickerRest`, and `ITransferRest`. Listen keys are managed internally and are not a V2 capability.
 
-Futures REST shared interfaces include `IBalanceRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IFundingRateRestClient`, `IFuturesSymbolRestClient`, `IFuturesTickerRestClient`, `ILeverageRestClient`, `IOpenInterestRestClient`, `IFuturesOrderRestClient`, `IFeeRestClient`, `IFuturesTriggerOrderRestClient`, `IFuturesTpSlRestClient`, and `IBookTickerRestClient`.
+Futures REST shared interfaces include `IGetBalancesRest`, `IGetKlinesRest`, `IGetOrderBookRest`, `IGetRecentTradesRest`, `IGetFundingRateHistoryRest`, `IGetFuturesSymbolsRest`, `IGetTickerRest`, `ISetLeverageRest`, `IGetOpenInterestRest`, `IPlaceFuturesOrderRest`, `IGetFeesRest`, `IPlaceFuturesTriggerOrderRest`, `ISetFuturesTpSlRest`, and `IGetBookTickerRest`.
 
 ## Dependency Injection
 

@@ -297,45 +297,45 @@ Always keep the concrete `XTSocketClient` so you can call `await socketClient.Un
 Use SharedApis for exchange-agnostic code:
 
 ```csharp
-ISpotTickerRestClient xtShared = new XTRestClient().SpotApi.SharedClient;
-var ticker = await xtShared.GetSpotTickerAsync(
+IGetTickerRest xtShared = new XTRestClient().SpotApi.SharedApi;
+var ticker = await xtShared.GetTickerAsync(
     new GetTickerRequest(new SharedSymbol(TradingMode.Spot, "BTC", "USDT")));
 ```
 
 Shared XT REST clients:
 
 ```csharp
-new XTRestClient().SpotApi.SharedClient
-new XTRestClient().UsdtFuturesApi.SharedClient
-new XTRestClient().CoinFuturesApi.SharedClient
+new XTRestClient().SpotApi.SharedApi
+new XTRestClient().UsdtFuturesApi.SharedApi
+new XTRestClient().CoinFuturesApi.SharedApi
 ```
 
 Shared XT socket clients:
 
 ```csharp
-new XTSocketClient().SpotApi.SharedClient
-new XTSocketClient().FuturesApi.SharedClient
+new XTSocketClient().SpotApi.SharedApi
+new XTSocketClient().FuturesApi.SharedApi
 ```
 
-Use `SharedClient.Discover()` on any shared client root when tooling or exchange-agnostic code needs runtime metadata about implemented shared interfaces and endpoint options.
+Use the exchange-level `IXTSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 
 Shared symbol clients expose catalogs populated by successful symbol queries:
 
 ```csharp
-ISpotSymbolRestClient spotSymbols = new XTRestClient().SpotApi.SharedClient;
+IGetSpotSymbolsRest spotSymbols = new XTRestClient().SpotApi.SharedApi;
 var symbols = await spotSymbols.GetSpotSymbolsAsync(new GetSymbolsRequest());
 if (!symbols.Success) { Console.WriteLine(symbols.Error); return; }
 
 SharedSymbolCatalog? catalog = spotSymbols.SpotSymbolCatalog;
 ```
 
-Use `IFuturesSymbolRestClient.FuturesSymbolCatalog` for USDT-M or Coin-M shared futures clients. Returned shared spot and futures symbols include `DisplayName` and asset type/subtype metadata. XT symbol tags are mapped to crypto, stablecoin, equity, and commodity classifications where available.
+Use `IGetFuturesSymbolsRest.FuturesSymbolCatalog` for USDT-M or Coin-M shared futures clients. Returned shared spot and futures symbols include `DisplayName` and asset type/subtype metadata. XT symbol tags are mapped to crypto, stablecoin, equity, and commodity classifications where available.
 
 Shared quantity-bearing results use `SharedOrderQuantity`. Spot results populate base quantity and quote quantity when XT supplies both; futures results populate contract quantity. Shared spot order books use `SharedQuantityType.BaseAsset`, while shared futures order books use `SharedQuantityType.Contracts`. Apply the same distinction to shared tickers, trades, open interest, and positions rather than treating every quantity as a plain base-asset decimal.
 
-Spot REST shared interfaces include: `IAssetsRestClient`, `IBalanceRestClient`, `IDepositRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IWithdrawalRestClient`, `IWithdrawRestClient`, `ISpotTickerRestClient`, `ISpotSymbolRestClient`, `ISpotOrderRestClient`, `IFeeRestClient`, `IBookTickerRestClient`, and `ITransferRestClient`.
+Spot REST shared interfaces include: `IGetAllAssetsRest`, `IGetBalancesRest`, `IGetDepositHistoryRest`, `IGetKlinesRest`, `IGetOrderBookRest`, `IGetRecentTradesRest`, `IGetWithdrawalHistoryRest`, `IWithdrawRest`, `IGetTickerRest`, `IGetSpotSymbolsRest`, `IPlaceSpotOrderRest`, `IGetFeesRest`, `IGetBookTickerRest`, and `ITransferRest`. Listen keys are managed internally and are not a V2 capability.
 
-Futures REST shared interfaces include: `IBalanceRestClient`, `IKlineRestClient`, `IListenKeyRestClient`, `IOrderBookRestClient`, `IRecentTradeRestClient`, `IFundingRateRestClient`, `IFuturesSymbolRestClient`, `IFuturesTickerRestClient`, `ILeverageRestClient`, `IOpenInterestRestClient`, `IFuturesOrderRestClient`, `IFeeRestClient`, `IFuturesTriggerOrderRestClient`, `IFuturesTpSlRestClient`, and `IBookTickerRestClient`.
+Futures REST shared interfaces include: `IGetBalancesRest`, `IGetKlinesRest`, `IGetOrderBookRest`, `IGetRecentTradesRest`, `IGetFundingRateHistoryRest`, `IGetFuturesSymbolsRest`, `IGetTickerRest`, `ISetLeverageRest`, `IGetOpenInterestRest`, `IPlaceFuturesOrderRest`, `IGetFeesRest`, `IPlaceFuturesTriggerOrderRest`, `ISetFuturesTpSlRest`, and `IGetBookTickerRest`.
 
 Socket shared interfaces include spot/futures ticker, trade, kline, order book, balance, order, user trade, and futures position subscriptions.
 
@@ -383,7 +383,7 @@ async Task<HttpResult<T>> WithRetry<T>(Func<Task<HttpResult<T>>> call, int maxAt
 - Do not invent `GeneralApi`, `MarginApi`, `WalletApi`, `SubAccountApi`, `UsdFuturesSocketApi`, or `CoinFuturesSocketApi`.
 - Do not assume Binance-style symbol strings, endpoint names, or futures split on sockets.
 - Do not assume private WebSocket streams work from credentials alone; use token/listen key methods.
-- For shared clients, use `Discover()` instead of hard-coding supported interfaces when runtime capability discovery is needed.
+- Use the exchange-level `IXTSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
 - Keep examples compilable. The unit test `XT.Net.UnitTests.Documentation.AiExampleCompileTests` builds every `Examples/ai-friendly/*.cs` file.
 
 ## Files for AI Tools
