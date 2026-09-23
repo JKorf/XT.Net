@@ -55,6 +55,11 @@ namespace XT.Net.Enums
         /// </summary>
         [Map("HISTORY")]
         History,
+        /// <summary>
+        /// ["<c>PARTIALLY_CANCELED</c>"] Partially filled with the remaining quantity canceled
+        /// </summary>
+        [Map("PARTIALLY_CANCELED")]
+        PartiallyCanceled,
     }
 
 }

@@ -31,6 +31,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("openOrderMarginFrozen")]
         public decimal OpenOrderMarginFrozen { get; set; }
         /// <summary>
+        /// ["<c>openOrderFeeFrozen</c>"] Fees reserved for open orders
+        /// </summary>
+        [JsonPropertyName("openOrderFeeFrozen")]
+        public decimal OpenOrderFeeFrozen { get; set; }
+        /// <summary>
         /// ["<c>isolatedMargin</c>"] Isolated margin
         /// </summary>
         [JsonPropertyName("isolatedMargin")]

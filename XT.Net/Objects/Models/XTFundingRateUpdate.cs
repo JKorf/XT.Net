@@ -16,9 +16,9 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("s")]
         public string Symbol { get; set; } = string.Empty;
         /// <summary>
-        /// ["<c>p</c>"] Funding rate
+        /// ["<c>r</c>"] Funding rate
         /// </summary>
-        [JsonPropertyName("p")]
+        [JsonPropertyName("r")]
         public decimal FundingRate { get; set; }
         /// <summary>
         /// ["<c>t</c>"] Timestamp
