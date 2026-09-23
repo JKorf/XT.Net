@@ -17,10 +17,10 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("clientOrderId")]
         public string? ClientOrderId { get; set; }
         /// <summary>
-        /// ["<c>avgPrice</c>"] Average price
+        /// ["<c>avgPrice</c>"] Average execution price, or null while execution details are unavailable
         /// </summary>
         [JsonPropertyName("avgPrice")]
-        public decimal AveragePrice { get; set; }
+        public decimal? AveragePrice { get; set; }
         /// <summary>
         /// ["<c>closePosition</c>"] Close position flag when triggered
         /// </summary>

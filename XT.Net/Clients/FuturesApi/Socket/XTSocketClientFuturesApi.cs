@@ -355,7 +355,7 @@ namespace XT.Net.Clients.FuturesApi
 
             var subscription = new XTSubscription<XTFundingRateUpdate>(_logger,
                 this,
-                "mark_price",
+                "fund_rate",
                 symbols.Select(x => x.ToLowerInvariant()).ToArray(),
                 internalHandler,
                 false);
