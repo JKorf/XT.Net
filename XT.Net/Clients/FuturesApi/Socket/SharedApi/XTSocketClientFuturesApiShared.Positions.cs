@@ -43,20 +43,5 @@ namespace XT.Net.Clients.FuturesApi
 
         #endregion
 
-        private SharedOrderStatus ParseOrderStatus(OrderStatus status)
-        {
-            if (status == OrderStatus.New || status == OrderStatus.PartiallyFilled) return SharedOrderStatus.Open;
-            if (status == OrderStatus.Canceled || status == OrderStatus.Rejected || status == OrderStatus.Expired) return SharedOrderStatus.Canceled;
-            if (status == OrderStatus.Filled) return SharedOrderStatus.Filled;
-
-            return SharedOrderStatus.Unknown;
-        }
-
-        private SharedTimeInForce? ParseTimeInForce(TimeInForce timeInForce)
-        {
-            if (timeInForce == TimeInForce.ImmediateOrCancel) return SharedTimeInForce.ImmediateOrCancel;
-            if (timeInForce == TimeInForce.FillOrKill) return SharedTimeInForce.FillOrKill;
-             return SharedTimeInForce.GoodTillCanceled;
-        }
     }
 }
