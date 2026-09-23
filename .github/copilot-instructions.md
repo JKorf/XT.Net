@@ -62,9 +62,9 @@ Store returned `UpdateSubscription` values and unsubscribe on shutdown via `sock
 
 ## Cross-Exchange
 
-For code that needs to work across multiple exchanges, use `CryptoExchange.Net.SharedApis` interfaces from `.SharedClient`.
+For code that needs to work across multiple exchanges, use `CryptoExchange.Net.SharedApis` interfaces from `.SharedApi`.
 
-After a successful shared symbol query, `ISpotSymbolRestClient.SpotSymbolCatalog` or `IFuturesSymbolRestClient.FuturesSymbolCatalog` provides the cached catalog. Shared symbol results include display names and asset type/subtype metadata, including XT-tagged equities and commodities and recognized stablecoins.
+After a successful shared symbol query, `IGetSpotSymbolsRest.SpotSymbolCatalog` or `IGetFuturesSymbolsRest.FuturesSymbolCatalog` provides the cached catalog. Shared symbol results include display names and asset type/subtype metadata, including XT-tagged equities and commodities and recognized stablecoins.
 
 ## Avoid
 

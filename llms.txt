@@ -31,9 +31,9 @@ XT.Net is part of the CryptoExchange.Net ecosystem. Current package version: 4.5
 - WebSocket futures: `new XTSocketClient().FuturesApi`
 - Credentials: `new XTCredentials("API_KEY", "API_SECRET")`
 - DI: `services.AddXT(options => { ... })`
-- SharedApis: `client.SpotApi.SharedClient`, `client.UsdtFuturesApi.SharedClient`, `client.CoinFuturesApi.SharedClient`, `socketClient.SpotApi.SharedClient`, `socketClient.FuturesApi.SharedClient`
-- Shared capability discovery: `client.SpotApi.SharedClient.Discover()` and equivalent SharedClient roots
-- Shared symbol catalogs: after a successful shared symbol query, use `ISpotSymbolRestClient.SpotSymbolCatalog` or `IFuturesSymbolRestClient.FuturesSymbolCatalog`; shared symbols include display names and asset type/subtype metadata
+- SharedApis: `client.SpotApi.SharedApi`, `client.UsdtFuturesApi.SharedApi`, `client.CoinFuturesApi.SharedApi`, `socketClient.SpotApi.SharedApi`, `socketClient.FuturesApi.SharedApi`
+- Use the exchange-level `IXTSharedApiClient` aggregate's `GetCapability(...)` or `GetCapabilities(...)` methods for runtime capability lookup; use an API surface's `.SharedApi` property when the transport and API are known.
+- Shared symbol catalogs: after a successful shared symbol query, use `IGetSpotSymbolsRest.SpotSymbolCatalog` or `IGetFuturesSymbolsRest.FuturesSymbolCatalog`; shared symbols include display names and asset type/subtype metadata
 
 ## Critical Rules
 

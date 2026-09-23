@@ -2,6 +2,7 @@ using CryptoExchange.Net;
 using CryptoExchange.Net.Clients;
 using CryptoExchange.Net.Interfaces;
 using CryptoExchange.Net.Interfaces.Clients;
+using CryptoExchange.Net.SharedApis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -34,33 +35,11 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
         {
-            var options = new XTOptions();
-            // Reset environment so we know if they're overridden
-            options.Rest.Environment = null!;
-            options.Socket.Environment = null!;
+            var options = XTOptions.CreateFromConfiguration(configuration);
 
-            try
-            {
-                configuration.Bind(options);
-            }
-            catch (InvalidOperationException ex)
-            {
-                throw new InvalidOperationException("Invalid configuration provided", ex);
-            }
-
-            if (options.Rest == null || options.Socket == null)
-                throw new ArgumentException("Options null");
-
-            var restEnvName = options.Rest.Environment?.Name ?? options.Environment?.Name ?? XTEnvironment.Live.Name;
-            var socketEnvName = options.Socket.Environment?.Name ?? options.Environment?.Name ?? XTEnvironment.Live.Name;
-            options.Rest.Environment = XTEnvironment.GetEnvironmentByName(restEnvName) ?? options.Rest.Environment!;
-            options.Rest.ApiCredentials = options.Rest.ApiCredentials ?? options.ApiCredentials;
-            options.Socket.Environment = XTEnvironment.GetEnvironmentByName(socketEnvName) ?? options.Socket.Environment!;
-            options.Socket.ApiCredentials = options.Socket.ApiCredentials ?? options.ApiCredentials;
-
-
-            services.AddSingleton(x => Options.Options.Create(options.Rest));
-            services.AddSingleton(x => Options.Options.Create(options.Socket));
+            services.AddSingleton(Options.Options.Create(options.Rest));
+            services.AddSingleton(Options.Options.Create(options.Socket));
+            services.AddSingleton(Options.Options.Create(options));
 
             return AddXTCore(services, options.SocketClientLifeTime);
         }
@@ -75,21 +54,11 @@ namespace Microsoft.Extensions.DependencyInjection
             this IServiceCollection services,
             Action<XTOptions>? optionsDelegate = null)
         {
-            var options = new XTOptions();
-            // Reset environment so we know if they're overridden
-            options.Rest.Environment = null!;
-            options.Socket.Environment = null!;
-            optionsDelegate?.Invoke(options);
-            if (options.Rest == null || options.Socket == null)
-                throw new ArgumentException("Options null");
+            var options = XTOptions.Create(optionsDelegate);
 
-            options.Rest.Environment = options.Rest.Environment ?? options.Environment ?? XTEnvironment.Live;
-            options.Rest.ApiCredentials = options.Rest.ApiCredentials ?? options.ApiCredentials;
-            options.Socket.Environment = options.Socket.Environment ?? options.Environment ?? XTEnvironment.Live;
-            options.Socket.ApiCredentials = options.Socket.ApiCredentials ?? options.ApiCredentials;
-
-            services.AddSingleton(x => Options.Options.Create(options.Rest));
-            services.AddSingleton(x => Options.Options.Create(options.Socket));
+            services.AddSingleton(Options.Options.Create(options.Rest));
+            services.AddSingleton(Options.Options.Create(options.Socket));
+            services.AddSingleton(Options.Options.Create(options));
 
             return AddXTCore(services, options.SocketClientLifeTime);
         }
@@ -124,6 +93,16 @@ namespace Microsoft.Extensions.DependencyInjection
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().UsdtFuturesApi.SharedClient);
             services.RegisterSharedSocketInterfaces(x => x.GetRequiredService<IXTSocketClient>().FuturesApi.SharedClient);
             services.RegisterSharedRestInterfaces(x => x.GetRequiredService<IXTRestClient>().CoinFuturesApi.SharedClient);
+
+            services.RegisterSharedApiClient<
+                IXTSharedApiClient,
+                XTSharedApiClient>(sharedApis => sharedApis
+                    .Add(client => client.SpotRest)
+                    .Add(client => client.SpotSocket)
+                    .Add(client => client.UsdtFuturesRest)
+                    .Add(client => client.CoinFuturesRest)
+                    .Add(client => client.FuturesSocket)
+                    );
 
             return services;
         }

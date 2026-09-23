@@ -138,7 +138,7 @@ Use `CoinFuturesApi` instead of `UsdtFuturesApi` for Coin-M futures. The futures
 | Coin-M futures market data | `client.CoinFuturesApi.ExchangeData.*` |
 | Coin-M futures account calls | `client.CoinFuturesApi.Account.*` |
 | Coin-M futures trading calls | `client.CoinFuturesApi.Trading.*` |
-| Coin-M shared REST client | `client.CoinFuturesApi.SharedClient` |
+| Coin-M shared REST client | `client.CoinFuturesApi.SharedApi` |
 
 ## Spot WebSocket
 
@@ -181,20 +181,20 @@ Private futures streams require `listenKey = await restClient.UsdtFuturesApi.Acc
 
 | User intent | XT.Net member or interface |
 |---|---|
-| Shared spot REST client | `new XTRestClient().SpotApi.SharedClient` |
-| Shared USDT-M futures REST client | `new XTRestClient().UsdtFuturesApi.SharedClient` |
-| Shared Coin-M futures REST client | `new XTRestClient().CoinFuturesApi.SharedClient` |
-| Shared spot socket client | `new XTSocketClient().SpotApi.SharedClient` |
-| Shared futures socket client | `new XTSocketClient().FuturesApi.SharedClient` |
-| Get shared spot symbols and populate the catalog | `ISpotSymbolRestClient.GetSpotSymbolsAsync(new GetSymbolsRequest(...))`, then `ISpotSymbolRestClient.SpotSymbolCatalog` |
-| Get shared futures symbols and populate the catalog | `IFuturesSymbolRestClient.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))`, then `IFuturesSymbolRestClient.FuturesSymbolCatalog` |
-| Shared spot ticker REST | `ISpotTickerRestClient.GetSpotTickerAsync(new GetTickerRequest(symbol))` |
-| Shared spot order REST | `ISpotOrderRestClient.PlaceSpotOrderAsync(...)` |
-| Shared futures ticker REST | `IFuturesTickerRestClient.GetFuturesTickerAsync(...)` |
-| Shared futures order REST | `IFuturesOrderRestClient.PlaceFuturesOrderAsync(...)` |
-| Shared ticker socket | `ITickerSocketClient.SubscribeToTickerUpdatesAsync(...)` |
-| Shared order book socket | `IOrderBookSocketClient.SubscribeToOrderBookUpdatesAsync(...)` |
-| Discover shared capabilities | `client.SpotApi.SharedClient.Discover()` or the equivalent futures/socket SharedClient root |
+| Shared spot REST client | `new XTRestClient().SpotApi.SharedApi` |
+| Shared USDT-M futures REST client | `new XTRestClient().UsdtFuturesApi.SharedApi` |
+| Shared Coin-M futures REST client | `new XTRestClient().CoinFuturesApi.SharedApi` |
+| Shared spot socket client | `new XTSocketClient().SpotApi.SharedApi` |
+| Shared futures socket client | `new XTSocketClient().FuturesApi.SharedApi` |
+| Get shared spot symbols and populate the catalog | `IGetSpotSymbolsRest.GetSpotSymbolsAsync(new GetSymbolsRequest(...))`, then `IGetSpotSymbolsRest.SpotSymbolCatalog` |
+| Get shared futures symbols and populate the catalog | `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))`, then `IGetFuturesSymbolsRest.FuturesSymbolCatalog` |
+| Shared spot ticker REST | `IGetTickerRest.GetTickerAsync(new GetTickerRequest(symbol))` |
+| Shared spot order REST | `IPlaceSpotOrderRest.PlaceSpotOrderAsync(...)` |
+| Shared futures ticker REST | `IGetTickerRest.GetTickerAsync(...)` |
+| Shared futures order REST | `IPlaceFuturesOrderRest.PlaceFuturesOrderAsync(...)` |
+| Shared ticker socket | `ISubscribeTickerSocket.SubscribeToTickerUpdatesAsync(...)` |
+| Shared order book socket | `ISubscribeOrderBookSocket.SubscribeToOrderBookUpdatesAsync(...)` |
+| Resolve a runtime-selected Shared API capability | `IXTSharedApiClient.GetCapability(...)` |
 
 Shared spot and futures symbol results include `DisplayName` and shared asset type/subtype metadata. XT tags are mapped to crypto, stablecoin, equity, and commodity classifications where available.
 
