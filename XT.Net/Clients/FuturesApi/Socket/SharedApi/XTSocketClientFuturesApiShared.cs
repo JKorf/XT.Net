@@ -49,5 +49,7 @@ namespace XT.Net.Clients.FuturesApi
                 );
         }
 
+        /// <inheritdoc />
+        public Task UnsubscribeAllAsync() => _api.UnsubscribeAllAsync();
     }
 }
