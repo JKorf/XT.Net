@@ -44,6 +44,6 @@ namespace XT.Net.Enums
         /// ["<c>DAILY_ORDER_LIMIT</c>"] Daily order limit filter
         /// </summary>
         [Map("DAILY_ORDER_LIMIT")]
-        DailyOrderLimit
+        DailyOrderLimit,
     }
 }

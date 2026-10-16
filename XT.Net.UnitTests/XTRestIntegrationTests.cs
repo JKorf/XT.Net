@@ -143,6 +143,8 @@ namespace XT.Net.UnitTests
                 "preMarketNoMarketOrderUntil", // Unknown field type
                 "noMarketOrderMinutes", // Unknown field type
                 "preMarketEnabled", // Unknown field type
+                "gslStatus",
+                "gslFeeRate"
                 ]);
             await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetSymbolsAsync(default), false, "result", ignoreProperties: [
                 "preMarket", // Unknown field type
@@ -151,6 +153,8 @@ namespace XT.Net.UnitTests
                 "preMarketNoMarketOrderUntil", // Unknown field type
                 "noMarketOrderMinutes", // Unknown field type
                 "preMarketEnabled", // Unknown field type
+                "gslStatus",
+                "gslFeeRate"
                 ]);
             await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync("eth_usdt", default), false, "result");
             await RunAndCheckResult(warnings, client => client.UsdtFuturesApi.ExchangeData.GetLeverageBracketsAsync(default), false, "result");
