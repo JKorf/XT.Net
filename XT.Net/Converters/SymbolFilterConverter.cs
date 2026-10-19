@@ -68,8 +68,7 @@ namespace XT.Net.Converters
                 case SymbolFilterType.DailyOrderLimit:
                     result = new XTDailyOrderLimitFilter
                     {
-                        // The native response supplies a string; preserve it without imposing an undocumented range.
-                        OrderLimit = obj.GetProperty("orderLimited").GetString()!
+                        OrderLimit = ParseDecimal(obj, "orderLimited")
                     };
                     break;
                 default:

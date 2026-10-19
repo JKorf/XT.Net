@@ -12,9 +12,9 @@ namespace XT.Net.Objects.Models
     public record XTDailyOrderLimitFilter : XTSymbolFilter
     {
         /// <summary>
-        /// ["<c>orderLimited</c>"] Native daily order limit value.
+        /// ["<c>orderLimited</c>"] Native daily order limit value parsed from its numeric string.
         /// </summary>
         [JsonPropertyName("orderLimited")]
-        public string OrderLimit { get; set; } = string.Empty;
+        public decimal OrderLimit { get; set; }
     }
 }
