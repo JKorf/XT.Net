@@ -22,6 +22,17 @@ namespace XT.Net.Clients.SpotApi
             _baseClient = baseClient;
         }
 
+        #region Get VIP Fee Info
+
+        /// <inheritdoc />
+        public async Task<HttpResult<XTVipFeeInfo>> GetVipFeeInfoAsync(CancellationToken ct = default)
+        {
+            var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.ClientOptions.Environment.RestClientAddress, "/v4/user/account/vip-info", XTExchange.RateLimiter.XT, 1, true);
+            return await _baseClient.SendAsync<XTVipFeeInfo>(request, null, ct).ConfigureAwait(false);
+        }
+
+        #endregion
+
         #region Get Balance
 
         /// <inheritdoc />

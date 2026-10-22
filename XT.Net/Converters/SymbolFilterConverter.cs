@@ -65,6 +65,12 @@ namespace XT.Net.Converters
                         DurationSeconds = int.Parse(obj.GetProperty("durationSeconds").GetString()!, NumberStyles.Float, CultureInfo.InvariantCulture)
                     };
                     break;
+                case SymbolFilterType.DailyOrderLimit:
+                    result = new XTDailyOrderLimitFilter
+                    {
+                        OrderLimit = ParseDecimal(obj, "orderLimited")
+                    };
+                    break;
                 default:
                     LibraryHelpers.StaticLogger?.LogWarning("Can't parse symbol filter of type: " + obj.GetProperty("filter").GetString());
                     result = new XTSymbolFilter();

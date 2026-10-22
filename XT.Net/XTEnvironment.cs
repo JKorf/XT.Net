@@ -9,6 +9,10 @@ namespace XT.Net
     public class XTEnvironment : TradeEnvironment
     {
         /// <summary>
+        /// General REST API address
+        /// </summary>
+        public string RestClientAddress { get; }
+        /// <summary>
         /// Spot rest API address
         /// </summary>
         public string SpotRestClientAddress { get; }
@@ -37,9 +41,11 @@ namespace XT.Net
             string usdtFuturesRestAddress,
             string coinFuturesRestAddress,
             string spotStreamAddress,
-            string futuresStreamAddress) :
+            string futuresStreamAddress,
+            string restAddress) :
             base(name)
         {
+            RestClientAddress = restAddress;
             SpotRestClientAddress = spotRestAddress;
             UsdtFuturesRestClientAddress = usdtFuturesRestAddress;
             CoinFuturesRestClientAddress = coinFuturesRestAddress;
@@ -82,18 +88,27 @@ namespace XT.Net
                                      XTApiAddresses.Default.UsdtFuturesRestClientAddress,
                                      XTApiAddresses.Default.CoinFuturesRestClientAddress,
                                      XTApiAddresses.Default.SpotSocketClientAddress,
-                                     XTApiAddresses.Default.FuturesSocketClientAddress);
+                                     XTApiAddresses.Default.FuturesSocketClientAddress,
+                                     XTApiAddresses.Default.RestClientAddress);
 
         /// <summary>
         /// Create a custom environment
         /// </summary>
+        /// <param name="name">Environment name</param>
+        /// <param name="spotRestAddress">Spot REST address</param>
+        /// <param name="usdtFuturesRestAddress">USDT futures REST address</param>
+        /// <param name="coinFuturesRestAddress">Coin futures REST address</param>
+        /// <param name="spotSocketStreamsAddress">Spot socket address</param>
+        /// <param name="futuresSocketStreamsAddress">Futures socket address</param>
+        /// <param name="restAddress">General REST address</param>
         public static XTEnvironment CreateCustom(
                         string name,
                         string spotRestAddress,
                         string usdtFuturesRestAddress,
                         string coinFuturesRestAddress,
                         string spotSocketStreamsAddress,
-                        string futuresSocketStreamsAddress)
-            => new XTEnvironment(name, spotRestAddress, usdtFuturesRestAddress, coinFuturesRestAddress, spotSocketStreamsAddress, futuresSocketStreamsAddress);
+                        string futuresSocketStreamsAddress,
+                        string restAddress)
+            => new XTEnvironment(name, spotRestAddress, usdtFuturesRestAddress, coinFuturesRestAddress, spotSocketStreamsAddress, futuresSocketStreamsAddress, restAddress);
     }
 }

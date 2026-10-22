@@ -11,6 +11,7 @@ namespace XT.Net.Converters
     [JsonSerializable(typeof(SymbolFilterType))]
 
     // End manual defined attributes
+    [JsonSerializable(typeof(XTRestResponse<XTVipFeeInfo>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTLeverageInfo[]>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTPage<XTTriggerOrder>>))]
     [JsonSerializable(typeof(XTFuturesRestResponse<XTUserTradeDetails[]>))]
@@ -240,6 +241,7 @@ namespace XT.Net.Converters
     [JsonSerializable(typeof(XTProtectionLimitFilter[]))]
     [JsonSerializable(typeof(XTProtectionMarketFilter[]))]
     [JsonSerializable(typeof(XTProtectionOnlineFilter[]))]
+    [JsonSerializable(typeof(XTDailyOrderLimitFilter[]))]
     [JsonSerializable(typeof(XTSymbols[]))]
     [JsonSerializable(typeof(XTSymbol[]))]
     [JsonSerializable(typeof(XTTrackOrder[]))]

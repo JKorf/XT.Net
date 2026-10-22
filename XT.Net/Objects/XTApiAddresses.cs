@@ -6,6 +6,10 @@ namespace XT.Net.Objects
     public class XTApiAddresses
     {
         /// <summary>
+        /// The address used by the XTRestClient for the general REST API
+        /// </summary>
+        public string RestClientAddress { get; set; } = "";
+        /// <summary>
         /// The address used by the XTRestClient for the Spot API
         /// </summary>
         public string SpotRestClientAddress { get; set; } = "";
@@ -31,6 +35,7 @@ namespace XT.Net.Objects
         /// </summary>
         public static XTApiAddresses Default = new XTApiAddresses
         {
+            RestClientAddress = "https://api.xt.com",
             SpotRestClientAddress = "https://sapi.xt.com",
             CoinFuturesRestClientAddress = "https://dapi.xt.com",
             UsdtFuturesRestClientAddress = "https://fapi.xt.com",

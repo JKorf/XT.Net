@@ -13,6 +13,18 @@ namespace XT.Net.Interfaces.Clients.SpotApi
     public interface IXTRestClientSpotApiAccount
     {
         /// <summary>
+        /// Get the account's VIP level and spot fee rates
+        /// <para>
+        /// Docs:<br />
+        /// <a href="https://doc.xt.com/docs/user-center/Account/QueryAccountVipFeeInfo" /><br />
+        /// Endpoint:<br />
+        /// GET /v4/user/account/vip-info
+        /// </para>
+        /// </summary>
+        /// <param name="ct">Cancellation token</param>
+        Task<HttpResult<XTVipFeeInfo>> GetVipFeeInfoAsync(CancellationToken ct = default);
+
+        /// <summary>
         /// Get balance for an asset
         /// <para>
         /// Docs:<br />

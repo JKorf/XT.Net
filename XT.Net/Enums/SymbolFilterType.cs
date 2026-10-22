@@ -41,10 +41,9 @@ namespace XT.Net.Enums
         [Map("PROTECTION_ONLINE")]
         ProtectionOnline,
         /// <summary>
-        /// ["<c>DAILY_ORDER_LIMIT</c>"] Filter for daily order limit
+        /// ["<c>DAILY_ORDER_LIMIT</c>"] Daily order limit filter
         /// </summary>
         [Map("DAILY_ORDER_LIMIT")]
         DailyOrderLimit,
-
     }
 }
