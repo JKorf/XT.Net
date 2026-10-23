@@ -253,6 +253,9 @@ Make a one time donation in a crypto currency of your choice. If you prefer to d
 Alternatively, sponsor me on Github using [Github Sponsors](https://github.com/sponsors/JKorf). 
 
 ## Release notes
+* Version 4.8.0 - 23 Oct 2026
+    * Updated CryptoExchange.Net to v13.2.2
+
 * Version 4.7.0 - 30 Sep 2026
     * Updated CryptoExchange.Net to V13.1.0
     * Added DailyOrderLimit to SymbolFilterType
