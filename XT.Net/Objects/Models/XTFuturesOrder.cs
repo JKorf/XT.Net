@@ -37,6 +37,11 @@ namespace XT.Net.Objects.Models
         [JsonPropertyName("createdTime")]
         public DateTime CreateTime { get; set; }
         /// <summary>
+        /// ["<c>updatedTime</c>"] Last order update time, including final settlement time
+        /// </summary>
+        [JsonPropertyName("updatedTime")]
+        public DateTime? UpdateTime { get; set; }
+        /// <summary>
         /// ["<c>executedQty</c>"] Executed quantity
         /// </summary>
         [JsonPropertyName("executedQty")]
