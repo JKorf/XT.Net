@@ -107,7 +107,7 @@ namespace XT.Net.Clients.FuturesApi
         #region Get Closed Orders
 
         /// <inheritdoc />
-        public async Task<HttpResult<XTPage<XTFuturesOrder>>> GetClosedOrdersAsync(string? symbol = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default)
+        public async Task<HttpResult<XTPage<XTFuturesOrder>>> GetClosedOrdersAsync(string? symbol = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, bool? forceClose = null, CancellationToken ct = default)
         {
             var parameters = new Parameters(XTExchange._parameterSerializationSettings);
             parameters.Add("symbol", symbol?.ToLowerInvariant());
@@ -116,6 +116,7 @@ namespace XT.Net.Clients.FuturesApi
             parameters.Add("startTime", startTime);
             parameters.Add("endTime", endTime);
             parameters.Add("limit", limit);
+            parameters.Add("forceClose", forceClose?.ToString().ToLowerInvariant());
             var request = _definitions.GetOrCreate(HttpMethod.Get, _baseClient.BaseAddress, "/future/trade/v1/order/list-history", XTExchange.RateLimiter.RestFutures, 1, true, limitGuard: new SingleLimitGuard(200, TimeSpan.FromSeconds(1), RateLimitWindowType.Sliding));
             var result = await _baseClient.SendAsync<XTPage<XTFuturesOrder>>(request, parameters, ct).ConfigureAwait(false);
             return result;
