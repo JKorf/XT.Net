@@ -88,8 +88,9 @@ namespace XT.Net.Interfaces.Clients.FuturesApi
         /// <param name="startTime">["<c>startTime</c>"] Filter by start time</param>
         /// <param name="endTime">["<c>endTime</c>"] Filter by end time</param>
         /// <param name="limit">["<c>limit</c>"] Max number of results</param>
+        /// <param name="forceClose">["<c>forceClose</c>"] Include forced liquidation orders, which are excluded when this parameter is omitted</param>
         /// <param name="ct">Cancellation token</param>
-        Task<HttpResult<XTPage<XTFuturesOrder>>> GetClosedOrdersAsync(string? symbol = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, CancellationToken ct = default);
+        Task<HttpResult<XTPage<XTFuturesOrder>>> GetClosedOrdersAsync(string? symbol = null, long? fromId = null, PageDirection? direction = null, DateTime? startTime = null, DateTime? endTime = null, int? limit = null, bool? forceClose = null, CancellationToken ct = default);
 
         /// <summary>
         /// Get user trades
