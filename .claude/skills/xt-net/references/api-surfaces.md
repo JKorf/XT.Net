@@ -1,22 +1,10 @@
-# XT.Net AI API Quick Map
+# API surfaces
 
-Use this file to route common user intents to the correct XT.Net client member. If a method name or parameter is not listed here, inspect `XT.Net/Interfaces/Clients/**` before generating code.
+## Product roots and setup
 
-## Client Roots
+`XTRestClient` / `IXTRestClient` expose `SpotApi`, `UsdtFuturesApi`, and `CoinFuturesApi`; each has `ExchangeData`, `Account`, `Trading`, and `SharedApi`. `XTSocketClient` / `IXTSocketClient` expose `SpotApi` and the combined `FuturesApi`. There are no separate USDT-M/Coin-M socket roots.
 
-| Intent | Use |
-|---|---|
-| REST calls | `new XTRestClient()` |
-| WebSocket streams | `new XTSocketClient()` |
-| API key authentication | `options.ApiCredentials = new XTCredentials("key", "secret")` |
-| Live environment | `XTEnvironment.Live` |
-| Custom environment | `XTEnvironment.CreateCustom(...)` |
-| Dependency injection | `services.AddXT(options => { ... })` |
-| Spot REST API | `client.SpotApi` |
-| USDT-M Futures REST API | `client.UsdtFuturesApi` |
-| Coin-M Futures REST API | `client.CoinFuturesApi` |
-| Spot socket API | `socketClient.SpotApi` |
-| Futures socket API | `socketClient.FuturesApi` |
+Private access uses `XTCredentials(key, secret)`. `XTEnvironment.Live` is built in; `CreateCustom` configures custom endpoints without providing a built-in sandbox. Spot native examples use `eth_usdt`, futures interfaces use `ETH_USDT`; discover the actual symbol for the selected product.
 
 ## Spot REST
 
@@ -177,51 +165,32 @@ Private spot streams require `token = await restClient.SpotApi.Account.GetWebsoc
 
 Private futures streams require `listenKey = await restClient.UsdtFuturesApi.Account.GetListenKeyAsync()`.
 
-## SharedApis
 
-| User intent | XT.Net member or interface |
-|---|---|
-| Shared spot REST client | `new XTRestClient().SpotApi.SharedApi` |
-| Shared USDT-M futures REST client | `new XTRestClient().UsdtFuturesApi.SharedApi` |
-| Shared Coin-M futures REST client | `new XTRestClient().CoinFuturesApi.SharedApi` |
-| Shared spot socket client | `new XTSocketClient().SpotApi.SharedApi` |
-| Shared futures socket client | `new XTSocketClient().FuturesApi.SharedApi` |
-| Get shared spot symbols and populate the catalog | `IGetSpotSymbolsRest.GetSpotSymbolsAsync(new GetSymbolsRequest(...))`, then `IGetSpotSymbolsRest.SpotSymbolCatalog` |
-| Get shared futures symbols and populate the catalog | `IGetFuturesSymbolsRest.GetFuturesSymbolsAsync(new GetSymbolsRequest(...))`, then `IGetFuturesSymbolsRest.FuturesSymbolCatalog` |
-| Shared spot ticker REST | `IGetTickerRest.GetTickerAsync(new GetTickerRequest(symbol))` |
-| Shared spot order REST | `IPlaceSpotOrderRest.PlaceSpotOrderAsync(...)` |
-| Shared futures ticker REST | `IGetTickerRest.GetTickerAsync(...)` |
-| Shared futures order REST | `IPlaceFuturesOrderRest.PlaceFuturesOrderAsync(...)` |
-| Shared ticker socket | `ISubscribeTickerSocket.SubscribeToTickerUpdatesAsync(...)` |
-| Shared order book socket | `ISubscribeOrderBookSocket.SubscribeToOrderBookUpdatesAsync(...)` |
-| Resolve a runtime-selected Shared API capability | `IXTSharedApiClient.GetCapability(...)` |
+## Shared API V2
 
-Shared spot and futures symbol results include `DisplayName` and shared asset type/subtype metadata. XT tags are mapped to crypto, stablecoin, equity, and commodity classifications where available.
+`IXTSharedApiClient` implements `ISharedApiClientBase`. `SpotRest` exposes `IXTRestClientSpotSharedApi`; `UsdtFuturesRest` and `CoinFuturesRest` expose separate implementations of `IXTRestClientFuturesSharedApi`. `SpotSocket` and `FuturesSocket` expose the corresponding socket contracts:
 
-For shared socket subscriptions, keep the concrete `XTSocketClient` and unsubscribe with `await socketClient.UnsubscribeAsync(subscription.Data)`.
+| Surface type | Supported capabilities |
+| --- | --- |
+| `IXTRestClientSpotSharedApi` | `IGetAssetRest`, `IGetAllAssetsRest`, `IGetBalancesRest`, `IGetDepositAddressesRest`, `IGetDepositHistoryRest`, `IGetKlinesRest`, `IGetOrderBookRest`, `IGetRecentTradesRest`, `IGetWithdrawalHistoryRest`, `IWithdrawRest`, `IGetTickerRest`, `IGetAllTickersRest`, `IGetSpotSymbolsRest`, `IPlaceSpotOrderRest`, `IGetSpotOrderRest`, `IGetOpenSpotOrdersRest`, `IGetClosedSpotOrdersRest`, `IGetSpotOrderTradesRest`, `IGetSpotUserTradeHistoryRest`, `ICancelSpotOrderRest`, `IGetFeesRest`, `IGetBookTickerRest`, `ITransferRest`, `IEditSpotOrderRest`, `ICancelAllSpotOrdersRest`, `ICancelAllSpotSymbolOrdersRest` |
+| `IXTRestClientFuturesSharedApi` | `IGetBalancesRest`, `IGetKlinesRest`, `IGetOrderBookRest`, `IGetRecentTradesRest`, `IGetFundingRateHistoryRest`, `IGetFuturesSymbolsRest`, `IGetTickerRest`, `IGetAllTickersRest`, `IGetLeverageRest`, `ISetLeverageRest`, `IGetOpenInterestRest`, `IPlaceFuturesOrderRest`, `IGetFuturesOrderRest`, `IGetOpenFuturesOrdersRest`, `IGetClosedFuturesOrdersRest`, `IGetFuturesOrderTradesRest`, `IGetFuturesUserTradeHistoryRest`, `ICancelFuturesOrderRest`, `IGetPositionsRest`, `IGetFeesRest`, `IPlaceFuturesTriggerOrderRest`, `IGetFuturesTriggerOrderRest`, `ICancelFuturesTriggerOrderRest`, `ISetFuturesTpSlRest`, `ICancelFuturesTpSlRest`, `IGetBookTickerRest`, `IGetMarkPriceRest`, `IGetAllMarkPricesRest`, `IGetIndexPriceRest`, `IGetAllIndexPricesRest`, `IEditFuturesOrderRest`, `ICancelAllFuturesOrdersRest`, `ICancelAllFuturesSymbolOrdersRest`, `IGetLedgerRest`, `IGetUserFundingHistoryRest`, `IGetLeverageTiersRest`, `IGetFundingInfoRest`, `IPlaceMultipleFuturesOrders` |
+| `IXTSocketClientSpotSharedApi` | `ISubscribeBalancesSocket`, `ISubscribeKlinesSocket`, `ISubscribeOrderBookSocket`, `ISubscribeTickerSocket`, `ISubscribeTradesSocket`, `ISubscribeUserTradesSocket`, `ISubscribeSpotOrdersSocket` |
+| `IXTSocketClientFuturesSharedApi` | `ISubscribeBalancesSocket`, `ISubscribeKlinesSocket`, `ISubscribeOrderBookSocket`, `ISubscribeTickerSocket`, `ISubscribeTradesSocket`, `ISubscribeUserTradesSocket`, `ISubscribeFuturesOrdersSocket`, `ISubscribePositionsSocket`, `ISubscribeMarkPriceSocket`, `ISubscribeIndexPriceSocket` |
 
-## Result Handling
+Use the typed `.SharedApi` or an aggregate property for a known operation. For runtime selection, use `GetCapability(SharedCapabilities.Tickers.GetTicker.Rest, TradingMode.Spot)` or `GetCapabilities(...)` for all matches. Choose `TradingMode.PerpetualLinear` for USDT-M and `PerpetualInverse` for Coin-M. Handle a nullable `SharedCapabilityResolution<T>` and inspect `Capability` and `Options`. `Discover()` supplies summary metadata; `PreferredTransport` affects generic selection while `.Rest` requires REST.
 
-| Situation | Pattern |
-|---|---|
-| REST success check | Direct and shared REST methods return `HttpResult<T>` / `HttpResult` |
-| Socket subscription success check | Direct and shared subscriptions return `WebSocketResult<UpdateSubscription>` |
-| Generic success check | `if (!result.Success) { Console.WriteLine(result.Error); return; }` |
-| Read result data | Read `result.Data` only after `result.Success` |
-| Retry decision | Retry only when `result.Error?.IsTransient == true` |
-| Cancellation | Pass `ct: cancellationToken` |
+Capability presence does not guarantee every request property is supported. Inspect trading modes, request/exchange parameter rules, limits, and notes. Native APIs retain XT-specific trigger, stop-limit, track-order, account, and token/listen-key workflows. V1 `.SharedClient` remains for compatibility; listen keys are lifecycle infrastructure, not V2 capabilities.
 
-## Common Routing Pitfalls
+## Symbols, catalogs, and quantities
 
-| Do not use | Use instead |
-|---|---|
-| Raw `HttpClient` | `XTRestClient` / `XTSocketClient` |
-| `ApiCredentials` | `XTCredentials` |
-| `XTClient` | `XTRestClient` / `XTSocketClient` |
-| `socketClient.UsdtFuturesApi` | `socketClient.FuturesApi` |
-| `socketClient.CoinFuturesApi` | `socketClient.FuturesApi` |
-| `SpotApi.Margin` | `SpotApi.Account` / `SpotApi.Trading` with `BusinessType.Leverage` where supported |
-| `.Data` without `.Success` check | Check `.Success` first |
-| Private spot stream without token | `SpotApi.Account.GetWebsocketTokenAsync()` then subscribe |
-| Private futures stream without listen key | `UsdtFuturesApi.Account.GetListenKeyAsync()` then subscribe |
-| Inventing testnet environment | `XTEnvironment.Live` or `XTEnvironment.CreateCustom(...)` |
+Portable symbols use base/quote components in `SharedSymbol`. Successful `GetSpotSymbolsAsync`/`GetFuturesSymbolsAsync` calls populate `SpotSymbolCatalog`/`FuturesSymbolCatalog` for the selected API/environment, apply `GetSymbolsRequest` filters, and return display names and asset classifications. XT tags map to crypto, stablecoin, equity, and commodity metadata where available; missing metadata stays unknown.
+
+Shared request quantities use `SharedQuantity.Base`, `.Quote`, or `.Contracts` only where the chosen capability supports the unit. Responses use `SharedOrderQuantity`, whose base/quote/contracts quantities are nullable; absent units are not zero. Ticker volume uses `Volumes`, and book-ticker quantities use `BestBidQuantities`/`BestAskQuantities`. Inspect `SharedOrderBook.QuantityType` before interpreting depth. Native spot market buys use `quoteQuantity` for spend; market sells use base `quantity`. Futures quantity must respect the selected contract's unit and size.
+
+## Private streams and services
+
+Spot token overloads take `GetWebsocketTokenAsync().Data`; futures listen-key overloads take the key from the matching futures REST account. Credentialed socket overloads without those arguments acquire/manage tokens internally; do not infer that an unconfigured client is authenticated. Keep account and product context with each token/key, and use the library's lifecycle facilities for long-running streams rather than treating keys as permanent.
+
+`services.AddXT(options => ...)` and `services.AddXT(configuration.GetSection("XT"))` register native clients, V2 capabilities, the exchange aggregate, `IXTOrderBookFactory`, `IXTTrackerFactory`, and `IXTUserClientProvider`. Select the exchange aggregate when multiple exchanges are registered. The book factory exposes `Spot`, `UsdtFutures`, `CoinFutures`, `Create(SharedSymbol, ...)`, and native product creation methods. Check startup success and stop/dispose owned books and trackers. The tracker factory supports spot and USDT-futures user-data trackers; Coin-futures user tracker methods are not active in the interface. The user client provider caches credentialed clients by user identifier.
+
+Checkout-only: [public contracts](../../../../XT.Net/Interfaces/Clients), [Shared API adapters](../../../../XT.Net/Clients), and [DI registration](../../../../XT.Net/ExtensionMethods).

@@ -14,7 +14,7 @@ Console.WriteLine();
 Console.WriteLine("This example can place real orders when valid credentials are configured.");
 Console.WriteLine();
 
-var client = new XTRestClient(options =>
+using var client = new XTRestClient(options =>
 {
     options.ApiCredentials = new XTCredentials(apiKey, apiSecret);
 });
@@ -41,7 +41,7 @@ static async Task PlaceSpotLimitOrderAsync(XTRestClient client)
         return;
     }
 
-    var safePrice = Math.Round(ticker.LastPrice.Value * 0.95m, 2);
+    var limitPrice = Math.Round(ticker.LastPrice.Value * 0.95m, 2);
     var order = await client.SpotApi.Trading.PlaceOrderAsync(
         symbol: spotSymbol,
         orderSide: OrderSide.Buy,
@@ -49,7 +49,7 @@ static async Task PlaceSpotLimitOrderAsync(XTRestClient client)
         timeInForce: TimeInForce.GoodTillCanceled,
         businessType: BusinessType.Spot,
         quantity: 0.001m,
-        price: safePrice);
+        price: limitPrice);
 
     if (!order.Success)
     {
@@ -82,14 +82,14 @@ static async Task PlaceFuturesLimitOrderExampleAsync(XTRestClient client)
         return;
     }
 
-    var safePrice = Math.Round(ticker.Data.LastPrice * 1.05m, 2);
+    var limitPrice = Math.Round(ticker.Data.LastPrice * 1.05m, 2);
     var order = await client.UsdtFuturesApi.Trading.PlaceOrderAsync(
         symbol: futuresSymbol,
         orderSide: OrderSide.Sell,
         orderType: OrderType.Limit,
         quantity: 0.01m,
         positionSide: PositionSide.Short,
-        price: safePrice,
+        price: limitPrice,
         timeInForce: TimeInForce.GoodTillCanceled);
 
     if (!order.Success)

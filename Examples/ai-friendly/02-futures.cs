@@ -11,7 +11,7 @@ using XT.Net;
 using XT.Net.Clients;
 using XT.Net.Enums;
 
-var client = new XTRestClient(options =>
+using var client = new XTRestClient(options =>
 {
     options.ApiCredentials = new XTCredentials("API_KEY", "API_SECRET");
 });

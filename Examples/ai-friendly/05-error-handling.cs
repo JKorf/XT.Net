@@ -11,7 +11,7 @@ using XT.Net;
 using XT.Net.Clients;
 using XT.Net.Enums;
 
-var client = new XTRestClient(options =>
+using var client = new XTRestClient(options =>
 {
     options.ApiCredentials = new XTCredentials("API_KEY", "API_SECRET");
 });
@@ -41,10 +41,12 @@ else
 // Retry only on transient errors such as network issues, rate limits, or server overload.
 // Do not retry validation errors, bad credentials, or insufficient balance.
 
+// Public-read retry helper; reconcile account-changing outcomes before any resubmission.
 async Task<HttpResult<T>> WithRetry<T>(
     Func<Task<HttpResult<T>>> call,
     int maxAttempts = 3)
 {
+    ArgumentOutOfRangeException.ThrowIfLessThan(maxAttempts, 1);
     HttpResult<T> last = default!;
     for (var attempt = 1; attempt <= maxAttempts; attempt++)
     {
@@ -55,7 +57,8 @@ async Task<HttpResult<T>> WithRetry<T>(
         if (last.Error?.IsTransient != true)
             return last;
 
-        await Task.Delay(TimeSpan.FromMilliseconds(250 * Math.Pow(2, attempt)));
+        if (attempt < maxAttempts)
+            await Task.Delay(TimeSpan.FromMilliseconds(250 * Math.Pow(2, attempt)));
     }
 
     return last;

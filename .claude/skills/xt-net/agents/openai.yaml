@@ -1,0 +1,4 @@
+interface:
+  display_name: "XT.Net"
+  short_description: "Build C# XT spot and futures integrations."
+  default_prompt: "Use $xt-net to implement an XT.Net REST, websocket, account, or trading workflow."

@@ -16,7 +16,7 @@ using XT.Net.Enums;
 
 // ---- 1. PUBLIC CLIENT (no credentials needed for market data) ----
 // Reuse this client across the application; do not create one per request.
-var publicClient = new XTRestClient();
+using var publicClient = new XTRestClient();
 
 var tickers = await publicClient.SpotApi.ExchangeData.GetTickersAsync("eth_usdt");
 if (!tickers.Success)
@@ -29,7 +29,7 @@ var ticker = tickers.Data.First();
 Console.WriteLine($"Ticker received: {ticker}");
 
 // ---- 2. AUTHENTICATED CLIENT (for account / trading) ----
-var tradingClient = new XTRestClient(options =>
+using var tradingClient = new XTRestClient(options =>
 {
     options.ApiCredentials = new XTCredentials("API_KEY", "API_SECRET");
 });

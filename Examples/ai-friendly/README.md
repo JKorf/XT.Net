@@ -1,33 +1,23 @@
-# AI-Friendly Examples
+# Standalone examples
 
-These examples are optimized for AI coding assistants and quick onboarding. Each file is:
+Each file is an independent top-level console program. Copy one into `Program.cs` at a time.
 
-- **Compilable** - drop into a console project with `dotnet add package XT.Net` and it builds; substitute API keys for trading examples.
-- **Self-contained** - single file, no shared helpers and no external project setup.
-- **Heavily commented** - explains why the pattern matters, not just what to call.
-- **Idiomatic** - follows the current XT.Net 3.x REST, WebSocket, and SharedApis shape.
+| File | Purpose |
+| --- | --- |
+| [01-spot-quickstart.cs](01-spot-quickstart.cs) | Public data, balances, and spot orders |
+| [02-futures.cs](02-futures.cs) | Futures configuration, orders, and positions |
+| [03-websocket.cs](03-websocket.cs) | Public streams, explicit private tokens/listen keys, and cleanup |
+| [04-multi-exchange.cs](04-multi-exchange.cs) | Shared API V2 REST and socket market data |
+| [05-error-handling.cs](05-error-handling.cs) | Result handling and bounded public-read retries |
 
-The repository unit test `XT.Net.UnitTests.Documentation.AiExampleCompileTests` compiles every `.cs` file in this directory.
-
-## Files
-
-| File | What it shows |
-|---|---|
-| `01-spot-quickstart.cs` | Spot market data, balances, order placement, order status, cleanup |
-| `02-futures.cs` | USDT-M futures leverage, market order, positions, close-all pattern |
-| `03-websocket.cs` | Spot and futures public streams plus private token/listen-key patterns |
-| `04-multi-exchange.cs` | CryptoExchange.Net SharedApis for exchange-agnostic code |
-| `05-error-handling.cs` | `HttpResult<T>` handling, retry decisions, symbol validation |
-
-## Running
-
-```bash
+```shell
 dotnet new console -n MyXTApp
 cd MyXTApp
 dotnet add package XT.Net
-# Copy the example .cs file content into Program.cs
-# Replace API_KEY / API_SECRET placeholders with your own
-dotnet run
+# Copy ONE example into Program.cs
+dotnet build
 ```
 
-Use the examples as implementation patterns, not as trading advice. Substitute credentials, symbols, quantities, and risk controls for your application.
+Compilation performs no exchange operations. Running trading examples with valid credentials changes live account state; these are not sandbox programs. The socket example requires `XT_API_KEY` and `XT_API_SECRET`. Other authenticated walkthroughs use placeholders that require explicit configuration.
+
+See the [consumer skill](../../.claude/skills/xt-net/SKILL.md), [operational considerations](../../.claude/skills/xt-net/references/safety.md), and [complete projects](../README.md).
