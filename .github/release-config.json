@@ -1,0 +1,18 @@
+{
+  "baseBranch": "main",
+  "sdk": "11.0.100",
+  "packages": [
+    {
+      "key": "xt",
+      "project": "XT.Net/XT.Net.csproj",
+      "testProjects": [
+        "XT.Net.UnitTests/XT.Net.UnitTests.csproj"
+      ],
+      "packageId": "XT.Net",
+      "readme": "README.md",
+      "tagPrefix": "XT.Net.",
+      "releaseIntegrationTests": false,
+      "publishToGitHubPackages": true
+    }
+  ]
+}
