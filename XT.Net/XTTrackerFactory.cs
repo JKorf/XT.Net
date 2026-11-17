@@ -53,22 +53,22 @@ namespace XT.Net
             var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();
             var socketClient = _serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient();
 
-            IKlineRestClient sharedRestClient;
-            IKlineSocketClient sharedSocketClient;
+            IGetKlinesRest sharedRestClient;
+            ISubscribeKlinesSocket sharedSocketClient;
             if (symbol.TradingMode == TradingMode.Spot)
             {
-                sharedRestClient = restClient.SpotApi.SharedClient;
-                sharedSocketClient = socketClient.SpotApi.SharedClient;
+                sharedRestClient = restClient.SpotApi.SharedApi;
+                sharedSocketClient = socketClient.SpotApi.SharedApi;
             }
             else if (symbol.TradingMode.IsLinear())
             {
-                sharedRestClient = restClient.UsdtFuturesApi.SharedClient;
-                sharedSocketClient = socketClient.FuturesApi.SharedClient;
+                sharedRestClient = restClient.UsdtFuturesApi.SharedApi;
+                sharedSocketClient = socketClient.FuturesApi.SharedApi;
             }
             else
             {
-                sharedRestClient = restClient.CoinFuturesApi.SharedClient;
-                sharedSocketClient = socketClient.FuturesApi.SharedClient;
+                sharedRestClient = restClient.CoinFuturesApi.SharedApi;
+                sharedSocketClient = socketClient.FuturesApi.SharedApi;
             }
 
             return new KlineTracker(
@@ -89,25 +89,25 @@ namespace XT.Net
             var restClient = _serviceProvider?.GetRequiredService<IXTRestClient>() ?? new XTRestClient();
             var socketClient = _serviceProvider?.GetRequiredService<IXTSocketClient>() ?? new XTSocketClient();
 
-            IRecentTradeRestClient? sharedRestClient;
-            ITradeSocketClient sharedSocketClient;
+            IGetRecentTradesRest? sharedRestClient;
+            ISubscribeTradesSocket sharedSocketClient;
             TradeQuantityType quantityType;
             if (symbol.TradingMode == TradingMode.Spot)
             {
-                sharedRestClient = restClient.SpotApi.SharedClient;
-                sharedSocketClient = socketClient.SpotApi.SharedClient;
+                sharedRestClient = restClient.SpotApi.SharedApi;
+                sharedSocketClient = socketClient.SpotApi.SharedApi;
                 quantityType = TradeQuantityType.BaseAsset;
             }
             else if (symbol.TradingMode.IsLinear())
             {
-                sharedRestClient = restClient.UsdtFuturesApi.SharedClient;
-                sharedSocketClient = socketClient.FuturesApi.SharedClient;
+                sharedRestClient = restClient.UsdtFuturesApi.SharedApi;
+                sharedSocketClient = socketClient.FuturesApi.SharedApi;
                 quantityType = TradeQuantityType.Contracts;
             }
             else
             {
-                sharedRestClient = restClient.CoinFuturesApi.SharedClient;
-                sharedSocketClient = socketClient.FuturesApi.SharedClient;
+                sharedRestClient = restClient.CoinFuturesApi.SharedApi;
+                sharedSocketClient = socketClient.FuturesApi.SharedApi;
                 quantityType = TradeQuantityType.Contracts;
             }
 
