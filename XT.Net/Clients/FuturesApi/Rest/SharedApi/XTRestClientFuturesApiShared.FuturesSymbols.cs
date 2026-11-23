@@ -49,7 +49,7 @@ namespace XT.Net.Clients.FuturesApi
             var result = new SharedFuturesSymbol(
                     (s.ContractType == ContractType.Perpetual && s.UnderlyingType == UnderlyingType.UsdtBased) ? TradingMode.PerpetualLinear
                     : (s.ContractType != ContractType.Perpetual && s.UnderlyingType == UnderlyingType.UsdtBased) ? TradingMode.DeliveryLinear
-                    : (s.ContractType == ContractType.Perpetual && s.UnderlyingType == UnderlyingType.UsdtBased) ? TradingMode.PerpetualInverse
+                    : (s.ContractType == ContractType.Perpetual && s.UnderlyingType == UnderlyingType.CoinBased) ? TradingMode.PerpetualInverse
                     : TradingMode.DeliveryInverse
                     , s.BaseAsset, s.QuoteAsset, s.Symbol, s.Status == SymbolStatus.Online)
             {
