@@ -58,6 +58,7 @@ namespace XT.Net.Clients.FuturesApi
                 return _tokenClient;
             }
         }
+
         #region constructor/destructor
 
         /// <summary>
@@ -92,6 +93,13 @@ namespace XT.Net.Clients.FuturesApi
                 startToken: StartListenKeyAsync);
         }
         #endregion
+
+        protected override WebSocketParameters GetWebSocketParameters(string address)
+        {
+            var parameters = base.GetWebSocketParameters(address);
+            parameters.RequirePermessageDeflate = true;
+            return parameters;
+        }
 
         /// <inheritdoc />
         protected override IMessageSerializer CreateSerializer() => new SystemTextJsonMessageSerializer(SerializerOptions.WithConverters(XTExchange._serializerContext));
